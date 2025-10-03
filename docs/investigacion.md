@@ -13,7 +13,7 @@ Para operar necesitás un intermediario, conocido como **broker**, que permite e
 
 - **Rentabilidad:**  
 \[
-\text{Rentabilidad} = \frac{\text{Valor final - Valor inicial}}{\text{Valor inicial}} \times 100
+![alt text](image.png)
 \]  
 
 - **Riesgo:** no es solo “puedo perder”, sino **cuánto puedo perder**.  
@@ -22,7 +22,7 @@ Para operar necesitás un intermediario, conocido como **broker**, que permite e
 
 - **Drawdown:** caída desde un pico hasta un valle en el valor de tu cuenta.  
 \[
-\text{Drawdown} = \frac{\text{Valor en pico - Valor en valle}}{\text{Valor en pico}} \times 100
+![alt text](image-1.png)
 \]  
 - **Volatilidad:** cuánto fluctúa el precio de un activo. Mayor volatilidad = mayor riesgo y oportunidad.  
 - **Ratio riesgo/beneficio (R:R):** relación entre lo que arriesgás y lo que esperás ganar.  
