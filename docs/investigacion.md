@@ -7,23 +7,19 @@ Para operar necesitás un intermediario, conocido como **broker**, que permite e
 - **Plataformas:** apps, web y de escritorio.  
 - **Depósitos y retiros:** facilidad de manejar fondos.  
 - **Apalancamiento:** permite mover más dinero del que realmente tenés. 
----
 
-# Rentabilidad y riesgo
+
+## Rentabilidad y riesgo
 
 - **Rentabilidad:**  
-\[
-![alt text](image.png)
-\]  
+Rentabilidad = ((Val final - Val inicial)/Val inical )*100
 
 - **Riesgo:** no es solo “puedo perder”, sino **cuánto puedo perder**.  
 
  **Conceptos clave:**
 
 - **Drawdown:** caída desde un pico hasta un valle en el valor de tu cuenta.  
-\[
-![alt text](image-1.png)
-\]  
+Drowdown = ((Val en pico - Val en Valle)/Val en pico)*100
 - **Volatilidad:** cuánto fluctúa el precio de un activo. Mayor volatilidad = mayor riesgo y oportunidad.  
 - **Ratio riesgo/beneficio (R:R):** relación entre lo que arriesgás y lo que esperás ganar.  
 - **Value at Risk (VaR):** estimación de la máxima pérdida esperada en un período con cierto nivel de confianza.  
@@ -36,9 +32,8 @@ Para operar necesitás un intermediario, conocido como **broker**, que permite e
 - Eventos macroeconómicos (bancos centrales, inflación, elecciones)  
 - Noticias de empresas o sectores  
 
----
 
-# Métricas de eficiencia
+## Métricas de eficiencia
 
 - **Ratio de Sharpe:** mide rentabilidad por unidad de riesgo (volatilidad).  
   - >1: Bueno  
@@ -48,9 +43,8 @@ Para operar necesitás un intermediario, conocido como **broker**, que permite e
 - **Ratio de Calmar:** compara rentabilidad anualizada con máximo drawdown.  
   - Valor alto → buenas ganancias sin caídas grandes.  
 
----
 
-# Leyes y beneficios fiscales en Uruguay
+## Leyes y beneficios fiscales en Uruguay
 
 - **IRAE:** 3% de la utilidad bruta, gravado al 25% → tasa efectiva 0,75%.  
 - **Impuesto sobre dividendos:** 7% sobre la renta neta fiscal → tasa efectiva 0,21%.  
@@ -61,9 +55,9 @@ Para operar necesitás un intermediario, conocido como **broker**, que permite e
 - Bienes no deben ingresar físicamente a Uruguay.  
 - Solo se considera costo de compra, sin gastos adicionales (fletes, seguros).  
 
----
 
-# Plataformas locales en Uruguay
+
+## Plataformas locales en Uruguay
 
 Ejemplos: **TGB, Sociedad de Bolsa, Afex**  
 
@@ -79,9 +73,9 @@ Ejemplos: **TGB, Sociedad de Bolsa, Afex**
 - Oferta limitada de activos  
 - Plataformas menos avanzadas  
 
----
 
-# Emociones y psicología del trading
+
+## Emociones y psicología del trading
 
 - **Miedo:** cerrar operaciones ganadoras antes de tiempo o no entrar al mercado.  
 - **Avaricia:** dejar correr demasiado una posición o sobreoperar.  
@@ -96,9 +90,9 @@ Ejemplos: **TGB, Sociedad de Bolsa, Afex**
 
 Se recomienda respetar el plan, ser paciente y poner un límite de inversión antes de operar.  
 
----
 
-# Gestión de operaciones
+
+## Gestión de operaciones
 
 - **Apalancamiento:** permite operar con más dinero del que tenés (ej: 1:100).  
   - Mayor apalancamiento → mayor riesgo.  
@@ -113,9 +107,9 @@ Se recomienda respetar el plan, ser paciente y poner un límite de inversión an
   - Por volatilidad: ajustado al mercado (ej: indicador ATR)  
   - Dinámico/trailing: se mueve a tu favor si el precio avanza  
 
----
 
-# Ratio riesgo/beneficio y drawdown
+
+## Ratio riesgo/beneficio y drawdown
 
 - **R:R recomendado:** al menos 1:2  
   - Ejemplo: arriesgás $100 esperando ganar $300 → R:R = 1:3  
@@ -126,7 +120,10 @@ Se recomienda respetar el plan, ser paciente y poner un límite de inversión an
     - Limitar posiciones abiertas  
     - Pausar tras varias pérdidas seguidas (stop diario)
 
-# Bibliografia
+
+
+
+## Bibliografia
 - BAC – Régimen de trading en Uruguay – Borche & Asuaga. “Régimen de Trading en Uruguay :contentReference[oaicite:0]{index=0}  
 - IG – “Las 7 emociones a controlar en el trading” :contentReference[oaicite:1]{index=1}  
 - IMP – Ley 16.906 de Uruguay (1998) :contentReference[oaicite:2]{index=2}  
