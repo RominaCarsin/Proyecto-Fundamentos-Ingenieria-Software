@@ -19,8 +19,21 @@ Dice que probaría un **modo demo**, pero que muchos están “armados para que 
 Sobre la **seguridad**, fue claro: quiere **autenticación en dos pasos**, **transparencia en las comisiones** y saber **quién regula la plataforma**. Desconfiaría si una app promete **ganancias rápidas**, **beneficios demasiado altos** o si está **registrada en países raros**.  
 
 Por último, recalcó que lo más importante es que la plataforma **no se trabe ni se demore al ejecutar una orden**, porque en el **trading** los precios cambian en segundos y una demora puede hacerte entrar en un precio totalmente distinto.  
-“**Si pongo comprar y me demora la compra, entro al precio que no quería**”, dijo.  
+“Si pongo comprar y me demora la compra, entro al precio que no quería”.  
 
 Como para concluir, quiere una plataforma **segura, rápida, regulada y transparente**, hecha en **Uruguay** y que funcione bien, **sin vueltas**.
 
+
+
+## Entrevista 2
+### **Perfil:** Inexperto de 21 años de edad
+
+Le gustaría que halla simuladores de practica, recibir alertas de riesgo, noticias que afecten a las acciones, y que la autentificación sea rápida.
+"La huella digital o reconocimiento facial son opciones que estan buenas; es horrible cuando te piden una contraseña larguísima o doble autentificación cada que tenes que hacer algo"
+
+Comentó que le gustaría tener una guía paso a paso sobre cómo usar la aplicación y, para quienes quieran aprender más, una sección que explique cómo se hace trading. 
+
+Además, propuso que haya un espacio donde se muestren las **regulaciones de cada país**, una explicación clara de cada tipo de gráfico, y que la app sea rápida y fácil de usar.
+
+Por ultimo que debería informar de forma sencilla **cómo se hace para retirar el dinero ganado**.
 
