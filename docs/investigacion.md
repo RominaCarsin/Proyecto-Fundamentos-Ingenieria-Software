@@ -120,6 +120,69 @@ Se recomienda respetar el plan, ser paciente y poner un límite de inversión an
     - Limitar posiciones abiertas  
     - Pausar tras varias pérdidas seguidas (stop diario)
 
+# Análisis del Whitepaper de Capital.com
+
+## 1. Introducción / propósito del documento
+
+El *Whitepaper de Capital.com* presenta la visión de la plataforma: construir un entorno de trading **transparente, simple y accesible**, eliminando las barreras tradicionales al mundo de las inversiones.  
+Su objetivo es que tanto usuarios principiantes como avanzados puedan operar con facilidad mediante una interfaz intuitiva, precios justos y el uso de **inteligencia artificial (IA)** para detectar sesgos de comportamiento en los inversores.
+
+El documento se posiciona desde una perspectiva **FinTech educativa y ética**, enfocada en democratizar el acceso al trading y promover la educación financiera como un eje central del negocio.
+
+---
+
+## 2. Contenido principal / estructura
+
+El whitepaper aborda distintos ejes temáticos que describen el funcionamiento y los valores de la plataforma:
+
+- **Visión y misión:** crear una plataforma accesible y confiable para todo tipo de usuarios.  
+- **Uso de IA y machine learning:** detectar patrones psicológicos y sesgos cognitivos que afectan la toma de decisiones.  
+- **Diseño centrado en el usuario:** experiencia fluida, interfaz limpia y rápida ejecución de órdenes.  
+- **Transparencia en precios:** eliminación de “letras chicas” y comisiones ocultas.  
+- **Educación integrada:** guías, tutoriales y recursos que buscan formar al usuario mientras invierte.
+
+---
+
+## 3. Fortalezas destacadas
+
+1. **Visión inclusiva y democratizadora:** busca eliminar las barreras de entrada al trading, un modelo inspirador para proyectos locales.  
+2. **Uso de IA para detectar sesgos:** añade un valor diferencial al ofrecer asistencia cognitiva personalizada.  
+3. **Transparencia en costos:** prioriza la confianza mediante estructuras de precios claras y accesibles.  
+4. **Educación continua:** incorpora material formativo que acompaña al usuario durante su experiencia de inversión.  
+5. **Enfoque tecnológico y de velocidad:** garantiza baja latencia y ejecución rápida de órdenes, clave en entornos competitivos.
+
+---
+
+## 4. Debilidades o riesgos del enfoque
+
+1. **Limitaciones del uso de IA:** los sistemas automáticos pueden generar falsos positivos o interpretaciones erróneas.  
+2. **Altos costos tecnológicos:** mantener infraestructura robusta y de baja latencia requiere recursos importantes.  
+3. **Regulación internacional vs local:** muchas funciones pueden no estar alineadas con marcos legales nacionales, como los del BCU en Uruguay.  
+4. **Expectativas vs realidad:** las promesas de transparencia total pueden chocar con limitaciones operativas reales, como spreads variables.  
+5. **Diferencia entre visión y MVP:** algunas funciones avanzadas (IA o análisis de sesgos) podrían no estar disponibles desde el lanzamiento inicial.
+
+---
+
+## 5. Adaptaciones sugeridas para una app uruguaya de inversión
+
+- **Lanzar una versión mínima viable (MVP):** centrarse en compra, venta, portafolio, comisiones visibles y alertas básicas.  
+- **Transparencia radical:** mostrar comisiones, spreads y ejecución de órdenes sin ocultar costos.  
+- **Educación integrada:** incorporar tutoriales interactivos y explicaciones dentro de la app.  
+- **IA gradual:** añadir herramientas de análisis y sesgos a medida que la plataforma crezca.  
+- **Infraestructura local:** reducir la dependencia de servidores o APIs extranjeras.  
+- **Cumplimiento regulatorio:** garantizar compatibilidad con normativas del Banco Central del Uruguay.  
+- **Experiencia flexible:** permitir al usuario activar o desactivar funciones avanzadas (como módulos de IA).
+
+---
+
+## 6. Conclusión
+
+El *Whitepaper de Capital.com* ofrece una visión moderna y ética del trading digital. Su combinación de **tecnología, educación y transparencia** lo convierte en un modelo inspirador para el desarrollo de aplicaciones de inversión.  
+
+Sin embargo, su implementación práctica requiere adaptar el alcance tecnológico y regulatorio al contexto local.  
+Para un proyecto uruguayo, lo más valioso sería adoptar su enfoque educativo y transparente, manteniendo un control realista de costos y funcionalidades.  
+
+**En síntesis:** Capital.com representa un ejemplo sólido de cómo una FinTech puede equilibrar innovación y confianza, dos valores esenciales para el desarrollo de cualquier plataforma de inversión moderna.
 
 
 
@@ -127,3 +190,4 @@ Se recomienda respetar el plan, ser paciente y poner un límite de inversión an
 - BAC – Régimen de trading en Uruguay – Borche & Asuaga. “Régimen de Trading en Uruguay :contentReference[oaicite:0]{index=0}  
 - IG – “Las 7 emociones a controlar en el trading” :contentReference[oaicite:1]{index=1}  
 - IMP – Ley 16.906 de Uruguay (1998) :contentReference[oaicite:2]{index=2}  
+- **Capital.com.** (2023). *Capital.com White Paper (April 2023 Update).*  
