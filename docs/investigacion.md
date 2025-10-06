@@ -12,18 +12,17 @@ Para operar necesitás un intermediario, conocido como **broker**, que permite e
 # Rentabilidad y riesgo
 
 - **Rentabilidad:**  
-\[
-![alt text](image.png)
-\]  
+    *Rentabilidad = ((Valor final- Valor inicial)/Valor inicial)x100**
+
 
 - **Riesgo:** no es solo “puedo perder”, sino **cuánto puedo perder**.  
 
  **Conceptos clave:**
 
-- **Drawdown:** caída desde un pico hasta un valle en el valor de tu cuenta.  
-\[
-![alt text](image-1.png)
-\]  
+- **Drawdown:** caída desde un pico hasta un valle en el valor de tu cuenta.
+
+    *Drawdown= ((Valor en pico - Valor en valle )/ Valor en pico) x 100** 
+  
 - **Volatilidad:** cuánto fluctúa el precio de un activo. Mayor volatilidad = mayor riesgo y oportunidad.  
 - **Ratio riesgo/beneficio (R:R):** relación entre lo que arriesgás y lo que esperás ganar.  
 - **Value at Risk (VaR):** estimación de la máxima pérdida esperada en un período con cierto nivel de confianza.  
