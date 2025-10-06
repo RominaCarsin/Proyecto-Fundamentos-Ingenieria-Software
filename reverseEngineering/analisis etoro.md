@@ -1,5 +1,6 @@
 
-![alt text](image.png)
+<img src="image.png" alt="alt text" width="200"/>
+
 # eToro 
 
 ## Análisis de aplicacion
@@ -30,6 +31,8 @@ Si querés, podés activar la función dinámica del stop loss, que es bastante 
 | **Atención al cliente / soporte** | Soporte vía chat, tickets online y base de conocimiento. Disponible en varios idiomas. | Canales variados y buena documentación. | Respuestas lentas y sin soporte telefónico. | Evaluar tiempo de respuesta, claridad y disponibilidad en español. |
 
 ## Anexo
-![alt text](image-3.png) ![alt text](image-4.png)
-![alt text](image-5.png) ![alt text](image-6.png)
-![alt text](image-7.png)
+<img src="image-3.png" alt="alt text" width="200"/>
+<img src="image-4.png" alt="alt text" width="200"/>
+<img src="image-5.png" alt="alt text" width="200"/>
+<img src="image-6.png" alt="alt text" width="200"/>
+<img src="image-7.png" alt="alt text" width="200"/>
