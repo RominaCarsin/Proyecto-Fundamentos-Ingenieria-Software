@@ -182,31 +182,38 @@ Torres, F. (2023, May 24). Las 7 emociones a controlar en el trading. IG. https:
 # Requerimientos
 
 ## Requerimientos Funcionales (Lo que el sistema debe hacer)
-- Que el sistema permite visualizar una **lista actualizada de instrumentos financieros** (acciones, divisas, criptomonedas, commodities) con precios en tiempo real.  
-- Que los usuarios puedan ejecutar operaciones de compra y venta en el mercado, eligiendo entre órdenes a mercado o con límites de precio.  
-- Que se ofrezca una **cuenta demo** con saldo virtual para practicar operaciones sin  riesgo, simulando condiciones reales.  
-- Que el sistema muestre de forma clara y organizada el **historial de operaciones** de cada usuario, incluyendo datos de fecha, tipo, monto y resultado.  
-- Que los usuarios puedan **consultar métricas de rentabilidad y riesgo** (Ej: drawdown, ratio Sharpe, ratio riesgo/beneficio).  
-- Que la aplicación incluya una **sección educativa con guías**, artículos o videos sobre inversión responsable y psicología del trading.  
-- Que el sistema envía **notificaciones al usuario sobre ejecuciones de órdenes, movimientos importantes del mercado o actualizaciones relevantes**.  
-- Que el sistema cumpla con los **requisitos legales y de seguridad** exigidos por el **Banco Central del Uruguay y la Ley Nº 16.906**.  
-- Que el sistema permita a los usuarios **editar su perfil**, incluyendo preferencias de idioma, métodos de pago y configuración de seguridad.
-- Que el sistema permita las **operaciones con múltiples monedas**..
-- Que el sistema **muestre todas las comisiones aplicables** a cada operación y no oculte cargos adicionales.
-- Que se incorporen **advertencias visibles y recurrentes** sobre los riesgos del trading.
+- Que el sistema permite visualizar una **lista actualizada de instrumentos financieros** (acciones, divisas, criptomonedas, commodities) con precios en tiempo real.    <p style="color:blue;">M </p>
+- Que los usuarios puedan ejecutar operaciones de compra y venta en el mercado, eligiendo entre órdenes a mercado o con límites de precio. <p style="color:blue;">M </p> 
+- Que se ofrezca una **cuenta demo** con saldo virtual para practicar operaciones sin  riesgo, simulando condiciones reales.  <p style="color:green;">S </p>
+- Que el sistema muestre de forma clara y organizada el **historial de operaciones** de cada usuario, incluyendo datos de fecha, tipo, monto y resultado.  <p style="color:blue;">M </p>
+- Que los usuarios puedan **consultar métricas de rentabilidad y riesgo** (Ej: drawdown, ratio Sharpe, ratio riesgo/beneficio).  <p style="color:blue;">M </p>
+- Que la aplicación incluya una **sección educativa con guías**, artículos o videos sobre inversión responsable y psicología del trading.  <p style="color:green;">S </p>
+- Que el sistema envía **notificaciones al usuario sobre ejecuciones de órdenes, movimientos importantes del mercado o actualizaciones relevantes**.  <p style="color:green;">S </p>
+- Que el sistema cumpla con los **requisitos legales y de seguridad** exigidos por el **Banco Central del Uruguay y la Ley Nº 16.906**. <p style="color:blue;">M </p> 
+- Que el sistema permita a los usuarios **editar su perfil**, incluyendo preferencias de idioma, métodos de pago y configuración de seguridad.<p style="color:green;">S </p>
+- Que el sistema permita las **operaciones con múltiples monedas**..<p style="color:yellow;">C </p>
+- Que el sistema **muestre todas las comisiones aplicables** a cada operación y no oculte cargos adicionales.<p style="color:yellow;">C </p>
+- Que se incorporen **advertencias visibles y recurrentes** sobre los riesgos del trading.<p style="color:yellow;">C </p>
 
 
 
 ## Requerimientos No Funcionales (Como el sistema debe hacerlo)
 
-- Que la **interfaz sea intuitiva, clara y fácil de usar desde cualquier dispositivo **(computadora o móvil).
-- Que las páginas o vistas principales **se acceden en menos de 5 clicks**. 
-- Que las **operaciones** se hagan de **manera instantánea**. 
-- Que el sistema funcione correctamente en los principales sistemas **Android/iOS y windows**.  
-- Que el **código fuente** se mantenga modular, documentado y versionado en **GitHub**, facilitando su mantenibilidad.  
-- Que el sistema **muestre las comisiones o costos antes de ejecutar cualquier transacción**.  
-- Que el sistema pueda **soportar múltiples idiomas** y desarrollarse en principio en español e inglés   
-- El sistema debe presentar colores verdes y rojos tanto en los botones (subir y bajar y/o compra y venta) como en las gráficas, para indicar si sube o baja una acción.
+- Que la **interfaz sea intuitiva, clara y fácil de usar desde cualquier dispositivo **(computadora o móvil).<p style="color:blue;">M </p>
+- Que las páginas o vistas principales **se acceden en menos de 5 clicks**. <p style="color:green;">S </p>
+- Que las **operaciones** se hagan de **manera instantánea**. <p style="color:blue;">M </p>
+- Que el sistema funcione correctamente en los principales sistemas **Android/iOS y windows**.  <p style="color:blue;">M </p>
+- Que el **código fuente** se mantenga modular, documentado y versionado en **GitHub**, facilitando su mantenibilidad.  <p style="color:blue;">M </p>
+- Que el sistema **muestre las comisiones o costos antes de ejecutar cualquier transacción**.  <p style="color:yellow;">C </p>
+- Que el sistema pueda **soportar múltiples idiomas** y desarrollarse en principio en español e inglés   <p style="color:yellow;">C </p>
+- El sistema debe presentar colores verdes y rojos tanto en los botones (subir y bajar y/o compra y venta) como en las gráficas, para indicar si sube o baja una acción.<p style="color:red;">W </p>
+
+
+Para realizar un mejor trabajo priorizamos los requisitos amplicando MoSCoW:
+<p style="color:blue;">M – Must have </p>
+<p style="color:green;">S – Should have </p>
+<p style="color:yellow;">C – Could have </p>
+<p style="color:red;">W – Won’t have</p>
 
 ---
 
