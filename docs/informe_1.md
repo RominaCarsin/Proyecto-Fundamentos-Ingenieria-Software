@@ -2,30 +2,218 @@
 
 ## Repositorio Git
 
-* Explicar cómo organizaron el repositorio.
-* Describir la estrategia de branches usada (ej: `main`, `dev`, `feature/...`).
-* Incluir pautas de commits (ej: conventional commits).
-* Referenciar el README: qué contiene (objetivos, instrucciones de instalación, etc.).
-* Evidencia (capturas o enlaces) de la estructura.
+### Organización del repositorio
+
+El repositorio del proyecto se encuentra alojado en GitHub, bajo el nombre **`proyecto-m4c-carsin-costa`**.  
+La estructura está organizada de forma modular, siguiendo una distribución de  documentación, código fuente y materiales de investigación.  
+Las carpetas principales son:
+
+- **`docs/`**: contiene toda la documentación académica y técnica del proyecto, incluyendo los informes, análisis de aplicaciones y bibliografía.  
+  Dentro de esta carpeta se encuentran archivos como **informe_1.md**, **informe_2.md**,**informe_testing.md** y **investigacion.md**.
+
+- **`interviews/`**: incluye los resúmenes de entrevistas realizadas a usuarios de otras aplicaciones de trading y a posibles futuros usuarios, fundamentales para la etapa de investigación de requisitos (analisis de mercado).
+
+- **`reverseEngineering/`**: contiene los análisis comparativos y de ingeniería inversa de plataformas de inversión existentes (tales como, IQ Option, eToro y Prex Uruguay).
+
+- **`src/`**: aloja el código fuente de la aplicación, dividido en subcarpetas por dominio (**domain/**), interfaz (**interface/**) y demás componentes lógicos.
+
+- Archivos adicionales como `.gitignore`, `README.md`, `package.json`, `package-lock.json` y `eslint.config.js` se incluyen en la raíz para manejo de dependencias, configuración del entorno y control de estilo del código.
+
+
+
+
+
+### Estructura de Ramas del Repositorio
+
+El repositorio sigue una estructura de ramas pensada para mantener un flujo de trabajo ordenado y colaborativo.  
+
+Desde la rama principal **`main`** se desprende **`develop`**, que funciona como el espacio donde se concentran todas las modificaciones, pruebas y mejoras que se van realizando a lo largo del proyecto. Es, en otras palabras, la versión en desarrollo que va evolucionando hasta llegar al resultado final. Una vez que el proyecto alcanza una versión estable y completa, los cambios de **develop** se integran nuevamente en **main**.  
+
+A partir de **`develop`** se crean dos ramas secundarias:  
+
+- **`interview`**: utilizada para cargar y documentar todo lo relacionado con las entrevistas realizadas, ya sea con potenciales usuarios o con personas que utilizan otras aplicaciones similares del mercado.  
+- **`application-analysis`**: enfocada en recopilar y registrar los análisis e investigaciones de ingeniería reversa sobre plataformas existentes, permitiendo entender sus funcionalidades y usabilidad para tomar referencias en el desarrollo propio.  
+
+Esta estructura permite mantener separadas las distintas líneas de trabajo —desarrollo, análisis e investigación de usuarios— evitando conflictos entre ramas y asegurando que cada aporte se integre de forma controlada y clara en el flujo general del proyecto.
+
+<img src="image.png" alt="alt text" width="400"/>
 
 ---
 
-## Investigación
+### Pautas de commits
 
-* Métodos de investigación utilizados: entrevistas, encuestas, análisis documental, ingeniería reversa, personas de usuario, etc.
-* Presentar los hallazgos clave que fundamentan el proyecto.
-* Justificar por qué la investigación respalda las decisiones de requisitos.
-* Mostrar que fue exhaustiva (varias fuentes, más de un método).
+Se utiliza la convención **Conventional Commits**, lo que permite mantener un historial de cambios claro y legible.  
+El formato adoptado es:
+
+
+Ejemplos de commits realizados:
+
+- `docs(entrevistas): agregar entrevista 2 en entrevistas.md`  
+- `docs(investigacion): agregar análisis del Whitepaper de Capital.com`  
+- `docs(referencias): agregar bibliografía del análisis del Whitepaper`  
+- `analysis: agregar análisis de la aplicación eToro`
+
+Los tipos más utilizados son:
+- **`docs`**: cambios en documentación o archivos de análisis.  
+- **`feat`**: incorporación de nuevas funcionalidades.  
+- **`fix`**: correcciones o ajustes.  
+- **`analysis`**: commits asociados al trabajo de investigación y análisis de mercado.  
+
+Por este formato, el historial del proyecto mantiene coherencia y trazabilidad, facilitando tanto la revisión como la evaluación académica del trabajo.
+![alt text](image-2.png)
+<img src="image-1.png" alt="alt text" width="400"/>
 
 ---
 
+### README del proyecto
 
-## RF & RNF (Requisitos Funcionales y No Funcionales)
+El archivo **`README.md`** se encuentra en la raíz del repositorio y cumple una función informativa y organizativa.  
+Incluye:
 
-* Listar claramente los **Requisitos Funcionales (RF)**: qué debe hacer el sistema.
-* Listar los **Requisitos No Funcionales (RNF)**: calidad, seguridad, rendimiento, usabilidad, restricciones de dominio, etc.
-* Priorizar los requisitos (ej: MoSCoW, numeración).
-* Asegurarse de que estén completos y sin ambigüedad.
+- **Título del proyecto:** *Proyecto 2025 S2*.  
+- **Objetivo general:** desarrollar una aplicación de inversión enfocada en usuarios uruguayos.  
+- **Descripción estructurada del repositorio**, especificando el propósito de cada carpeta (`docs`, `src`, etc.).  
+- **Guía de entregas** con los nombres de los informes (`informe_1`, `informe_2`, `informe_testing`).  
+- **Recursos adicionales:** enlace al enunciado del proyecto, rúbrica de evaluación y pautas de entrega.  
+- **Instrucciones de instalación y uso del entorno**, así como la configuración de ESLint y dependencias npm.
+
+El README sirve como **punto de entrada** tanto para el equipo como para los evaluadores, centralizando la información clave del repositorio y su documentación técnica.
+
+---
+
+# Métodos de investigación
+
+Los métodos de investigación que utilizamos fueron: **entrevistas**, **análisis de documentos** e **ingeniería reversa**.
+
+## Análisis de documentos
+
+Los aspectos más importantes del análisis de documentos son que:  
+En Uruguay es ilegal operar sin un Broker, los cuales ejecutan transacciones rápidas cobrando comisiones, ofreciendo cuentas demo, apalancamiento y diversas plataformas. La rentabilidad se calcula comparando valores iniciales y finales, mientras el riesgo se gestiona mediante drawdown (caídas máximas), volatilidad y ratios riesgo/beneficio recomendables de 1:2 o superior.  
+Métricas a tener en cuenta incluyen el Ratio de Sharpe (>1 es bueno) que mide rentabilidad ajustada al riesgo, y el Ratio de Calmar que relaciona ganancias con pérdidas máximas. Uruguay ofrece beneficios fiscales con carga total del 0,96% sobre utilidades, requiriendo que los bienes no ingresen físicamente al país.  
+También que a la hora de no solo invertir sino también diseñar una aplicación la psicología del trading es fundamental, pues controlando emociones como miedo, avaricia y euforia, junto a sesgos cognitivos como exceso de confianza, se puede lograr un apalancamiento controlado, diversificación y stops loss que limitan pérdidas.  
+
+Capital.com propone un modelo FinTech transparente usando IA para reducir sesgos emocionales, aunque su implementación local requiere adaptación regulatoria y tecnológica progresiva, manteniendo educación financiera y transparencia como pilares esenciales. Si bien es muy interesante este concepto, no es tan simple de implementar; por esta razón entendemos que lo mejor que podemos hacer es en todo momento dejar claros los riesgos.  
+
+Un desarrollo más profundo de esta información se encuentra en **`investigacion.md`** dentro de la carpeta **docs**.
+
+## Entrevistas
+
+Aplicando el método de las entrevistas obtuvimos información valiosa, pues de esta manera conocimos cara a cara las dificultades y beneficios que tienen los traders al operar en este mercado.  
+Las entrevistas se realizaron basándonos en una base de preguntas que se encuentran en **`Preguntas de entrevista.md`** dentro de la carpeta **interviews**.  
+
+Se lograron concretar 3 entrevistas, dos con un experto y una con alguien fuera del ámbito.  
+De las tres entrevistas realizadas, identificó varios puntos en común entre los participantes, más allá de su nivel de experiencia:
+
+### Elementos compartidos por todos
+
+Los tres coinciden en que la confianza y seguridad son fundamentales. Tanto el experto como el inversor que tuvo malas experiencias enfatizan la necesidad de regulación clara, preferentemente del Banco Central del Uruguay, y transparencia total en las operaciones. Los tres valoran que la plataforma sea rápida y fácil de usar, con una interfaz amigable e intuitiva que facilite la experiencia del usuario. Además, todos mencionan la importancia de la educación e información clara, ya sea mediante guías paso a paso, explicación de gráficos o alertas de noticias relevantes.
+
+Un aspecto clave que surge es la flexibilidad en los métodos de verificación de seguridad. El usuario inexperto menciona específicamente la inconveniencia de las contraseñas largas y la doble autenticación constante, sugiriendo que sería ideal que la aplicación permita al usuario elegir entre diferentes métodos como huella digital, reconocimiento facial u otras opciones, según su preferencia personal.
+
+### Aspecto destacado de la entrevista con el inversor experimentado
+
+Un punto muy valioso que surge de la entrevista con el inversor que tuvo malas experiencias es su propuesta de garantizar al menos el capital inicial invertido, aunque se puedan perder las utilidades. Esta idea responde directamente al miedo generalizado a las estafas y podría ser un diferenciador clave para generar confianza en nuevos inversores. También sugiere enfocarse en inversiones locales tangibles -como construcción, ganado o forestación- y presentarse como "la plataforma de inversión de los uruguayos", aprovechando el sentido de identidad local como ventaja competitiva frente a plataformas internacionales.
+
+Para conocer más sobre las entrevistas realizadas estas se encuentran en **entrevistas.md** dentro de la carpeta **interviews**. 
+
+## Ingeniería reversa
+
+Para complementar toda esta información obtenida también usamos el método de ingeniería reversa; para esto analizamos tres aplicaciones existentes en el mercado: **eToro**, **IQ Option** y **Prex**.  
+Considerando un análisis comparativo de estas aplicaciones se sabe que:
+
+### Puntos fuertes por plataforma
+
+**Prex Uruguay:**  
+- Fácil acceso con pesos uruguayos (sin necesidad de cuentas internacionales)  
+- Respaldo del Banco Central de Uruguay - genera mayor confianza local  
+- Mínimos de inversión bajos (desde USD 10) ideal para principiantes  
+- Interfaz simple y educativa para quienes comienzan  
+
+**IQ Option:**  
+- Cuenta demo con USD 10,000 virtuales - excelente para practicar sin riesgo  
+- Herramientas de análisis técnico completas (RSI, MACD, medias móviles)  
+- Gráficos personalizables con múltiples indicadores y herramientas de dibujo  
+- Múltiples instrumentos en una sola app (forex, criptos, acciones, commodities)  
+
+**eToro:**  
+- CopyTrading - permite copiar operaciones de traders exitosos  
+- Interfaz moderna e intuitiva - muy amigable para principiantes  
+- Comunidad activa y componente social del trading  
+- eToro Academy - mejor contenido educativo integrado  
+- Regulación sólida (FCA, CySEC, ASIC) - mayor seguridad  
+
+Sin embargo no todo es bueno también hay **problemas comunes**:  
+Demoras en retiros (especialmente IQ Option y eToro)  
+Comisiones ocultas o poco claras (todas tienen este problema en algún aspecto)  
+Falta de soporte personalizado - atención al cliente deficiente  
+Curva de aprendizaje pronunciada para funciones avanzadas  
+
+#### **Sacar lo mejor de todo**
+Ante esto un buen inició de partida para el desarrollo de una nueva aplicación de trading para Uruguay sería:  
+Implementar el CopyTrading de eToro combinado con la simplicidad de Prex  
+Incluir cuenta demo robusta como IQ Option pero más realista  
+Ofrecer herramientas técnicas avanzadas pero con interfaz gradual según experiencia  
+Garantizar transparencia total en comisiones y procesos de retiro ágiles  
+Mantener identidad local y regulación uruguaya como Prex pero con funcionalidad internacional  
+
+La plataforma ideal tomaría la confianza institucional de Prex, las herramientas técnicas de IQ Option y la innovación social de eToro, adaptado al mercado uruguayo. *(estos no son los requisitos pero está bueno poner los pies en la tierra)*
+
+El analisi de las aplicaciones se encuentra dentro de la carpeta reverseEngineering y dentro de esta encontrara los archivos:  **`analisis etoro.md`**,  **`analisis-IQ-Option.md`**, **`analisi-prex.md`**.
+
+
+## Bibliografias
+Berciano, E. (Director). (2025, March 16). Cómo Configurar STOPLOSS y TAKE PROFIT en ETORO para hacer SWING TRADING. https://www.youtube.com/watch?v=-yjKzscGeTs
+
+como abrir una operacion en iq option - Google Search. (n.d.). Google.com. Retrieved October 7, 2025, from https://www.google.com/search?sca_esv=1ecdb2dd816d191e&sxsrf=AE3TifPrqGOsMXvwPyBrzQ3nc6FTMr6arw:1759775002243&udm=7&fbs=AIIjpHx4nJjfGojPVHhEACUHPiMQf-5E2B2fzLEKeWLyFzQTKceRtMrXpsj_Na9j6JAyaRgCOELN0KG6HnZhsi4unsbpAtNpApXWFglPZsYR2xlYT903z17GoYQKxVnswTo3-MxbeihWbVXmxKywR0qFfoOpc5vLMpbfgn2120mq8xn_c0-dUoEzg4z6aZEKEXCGtHPgIk0WY8NlM0gg5s-jZuxgDocmvA&q=como+abrir+una+operacion+en+iq+option&sa=X&ved=2ahUKEwiKwZLfmJCQAxUaP7kGHasiLg4QtKgLegQIFBAB&biw=1536&bih=730&dpr=1.25
+
+Invierta con eToroTM. (n.d.). Etoro.com. Retrieved October 7, 2025, from https://www.etoro.com/es/
+
+IQOption: Es un bróker confiable? (2023, November 19). Sololosmejores.net. https://sololosmejores.net/iqoption-libertex-latam/?gcam=586-820-9117&utm_source=solosmejores&utm_medium=cpc&utm_campaign=22470028496&campaignid=stocks&kw=account_000_solosmejores-586-820-9117_campaign_22470028496keywordiq%20optiondevicec&gad_source=1&gad_campaignid=22470028496&gbraid=0AAAAAo0A5n2qVwPrYeyIrCkbcVKXkrPt7&gclid=Cj0KCQjw0Y3HBhCxARIsAN7931WPYNLLHQStOxdKUQUPizNKrdXBHznCl0ylw3JGLRg1bhMin6nAOAoaAgVKEALw_wcB
+
+Landing Presencial Curso Trading AW » 🎓 MVDtrading Academia de Inversiones. (2024, November 7). 🎓 MVDtrading Academia de Inversiones; MVDtrading 🎓. https://www.mvdtrading.com/curso-trading-presencial-aw/?campaignid=11435171645&adgroupid=111060982079&adid=474492905653&gad_source=1&gad_campaignid=11435171645&gbraid=0AAAAADh2uNLI6ocVlkKm-fXcGJtCOTnsZ&gclid=Cj0KCQjw0Y3HBhCxARIsAN7931VXiQkWu1q-xgiCKqALn0JApKtUvQ5WE-dANCKK8hPp3q_mC94Ma5caAkUTEALw_wcB
+
+Ley N� 16906. (n.d.). Com.uy. Retrieved October 7, 2025, from https://www.impo.com.uy/bases/leyes/16906-1998
+
+RÉGIMEN DE TRADING EN URUGUAY. (2023, August 2). Borche & Asuaga - Estudio Contable - BAC. https://bac.com.uy/trading-en-uruguay/
+
+Torres, F. (2023, May 24). Las 7 emociones a controlar en el trading. IG. https://www.ig.com/es/estrategias-de-trading/las-7-emociones-a-controlar-en-el-trading-230518
+
+---
+# Requerimientos
+
+## Requerimientos Funcionales (Lo que el sistema debe hacer)
+- Que el sistema permite visualizar una **lista actualizada de instrumentos financieros** (acciones, divisas, criptomonedas, commodities) con precios en tiempo real.    <p style="color:blue;">M </p>
+- Que los usuarios puedan ejecutar operaciones de compra y venta en el mercado, eligiendo entre órdenes a mercado o con límites de precio. <p style="color:blue;">M </p> 
+- Que se ofrezca una **cuenta demo** con saldo virtual para practicar operaciones sin  riesgo, simulando condiciones reales.  <p style="color:green;">S </p>
+- Que el sistema muestre de forma clara y organizada el **historial de operaciones** de cada usuario, incluyendo datos de fecha, tipo, monto y resultado.  <p style="color:blue;">M </p>
+- Que los usuarios puedan **consultar métricas de rentabilidad y riesgo** (Ej: drawdown, ratio Sharpe, ratio riesgo/beneficio).  <p style="color:blue;">M </p>
+- Que la aplicación incluya una **sección educativa con guías**, artículos o videos sobre inversión responsable y psicología del trading.  <p style="color:green;">S </p>
+- Que el sistema envía **notificaciones al usuario sobre ejecuciones de órdenes, movimientos importantes del mercado o actualizaciones relevantes**.  <p style="color:green;">S </p>
+- Que el sistema cumpla con los **requisitos legales y de seguridad** exigidos por el **Banco Central del Uruguay y la Ley Nº 16.906**. <p style="color:blue;">M </p> 
+- Que el sistema permita a los usuarios **editar su perfil**, incluyendo preferencias de idioma, métodos de pago y configuración de seguridad.<p style="color:green;">S </p>
+- Que el sistema permita las **operaciones con múltiples monedas**..<p style="color:yellow;">C </p>
+- Que el sistema **muestre todas las comisiones aplicables** a cada operación y no oculte cargos adicionales.<p style="color:yellow;">C </p>
+- Que se incorporen **advertencias visibles y recurrentes** sobre los riesgos del trading.<p style="color:yellow;">C </p>
+
+
+
+## Requerimientos No Funcionales (Como el sistema debe hacerlo)
+
+- Que la **interfaz sea intuitiva, clara y fácil de usar desde cualquier dispositivo **(computadora o móvil).<p style="color:blue;">M </p>
+- Que las páginas o vistas principales **se acceden en menos de 5 clicks**. <p style="color:green;">S </p>
+- Que las **operaciones** se hagan de **manera instantánea**. <p style="color:blue;">M </p>
+- Que el sistema funcione correctamente en los principales sistemas **Android/iOS y windows**.  <p style="color:blue;">M </p>
+- Que el **código fuente** se mantenga modular, documentado y versionado en **GitHub**, facilitando su mantenibilidad.  <p style="color:blue;">M </p>
+- Que el sistema **muestre las comisiones o costos antes de ejecutar cualquier transacción**.  <p style="color:yellow;">C </p>
+- Que el sistema pueda **soportar múltiples idiomas** y desarrollarse en principio en español e inglés   <p style="color:yellow;">C </p>
+- El sistema debe presentar colores verdes y rojos tanto en los botones (subir y bajar y/o compra y venta) como en las gráficas, para indicar si sube o baja una acción.<p style="color:red;">W </p>
+
+
+Para realizar un mejor trabajo priorizamos los requisitos amplicando MoSCoW:
+<p style="color:blue;">M – Must have </p>
+<p style="color:green;">S – Should have </p>
+<p style="color:yellow;">C – Could have </p>
+<p style="color:red;">W – Won’t have</p>
 
 ---
 
@@ -74,90 +262,11 @@
   * Dificultades y desafíos encontrados.
   * Qué funcionó bien y qué no.
   * Lecciones aprendidas hasta ahora.
-* Mantener un tono crítico y constructivo, no sólo descriptivo.
-
-### Organización del repositorio
-
-El repositorio del proyecto se encuentra alojado en GitHub, bajo el nombre **`proyecto-m4c-carsin-costa`**.  
-La estructura está organizada de forma modular, siguiendo una distribución clara entre documentación, código fuente y materiales de investigación.  
-Las carpetas principales son:
-
-- **`docs/`**: contiene toda la documentación académica y técnica del proyecto, incluyendo los informes, análisis de aplicaciones y bibliografía.  
-  Dentro de esta carpeta se encuentran archivos como `informe_1.md`, `informe_2.md`, `informe_testing.md` y `investigacion.md`.
-
-- **`interviews/`**: incluye los resúmenes de entrevistas realizadas a potenciales usuarios o inversionistas, fundamentales para la etapa de investigación de requisitos.
-
-- **`reverseEngineering/`**: contiene los análisis comparativos y de ingeniería inversa de plataformas de inversión existentes (por ejemplo, IQ Option, eToro y Prex Uruguay).
-
-- **`src/`**: aloja el código fuente de la aplicación, dividido en subcarpetas por dominio (`domain/`), interfaz (`interface/`) y demás componentes lógicos.
-
-- Archivos adicionales como `.gitignore`, `README.md`, `package.json`, `package-lock.json` y `eslint.config.js` se incluyen en la raíz para manejo de dependencias, configuración del entorno y control de estilo del código.
-
-Esta estructura busca mantener una **clara separación entre desarrollo y documentación**, lo que facilita tanto el trabajo colaborativo como la trazabilidad entre los entregables académicos y el código fuente.
-
----
-
-### Estrategia de ramas (branches)
-
-El repositorio adopta una estrategia de ramas basada en buenas prácticas de desarrollo colaborativo:
-
-- **`main`**: rama principal del proyecto. Contiene las versiones estables y aprobadas, listas para la entrega o integración final.  
-- **`develop`**: rama de desarrollo, donde se integran las funcionalidades nuevas antes de ser revisadas y fusionadas a `main`.  
-- **`application-analysis`**: rama dedicada al análisis de aplicaciones de referencia y documentación asociada. Aquí se han incorporado los commits de investigación y los archivos `.md` de análisis comparativo.  
-- **`interview`**: rama utilizada para la carga, edición y versionado de las entrevistas realizadas a usuarios e inversionistas.
-
-Esta segmentación por ramas permite **aislar las tareas** de documentación, desarrollo y análisis, reduciendo conflictos y asegurando un flujo de trabajo más controlado. Cada rama tiene un propósito bien definido y se fusiona a `develop` o `main` sólo cuando su contenido está validado.
-
----
-
-### Pautas de commits
-
-Se utiliza la convención **Conventional Commits**, lo que permite mantener un historial de cambios claro y legible.  
-El formato adoptado es:
+* Mantener un tono crítico y constructivo, no sólo descriptivo
 
 
-Ejemplos de commits realizados:
 
-- `docs(entrevistas): agregar entrevista 2 en entrevistas.md`  
-- `docs(investigacion): agregar análisis del Whitepaper de Capital.com`  
-- `docs(referencias): agregar bibliografía del análisis del Whitepaper`  
-- `analysis: agregar análisis de la aplicación eToro`
 
-Los tipos más utilizados son:
-- **`docs`**: cambios en documentación o archivos de análisis.  
-- **`feat`**: incorporación de nuevas funcionalidades.  
-- **`fix`**: correcciones o ajustes.  
-- **`analysis`**: commits asociados al trabajo de investigación y análisis de mercado.  
 
-Gracias a este formato, el historial del proyecto mantiene coherencia y trazabilidad, facilitando tanto la revisión como la evaluación académica del trabajo.
-
----
-
-### README del proyecto
-
-El archivo **`README.md`** se encuentra en la raíz del repositorio y cumple una función informativa y organizativa.  
-Incluye:
-
-- **Título del proyecto:** *Proyecto 2025 S2*.  
-- **Objetivo general:** desarrollar una aplicación de inversión enfocada en usuarios uruguayos.  
-- **Descripción estructurada del repositorio**, especificando el propósito de cada carpeta (`docs`, `src`, etc.).  
-- **Guía de entregas** con los nombres de los informes (`informe_1`, `informe_2`, `informe_testing`).  
-- **Recursos adicionales:** enlace al enunciado del proyecto, rúbrica de evaluación y pautas de entrega.  
-- **Instrucciones de instalación y uso del entorno**, así como la configuración de ESLint y dependencias npm.
-
-El README sirve como **punto de entrada** tanto para el equipo como para los evaluadores, centralizando la información clave del repositorio y su documentación técnica.
-
----
-
-### Evidencia visual
-
-A lo largo del desarrollo se capturaron distintas evidencias del repositorio que demuestran su correcta organización, las ramas activas y la aplicación de commits convencionales:
-
-- Estructura de carpetas (`docs`, `interviews`, `reverseEngineering`, `src`).  
-- Historial de commits con descripciones formateadas según la convención.  
-- Vista del archivo `README.md` con la estructura del proyecto y tablas descriptivas.  
-- Ejemplos de los commits recientes en la rama `application-analysis`, donde se integran los archivos `analisis-prex.md`, `analisis-IQ-Option.md` y `analisis-etoro.md`.
-
-Estas evidencias respaldan que el repositorio sigue una organización profesional, coherente con las buenas prácticas de control de versiones y documentación académica.
 
 
