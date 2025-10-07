@@ -180,15 +180,6 @@ Su enfoque ético y su apuesta por la formación del usuario lo convierten en un
 Sin embargo, llevar esta idea a la práctica requiere adaptaciones. En el contexto uruguayo, lo más importante sería mantener la **transparencia y la educación financiera** como pilares, pero ajustando el alcance tecnológico y regulatorio para hacerlo sostenible.  
 
 
-## Conclusión
-
-El *Whitepaper de Capital.com* ofrece una visión moderna y ética del trading digital. Su combinación de **tecnología, educación y transparencia** lo convierte en un modelo inspirador para el desarrollo de aplicaciones de inversión.  
-
-Sin embargo, su implementación práctica requiere adaptar el alcance tecnológico y regulatorio al contexto local.  
-Para un proyecto uruguayo, lo más valioso sería adoptar su enfoque educativo y transparente, manteniendo un control realista de costos y funcionalidades.  
-
-**En síntesis:** Capital.com representa un ejemplo sólido de cómo una FinTech puede equilibrar innovación y confianza, dos valores esenciales para el desarrollo de cualquier plataforma de inversión moderna.
-
 
 # Bibliografia
 - BAC – Régimen de trading en Uruguay – Borche & Asuaga. “Régimen de Trading en Uruguay :contentReference[oaicite:0]{index=0}  
