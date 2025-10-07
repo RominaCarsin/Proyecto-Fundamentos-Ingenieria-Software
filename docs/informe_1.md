@@ -179,14 +179,34 @@ RÉGIMEN DE TRADING EN URUGUAY. (2023, August 2). Borche & Asuaga - Estudio Cont
 Torres, F. (2023, May 24). Las 7 emociones a controlar en el trading. IG. https://www.ig.com/es/estrategias-de-trading/las-7-emociones-a-controlar-en-el-trading-230518
 
 ---
+# Requerimientos
+
+## Requerimientos Funcionales (Lo que el sistema debe hacer)
+- Que el sistema permite visualizar una **lista actualizada de instrumentos financieros** (acciones, divisas, criptomonedas, commodities) con precios en tiempo real.  
+- Que los usuarios puedan ejecutar operaciones de compra y venta en el mercado, eligiendo entre órdenes a mercado o con límites de precio.  
+- Que se ofrezca una **cuenta demo** con saldo virtual para practicar operaciones sin  riesgo, simulando condiciones reales.  
+- Que el sistema muestre de forma clara y organizada el **historial de operaciones** de cada usuario, incluyendo datos de fecha, tipo, monto y resultado.  
+- Que los usuarios puedan **consultar métricas de rentabilidad y riesgo** (Ej: drawdown, ratio Sharpe, ratio riesgo/beneficio).  
+- Que la aplicación incluya una **sección educativa con guías**, artículos o videos sobre inversión responsable y psicología del trading.  
+- Que el sistema envía **notificaciones al usuario sobre ejecuciones de órdenes, movimientos importantes del mercado o actualizaciones relevantes**.  
+- Que el sistema cumpla con los **requisitos legales y de seguridad** exigidos por el **Banco Central del Uruguay y la Ley Nº 16.906**.  
+- Que el sistema permita a los usuarios **editar su perfil**, incluyendo preferencias de idioma, métodos de pago y configuración de seguridad.
+- Que el sistema permita las **operaciones con múltiples monedas**..
+- Que el sistema **muestre todas las comisiones aplicables** a cada operación y no oculte cargos adicionales.
+- Que se incorporen **advertencias visibles y recurrentes** sobre los riesgos del trading.
 
 
-## RF & RNF (Requisitos Funcionales y No Funcionales)
 
-* Listar claramente los **Requisitos Funcionales (RF)**: qué debe hacer el sistema.
-* Listar los **Requisitos No Funcionales (RNF)**: calidad, seguridad, rendimiento, usabilidad, restricciones de dominio, etc.
-* Priorizar los requisitos (ej: MoSCoW, numeración).
-* Asegurarse de que estén completos y sin ambigüedad.
+## Requerimientos No Funcionales (Como el sistema debe hacerlo)
+
+- Que la **interfaz sea intuitiva, clara y fácil de usar desde cualquier dispositivo **(computadora o móvil).
+- Que las páginas o vistas principales **se acceden en menos de 5 clicks**. 
+- Que las **operaciones** se hagan de **manera instantánea**. 
+- Que el sistema funcione correctamente en los principales sistemas **Android/iOS y windows**.  
+- Que el **código fuente** se mantenga modular, documentado y versionado en **GitHub**, facilitando su mantenibilidad.  
+- Que el sistema **muestre las comisiones o costos antes de ejecutar cualquier transacción**.  
+- Que el sistema pueda **soportar múltiples idiomas** y desarrollarse en principio en español e inglés   
+- El sistema debe presentar colores verdes y rojos tanto en los botones (subir y bajar y/o compra y venta) como en las gráficas, para indicar si sube o baja una acción.
 
 ---
 
