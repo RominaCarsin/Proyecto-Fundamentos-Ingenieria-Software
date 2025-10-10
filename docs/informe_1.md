@@ -197,7 +197,7 @@ Torres, F. (2023, May 24). Las 7 emociones a controlar en el trading. IG. https:
 
 
 
-## Requerimientos No Funcionales (Como el sistema debe hacerlo)
+### Requerimientos No Funcionales (Como el sistema debe hacerlo)
 
 - Que la **interfaz sea intuitiva, clara y fácil de usar desde cualquier dispositivo **(computadora o móvil).<p style="color:blue;">M </p>
 - Que las páginas o vistas principales **se acceden en menos de 5 clicks**. <p style="color:green;">S </p>
@@ -215,7 +215,14 @@ Para realizar un mejor trabajo priorizamos los requisitos amplicando MoSCoW:
 <p style="color:yellow;">C – Could have </p>
 <p style="color:red;">W – Won’t have</p>
 
----
+
+## User Persona
+
+Para tener una mejor comprensión y validación del proyecto, realizamos varios *user persona* que representan diferentes perfiles de usuarios.  
+Estos perfiles nos permitieron entender mejor sus necesidades, motivaciones y comportamientos, facilitando el diseño de una solución más adecuada.
+
+
+<img src="image-4.png" alt="alt text" width="450"/><img src="image-3.png" alt="alt text" width="450"/><img src="image-5.png" alt="alt text" width="450"/>
 
 ## User Stories & Use Cases
 
