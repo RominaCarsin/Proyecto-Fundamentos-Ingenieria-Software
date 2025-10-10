@@ -1,194 +1,115 @@
+
 # Trading
 
 El trading consiste en comprar y vender activos en los mercados financieros.  
-Para operar necesitás un intermediario, conocido como **broker**, que permite ejecutar las operaciones casi al instante (milésimas de segundo) y cobra comisiones por cada operación. Los brokers ofrecen diferentes herramientas para facilitar la actividad:
+Para operar necesitás un intermediario, conocido como <strong>broker</strong>, que permite ejecutar las operaciones casi al instante (milésimas de segundo) y cobra comisiones por cada operación. Los brokers ofrecen diferentes herramientas para facilitar la actividad:
 
-- **Cuentas demo:** para practicar sin arriesgar dinero real.  (DONDE NOS VAMOS A SENTRAR)
-- **Plataformas:** apps, web y de escritorio.  
-- **Depósitos y retiros:** facilidad de manejar fondos.  
-- **Apalancamiento:** permite mover más dinero del que realmente tenés. 
-
+- <strong>Cuentas demo:</strong> para practicar sin arriesgar dinero real.  
+  - <em>Ejemplo destacado: IQ Option ofrece una cuenta demo con USD 10.000 virtuales para practicar sin riesgo</em>  
+  - <a href="https://sololosmejores.net/iqoption-libertex-latam">Fuente: SoloLosMejores.net</a>
+- <strong>Plataformas:</strong> apps, web y de escritorio.  
+- <strong>Depósitos y retiros:</strong> facilidad de manejar fondos.  
+- <strong>Apalancamiento:</strong> permite mover más dinero del que realmente tenés.  
 
 ## Rentabilidad y riesgo
 
-- **Rentabilidad:**  
-Rentabilidad = ((Val final - Val inicial)/Val inical )*100
-    *Rentabilidad = ((Valor final- Valor inicial)/Valor inicial)x100**
+- <strong>Rentabilidad:</strong>  
+  Rentabilidad = ((Valor final - Valor inicial)/Valor inicial) × 100
 
+- <strong>Riesgo:</strong> no es solo “puedo perder”, sino <strong>cuánto puedo perder</strong>.  
 
-- **Riesgo:** no es solo “puedo perder”, sino **cuánto puedo perder**.  
+<strong>Conceptos clave:</strong>
 
- **Conceptos clave:**
+- <strong>Drawdown:</strong> caída desde un pico hasta un valle en el valor de tu cuenta.  
+  Drawdown = ((Valor en pico - Valor en valle)/Valor en pico) × 100
+- <strong>Volatilidad:</strong> cuánto fluctúa el precio de un activo. Mayor volatilidad = mayor riesgo y oportunidad.  
+- <strong>Ratio riesgo/beneficio (R:R):</strong> relación entre lo que arriesgás y lo que esperás ganar.  
+- <strong>Value at Risk (VaR):</strong> estimación de la máxima pérdida esperada en un período con cierto nivel de confianza.  
 
-- **Drawdown:** caída desde un pico hasta un valle en el valor de tu cuenta.  
-Drowdown = ((Val en pico - Val en Valle)/Val en pico)*100
-- **Drawdown:** caída desde un pico hasta un valle en el valor de tu cuenta.
-
-    *Drawdown= ((Valor en pico - Valor en valle )/ Valor en pico) x 100** 
-  
-- **Volatilidad:** cuánto fluctúa el precio de un activo. Mayor volatilidad = mayor riesgo y oportunidad.  
-- **Ratio riesgo/beneficio (R:R):** relación entre lo que arriesgás y lo que esperás ganar.  
-- **Value at Risk (VaR):** estimación de la máxima pérdida esperada en un período con cierto nivel de confianza.  
-
-**Factores de riesgo a considerar:**  
-
+<strong>Factores de riesgo a considerar:</strong>  
 - Volatilidad histórica  
 - Apalancamiento  
 - Liquidez del activo  
 - Eventos macroeconómicos (bancos centrales, inflación, elecciones)  
 - Noticias de empresas o sectores  
 
-
 ## Métricas de eficiencia
 
-- **Ratio de Sharpe:** mide rentabilidad por unidad de riesgo (volatilidad).  
+- <strong>Ratio de Sharpe:</strong> mide rentabilidad por unidad de riesgo (volatilidad).  
   - >1: Bueno  
   - >2: Muy bueno  
   - >3: Excelente  
 
-- **Ratio de Calmar:** compara rentabilidad anualizada con máximo drawdown.  
+- <strong>Ratio de Calmar:</strong> compara rentabilidad anualizada con máximo drawdown.  
   - Valor alto → buenas ganancias sin caídas grandes.  
-
 
 ## Leyes y beneficios fiscales en Uruguay
 
-- **IRAE:** 3% de la utilidad bruta, gravado al 25% → tasa efectiva 0,75%.  
-- **Impuesto sobre dividendos:** 7% sobre la renta neta fiscal → tasa efectiva 0,21%.  
-- **Carga fiscal total:** 0,96% sobre la utilidad bruta.  
+Según el régimen fiscal uruguayo descrito por <a href="https://bac.com.uy/trading-en-uruguay/">Borche & Asuaga</a> y respaldado por la <a href="https://www.impo.com.uy/bases/leyes/16906-1998">Ley N.º 16906</a>:
 
-**Requisitos importantes:**  
+- <strong>IRAE:</strong> 3% de la utilidad bruta, gravado al 25% → tasa efectiva 0,75%.  
+- <strong>Impuesto sobre dividendos:</strong> 7% sobre la renta neta fiscal → tasa efectiva 0,21%.  
+- <strong>Carga fiscal total:</strong> 0,96% sobre la utilidad bruta.  
 
+<strong>Requisitos importantes:</strong>  
 - Bienes no deben ingresar físicamente a Uruguay.  
 - Solo se considera costo de compra, sin gastos adicionales (fletes, seguros).  
 
-
-
 ## Plataformas locales en Uruguay
 
-Ejemplos: **TGB, Sociedad de Bolsa, Afex**  
+Ejemplos: <strong>TGB, Sociedad de Bolsa, Afex</strong>
 
-**Ventajas:**  
-
+<strong>Ventajas:</strong>  
 - Soporte local  
 - Depósitos y retiros en pesos uruguayos  
 - Acceso al mercado local  
 
-**Desventajas:**  
-
+<strong>Desventajas:</strong>  
 - Comisiones más altas  
 - Oferta limitada de activos  
 - Plataformas menos avanzadas  
 
-
-
 ## Emociones y psicología del trading
 
-- **Miedo:** cerrar operaciones ganadoras antes de tiempo o no entrar al mercado.  
-- **Avaricia:** dejar correr demasiado una posición o sobreoperar.  
-- **Esperanza:** mantener posiciones perdedoras sin fundamento.  
-- **Euforia:** exceso de confianza tras rachas ganadoras.  
+Según <a href="https://www.ig.com/es/estrategias-de-trading/las-7-emociones-a-controlar-en-el-trading-230518">IG</a>, las emociones más comunes que afectan el trading son:
 
-**Sesgos cognitivos comunes:**  
+- <strong>Miedo:</strong> cerrar operaciones ganadoras antes de tiempo o no entrar al mercado.  
+- <strong>Avaricia:</strong> dejar correr demasiado una posición o sobreoperar.  
+- <strong>Esperanza:</strong> mantener posiciones perdedoras sin fundamento.  
+- <strong>Euforia:</strong> exceso de confianza tras rachas ganadoras.  
 
+<strong>Sesgos cognitivos comunes:</strong>  
 - Confirmación: solo buscas info que respalde tus ideas.  
 - Aversión a la pérdida: duele perder más de lo que satisface ganar.  
 - Exceso de confianza: saltarse el plan.  
 
-Se recomienda respetar el plan, ser paciente y poner un límite de inversión antes de operar.  
-
-
+Se recomienda respetar el plan, ser paciente y poner un límite de inversión antes de operar.
 
 ## Gestión de operaciones
 
-- **Apalancamiento:** permite operar con más dinero del que tenés (ej: 1:100).  
+- <strong>Apalancamiento:</strong> permite operar con más dinero del que tenés (ej: 1:100).  
   - Mayor apalancamiento → mayor riesgo.  
 
-- **Tamaño de la posición:** define cuánto dinero arriesgás en una operación.  
+- <strong>Tamaño de la posición:</strong> define cuánto dinero arriesgás en una operación.  
   - Ejemplo: capital $1.000, riesgo 2% → $20. Stop loss 50 pips → valor por pip = $0,40 → posición = 0,04 lotes.  
 
-- **Diversificación:** no concentrar todo en un solo activo o sector.  
+- <strong>Diversificación:</strong> no concentrar todo en un solo activo o sector.  
 
-- **Stop loss:** orden automática para limitar pérdidas.  
+- <strong>Stop loss:</strong> orden automática para limitar pérdidas.  
   - Fijo: cantidad de pips fija  
   - Por volatilidad: ajustado al mercado (ej: indicador ATR)  
   - Dinámico/trailing: se mueve a tu favor si el precio avanza  
 
-
-
 ## Ratio riesgo/beneficio y drawdown
 
-- **R:R recomendado:** al menos 1:2  
+- <strong>R:R recomendado:</strong> al menos 1:2  
   - Ejemplo: arriesgás $100 esperando ganar $300 → R:R = 1:3  
 
-- **Drawdown:** pérdida máxima desde pico hasta valle.  
+- <strong>Drawdown:</strong> pérdida máxima desde pico hasta valle.  
   - Estrategias:  
     - No arriesgar más de 1%-2% por operación  
     - Limitar posiciones abiertas  
     - Pausar tras varias pérdidas seguidas (stop diario)
-
-# Análisis del Whitepaper de Capital.com
-
-## 1. Introducción / propósito del documento
-
-El *Whitepaper de Capital.com* presenta la visión de la plataforma: construir un entorno de trading **transparente, simple y accesible**, eliminando las barreras tradicionales al mundo de las inversiones.  
-Su objetivo es que tanto usuarios principiantes como avanzados puedan operar con facilidad mediante una interfaz intuitiva, precios justos y el uso de **inteligencia artificial (IA)** para detectar sesgos de comportamiento en los inversores.
-
-El documento se posiciona desde una perspectiva **FinTech educativa y ética**, enfocada en democratizar el acceso al trading y promover la educación financiera como un eje central del negocio.
-
----
-
-## 2. Contenido principal / estructura
-
-El whitepaper aborda distintos ejes temáticos que describen el funcionamiento y los valores de la plataforma:
-
-- **Visión y misión:** crear una plataforma accesible y confiable para todo tipo de usuarios.  
-- **Uso de IA y machine learning:** detectar patrones psicológicos y sesgos cognitivos que afectan la toma de decisiones.  
-- **Diseño centrado en el usuario:** experiencia fluida, interfaz limpia y rápida ejecución de órdenes.  
-- **Transparencia en precios:** eliminación de “letras chicas” y comisiones ocultas.  
-- **Educación integrada:** guías, tutoriales y recursos que buscan formar al usuario mientras invierte.
-
----
-
-## 3. Fortalezas destacadas
-
-1. **Visión inclusiva y democratizadora:** busca eliminar las barreras de entrada al trading, un modelo inspirador para proyectos locales.  
-2. **Uso de IA para detectar sesgos:** añade un valor diferencial al ofrecer asistencia cognitiva personalizada.  
-3. **Transparencia en costos:** prioriza la confianza mediante estructuras de precios claras y accesibles.  
-4. **Educación continua:** incorpora material formativo que acompaña al usuario durante su experiencia de inversión.  
-5. **Enfoque tecnológico y de velocidad:** garantiza baja latencia y ejecución rápida de órdenes, clave en entornos competitivos.
-
----
-
-## 4. Debilidades o riesgos del enfoque
-
-1. **Limitaciones del uso de IA:** los sistemas automáticos pueden generar falsos positivos o interpretaciones erróneas.  
-2. **Altos costos tecnológicos:** mantener infraestructura robusta y de baja latencia requiere recursos importantes.  
-3. **Regulación internacional vs local:** muchas funciones pueden no estar alineadas con marcos legales nacionales, como los del BCU en Uruguay.  
-4. **Expectativas vs realidad:** las promesas de transparencia total pueden chocar con limitaciones operativas reales, como spreads variables.  
-5. **Diferencia entre visión y MVP:** algunas funciones avanzadas (IA o análisis de sesgos) podrían no estar disponibles desde el lanzamiento inicial.
-
----
-
-## 5. Adaptaciones sugeridas para una app uruguaya de inversión
-
-- **Lanzar una versión mínima viable (MVP):** centrarse en compra, venta, portafolio, comisiones visibles y alertas básicas.  
-- **Transparencia radical:** mostrar comisiones, spreads y ejecución de órdenes sin ocultar costos.  
-- **Educación integrada:** incorporar tutoriales interactivos y explicaciones dentro de la app.  
-- **IA gradual:** añadir herramientas de análisis y sesgos a medida que la plataforma crezca.  
-- **Infraestructura local:** reducir la dependencia de servidores o APIs extranjeras.  
-- **Cumplimiento regulatorio:** garantizar compatibilidad con normativas del Banco Central del Uruguay.  
-- **Experiencia flexible:** permitir al usuario activar o desactivar funciones avanzadas (como módulos de IA).
-
----
-
-## 6. Conclusión
-
-El *Whitepaper de Capital.com* ofrece una visión moderna y ética del trading digital. Su combinación de **tecnología, educación y transparencia** lo convierte en un modelo inspirador para el desarrollo de aplicaciones de inversión.  
-
-Sin embargo, su implementación práctica requiere adaptar el alcance tecnológico y regulatorio al contexto local.  
-Para un proyecto uruguayo, lo más valioso sería adoptar su enfoque educativo y transparente, manteniendo un control realista de costos y funcionalidades.  
-
-**En síntesis:** Capital.com representa un ejemplo sólido de cómo una FinTech puede equilibrar innovación y confianza, dos valores esenciales para el desarrollo de cualquier plataforma de inversión moderna.
 
 
 # Análisis del Whitepaper de Capital.com
