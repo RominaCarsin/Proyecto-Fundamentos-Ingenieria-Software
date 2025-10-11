@@ -190,38 +190,40 @@ Torres, F. (2023, May 24). Las 7 emociones a controlar en el trading. IG. https:
 # Requerimientos
 
 ## Requerimientos Funcionales (Lo que el sistema debe hacer)
-- Que el sistema permite visualizar una **lista actualizada de instrumentos financieros** (acciones, divisas, criptomonedas, commodities) con precios en tiempo real.    <p style="color:blue;">M </p>
-- Que los usuarios puedan ejecutar operaciones de compra y venta en el mercado, eligiendo entre órdenes a mercado o con límites de precio. <p style="color:blue;">M </p> 
-- Que se ofrezca una **cuenta demo** con saldo virtual para practicar operaciones sin  riesgo, simulando condiciones reales.  <p style="color:green;">S </p>
-- Que el sistema muestre de forma clara y organizada el **historial de operaciones** de cada usuario, incluyendo datos de fecha, tipo, monto y resultado.  <p style="color:blue;">M </p>
-- Que los usuarios puedan **consultar métricas de rentabilidad y riesgo** (Ej: drawdown, ratio Sharpe, ratio riesgo/beneficio).  <p style="color:blue;">M </p>
-- Que la aplicación incluya una **sección educativa con guías**, artículos o videos sobre inversión responsable y psicología del trading.  <p style="color:green;">S </p>
-- Que el sistema envía **notificaciones al usuario sobre ejecuciones de órdenes, movimientos importantes del mercado o actualizaciones relevantes**.  <p style="color:green;">S </p>
-- Que el sistema cumpla con los **requisitos legales y de seguridad** exigidos por el **Banco Central del Uruguay y la Ley Nº 16.906**. <p style="color:blue;">M </p> 
-- Que el sistema permita a los usuarios **editar su perfil**, incluyendo preferencias de idioma, métodos de pago y configuración de seguridad.<p style="color:green;">S </p>
-- Que el sistema permita las **operaciones con múltiples monedas**..<p style="color:yellow;">C </p>
-- Que el sistema **muestre todas las comisiones aplicables** a cada operación y no oculte cargos adicionales.<p style="color:yellow;">C </p>
-- Que se incorporen **advertencias visibles y recurrentes** sobre los riesgos del trading.<p style="color:yellow;">C </p>
+1. Que el sistema permite visualizar una **lista actualizada de instrumentos financieros** (acciones, divisas, criptomonedas, commodities) con precios en tiempo real.    🟩
+2. Que los usuarios puedan ejecutar operaciones de compra y venta en el mercado, eligiendo entre órdenes a mercado o con límites de precio. 🟩 
+3. Que se ofrezca una **cuenta demo** con saldo virtual para practicar operaciones sin  riesgo, simulando condiciones reales.  🟨
+4. Que el sistema muestre de forma clara y organizada el **historial de operaciones** de cada usuario, incluyendo datos de fecha, tipo, monto y resultado. 🟩
+5. Que los usuarios puedan **consultar métricas de rentabilidad y riesgo** (Ej: drawdown, ratio Sharpe, ratio riesgo/beneficio).  🟩
+6. Que la aplicación incluya una **sección educativa con guías**, artículos o videos sobre inversión responsable y psicología del trading.  🟨
+7. Que el sistema envía **notificaciones al usuario sobre ejecuciones de órdenes, movimientos importantes del mercado o actualizaciones relevantes**.  🟨
+8. Que el sistema cumpla con los **requisitos legales y de seguridad** exigidos por el **Banco Central del Uruguay y la Ley Nº 16.906**. 🟩 
+9. Que el sistema permita a los usuarios **editar su perfil**, incluyendo preferencias de idioma, métodos de pago y configuración de seguridad.🟨
+10. Que el sistema permita las **operaciones con múltiples monedas**..🟧
+11. Que el sistema **muestre todas las comisiones aplicables** a cada operación y no oculte cargos adicionales.🟧
+12. Que se incorporen **advertencias visibles y recurrentes** sobre los riesgos del trading.🟧
 
 
 
 ### Requerimientos No Funcionales (Como el sistema debe hacerlo)
 
-- Que la **interfaz sea intuitiva, clara y fácil de usar desde cualquier dispositivo **(computadora o móvil).<p style="color:blue;">M </p>
-- Que las páginas o vistas principales **se acceden en menos de 5 clicks**. <p style="color:green;">S </p>
-- Que las **operaciones** se hagan de **manera instantánea**. <p style="color:blue;">M </p>
-- Que el sistema funcione correctamente en los principales sistemas **Android/iOS y windows**.  <p style="color:blue;">M </p>
-- Que el **código fuente** se mantenga modular, documentado y versionado en **GitHub**, facilitando su mantenibilidad.  <p style="color:blue;">M </p>
-- Que el sistema **muestre las comisiones o costos antes de ejecutar cualquier transacción**.  <p style="color:yellow;">C </p>
-- Que el sistema pueda **soportar múltiples idiomas** y desarrollarse en principio en español e inglés   <p style="color:yellow;">C </p>
-- El sistema debe presentar colores verdes y rojos tanto en los botones (subir y bajar y/o compra y venta) como en las gráficas, para indicar si sube o baja una acción.<p style="color:red;">W </p>
+13. Que la **interfaz sea intuitiva, clara y fácil de usar desde cualquier dispositivo **(computadora o móvil).🟩
+14. Que las páginas o vistas principales **se acceden en menos de 5 clicks**. 🟨
+15. Que las **operaciones** se hagan de **manera instantánea**. 🟩
+16. Que el sistema funcione correctamente en los principales sistemas **Android/iOS y windows**.  🟩
+17. Que el **código fuente** se mantenga modular, documentado y versionado en **GitHub**, facilitando su mantenibilidad.  🟩
+18. Que el sistema **muestre las comisiones o costos antes de ejecutar cualquier transacción**.  🟧
+19. Que el sistema pueda **soportar múltiples idiomas** y desarrollarse en principio en español e inglés   🟧
+20. El sistema debe presentar colores verdes y rojos tanto en los botones (subir y bajar y/o compra y venta) como en las gráficas, para indicar si sube o baja una acción.🟥
 
 
 Para realizar un mejor trabajo priorizamos los requisitos amplicando MoSCoW:
-<p style="color:blue;">M – Must have </p>
-<p style="color:green;">S – Should have </p>
-<p style="color:yellow;">C – Could have </p>
-<p style="color:red;">W – Won’t have</p>
+
+- 🟩Must have 
+- 🟨Should have 
+- 🟧Could have 
+- 🟥Won’t have 
+
 
 
 ## User Persona
@@ -232,18 +234,13 @@ Estos perfiles nos permitieron entender mejor sus necesidades, motivaciones y co
 
 <img src="image-4.png" alt="alt text" width="450"/><img src="image-3.png" alt="alt text" width="450"/><img src="image-5.png" alt="alt text" width="450"/>
 
-## User Stories & Use Cases
-
-# 📘 User Stories y Use Cases – Proyecto de Plataforma de Inversiones Uruguayas
-
-## 🧭 Contexto general
+# User Stories & Use Cases
 
 El proyecto busca desarrollar una **aplicación de inversiones uruguaya** que permita a los usuarios **intercambiar valor** mediante compra y venta de activos (acciones, criptomonedas, etc.) sin depender de plataformas extranjeras.  
 La solución apunta a ofrecer **simplicidad, transparencia y seguridad** en el mercado financiero digital local.
 
----
 
-## 🧩 User Stories (Historias de Usuario)
+## User Stories (Historias de Usuario)
 
 Cada historia se presenta siguiendo el formato estándar:
 
@@ -253,33 +250,33 @@ Además, se detallan los **criterios INVEST** (Independiente, Negociable, Valios
 
 ---
 
-### 🧱 Tabla de User Stories
+### Tabla de User Stories
 
 | ID | Historia de Usuario | Prioridad | Criterios INVEST | Criterio de Aceptación |
 |----|----------------------|------------|------------------|------------------------|
-| **US1** | Como **usuario uruguayo**, quiero **registrarme con mi cédula y correo** para **crear una cuenta validada por el BCU**. | 🟥 Must Have | ✅ I, V, E, T | Se valida la cédula y se crea cuenta solo tras verificación. |
-| **US2** | Como **inversionista**, quiero **fondear mi cuenta con transferencia local o tarjeta internacional** para **empezar a invertir fácilmente**. | 🟥 Must Have | ✅ I, N, V, E, T | El sistema confirma el depósito y muestra saldo disponible. |
-| **US3** | Como **usuario**, quiero **ver mi portafolio con gráficos y variaciones diarias** para **evaluar mi rendimiento total**. | 🟧 Should Have | ✅ I, V, E, S, T | Se muestra valor actual, variación diaria y un gráfico simple. |
-| **US4** | Como **inversionista**, quiero **comprar o vender acciones y criptomonedas** para **operar de forma segura desde Uruguay**. | 🟥 Must Have | ✅ I, V, E, S, T | Puedo ejecutar operaciones y ver confirmación inmediata. |
-| **US5** | Como **usuario**, quiero **recibir alertas cuando un activo sube o baja un porcentaje definido** para **tomar decisiones rápidas**. | 🟨 Could Have | ✅ I, N, V, E, T | Se envía notificación push al cumplirse el umbral configurado. |
-| **US6** | Como **usuario nuevo**, quiero **acceder a una sección educativa básica** para **aprender antes de invertir.** | 🟩 Should Have | ✅ I, N, V, E, T | Se muestran artículos, videos y glosario básico. |
-| **US7** | Como **inversionista avanzado**, quiero **descargar un reporte PDF de mis movimientos y ganancias** para **llevar control personal.** | 🟩 Could Have | ✅ I, N, V, E, T | Reporte con operaciones, fechas, montos y comisiones. |
-| **US8** | Como **usuario**, quiero **ver advertencias claras sobre riesgos antes de invertir** para **entender la posibilidad de pérdida.** | 🟥 Must Have | ✅ I, V, T | Aparece mensaje de advertencia obligatorio antes de confirmar operación. |
+| **US1** | Como **usuario uruguayo**, quiero **registrarme con mi cédula y correo** para **crear una cuenta validada por el BCU**. | 🟩 Must Have | ✅ I, V, E, T | Se valida la cédula y se crea cuenta solo tras verificación. |
+| **US2** | Como **inversionista**, quiero **fondear mi cuenta con transferencia local o tarjeta internacional** para **empezar a invertir fácilmente**. | 🟩 Must Have | ✅ I, N, V, E, T | El sistema confirma el depósito y muestra saldo disponible. |
+| **US3** | Como **usuario**, quiero **ver mi portafolio con gráficos y variaciones diarias** para **evaluar mi rendimiento total**. | 🟨 Should Have | ✅ I, V, E, S, T | Se muestra valor actual, variación diaria y un gráfico simple. |
+| **US4** | Como **inversionista**, quiero **comprar o vender acciones y criptomonedas** para **operar de forma segura desde Uruguay**. | 🟩 Must Have | ✅ I, V, E, S, T | Puedo ejecutar operaciones y ver confirmación inmediata. |
+| **US5** | Como **usuario**, quiero **recibir alertas cuando un activo sube o baja un porcentaje definido** para **tomar decisiones rápidas**. | 🟧 Could Have | ✅ I, N, V, E, T | Se envía notificación push al cumplirse el umbral configurado. |
+| **US6** | Como **usuario nuevo**, quiero **acceder a una sección educativa básica** para **aprender antes de invertir.** | 🟨 Should Have | ✅ I, N, V, E, T | Se muestran artículos, videos y glosario básico. |
+| **US7** | Como **inversionista avanzado**, quiero **descargar un reporte PDF de mis movimientos y ganancias** para **llevar control personal.** | 🟧 Could Have | ✅ I, N, V, E, T | Reporte con operaciones, fechas, montos y comisiones. |
+| **US8** | Como **usuario**, quiero **ver advertencias claras sobre riesgos antes de invertir** para **entender la posibilidad de pérdida.** | 🟩 Must Have | ✅ I, V, T | Aparece mensaje de advertencia obligatorio antes de confirmar operación. |
 
 ---
 
-## 🔢 Priorización (MoSCoW)
+## Priorización (MoSCoW)
 
 | Tipo | Significado | Historias relacionadas |
 |------|--------------|------------------------|
-| 🟥 **Must Have** | Esenciales para el funcionamiento base | US1, US2, US4, US8 |
-| 🟧 **Should Have** | Mejoran la experiencia del usuario | US3, US6 |
-| 🟨 **Could Have** | Añaden valor complementario | US5, US7 |
-| 🟩 **Won’t Have (por ahora)** | Ideas a futuro | Integración con ANII, simulador de rentabilidad |
+| 🟩 **Must Have** | Esenciales para el funcionamiento base | US1, US2, US4, US8 |
+| 🟨 **Should Have** | Mejoran la experiencia del usuario | US3, US6 |
+| 🟧 **Could Have** | Añaden valor complementario | US5, US7 |
+| 🟥 **Won’t Have (por ahora)** | Ideas a futuro | Integración con ANII, simulador de rentabilidad |
 
 ---
 
-## 🎭 Use Cases (Casos de Uso)
+## Use Cases (Casos de Uso)
 
 Cada caso de uso describe **cómo interactúan los actores** con el sistema para lograr un objetivo concreto.  
 Se detallan precondiciones, flujos principales y alternativos, postcondiciones y prioridad.
@@ -302,7 +299,7 @@ Se detallan precondiciones, flujos principales y alternativos, postcondiciones y
 - Si la validación del BCU falla → registro rechazado.
 
 **Postcondición:** Cuenta creada y activa.  
-**Prioridad:** 🟥 Must Have
+**Prioridad:** 🟩 Must Have
 
 ---
 
@@ -321,7 +318,7 @@ Se detallan precondiciones, flujos principales y alternativos, postcondiciones y
 - Si se supera el límite → se notifica y se cancela.
 
 **Postcondición:** Saldo actualizado correctamente.  
-**Prioridad:** 🟥 Must Have
+**Prioridad:** 🟩 Must Have
 
 ---
 
@@ -341,7 +338,7 @@ Se detallan precondiciones, flujos principales y alternativos, postcondiciones y
 - Si el mercado está cerrado → orden pendiente.
 
 **Postcondición:** Activo registrado en portafolio.  
-**Prioridad:** 🟥 Must Have
+**Prioridad:** 🟩 Must Have
 
 ---
 
@@ -358,7 +355,7 @@ Se detallan precondiciones, flujos principales y alternativos, postcondiciones y
 - Si no hay inversiones → mostrar “No tenés activos todavía”.
 
 **Postcondición:** Información actualizada mostrada correctamente.  
-**Prioridad:** 🟧 Should Have
+**Prioridad:** 🟨 Should Have
 
 ---
 
@@ -372,19 +369,19 @@ Se detallan precondiciones, flujos principales y alternativos, postcondiciones y
 4. Si se cumple la condición → se envía notificación.
 
 **Postcondición:** Alerta registrada correctamente.  
-**Prioridad:** 🟨 Could Have
+**Prioridad:** 🟧 Could Have
 
 ---
 
-## 🎯 Conclusiones
+Las **User Stories y Use Cases** que presentamos buscan reflejar de manera realista las necesidades y expectativas de los usuarios uruguayos que invertirán en la plataforma. Al aplicar los criterios **INVEST** y la priorización **MoSCoW**, logramos organizar el trabajo en etapas claras y alcanzables, enfocándonos primero en lo esencial y luego en mejoras que realmente suman valor.
 
-Los **User Stories y Use Cases** presentados cubren tanto las funcionalidades críticas del sistema como las mejoras que aportan valor al usuario final.  
-El uso de criterios **INVEST** y la priorización **MoSCoW** permiten planificar el desarrollo por fases, asegurando un producto **viable, escalable y centrado en el usuario**.
+Este enfoque nos ayudó a:
+- Entender mejor qué espera cada usuario y cómo interactúa con la app.
+- Definir escenarios concretos y fáciles de seguir, tanto para el equipo como para quienes evalúan el proyecto.
+- Priorizar lo importante, evitando perder tiempo en detalles secundarios al principio.
+- Planificar el desarrollo de forma flexible, adaptándonos a lo que vamos aprendiendo en cada iteración.
 
-En conjunto, este análisis garantiza:
-- Claridad en los requerimientos funcionales.  
-- Escenarios bien definidos.  
-- Priorización objetiva para el desarrollo iterativo.  
+En resumen, este análisis no solo nos dio claridad sobre qué construir, sino que también nos permitió trabajar de manera más ordenada y alineada con las expectativas reales de los usuarios.
 
 ---
 
