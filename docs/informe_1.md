@@ -219,12 +219,160 @@ Para realizar un mejor trabajo priorizamos los requisitos amplicando MoSCoW:
 
 ## User Stories & Use Cases
 
-* **User Stories (US):** Definidas con el formato *Como \[actor] quiero \[acción] para \[beneficio]*.
-* Incluir criterios **INVEST** (independientes, negociables, valiosos, estimables, pequeños, testeables).
-* Priorizar las US.
-* **Use Cases (UC):** Diagramas o descripciones con actores, escenarios principales y alternativos.
+# 📘 User Stories y Use Cases – Proyecto de Plataforma de Inversiones Uruguayas
+
+## 🧭 Contexto general
+
+El proyecto busca desarrollar una **aplicación de inversiones uruguaya** que permita a los usuarios **intercambiar valor** mediante compra y venta de activos (acciones, criptomonedas, etc.) sin depender de plataformas extranjeras.  
+La solución apunta a ofrecer **simplicidad, transparencia y seguridad** en el mercado financiero digital local.
 
 ---
+
+## 🧩 User Stories (Historias de Usuario)
+
+Cada historia se presenta siguiendo el formato estándar:
+
+> **Como [actor], quiero [acción], para [beneficio].**
+
+Además, se detallan los **criterios INVEST** (Independiente, Negociable, Valiosa, Estimable, Simple, Testeable) y su **prioridad MoSCoW**.
+
+---
+
+### 🧱 Tabla de User Stories
+
+| ID | Historia de Usuario | Prioridad | Criterios INVEST | Criterio de Aceptación |
+|----|----------------------|------------|------------------|------------------------|
+| **US1** | Como **usuario uruguayo**, quiero **registrarme con mi cédula y correo** para **crear una cuenta validada por el BCU**. | 🟥 Must Have | ✅ I, V, E, T | Se valida la cédula y se crea cuenta solo tras verificación. |
+| **US2** | Como **inversionista**, quiero **fondear mi cuenta con transferencia local o tarjeta internacional** para **empezar a invertir fácilmente**. | 🟥 Must Have | ✅ I, N, V, E, T | El sistema confirma el depósito y muestra saldo disponible. |
+| **US3** | Como **usuario**, quiero **ver mi portafolio con gráficos y variaciones diarias** para **evaluar mi rendimiento total**. | 🟧 Should Have | ✅ I, V, E, S, T | Se muestra valor actual, variación diaria y un gráfico simple. |
+| **US4** | Como **inversionista**, quiero **comprar o vender acciones y criptomonedas** para **operar de forma segura desde Uruguay**. | 🟥 Must Have | ✅ I, V, E, S, T | Puedo ejecutar operaciones y ver confirmación inmediata. |
+| **US5** | Como **usuario**, quiero **recibir alertas cuando un activo sube o baja un porcentaje definido** para **tomar decisiones rápidas**. | 🟨 Could Have | ✅ I, N, V, E, T | Se envía notificación push al cumplirse el umbral configurado. |
+| **US6** | Como **usuario nuevo**, quiero **acceder a una sección educativa básica** para **aprender antes de invertir.** | 🟩 Should Have | ✅ I, N, V, E, T | Se muestran artículos, videos y glosario básico. |
+| **US7** | Como **inversionista avanzado**, quiero **descargar un reporte PDF de mis movimientos y ganancias** para **llevar control personal.** | 🟩 Could Have | ✅ I, N, V, E, T | Reporte con operaciones, fechas, montos y comisiones. |
+| **US8** | Como **usuario**, quiero **ver advertencias claras sobre riesgos antes de invertir** para **entender la posibilidad de pérdida.** | 🟥 Must Have | ✅ I, V, T | Aparece mensaje de advertencia obligatorio antes de confirmar operación. |
+
+---
+
+## 🔢 Priorización (MoSCoW)
+
+| Tipo | Significado | Historias relacionadas |
+|------|--------------|------------------------|
+| 🟥 **Must Have** | Esenciales para el funcionamiento base | US1, US2, US4, US8 |
+| 🟧 **Should Have** | Mejoran la experiencia del usuario | US3, US6 |
+| 🟨 **Could Have** | Añaden valor complementario | US5, US7 |
+| 🟩 **Won’t Have (por ahora)** | Ideas a futuro | Integración con ANII, simulador de rentabilidad |
+
+---
+
+## 🎭 Use Cases (Casos de Uso)
+
+Cada caso de uso describe **cómo interactúan los actores** con el sistema para lograr un objetivo concreto.  
+Se detallan precondiciones, flujos principales y alternativos, postcondiciones y prioridad.
+
+---
+
+### **UC1 – Registrar usuario**
+**Actor:** Usuario nuevo  
+**Precondición:** No tener cuenta registrada.  
+**Flujo principal:**
+1. El usuario selecciona “Registrarse”.
+2. Ingresa nombre, correo, contraseña y número de cédula.
+3. El sistema valida formato de cédula uruguaya.
+4. Se envía correo de verificación.
+5. El usuario confirma el correo.
+6. Se crea la cuenta y se activa el perfil.
+
+**Flujos alternativos:**
+- Si el correo ya está registrado → error “usuario existente”.  
+- Si la validación del BCU falla → registro rechazado.
+
+**Postcondición:** Cuenta creada y activa.  
+**Prioridad:** 🟥 Must Have
+
+---
+
+### **UC2 – Fondear cuenta**
+**Actor:** Usuario autenticado  
+**Precondición:** Tener cuenta activa y verificada.  
+**Flujo principal:**
+1. El usuario selecciona “Fondear cuenta”.
+2. Elige método: transferencia bancaria local o tarjeta.
+3. Ingresa monto deseado.
+4. El sistema valida la operación y acredita el monto.
+5. Se actualiza el saldo disponible.
+
+**Flujos alternativos:**
+- Si el pago falla → se muestra mensaje de error.  
+- Si se supera el límite → se notifica y se cancela.
+
+**Postcondición:** Saldo actualizado correctamente.  
+**Prioridad:** 🟥 Must Have
+
+---
+
+### **UC3 – Comprar activo**
+**Actor:** Usuario autenticado  
+**Precondición:** Tener saldo suficiente.  
+**Flujo principal:**
+1. El usuario selecciona un activo (acción o cripto).
+2. Presiona “Comprar”.
+3. Ingresa monto o cantidad.
+4. El sistema calcula valor total y comisión.
+5. El usuario confirma la compra.
+6. El sistema ejecuta la orden y actualiza portafolio.
+
+**Flujos alternativos:**
+- Si no hay saldo → operación rechazada.  
+- Si el mercado está cerrado → orden pendiente.
+
+**Postcondición:** Activo registrado en portafolio.  
+**Prioridad:** 🟥 Must Have
+
+---
+
+### **UC4 – Consultar portafolio**
+**Actor:** Usuario autenticado  
+**Precondición:** Tener inversiones activas.  
+**Flujo principal:**
+1. El usuario ingresa a “Mi portafolio”.
+2. El sistema muestra lista de activos con su variación diaria.
+3. Se genera gráfico de rendimiento.
+4. El usuario puede filtrar por tipo de activo o rango de fechas.
+
+**Flujo alternativo:**
+- Si no hay inversiones → mostrar “No tenés activos todavía”.
+
+**Postcondición:** Información actualizada mostrada correctamente.  
+**Prioridad:** 🟧 Should Have
+
+---
+
+### **UC5 – Configurar alerta de precio**
+**Actor:** Usuario autenticado  
+**Precondición:** Tener al menos un activo en seguimiento.  
+**Flujo principal:**
+1. El usuario selecciona un activo.
+2. Configura umbral de precio (subida o bajada).
+3. El sistema guarda la alerta.
+4. Si se cumple la condición → se envía notificación.
+
+**Postcondición:** Alerta registrada correctamente.  
+**Prioridad:** 🟨 Could Have
+
+---
+
+## 🎯 Conclusiones
+
+Los **User Stories y Use Cases** presentados cubren tanto las funcionalidades críticas del sistema como las mejoras que aportan valor al usuario final.  
+El uso de criterios **INVEST** y la priorización **MoSCoW** permiten planificar el desarrollo por fases, asegurando un producto **viable, escalable y centrado en el usuario**.
+
+En conjunto, este análisis garantiza:
+- Claridad en los requerimientos funcionales.  
+- Escenarios bien definidos.  
+- Priorización objetiva para el desarrollo iterativo.  
+
+---
+
 
 ## Modelo de Dominio
 
