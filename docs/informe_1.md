@@ -87,12 +87,15 @@ Los métodos de investigación que utilizamos fueron: **entrevistas**, **anális
 
 ## Análisis de documentos
 
-Los aspectos más importantes del análisis de documentos son que:  
-En Uruguay es ilegal operar sin un Broker, los cuales ejecutan transacciones rápidas cobrando comisiones, ofreciendo cuentas demo, apalancamiento y diversas plataformas. La rentabilidad se calcula comparando valores iniciales y finales, mientras el riesgo se gestiona mediante drawdown (caídas máximas), volatilidad y ratios riesgo/beneficio recomendables de 1:2 o superior.  
-Métricas a tener en cuenta incluyen el Ratio de Sharpe (>1 es bueno) que mide rentabilidad ajustada al riesgo, y el Ratio de Calmar que relaciona ganancias con pérdidas máximas. Uruguay ofrece beneficios fiscales con carga total del 0,96% sobre utilidades, requiriendo que los bienes no ingresen físicamente al país.  
-También que a la hora de no solo invertir sino también diseñar una aplicación la psicología del trading es fundamental, pues controlando emociones como miedo, avaricia y euforia, junto a sesgos cognitivos como exceso de confianza, se puede lograr un apalancamiento controlado, diversificación y stops loss que limitan pérdidas.  
+Los aspectos más importantes que encontramos en el análisis de documentos muestran que, en Uruguay, es ilegal operar sin un bróker, según la [Ley N.º 16906](https://www.impo.com.uy/bases/leyes/16906-1998) y lo establecido por el estudio contable [Borche & Asuaga](https://bac.com.uy/trading-en-uruguay/). Estos brókers son los encargados de ejecutar transacciones rápidas, cobrar comisiones, ofrecer cuentas demo, apalancamiento y diversas plataformas para operar de forma segura y regulada.
 
-Capital.com propone un modelo FinTech transparente usando IA para reducir sesgos emocionales, aunque su implementación local requiere adaptación regulatoria y tecnológica progresiva, manteniendo educación financiera y transparencia como pilares esenciales. Si bien es muy interesante este concepto, no es tan simple de implementar; por esta razón entendemos que lo mejor que podemos hacer es en todo momento dejar claros los riesgos.  
+También vimos que la rentabilidad se calcula comparando valores iniciales y finales, mientras que el riesgo se gestiona mediante drawdown (caídas máximas), volatilidad y ratios riesgo/beneficio recomendables de 1:2 o superior. A la hora de evaluar el desempeño, métricas como el **Ratio de Sharpe** (donde valores mayores a 1 son positivos) y el **Ratio de Calmar** resultan fundamentales, tal como se explica en el curso de trading de [MVDtrading](https://www.mvdtrading.com/curso-trading-presencial-aw).
+
+En cuanto a los beneficios fiscales, Uruguay ofrece una carga total del **0,96% sobre utilidades**, siempre que los bienes no ingresen físicamente al país, según [Borche & Asuaga](https://bac.com.uy/trading-en-uruguay/).
+
+También entendimos que, a la hora de no solo invertir sino también diseñar una aplicación, la **psicología del trading** cumple un rol clave. Tal como menciona [IG](https://www.ig.com/es/estrategias-de-trading/las-7-emociones-a-controlar-en-el-trading-230518), controlar emociones como el miedo, la avaricia y la euforia, junto con sesgos cognitivos como el exceso de confianza, permite aplicar estrategias más seguras como el apalancamiento controlado, la diversificación y los *stop loss* que ayudan a limitar las pérdidas.
+
+Por último, **Capital.com** propone un modelo FinTech transparente que utiliza inteligencia artificial para reducir los sesgos emocionales, aunque su implementación local requiere una adaptación regulatoria y tecnológica progresiva. Consideramos que, si bien es un concepto muy interesante, no es tan simple de llevar a cabo; por eso creemos que lo más importante es **mantener siempre claros los riesgos** y promover la educación financiera como base del desarrollo.
 
 Un desarrollo más profundo de esta información se encuentra en **`investigacion.md`** dentro de la carpeta **docs**.
 
@@ -128,12 +131,16 @@ Considerando un análisis comparativo de estas aplicaciones se sabe que:
 - Respaldo del Banco Central de Uruguay - genera mayor confianza local  
 - Mínimos de inversión bajos (desde USD 10) ideal para principiantes  
 - Interfaz simple y educativa para quienes comienzan  
+- <a href="https://sololosmejores.net/iqoption-libertex-latam">Fuentes : SoloLosMejores.net</a><a href="https://iq-option.com/lp/mobile/es/?aff=1&afftrack=GAD_LATAM_LA_ES_Brand_new_22386271874_c_174076722621_kwd-1247123479&utm_source=google&utm_medium=cpc&utm_campaign=1_LATAM_LA_ES_Brand_new&utm_adset=phrase&gclsrc=aw.ds&gad_source=1&gad_campaignid=22386271874&gbraid=0AAAAADM93Q79vW0apQs9JZejUadJw5Gqv&gclid=CjwKCAjwup3HBhAAEiwA7euZutI_HFigNoMsPE3n4a29buGoYBegRuF2UZRYlFXmj3IWqkfFIrH2zRoCU5oQAvD_BwE"> y Sitio oficial de iq option</a>
+
 
 **IQ Option:**  
 - Cuenta demo con USD 10,000 virtuales - excelente para practicar sin riesgo  
 - Herramientas de análisis técnico completas (RSI, MACD, medias móviles)  
 - Gráficos personalizables con múltiples indicadores y herramientas de dibujo  
 - Múltiples instrumentos en una sola app (forex, criptos, acciones, commodities)  
+- <a href="https://www.etoro.com/es/">Fuente: Sitio oficial de eToro</a>  <a href="https://www.youtube.com/watch?v=-yjKzscGeTs"> y  YouTube - Berciano</a>
+
 
 **eToro:**  
 - CopyTrading - permite copiar operaciones de traders exitosos  
@@ -159,6 +166,7 @@ Mantener identidad local y regulación uruguaya como Prex pero con funcionalidad
 La plataforma ideal tomaría la confianza institucional de Prex, las herramientas técnicas de IQ Option y la innovación social de eToro, adaptado al mercado uruguayo. *(estos no son los requisitos pero está bueno poner los pies en la tierra)*
 
 El analisi de las aplicaciones se encuentra dentro de la carpeta reverseEngineering y dentro de esta encontrara los archivos:  **`analisis etoro.md`**,  **`analisis-IQ-Option.md`**, **`analisi-prex.md`**.
+
 
 
 ## Bibliografias
@@ -197,7 +205,7 @@ Torres, F. (2023, May 24). Las 7 emociones a controlar en el trading. IG. https:
 
 
 
-## Requerimientos No Funcionales (Como el sistema debe hacerlo)
+### Requerimientos No Funcionales (Como el sistema debe hacerlo)
 
 - Que la **interfaz sea intuitiva, clara y fácil de usar desde cualquier dispositivo **(computadora o móvil).<p style="color:blue;">M </p>
 - Que las páginas o vistas principales **se acceden en menos de 5 clicks**. <p style="color:green;">S </p>
@@ -215,7 +223,14 @@ Para realizar un mejor trabajo priorizamos los requisitos amplicando MoSCoW:
 <p style="color:yellow;">C – Could have </p>
 <p style="color:red;">W – Won’t have</p>
 
----
+
+## User Persona
+
+Para tener una mejor comprensión y validación del proyecto, realizamos varios *user persona* que representan diferentes perfiles de usuarios.  
+Estos perfiles nos permitieron entender mejor sus necesidades, motivaciones y comportamientos, facilitando el diseño de una solución más adecuada.
+
+
+<img src="image-4.png" alt="alt text" width="450"/><img src="image-3.png" alt="alt text" width="450"/><img src="image-5.png" alt="alt text" width="450"/>
 
 ## User Stories & Use Cases
 
