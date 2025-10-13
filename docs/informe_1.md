@@ -232,7 +232,8 @@ Para tener una mejor comprensión y validación del proyecto, realizamos varios 
 Estos perfiles nos permitieron entender mejor sus necesidades, motivaciones y comportamientos, facilitando el diseño de una solución más adecuada.
 
 
-<img src="image-4.png" alt="alt text" width="450"/><img src="image-3.png" alt="alt text" width="450"/><img src="image-5.png" alt="alt text" width="450"/>
+<img src="image-4.png" alt="alt text" width="450"/><img src="image-5.png" alt="alt text" width="450"/><img src="image-6.png" alt="alt text" width="450"/>
+
 
 # User Stories & Use Cases
 
@@ -423,9 +424,6 @@ En resumen, este análisis no solo nos dio claridad sobre qué construir, sino q
   * Qué funcionó bien y qué no.
   * Lecciones aprendidas hasta ahora.
 * Mantener un tono crítico y constructivo, no sólo descriptivo
-
-
-# Aca empieza
 
 
 
