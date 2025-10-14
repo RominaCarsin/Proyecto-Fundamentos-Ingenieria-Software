@@ -393,6 +393,9 @@ En resumen, este análisis no solo nos dio claridad sobre qué construir, sino q
 * Definir los conceptos principales y sus relaciones.
 * Explicar brevemente cada entidad/concepto.
 
+## Diagrama UML
+<img src="image-12.png" alt="alt text" width="400"/> 
+
 ---
 
 ## Verificación y Validación
@@ -401,10 +404,15 @@ En resumen, este análisis no solo nos dio claridad sobre qué construir, sino q
 * **Validación:** actividades con usuarios (feedback de encuestas, entrevistas, prototipos).
 * Mostrar resultados obtenidos y cómo influyeron en futuras mejoras al proyecto.
 
+
+Para verificar el cumplimiento de los requisitos funcionales (RF) y no funcionales (RNF), realizamos una revisión cruzada entre los requisitos definidos y las pantallas del prototipo.
+Se elaboró una checklist de trazabilidad donde cada requisito fue marcado como implementado, parcialmente implementado o pendiente.
+Esto nos permitió comprobar que el prototipo refleja correctamente lo establecido en el análisis y diseño.
 ## Prototipos 
 Los prototipos realizados para una mejor implementacion de la aplicacion fueron:
 
 <img src="image-3.png" alt="alt text" width="400"/> <img src="image-7.png" alt="alt text" width="400"/><img src="image-8.png" alt="alt text" width="400"/> <img src="image-9.png" alt="alt text" width="400"/> <img src="image-10.png" alt="alt text" width="400"/> <img src="image-11.png" alt="alt text" width="400"/>
+<img src="image-13.png" alt="alt text" width="400"/>
 
 ## Descripción del Trabajo Individual
 
