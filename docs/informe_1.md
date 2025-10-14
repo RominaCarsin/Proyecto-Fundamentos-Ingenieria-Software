@@ -436,23 +436,47 @@ El sistema permite **registrar usuarios**, **fondear cuentas**, **realizar opera
 
 ---
 
-## Verificación y Validación
-
-* **Verificación:** describir cómo comprobaron que los RF/RNF cumplen con lo especificado (revisiones, checklist, trazabilidad).
-* **Validación:** actividades con usuarios (feedback de encuestas, entrevistas, prototipos).
-* Mostrar resultados obtenidos y cómo influyeron en futuras mejoras al proyecto.
-
-
-Para verificar el cumplimiento de los requisitos funcionales (RF) y no funcionales (RNF), realizamos una revisión cruzada entre los requisitos definidos y las pantallas del prototipo.
-Se elaboró una checklist de trazabilidad donde cada requisito fue marcado como implementado, parcialmente implementado o pendiente.
-Esto nos permitió comprobar que el prototipo refleja correctamente lo establecido en el análisis y diseño.
 ## Prototipos 
 Los prototipos realizados para una mejor implementacion de la aplicacion fueron:
 
 <img src="image-3.png" alt="alt text" width="400"/> <img src="image-7.png" alt="alt text" width="400"/><img src="image-8.png" alt="alt text" width="400"/> <img src="image-9.png" alt="alt text" width="400"/> <img src="image-10.png" alt="alt text" width="400"/> <img src="image-11.png" alt="alt text" width="400"/>
 <img src="image-13.png" alt="alt text" width="400"/>
 
-## Verificación
+## ✅ Verificación
+
+Para verificar el cumplimiento de los **requisitos funcionales (RF)** y **no funcionales (RNF)**, se realizó una **revisión cruzada** entre los requisitos definidos y las pantallas del prototipo.  
+
+Se elaboró una **checklist de trazabilidad**, donde cada requisito fue marcado como:  
+- 🟩 **Implementado**  
+- 🟨 **Parcialmente implementado**  
+- 🟥 **Pendiente**
+
+Esto permitió comprobar que el prototipo refleja correctamente lo establecido en el análisis y diseño.
+
+---
+
+### 🧾 Tabla de verificación de requisitos
+
+| ID | Requisito | Implementación en el prototipo | Estado |
+|----|------------|--------------------------------|--------|
+| **RF1** | Visualizar lista de instrumentos financieros | Pantalla principal con lista y precios en tiempo real | 🟩 |
+| **RF2** | Ejecutar operaciones de compra y venta | Panel principal | 🟩 |
+| **RF3** | Cuenta demo con saldo virtual | Opción “Cuenta demo” en página principal y configuración | 🟩 |
+| **RF4** | Historial de operaciones | En la pantalla de Billetera | 🟩 |
+| **RF5** | Consultar métricas de rentabilidad y riesgo | Página principal | 🟨 |
+| **RF6** | Sección educativa | Centro de Aprendizaje | 🟨 |
+| **RF7** | Notificaciones | Pantalla emergente | 🟥 |
+| **RF8** | Cumplimiento legal y seguridad BCU | Página principal | 🟩 |
+| **RF9** | Edición de perfil | Configuración | 🟩 |
+| **RNF13** | Interfaz intuitiva y adaptable | Botones claros, colores semánticos | 🟨 |
+| **RNF17** | Código modular y versionado | Organización por carpetas y uso de Git | 🟩 |
+| **RNF20** | Uso de colores de estado | Botones verdes (compra) y rojos (venta) en el sistema | 🟩 |
+
+---
+
+**Conclusión:**  
+La verificación demuestra que el prototipo cumple con la mayoría de los requisitos definidos.  
+Los ítems marcados como 🟨 o 🟥 representan áreas de mejora a abordar en la siguiente iteración de desarrollo.
 
 ## Validación
 El prototipo se desarrolló con el propósito de bajar a tierra el proyecto y visualizar de forma concreta cómo se integrarían los diferentes requisitos dentro del sistema. A través del diseño de las distintas pantallas se buscó representar las funcionalidades principales y ordenar la información según las necesidades identificadas de los usuarios, permitiendo evaluar la coherencia general del flujo y la distribución de los elementos.
