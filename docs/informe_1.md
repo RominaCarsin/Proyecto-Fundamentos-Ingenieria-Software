@@ -327,6 +327,57 @@ Se detallan precondiciones, flujos principales y alternativos, postcondiciones y
 **Postcondición:** Alerta registrada correctamente.  
 **Prioridad:** 🟧 Could Have
 
+### **UC4 – Consultar portafolio**
+**Actor:** Usuario autenticado  
+**Precondición:** Tener inversiones activas.  
+**Flujo principal:**
+1. El usuario ingresa a “Mi portafolio”.
+2. El sistema muestra lista de activos con su variación diaria.
+3. Se genera gráfico de rendimiento.
+4. El usuario puede filtrar por tipo de activo o rango de fechas.
+
+**Flujo alternativo:**
+- Si no hay inversiones → mostrar “No tenés activos todavía”.
+
+**Postcondición:** Información actualizada mostrada correctamente.  
+**Prioridad:** 🟧 Should Have
+
+### **UC5 – Configurar alerta de precio**
+**Actor:** Usuario autenticado  
+**Precondición:** Tener al menos un activo en seguimiento.  
+**Flujo principal:**
+1. El usuario selecciona un activo.
+2. Configura umbral de precio (subida o bajada).
+3. El sistema guarda la alerta.
+4. Si se cumple la condición → se envía notificación.
+
+**Postcondición:** Alerta registrada correctamente.  
+**Prioridad:** 🟨 Could Have
+
+### **UC6 – Mostrar advertencias de riesgo antes de invertir**
+
+**Actor:** Usuario autenticado  
+
+**Precondición:**  
+El usuario tiene saldo disponible e intenta realizar una operación (compra o venta) de un activo.
+
+**Flujo principal:**
+1. El usuario selecciona un activo y presiona **“Comprar”** o **“Vender”**.  
+2. Antes de confirmar la operación, el sistema muestra un mensaje emergente con advertencias legales sobre el riesgo de pérdida de capital.  
+3. El usuario debe **leer y aceptar** las condiciones para continuar.  
+4. Si el usuario acepta, el sistema permite confirmar la transacción.  
+5. La operación se ejecuta y se actualiza el portafolio.
+
+**Flujos alternativos:**
+- Si el usuario **no acepta** las advertencias → el sistema cancela la operación y vuelve a la pantalla anterior.  
+- Si el usuario intenta operar repetidamente sin aceptar → se bloquea temporalmente la acción y se muestra un mensaje recordatorio.
+
+**Postcondición:**  
+El sistema registra que el usuario aceptó las advertencias de riesgo (fecha y hora).
+
+**Prioridad:** 🟩 Must Have
+
+
 ---
 
 Las **User Stories y Use Cases** que presentamos buscan reflejar de manera realista las necesidades y expectativas de los usuarios uruguayos que invertirán en la plataforma. Al aplicar los criterios **INVEST** y la priorización **MoSCoW**, logramos organizar el trabajo en etapas claras y alcanzables, enfocándonos primero en lo esencial y luego en mejoras que realmente suman valor.
