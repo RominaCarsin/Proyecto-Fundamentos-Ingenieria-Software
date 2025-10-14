@@ -232,7 +232,7 @@ Para tener una mejor comprensión y validación del proyecto, realizamos varios 
 Estos perfiles nos permitieron entender mejor sus necesidades, motivaciones y comportamientos, facilitando el diseño de una solución más adecuada.
 
 
-<img src="image-4.png" alt="alt text" width="450"/><img src="image-5.png" alt="alt text" width="450"/><img src="image-6.png" alt="alt text" width="450"/>
+<img src="image-4.png" alt="alt text" width="450"/> <img src="image-5.png" alt="alt text" width="450"/><img src="image-6.png" alt="alt text" width="450"/>
 
 
 # User Stories & Use Cases
@@ -255,14 +255,12 @@ Además, se detallan los **criterios INVEST** (Independiente, Negociable, Valios
 
 | ID | Historia de Usuario | Prioridad | Criterios INVEST | Criterio de Aceptación |
 |----|----------------------|------------|------------------|------------------------|
-| **US1** | Como **usuario uruguayo**, quiero **registrarme con mi cédula y correo** para **crear una cuenta validada por el BCU**. | 🟩 Must Have | ✅ I, V, E, T | Se valida la cédula y se crea cuenta solo tras verificación. |
-| **US2** | Como **inversionista**, quiero **fondear mi cuenta con transferencia local o tarjeta internacional** para **empezar a invertir fácilmente**. | 🟩 Must Have | ✅ I, N, V, E, T | El sistema confirma el depósito y muestra saldo disponible. |
-| **US3** | Como **usuario**, quiero **ver mi portafolio con gráficos y variaciones diarias** para **evaluar mi rendimiento total**. | 🟨 Should Have | ✅ I, V, E, S, T | Se muestra valor actual, variación diaria y un gráfico simple. |
-| **US4** | Como **inversionista**, quiero **comprar o vender acciones y criptomonedas** para **operar de forma segura desde Uruguay**. | 🟩 Must Have | ✅ I, V, E, S, T | Puedo ejecutar operaciones y ver confirmación inmediata. |
-| **US5** | Como **usuario**, quiero **recibir alertas cuando un activo sube o baja un porcentaje definido** para **tomar decisiones rápidas**. | 🟧 Could Have | ✅ I, N, V, E, T | Se envía notificación push al cumplirse el umbral configurado. |
-| **US6** | Como **usuario nuevo**, quiero **acceder a una sección educativa básica** para **aprender antes de invertir.** | 🟨 Should Have | ✅ I, N, V, E, T | Se muestran artículos, videos y glosario básico. |
-| **US7** | Como **inversionista avanzado**, quiero **descargar un reporte PDF de mis movimientos y ganancias** para **llevar control personal.** | 🟧 Could Have | ✅ I, N, V, E, T | Reporte con operaciones, fechas, montos y comisiones. |
-| **US8** | Como **usuario**, quiero **ver advertencias claras sobre riesgos antes de invertir** para **entender la posibilidad de pérdida.** | 🟩 Must Have | ✅ I, V, T | Aparece mensaje de advertencia obligatorio antes de confirmar operación. |
+| **US1** | Como **usuario**, quiero **ver mi portafolio con gráficos y variaciones diarias** para **evaluar mi rendimiento total**. | 🟨 Should Have | ✅ I, V, E, S, T | Se muestra valor actual, variación diaria y un gráfico simple. |
+| **US2** | Como **inversionista**, quiero **comprar o vender acciones y criptomonedas** para **operar de forma segura desde Uruguay**. | 🟩 Must Have | ✅ I, V, E, S, T | Puedo ejecutar operaciones y ver confirmación inmediata. |
+| **US3** | Como **usuario**, quiero **recibir alertas cuando un activo sube o baja un porcentaje definido** para **tomar decisiones rápidas**. | 🟧 Could Have | ✅ I, N, V, E, T | Se envía notificación push al cumplirse el umbral configurado. |
+| **US4** | Como **usuario nuevo**, quiero **acceder a una sección educativa básica** para **aprender antes de invertir.** | 🟨 Should Have | ✅ I, N, V, E, T | Se muestran artículos, videos y glosario básico. |
+| **US5** | Como **inversionista avanzado**, quiero **descargar un reporte PDF de mis movimientos y ganancias** para **llevar control personal.** | 🟧 Could Have | ✅ I, N, V, E, T | Reporte con operaciones, fechas, montos y comisiones. |
+| **US6** | Como **usuario**, quiero **ver advertencias claras sobre riesgos antes de invertir** para **entender la posibilidad de pérdida.** | 🟩 Must Have | ✅ I, V, T | Aparece mensaje de advertencia obligatorio antes de confirmar operación. |
 
 ---
 
@@ -282,48 +280,8 @@ Además, se detallan los **criterios INVEST** (Independiente, Negociable, Valios
 Cada caso de uso describe **cómo interactúan los actores** con el sistema para lograr un objetivo concreto.  
 Se detallan precondiciones, flujos principales y alternativos, postcondiciones y prioridad.
 
----
 
-### **UC1 – Registrar usuario**
-**Actor:** Usuario nuevo  
-**Precondición:** No tener cuenta registrada.  
-**Flujo principal:**
-1. El usuario selecciona “Registrarse”.
-2. Ingresa nombre, correo, contraseña y número de cédula.
-3. El sistema valida formato de cédula uruguaya.
-4. Se envía correo de verificación.
-5. El usuario confirma el correo.
-6. Se crea la cuenta y se activa el perfil.
-
-**Flujos alternativos:**
-- Si el correo ya está registrado → error “usuario existente”.  
-- Si la validación del BCU falla → registro rechazado.
-
-**Postcondición:** Cuenta creada y activa.  
-**Prioridad:** 🟩 Must Have
-
----
-
-### **UC2 – Fondear cuenta**
-**Actor:** Usuario autenticado  
-**Precondición:** Tener cuenta activa y verificada.  
-**Flujo principal:**
-1. El usuario selecciona “Fondear cuenta”.
-2. Elige método: transferencia bancaria local o tarjeta.
-3. Ingresa monto deseado.
-4. El sistema valida la operación y acredita el monto.
-5. Se actualiza el saldo disponible.
-
-**Flujos alternativos:**
-- Si el pago falla → se muestra mensaje de error.  
-- Si se supera el límite → se notifica y se cancela.
-
-**Postcondición:** Saldo actualizado correctamente.  
-**Prioridad:** 🟩 Must Have
-
----
-
-### **UC3 – Comprar activo**
+### **UC1 – Comprar activo**
 **Actor:** Usuario autenticado  
 **Precondición:** Tener saldo suficiente.  
 **Flujo principal:**
@@ -341,9 +299,8 @@ Se detallan precondiciones, flujos principales y alternativos, postcondiciones y
 **Postcondición:** Activo registrado en portafolio.  
 **Prioridad:** 🟩 Must Have
 
----
 
-### **UC4 – Consultar portafolio**
+### **UC2 – Consultar portafolio**
 **Actor:** Usuario autenticado  
 **Precondición:** Tener inversiones activas.  
 **Flujo principal:**
@@ -358,9 +315,7 @@ Se detallan precondiciones, flujos principales y alternativos, postcondiciones y
 **Postcondición:** Información actualizada mostrada correctamente.  
 **Prioridad:** 🟨 Should Have
 
----
-
-### **UC5 – Configurar alerta de precio**
+### **UC3 – Configurar alerta de precio**
 **Actor:** Usuario autenticado  
 **Precondición:** Tener al menos un activo en seguimiento.  
 **Flujo principal:**
@@ -436,7 +391,7 @@ Durante la construcción del prototipo se fueron identificando detalles y ausenc
 | 14/10 | Modelo del Dominio | 1h |
 | 14/10, 13/10 | Verificación y Validación | 5h |
 
----
+
 
 ### Guzmán Costa
 
