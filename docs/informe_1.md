@@ -395,9 +395,41 @@ En resumen, este análisis no solo nos dio claridad sobre qué construir, sino q
 
 ## Modelo de Dominio
 
-* Presentar un **Modelo Entidad-Relación (MER)** o **diagrama UML de clases**.
-* Definir los conceptos principales y sus relaciones.
-* Explicar brevemente cada entidad/concepto.
+## 🧩 Descripción general del sistema
+
+El sistema permite **registrar usuarios**, **fondear cuentas**, **realizar operaciones de compra/venta**, **consultar portafolios**, **generar reportes**, **recibir alertas** y **acceder a educación financiera**.
+
+---
+
+## 🧱 Entidades clave
+
+- **Usuario**  
+  Representa a la persona que utiliza la plataforma. Contiene datos personales, credenciales de acceso y configuraciones individuales.
+
+- **Cuenta**  
+  Asocia al usuario con sus fondos disponibles en distintas monedas o tipos de activos. Permite realizar operaciones y consultar el saldo.
+
+- **Transacción**  
+  Registra las operaciones de compra, venta, fondeo o retiro. Incluye información sobre montos, comisiones y estado de ejecución.
+
+- **Activo**  
+  Representa un instrumento financiero disponible para invertir (acción, criptomoneda, bono, etc.). Contiene su precio y variación de mercado.
+
+- **Portafolio**  
+  Conjunto de activos que posee el usuario. Muestra su valor total, variación diaria y rendimiento histórico.
+
+- **Alerta**  
+  Permite al usuario configurar notificaciones automáticas cuando un activo alcanza un determinado umbral de precio o variación.
+
+- **Reporte**  
+  Documento generado automáticamente con el detalle de operaciones, ganancias o pérdidas. Puede exportarse en distintos formatos (PDF, CSV).
+
+- **ContenidoEducativo**  
+  Material informativo (artículos, videos o guías) destinado a la educación financiera y la formación del inversionista.
+
+- **Broker** *(entidad conceptual)*  
+  Representa la validación y regulación de operaciones financieras bajo la supervisión del **Banco Central del Uruguay (BCU)**.
+
 
 ## Diagrama UML
 <img src="image-12.png" alt="alt text" width="400"/> 
