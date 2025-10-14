@@ -414,6 +414,13 @@ Los prototipos realizados para una mejor implementacion de la aplicacion fueron:
 <img src="image-3.png" alt="alt text" width="400"/> <img src="image-7.png" alt="alt text" width="400"/><img src="image-8.png" alt="alt text" width="400"/> <img src="image-9.png" alt="alt text" width="400"/> <img src="image-10.png" alt="alt text" width="400"/> <img src="image-11.png" alt="alt text" width="400"/>
 <img src="image-13.png" alt="alt text" width="400"/>
 
+## Verificación
+
+## Validación
+El prototipo se desarrolló con el propósito de bajar a tierra el proyecto y visualizar de forma concreta cómo se integrarían los diferentes requisitos dentro del sistema. A través del diseño de las distintas pantallas se buscó representar las funcionalidades principales y ordenar la información según las necesidades identificadas de los usuarios, permitiendo evaluar la coherencia general del flujo y la distribución de los elementos.
+Durante la construcción del prototipo se fueron identificando detalles y ausencias que no habían sido contempladas en las etapas iniciales, como la necesidad de mostrar el modo de cuenta (demo o real) de forma más visible, la inclusión de indicadores de saldo disponible y la mejora en la agrupación de botones de acción. A base de esto se permitieron realizar ajustes tanto en la organización visual como en la definición de algunos requisitos funcionales que se reformularon para lograr una mayor claridad.
+
+
 ## Descripción del Trabajo Individual
 
 * Detallar el trabajo de cada integrante:
