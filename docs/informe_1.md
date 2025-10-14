@@ -401,7 +401,10 @@ En resumen, este análisis no solo nos dio claridad sobre qué construir, sino q
 * **Validación:** actividades con usuarios (feedback de encuestas, entrevistas, prototipos).
 * Mostrar resultados obtenidos y cómo influyeron en futuras mejoras al proyecto.
 
----
+## Prototipos 
+Los prototipos realizados para una mejor implementacion de la aplicacion fueron:
+
+<img src="image-3.png" alt="alt text" width="400"/> <img src="image-7.png" alt="alt text" width="400"/><img src="image-8.png" alt="alt text" width="400"/> <img src="image-9.png" alt="alt text" width="400"/> <img src="image-10.png" alt="alt text" width="400"/> <img src="image-11.png" alt="alt text" width="400"/>
 
 ## Descripción del Trabajo Individual
 
