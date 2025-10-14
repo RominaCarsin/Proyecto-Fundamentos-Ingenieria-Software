@@ -421,15 +421,46 @@ El prototipo se desarrolló con el propósito de bajar a tierra el proyecto y vi
 Durante la construcción del prototipo se fueron identificando detalles y ausencias que no habían sido contempladas en las etapas iniciales, como la necesidad de mostrar el modo de cuenta (demo o real) de forma más visible, la inclusión de indicadores de saldo disponible y la mejora en la agrupación de botones de acción. A base de esto se permitieron realizar ajustes tanto en la organización visual como en la definición de algunos requisitos funcionales que se reformularon para lograr una mayor claridad.
 
 
-## Descripción del Trabajo Individual
+## Descripción del Trabajo Individual de cada Integrannte
 
-* Detallar el trabajo de cada integrante:
+### Romina Carsin
+| Fecha | Actividad | Horas invertidas |
+|:------:|:----------:|:----------------:|
+| 06/10 | Estructura del repositorio | 2h |
+| 10/10, 9/10, 06/10 | Investigación de Información | 6h |
+| 04/10, 03/10 | Entrevistas | 9h |
+| 06/10, 05/10 | Ingeniería Reversa | 8h |
+| 07/10 | Requerimientos | 5h |
+| 13/10, 09/10 | User Persona | 3h |
+| 14/10 | User Stories & Use Cases | 1h |
+| 14/10 | Modelo del Dominio | 1h |
+| 14/10, 13/10 | Verificación y Validación | 5h |
 
-  * Fechas
-  * Actividades realizadas
-  * Participantes
-  * Cantidad de horas invertidas
-* Incluir un cuadro o tabla con el resumen por persona (horas totales, tareas clave).
+---
+
+### Guzmán Costa
+
+| Fecha | Actividad | Horas invertidas |
+|:------:|:----------:|:----------------:|
+| 06/10 | Estructura del repositorio | 7h |
+| 10/10, 9/10, 06/10 | Investigación de Información | 3h |
+| 04/10, 03/10 | Entrevistas | 5h |
+| 06/10, 05/10 | Ingeniería Reversa | 6h |
+| 07/10 | Requerimientos | 2h |
+| 13/10, 09/10 | User Persona | 5h |
+| 14/10 | User Stories & Use Cases | 4h |
+| 14/10 | Modelo del Dominio | 4h |
+| 14/10, 13/10 | Verificación y Validación | 1h |
+
+---
+
+### Resumen General
+
+| Nombre | Horas trabajadas | Entrevistas Realizadas | Aplicaciones Analizadas |
+|:-------:|:----------------:|:----------------------:|:-----------------------:|
+| Romina Carsin | 40h | 2 | 2 |
+| Guzmán Costa | 37h | 1 | 1 |
+
 
 ---
 
