@@ -272,22 +272,16 @@ Además, se detallan los **criterios INVEST** (Independiente, Negociable, Valios
 | **<p style="color:yellow;">Could have </p>** | Añaden valor complementario |
 | **<p style="color:red;">Won’t have</p>** | Ideas a futuro | 
 
----
+
 ## Use Cases (Casos de Uso)
 
  El desarrollo de los **casos de uso** se encuentra detallado en el documento [UseCases](UseCases.md).
 
 
 
-## Modelo de Dominio
+# Modelo de Dominio
 
-## 🧩 Descripción general del sistema
-
-El sistema permite **registrar usuarios**, **fondear cuentas**, **realizar operaciones de compra/venta**, **consultar portafolios**, **generar reportes**, **recibir alertas** y **acceder a educación financiera**.
-
----
-
-## 🧱 Entidades clave
+## Entidades clave
 
 - **Usuario**  
   Representa a la persona que utiliza la plataforma. Contiene datos personales, credenciales de acceso y configuraciones individuales.
@@ -328,7 +322,7 @@ Los prototipos realizados para una mejor implementacion de la aplicacion fueron:
 <img src="image-3.png" alt="alt text" width="400"/> <img src="image-7.png" alt="alt text" width="400"/><img src="image-8.png" alt="alt text" width="400"/> <img src="image-9.png" alt="alt text" width="400"/> <img src="image-10.png" alt="alt text" width="400"/> <img src="image-11.png" alt="alt text" width="400"/>
 <img src="image-13.png" alt="alt text" width="400"/>
 
-## ✅ Verificación
+##  Verificación
 
 Para verificar el cumplimiento de los **requisitos funcionales (RF)** y **no funcionales (RNF)**, se realizó una **revisión cruzada** entre los requisitos definidos y las pantallas del prototipo.  
 
@@ -341,7 +335,7 @@ Esto permitió comprobar que el prototipo refleja correctamente lo establecido e
 
 ---
 
-### 🧾 Tabla de verificación de requisitos
+### Tabla de verificación de requisitos
 
 | ID | Requisito | Implementación en el prototipo | Estado |
 |----|------------|--------------------------------|--------|
