@@ -60,7 +60,7 @@ Los tipos más utilizados son:
 - **`analysis`**: commits asociados al trabajo de investigación y análisis de mercado.  
 
 Por este formato, el historial del proyecto mantiene coherencia y trazabilidad, facilitando tanto la revisión como la evaluación académica del trabajo.
-![alt text](image-2.png)
+
 <img src="image-1.png" alt="alt text" width="400"/>
 
 ---
