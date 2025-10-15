@@ -97,12 +97,12 @@ También entendimos que, a la hora de no solo invertir sino también diseñar un
 
 Por último, **Capital.com** propone un modelo FinTech transparente que utiliza inteligencia artificial para reducir los sesgos emocionales, aunque su implementación local requiere una adaptación regulatoria y tecnológica progresiva. Consideramos que, si bien es un concepto muy interesante, no es tan simple de llevar a cabo; por eso creemos que lo más importante es **mantener siempre claros los riesgos** y promover la educación financiera como base del desarrollo.
 
-Un desarrollo más profundo de esta información se encuentra en **`investigacion.md`** dentro de la carpeta **docs**.
+Un desarrollo más profundo de esta información se encuentra en [**`investigacion.md`**](investigacion.md) dentro de la carpeta **docs**.
 
 ## Entrevistas
 
 Aplicando el método de las entrevistas obtuvimos información valiosa, pues de esta manera conocimos cara a cara las dificultades y beneficios que tienen los traders al operar en este mercado.  
-Las entrevistas se realizaron basándonos en una base de preguntas que se encuentran en **`Preguntas de entrevista.md`** dentro de la carpeta **interviews**.  
+Las entrevistas se realizaron basándonos en una base de preguntas que se encuentran en [**`Preguntas de entrevista.md`**](/interviews/Preguntas%20de%20entrevista.md) dentro de la carpeta **interviews**.  
 
 Se lograron concretar 3 entrevistas, dos con un experto y una con alguien fuera del ámbito.  
 De las tres entrevistas realizadas, identificó varios puntos en común entre los participantes, más allá de su nivel de experiencia:
@@ -165,7 +165,7 @@ Mantener identidad local y regulación uruguaya como Prex pero con funcionalidad
 
 La plataforma ideal tomaría la confianza institucional de Prex, las herramientas técnicas de IQ Option y la innovación social de eToro, adaptado al mercado uruguayo. *(estos no son los requisitos pero está bueno poner los pies en la tierra)*
 
-El analisi de las aplicaciones se encuentra dentro de la carpeta reverseEngineering y dentro de esta encontrara los archivos:  **`analisis etoro.md`**,  **`analisis-IQ-Option.md`**, **`analisi-prex.md`**.
+El analisi de las aplicaciones se encuentra dentro de la carpeta reverseEngineering y dentro de esta encontrara los archivos: [**`analisis etoro.md`**](/reverseEngineering/analisis%20etoro.md), [**`analisis-IQ-Option.md`**](/reverseEngineering/analisis-IQ-Option.md), [**`analisis-prex.md`**](/reverseEngineering/analisis-prex.md).
 
 
 
