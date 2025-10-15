@@ -414,7 +414,6 @@ Esta combinación permitió obtener una **visión más equilibrada**, consideran
 | 15/10, 14/10 | Modelo del Dominio | 4h |
 | 14/10, 13/10 | Verificación y Validación | 1h |
 
----
 
 ### Resumen General
 
@@ -424,7 +423,7 @@ Esta combinación permitió obtener una **visión más equilibrada**, consideran
 | Guzmán Costa | 37h | 1 | 1 |
 
 
----
+
 
 ## Reflexión
 
@@ -432,7 +431,8 @@ El desarrollo del proyecto implicó una importante inversión de tiempo, comunic
 A lo largo del proceso, mantuvimos una dinámica de trabajo **basada en la coordinación, la autonomía y el intercambio permanente de avances**.  
 
 Realizamos múltiples **llamadas y reuniones virtuales**, además de algunos encuentros presenciales, donde planificamos tareas, revisamos entregas y discutimos decisiones de diseño e investigación.  
-Si bien cada integrante trabajó de forma **individual en distintos módulos del proyecto** —entrevistas, análisis de aplicaciones, documentación o prototipos—, mantuvimos una **comunicación continua por mensajes**, comentando cada avance y revisando mutuamente los aportes antes de incorporarlos al repositorio.
+Si bien cada integrante trabajó de forma **individual en “su parte del proyecto”** ,ambos hicimos de todo. Empleo de esto es que los dos realizamos entrevistas, ingeniería reversa a alguna aplicación, buscamos información y en otros casos íbamos comentando cada avance y revisando mutuamente los aportes del otro previo y pos subida al repositorio. Generando así un informe lo más completo posible.
+
 
 Ninguno de los dos integrantes tenía conocimientos previos en el área de **inversiones financieras o plataformas de trading**, por lo que fue necesario **estudiar en profundidad el tema**, investigar fuentes confiables y analizar múltiples plataformas internacionales.  
 Esto nos permitió **comprender los fundamentos legales, técnicos y de usabilidad** que deben tener este tipo de aplicaciones en el contexto uruguayo.
@@ -441,10 +441,9 @@ Entre las principales **dificultades**, destacamos la necesidad de adaptar infor
 Sin embargo, logramos superarlas gracias a una **división clara de tareas**, revisiones conjuntas y la adopción de buenas prácticas de control de versiones en GitHub.
 
 Consideramos que la **dinámica de trabajo fue positiva**, ya que combinó independencia y colaboración efectiva.  
-El uso de ramas específicas, commits convencionales y documentación compartida nos permitió mantener un flujo ordenado y trazable.  
+Si bien en un inició se nos dificulto el uso de ramas específicas, commits convencionales y documentación compartida; al final  nos permitió mantener un flujo ordenado y trazable facilitandonos en gran medida el trabajo. 
 La experiencia también nos ayudó a desarrollar **habilidades de investigación aplicada, redacción técnica y trabajo en equipo** dentro de un contexto académico que simula un entorno profesional.
 
-En conclusión, el proyecto representa una oportunidad valiosa para **aprender desde cero sobre el mercado financiero digital**, aplicar metodologías ágiles, mejorar la organización del trabajo y fortalecer la comunicación entre los integrantes.  
 
 
 
