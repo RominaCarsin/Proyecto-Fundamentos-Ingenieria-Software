@@ -359,9 +359,29 @@ La verificación demuestra que el prototipo cumple con la mayoría de los requis
 Los ítems marcados como 🟨 o 🟥 representan áreas de mejora a abordar en la siguiente iteración de desarrollo.
 
 ## Validación
-El prototipo se desarrolló con el propósito de bajar a tierra el proyecto y visualizar de forma concreta cómo se integrarían los diferentes requisitos dentro del sistema. A través del diseño de las distintas pantallas se buscó representar las funcionalidades principales y ordenar la información según las necesidades identificadas de los usuarios, permitiendo evaluar la coherencia general del flujo y la distribución de los elementos.
-Durante la construcción del prototipo se fueron identificando detalles y ausencias que no habían sido contempladas en las etapas iniciales, como la necesidad de mostrar el modo de cuenta (demo o real) de forma más visible, la inclusión de indicadores de saldo disponible y la mejora en la agrupación de botones de acción. A base de esto se permitieron realizar ajustes tanto en la organización visual como en la definición de algunos requisitos funcionales que se reformularon para lograr una mayor claridad.
+A partir de los requisitos iniciales, se desarrolló un prototipo de papel con el objetivo de representar de manera preliminar la estructura y el flujo principal de la aplicación. Este prototipo fue presentado a futuros usuarios para obtener una primera instancia de comentarios y observaciones que guiaran las siguientes etapas del diseño.
 
+**Aspectos Positivo**
+
+El concepto y el diseño de la aplicación fue algo que gusto.Estos destacaron la claridad en la estructura, el diseño moderno y la facilidad de navegación entre las secciones principales (Inicio, Portafolio, Análisis, etc.), comentarion que era "intuitivo y bastante logico" y que si provarian utilidar TradeUy.
+
+Aparte, los usuarios valoraron la estética limpia y la correcta organización visual de los elementos, señalando que la jerarquía de la información facilitaba la comprensión inmediata del contenido.
+
+**Posibles Mejoras**
+
+A partir del feedback obtenido tambien nos informaron sobre observaciones concretas sobre elementos funcionales y de contenido que mejorarian aun mas la aplicación.
+Los apartos mensionados a implementar son:
+
+**Pantalla de Inicio:** se agregará un espacio visible para mostrar las comisiones aplicables y la hora de la última actualización de los datos.
+
+**Sección de Portafolio:** se diseñará una vista de historial de ganancias, complementada con gráficos de rendimiento a lo largo del tiempo.
+
+**Sistema de Notificaciones:** se planificará un sistema que permita personalizar alertas según los intereses del usuario y los activos que desee monitorear.
+
+
+Los **usuarios que participaron en User Testing** fueron las **mismas personas entrevistadas anteriormente**, complementadas con **dos nuevos participantes** que contaban con **conocimientos limitados sobre trading**.  
+
+Esta combinación permitió obtener una **visión más equilibrada**, considerando tanto la perspectiva de usuarios con cierto nivel de entendimiento del mercado financiero, como las personas que se enfrentan por primera vez a este tipo de plataformas.
 
 ## Descripción del Trabajo Individual de cada Integrannte
 
@@ -374,9 +394,9 @@ Durante la construcción del prototipo se fueron identificando detalles y ausenc
 | 06/10, 05/10 | Ingeniería Reversa | 8h |
 | 07/10 | Requerimientos | 5h |
 | 13/10, 09/10 | User Persona | 3h |
-| 14/10 | User Stories & Use Cases | 1h |
+| 15/10, 14/10 | User Stories & Use Cases | 1h |
 | 14/10 | Modelo del Dominio | 1h |
-| 14/10, 13/10 | Verificación y Validación | 5h |
+| 15/10, 14/10, 13/10 | Verificación y Validación | 5h |
 
 
 
@@ -384,14 +404,14 @@ Durante la construcción del prototipo se fueron identificando detalles y ausenc
 
 | Fecha | Actividad | Horas invertidas |
 |:------:|:----------:|:----------------:|
-| 06/10 | Estructura del repositorio | 7h |
+| 15/10, 06/10 | Estructura del repositorio | 7h |
 | 10/10, 9/10, 06/10 | Investigación de Información | 3h |
 | 04/10, 03/10 | Entrevistas | 5h |
 | 06/10, 05/10 | Ingeniería Reversa | 6h |
 | 07/10 | Requerimientos | 2h |
 | 13/10, 09/10 | User Persona | 5h |
 | 14/10 | User Stories & Use Cases | 4h |
-| 14/10 | Modelo del Dominio | 4h |
+| 15/10, 14/10 | Modelo del Dominio | 4h |
 | 14/10, 13/10 | Verificación y Validación | 1h |
 
 ---
