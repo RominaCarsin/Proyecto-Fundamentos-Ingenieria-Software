@@ -190,39 +190,38 @@ Torres, F. (2023, May 24). Las 7 emociones a controlar en el trading. IG. https:
 # Requerimientos
 
 ## Requerimientos Funcionales (Lo que el sistema debe hacer)
-1. Que el sistema permite visualizar una **lista actualizada de instrumentos financieros** (acciones, divisas, criptomonedas, commodities) con precios en tiempo real.    🟩
-2. Que los usuarios puedan ejecutar operaciones de compra y venta en el mercado, eligiendo entre órdenes a mercado o con límites de precio. 🟩 
-3. Que se ofrezca una **cuenta demo** con saldo virtual para practicar operaciones sin  riesgo, simulando condiciones reales.  🟨
-4. Que el sistema muestre de forma clara y organizada el **historial de operaciones** de cada usuario, incluyendo datos de fecha, tipo, monto y resultado. 🟩
-5. Que los usuarios puedan **consultar métricas de rentabilidad y riesgo** (Ej: drawdown, ratio Sharpe, ratio riesgo/beneficio).  🟩
-6. Que la aplicación incluya una **sección educativa con guías**, artículos o videos sobre inversión responsable y psicología del trading.  🟨
-7. Que el sistema envía **notificaciones al usuario sobre ejecuciones de órdenes, movimientos importantes del mercado o actualizaciones relevantes**.  🟨
-8. Que el sistema cumpla con los **requisitos legales y de seguridad** exigidos por el **Banco Central del Uruguay y la Ley Nº 16.906**. 🟩 
-9. Que el sistema permita a los usuarios **editar su perfil**, incluyendo preferencias de idioma, métodos de pago y configuración de seguridad.🟨
-10. Que el sistema permita las **operaciones con múltiples monedas**..🟧
-11. Que el sistema **muestre todas las comisiones aplicables** a cada operación y no oculte cargos adicionales.🟧
-12. Que se incorporen **advertencias visibles y recurrentes** sobre los riesgos del trading.🟧
+1. Que el sistema permite visualizar una **lista actualizada de instrumentos financieros** (acciones, divisas, criptomonedas, commodities) con precios en tiempo real.    <p style="color:blue;">M </p>
+2. Que los usuarios puedan ejecutar operaciones de compra y venta en el mercado, eligiendo entre órdenes a mercado o con límites de precio. <p style="color:blue;">M </p> 
+3. Que se ofrezca una **cuenta demo** con saldo virtual para practicar operaciones sin  riesgo, simulando condiciones reales.  <p style="color:green;">S </p>
+4. Que el sistema muestre de forma clara y organizada el **historial de operaciones** de cada usuario, incluyendo datos de fecha, tipo, monto y resultado.  <p style="color:blue;">M </p>
+5. Que los usuarios puedan **consultar métricas de rentabilidad y riesgo** (Ej: drawdown, ratio Sharpe, ratio riesgo/beneficio).  <p style="color:blue;">M </p>
+6. Que la aplicación incluya una **sección educativa con guías**, artículos o videos sobre inversión responsable y psicología del trading.  <p style="color:green;">S </p>
+7. Que el sistema envía **notificaciones al usuario sobre ejecuciones de órdenes, movimientos importantes del mercado o actualizaciones relevantes**.  <p style="color:green;">S </p>
+8. Que el sistema cumpla con los **requisitos legales y de seguridad** exigidos por el **Banco Central del Uruguay y la Ley Nº 16.906**. <p style="color:blue;">M </p> 
+9. Que el sistema permita a los usuarios **editar su perfil**, incluyendo preferencias de idioma, métodos de pago y configuración de seguridad.<p style="color:green;">S </p>
+10. Que el sistema permita las **operaciones con múltiples monedas**..<p style="color:yellow;">C </p>
+11. Que el sistema **muestre todas las comisiones aplicables** a cada operación y no oculte cargos adicionales.<p style="color:yellow;">C </p>
+12. Que se incorporen **advertencias visibles y recurrentes** sobre los riesgos del trading.<p style="color:yellow;">C </p>
 
 
 
-### Requerimientos No Funcionales (Como el sistema debe hacerlo)
+## Requerimientos No Funcionales (Como el sistema debe hacerlo)
 
-13. Que la **interfaz sea intuitiva, clara y fácil de usar desde cualquier dispositivo **(computadora o móvil).🟩
-14. Que las páginas o vistas principales **se acceden en menos de 5 clicks**. 🟨
-15. Que las **operaciones** se hagan de **manera instantánea**. 🟩
-16. Que el sistema funcione correctamente en los principales sistemas **Android/iOS y windows**.  🟩
-17. Que el **código fuente** se mantenga modular, documentado y versionado en **GitHub**, facilitando su mantenibilidad.  🟩
-18. Que el sistema **muestre las comisiones o costos antes de ejecutar cualquier transacción**.  🟧
-19. Que el sistema pueda **soportar múltiples idiomas** y desarrollarse en principio en español e inglés   🟧
-20. El sistema debe presentar colores verdes y rojos tanto en los botones (subir y bajar y/o compra y venta) como en las gráficas, para indicar si sube o baja una acción.🟥
+13. Que la **interfaz sea intuitiva, clara y fácil de usar desde cualquier dispositivo **(computadora o móvil).<p style="color:blue;">M </p>
+14. Que las páginas o vistas principales **se acceden en menos de 5 clicks**. <p style="color:green;">S </p>
+15. Que las **operaciones** se hagan de **manera instantánea**. <p style="color:blue;">M </p>
+16. Que el sistema funcione correctamente en los principales sistemas **Android/iOS y windows**.  <p style="color:blue;">M </p>
+17. Que el **código fuente** se mantenga modular, documentado y versionado en **GitHub**, facilitando su mantenibilidad.  <p style="color:blue;">M </p>
+18. Que el sistema **muestre las comisiones o costos antes de ejecutar cualquier transacción**.  <p style="color:yellow;">C </p>
+19. Que el sistema pueda **soportar múltiples idiomas** y desarrollarse en principio en español e inglés   <p style="color:yellow;">C </p>
+20. El sistema debe presentar colores verdes y rojos tanto en los botones (subir y bajar y/o compra y venta) como en las gráficas, para indicar si sube o baja una acción.<p style="color:red;">W </p>
 
 
 Para realizar un mejor trabajo priorizamos los requisitos amplicando MoSCoW:
-
-- 🟩Must have 
-- 🟨Should have 
-- 🟧Could have 
-- 🟥Won’t have 
+<p style="color:blue;">M – Must have </p>
+<p style="color:green;">S – Should have </p>
+<p style="color:yellow;">C – Could have </p>
+<p style="color:red;">W – Won’t have</p>
 
 
 
@@ -255,23 +254,23 @@ Además, se detallan los **criterios INVEST** (Independiente, Negociable, Valios
 
 | ID | Historia de Usuario | Prioridad | Criterios INVEST | Criterio de Aceptación |
 |----|----------------------|------------|------------------|------------------------|
-| **US1** | Como **usuario**, quiero **ver mi portafolio con gráficos y variaciones diarias** para **evaluar mi rendimiento total**. | 🟨 Should Have | ✅ I, V, E, S, T | Se muestra valor actual, variación diaria y un gráfico simple. |
-| **US2** | Como **inversionista**, quiero **comprar o vender acciones y criptomonedas** para **operar de forma segura desde Uruguay**. | 🟩 Must Have | ✅ I, V, E, S, T | Puedo ejecutar operaciones y ver confirmación inmediata. |
-| **US3** | Como **usuario**, quiero **recibir alertas cuando un activo sube o baja un porcentaje definido** para **tomar decisiones rápidas**. | 🟧 Could Have | ✅ I, N, V, E, T | Se envía notificación push al cumplirse el umbral configurado. |
-| **US4** | Como **usuario nuevo**, quiero **acceder a una sección educativa básica** para **aprender antes de invertir.** | 🟨 Should Have | ✅ I, N, V, E, T | Se muestran artículos, videos y glosario básico. |
-| **US5** | Como **inversionista avanzado**, quiero **descargar un reporte PDF de mis movimientos y ganancias** para **llevar control personal.** | 🟧 Could Have | ✅ I, N, V, E, T | Reporte con operaciones, fechas, montos y comisiones. |
-| **US6** | Como **usuario**, quiero **ver advertencias claras sobre riesgos antes de invertir** para **entender la posibilidad de pérdida.** | 🟩 Must Have | ✅ I, V, T | Aparece mensaje de advertencia obligatorio antes de confirmar operación. |
+| **US1** | Como **usuario**, quiero **ver mi portafolio con gráficos y variaciones diarias** para **evaluar mi rendimiento total**. | **<p style="color:green;">Should have </p>**|  I, V, E, S, T | Se muestra valor actual, variación diaria y un gráfico simple. |
+| **US2** | Como **inversionista**, quiero **comprar o vender acciones y criptomonedas** para **operar de forma segura desde Uruguay**. | **<p style="color:blue;">Must have </p>**| I, V, E, S, T | Puedo ejecutar operaciones y ver confirmación inmediata. |
+| **US3** | Como **usuario**, quiero **recibir alertas cuando un activo sube o baja un porcentaje definido** para **tomar decisiones rápidas**. | **<p style="color:yellow;">Could have </p>** | I, N, V, E, T | Se envía notificación push al cumplirse el umbral configurado. |
+| **US4** | Como **usuario nuevo**, quiero **acceder a una sección educativa básica** para **aprender antes de invertir.** | **<p style="color:green;">Should have </p>** |  I, N, V, E, T | Se muestran artículos, videos y glosario básico. |
+| **US5** | Como **inversionista avanzado**, quiero **descargar un reporte PDF de mis movimientos y ganancias** para **llevar control personal.** | **<p style="color:yellow;">Could have </p>** | I, N, V, E, T | Reporte con operaciones, fechas, montos y comisiones. |
+| **US6** | Como **usuario**, quiero **ver advertencias claras sobre riesgos antes de invertir** para **entender la posibilidad de pérdida.** | **<p style="color:green;">Should have </p>** |  I, V, T | Aparece mensaje de advertencia obligatorio antes de confirmar operación. |
 
 ---
 
 ## Priorización (MoSCoW)
 
-| Tipo | Significado | Historias relacionadas |
-|------|--------------|------------------------|
-| 🟩 **Must Have** | Esenciales para el funcionamiento base | US1, US2, US4, US8 |
-| 🟨 **Should Have** | Mejoran la experiencia del usuario | US3, US6 |
-| 🟧 **Could Have** | Añaden valor complementario | US5, US7 |
-| 🟥 **Won’t Have (por ahora)** | Ideas a futuro | Integración con ANII, simulador de rentabilidad |
+| Tipo | Significado 
+|------|--------------
+| **<p style="color:blue;">Must have </p>**| Esenciales para el funcionamiento base | 
+| **<p style="color:green;">Should have </p>** | Mejoran la experiencia del usuario |
+| **<p style="color:yellow;">Could have </p>** | Añaden valor complementario |
+| **<p style="color:red;">Won’t have</p>** | Ideas a futuro | 
 
 ---
 
@@ -280,93 +279,101 @@ Además, se detallan los **criterios INVEST** (Independiente, Negociable, Valios
 Cada caso de uso describe **cómo interactúan los actores** con el sistema para lograr un objetivo concreto.  
 Se detallan precondiciones, flujos principales y alternativos, postcondiciones y prioridad.
 
-
-### **UC1 – Comprar activo**
+### **UC1 – Consultar portafolio**
 **Actor:** Usuario autenticado  
-**Precondición:** Tener saldo suficiente.  
-**Flujo principal:**
-1. El usuario selecciona un activo (acción o cripto).
-2. Presiona “Comprar”.
-3. Ingresa monto o cantidad.
-4. El sistema calcula valor total y comisión.
-5. El usuario confirma la compra.
-6. El sistema ejecuta la orden y actualiza portafolio.
-
-**Flujos alternativos:**
-- Si no hay saldo → operación rechazada.  
-- Si el mercado está cerrado → orden pendiente.
-
-**Postcondición:** Activo registrado en portafolio.  
-**Prioridad:** 🟩 Must Have
-
-
-### **UC2 – Consultar portafolio**
-**Actor:** Usuario autenticado  
-**Precondición:** Tener inversiones activas.  
-**Flujo principal:**
-1. El usuario ingresa a “Mi portafolio”.
-2. El sistema muestra lista de activos con su variación diaria.
-3. Se genera gráfico de rendimiento.
-4. El usuario puede filtrar por tipo de activo o rango de fechas.
+**Precondición:** Tener inversiones activas  
+**Flujo Normal:**
+1. El usuario ingresa a “Portafolio”
+2. El sistema muestra lista de activos con su variación diaria
+3. Se genera gráfico de rendimiento
+4. El usuario puede filtrar por tipo de activo o rango de fechas
 
 **Flujo alternativo:**
-- Si no hay inversiones → mostrar “No tenés activos todavía”.
+- Si no hay inversiones → mostrar “No tenés activos todavía”
 
-**Postcondición:** Información actualizada mostrada correctamente.  
-**Prioridad:** 🟨 Should Have
+**Postcondición:** Información actualizada mostrada correctamente  
+**Prioridad:** **<p style="color:green;">Should have </p>** 
+
+### **UC2 – Comprar activo**
+**Actor:** Usuario autenticado  
+**Precondición:** Tener saldo suficiente
+**Flujo Normal:**
+1. El usuario selecciona un activo (acción, cripto, etc)
+2. Presiona “Comprar”
+3. Ingresa monto o cantidad
+4. El sistema calcula valor total y comisión (se direige a pagina Inicio con la informacion del activo seleccionado)
+5. El usuario confirma la compra
+6. El sistema ejecuta la orden y actualiza portafolio
+
+**Flujos alternativos:**
+- Si no hay saldo → operación rechazada por saldo insuficiente  
+- Si el mercado está cerrado → orden pendiente
+
+**Postcondición:** Activo registrado en portafolio  
+**Prioridad:**  **<p style="color:blue;">Must have </p>**
+
 
 ### **UC3 – Configurar alerta de precio**
 **Actor:** Usuario autenticado  
-**Precondición:** Tener al menos un activo en seguimiento.  
-**Flujo principal:**
-1. El usuario selecciona un activo.
-2. Configura umbral de precio (subida o bajada).
+**Precondición:** Tener al menos un activo en seguimiento 
+**Flujo Normal:**
+1. El usuario selecciona un activo
+2. Configura umbral de precio (subida o bajada)
 3. El sistema guarda la alerta.
-4. Si se cumple la condición → se envía notificación.
+4. Si se cumple la condición → se envía notificación
 
-**Postcondición:** Alerta registrada correctamente.  
-**Prioridad:** 🟧 Could Have
+**Postcondición:** Alerta registrada correctamente
 
-### **UC4 – Consultar portafolio**
-**Actor:** Usuario autenticado  
-**Precondición:** Tener inversiones activas.  
-**Flujo principal:**
-1. El usuario ingresa a “Mi portafolio”.
-2. El sistema muestra lista de activos con su variación diaria.
-3. Se genera gráfico de rendimiento.
-4. El usuario puede filtrar por tipo de activo o rango de fechas.
+**Prioridad:** **<p style="color:yellow;">Could have </p>** 
+
+### **UC4 – Acceder a la sección educativa**
+**Actor:** Usuario 
+**Precondición:** El usuario debe estar autenticado o acceder en modo invitado.  
+
+**Flujo Normal:**
+1. El usuario selecciona la opción **“Centro de Aprendizaje”** en el menú lateral 
+2. El sistema muestra una lista de categorías (artículos, videos)
+3. El usuario elige un contenido o utiliza la barra de búsqueda 
+4. El sistema despliega el contenido solicitado (artículo, video)  
+5. El usuario puede marcar el contenido como visto o agregarlo a favoritos
 
 **Flujo alternativo:**
-- Si no hay inversiones → mostrar “No tenés activos todavía”.
+- Si no hay conexión a internet → se muestra mensaje “No se pudo cargar el contenido”.
+- Si el contenido no existe → el sistema muestra “Elemento no disponible”.
 
-**Postcondición:** Información actualizada mostrada correctamente.  
-**Prioridad:** 🟧 Should Have
+**Postcondición:** El usuario accede al contenido educativo y puede consultarlo libremente.  
+**Prioridad:** **<p style="color:green;">Should have </p>** 
 
-### **UC5 – Configurar alerta de precio**
-**Actor:** Usuario autenticado  
-**Precondición:** Tener al menos un activo en seguimiento.  
-**Flujo principal:**
-1. El usuario selecciona un activo.
-2. Configura umbral de precio (subida o bajada).
-3. El sistema guarda la alerta.
-4. Si se cumple la condición → se envía notificación.
+### **UC5 – Generar y descargar reporte PDF**
+**Actor:** Inversionista avanzado  
+**Precondición:** El usuario debe tener una cuenta activa y un portafolio con operaciones registradas.
+**Flujo Normal:**
+1. El usuario ingresa al módulo **“Billetera”** o **“Portafolio”**.  
+2. Selecciona la opción **“Generar reporte”**.  
+3. El sistema muestra filtros (rango de fechas, tipo de operación, activo).  
+4. El usuario define los parámetros y presiona **“Generar PDF”**.  
+5. El sistema compila la información y genera el archivo.  
+6. El usuario visualiza una vista previa y puede descargar o imprimir el reporte.
 
-**Postcondición:** Alerta registrada correctamente.  
-**Prioridad:** 🟨 Could Have
+**Flujo alternativo:**
+- Si no existen operaciones en el rango seleccionado → se muestra “No hay datos para generar el reporte”.
+- Si ocurre un error en la generación del PDF → se notifica al usuario.
+
+**Postcondición:** El reporte PDF se genera correctamente con los movimientos, montos y comisiones.  
+**Prioridad:** **<p style="color:yellow;">Could have </p>** 
 
 ### **UC6 – Mostrar advertencias de riesgo antes de invertir**
 
 **Actor:** Usuario autenticado  
 
 **Precondición:**  
-El usuario tiene saldo disponible e intenta realizar una operación (compra o venta) de un activo.
+El usuario tiene saldo disponible e intenta realizar una operación (compra o venta) de un activo
 
-**Flujo principal:**
-1. El usuario selecciona un activo y presiona **“Comprar”** o **“Vender”**.  
-2. Antes de confirmar la operación, el sistema muestra un mensaje emergente con advertencias legales sobre el riesgo de pérdida de capital.  
-3. El usuario debe **leer y aceptar** las condiciones para continuar.  
-4. Si el usuario acepta, el sistema permite confirmar la transacción.  
-5. La operación se ejecuta y se actualiza el portafolio.
+**Flujo Normal:**
+1. El usuario selecciona un activo y presiona **“Comprar”** o **“Vender”**  
+2. Antes de confirmar la operación, el sistema muestra un mensaje emergente con advertencias legales sobre el riesgo de pérdida de capital (esto se puede desactivar en configuracion).   
+3. Si el usuario acepta, el sistema permite confirmar la transacción.  
+4. La operación se ejecuta y se actualiza el portafolio.
 
 **Flujos alternativos:**
 - Si el usuario **no acepta** las advertencias → el sistema cancela la operación y vuelve a la pantalla anterior.  
@@ -375,7 +382,7 @@ El usuario tiene saldo disponible e intenta realizar una operación (compra o ve
 **Postcondición:**  
 El sistema registra que el usuario aceptó las advertencias de riesgo (fecha y hora).
 
-**Prioridad:** 🟩 Must Have
+**Prioridad:** **<p style="color:green;">Should have </p>** 
 
 
 ---
