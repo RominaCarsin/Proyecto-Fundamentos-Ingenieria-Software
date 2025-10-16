@@ -354,6 +354,36 @@ Los ítems marcados como 🟨 o 🟥 representan áreas de mejora a abordar en l
 
 ## Validación
 
+A partir de los requisitos iniciales, se desarrolló un **prototipo de papel** con el objetivo de representar de manera preliminar la estructura y el flujo principal de la aplicación.  
+Este prototipo fue presentado a futuros usuarios para obtener una primera instancia de comentarios y observaciones que guiaran las siguientes etapas del diseño.
+
+---
+
+### Aspectos Positivos
+
+El concepto y el diseño de la aplicación fue algo que **gustó**.  
+Los usuarios destacaron la **claridad en la estructura**, el **diseño moderno** y la **facilidad de navegación** entre las secciones principales (*Inicio, Portafolio, Análisis*, etc.), comentando que era *“intuitivo y bastante lógico”* y que sí probarían utilizar **TradeUy**.
+
+Además, los usuarios valoraron la **estética limpia** y la **correcta organización visual de los elementos**, señalando que la jerarquía de la información facilitaba la comprensión inmediata del contenido.
+
+---
+
+### Posibles Mejoras
+
+A partir del feedback obtenido, también surgieron observaciones concretas sobre elementos funcionales y de contenido que podrían mejorar aún más la aplicación.  
+Los apartados mencionados a implementar son:
+
+- **Pantalla de Inicio:** se agregará un espacio visible para mostrar las *comisiones aplicables* y la *hora de la última actualización de los datos*.  
+- **Sección de Portafolio:** se diseñará una *vista de historial de ganancias*, complementada con *gráficos de rendimiento a lo largo del tiempo*.  
+- **Sistema de Notificaciones:** se planificará un sistema que permita *personalizar alertas* según los intereses del usuario y los activos que desee monitorear.
+
+---
+
+### Usuarios del Testeo
+
+Los **usuarios que participaron en el User Testing** fueron las **mismas personas entrevistadas anteriormente**, complementadas con **dos nuevos participantes** que contaban con **conocimientos limitados sobre trading**.  
+
+Esta combinación permitió obtener una **visión más equilibrada**, considerando tanto la perspectiva de usuarios con cierto nivel de entendimiento del mercado financiero como la de personas que se enfrentan por primera vez a este tipo de plataformas.
 
 ## Descripción del Trabajo Individual de cada Integrannte
 
@@ -367,8 +397,8 @@ Los ítems marcados como 🟨 o 🟥 representan áreas de mejora a abordar en l
 | 07/10 | Requerimientos | 5h |
 | 13/10, 09/10 | User Persona | 3h |
 | 14/10 | User Stories & Use Cases | 1h |
-| 14/10, 15/10 | Modelo del Dominio | 3h |
-| 14/10, 13/10, 15/10 | Verificación y Validación | 7h |
+| 14/10, 15/10, 16/10 | Modelo del Dominio | 4h |
+| 14/10, 13/10, 15/10, 16/10 | Verificación y Validación | 9h |
 
 
 
@@ -383,8 +413,8 @@ Los ítems marcados como 🟨 o 🟥 representan áreas de mejora a abordar en l
 | 07/10 | Requerimientos | 2h |
 | 13/10, 09/10 | User Persona | 5h |
 | 14/10, 15/10 | User Stories & Use Cases | 4h |
-| 14/10, 15/10 | Modelo del Dominio | 8h |
-| 14/10, 13/10 | Verificación y Validación | 2h |
+| 14/10, 15/10, 16/10 | Modelo del Dominio | 9h |
+| 14/10, 13/10, 16/10 | Verificación y Validación | 3h |
 
 ---
 
@@ -392,8 +422,8 @@ Los ítems marcados como 🟨 o 🟥 representan áreas de mejora a abordar en l
 
 | Nombre | Horas trabajadas | Entrevistas Realizadas | Aplicaciones Analizadas |
 |:-------:|:----------------:|:----------------------:|:-----------------------:|
-| Romina Carsin | 44h | 2 | 2 |
-| Guzmán Costa | 42h | 1 | 1 |
+| Romina Carsin | 47h | 2 | 2 |
+| Guzmán Costa | 44h | 1 | 1 |
 
 
 ---
