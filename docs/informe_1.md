@@ -36,7 +36,7 @@ A partir de **`develop`** se crean dos ramas secundarias:
 
 Esta estructura permite mantener separadas las distintas líneas de trabajo —desarrollo, análisis e investigación de usuarios— evitando conflictos entre ramas y asegurando que cada aporte se integre de forma controlada y clara en el flujo general del proyecto.
 
-<img src="image.png" alt="alt text" width="400"/>
+<img src="image.png" alt= "Diagrama de ramas del repositorio Git de TradeUy, con las ramas main, develop, application-analysis e interview conectadas jerárquicamente." width="400"/>
 
 ---
 
@@ -61,7 +61,7 @@ Los tipos más utilizados son:
 
 Por este formato, el historial del proyecto mantiene coherencia y trazabilidad, facilitando tanto la revisión como la evaluación académica del trabajo.
 
-<img src="image-1.png" alt="alt text" width="400"/>
+<img src="image-1.png" alt="Historial de commits del repositorio TradeUy visto desde la terminal, mostrando mensajes de commits en ramas develop, interview y application-analysis." width="400"/>
 
 ---
 
@@ -231,7 +231,7 @@ Para tener una mejor comprensión y validación del proyecto, realizamos varios 
 Estos perfiles nos permitieron entender mejor sus necesidades, motivaciones y comportamientos, facilitando el diseño de una solución más adecuada.
 
 
-<img src="image-4.png" alt="alt text" width="450"/> <img src="image-5.png" alt="alt text" width="450"/><img src="image-6.png" alt="alt text" width="450"/>
+<img src="image-4.png" alt="Perfil del usuario Santiago Rodríguez, analista contable interesado en plataformas de trading. Se incluyen sus objetivos, frustraciones y experiencia de inversión." width="450"/> <img src="image-5.png" alt="Perfil de la usuaria Camila Torres, ingeniera interesada en comenzar a invertir con una cuenta demo. Se detallan sus metas, nivel de experiencia y frustraciones comunes." width="450"/><img src="image-6.png" alt="Perfil del usuario Ignacio Castro, estudiante avanzado de economía que busca aprender sobre criptomonedas. Se listan sus objetivos, experiencia y frustraciones." width="450"/>
 
 
 # User Stories & Use Cases
@@ -304,22 +304,17 @@ También contempla la parte regulatoria: los usuarios deben validar su identidad
 - **Reporte:** genera documentos descargables con un resumen de las ganancias, pérdidas y movimientos.
 - **ConfiguraciónUsuario:** guarda las preferencias personales, idioma, validaciones y tipos de notificación elegidos.
 
-## En resumen
-
-TradeUy combina **operativa real, simulación y aprendizaje**, ofreciendo una experiencia completa para el usuario uruguayo.  
-El sistema busca acercar el mundo de las finanzas de manera **didáctica, transparente y adaptada al contexto local**, brindando tanto herramientas de análisis como funciones educativas para promover la inversión informada.
-
 
 ## Diagrama UML
-<img src="image-12.png" alt="alt text" width="400"/> 
+<img src="image-12.png" alt="Diagrama UML del sistema TradeUy que muestra las clases principales: Usuario, Cuenta, Transacción, Portafolio, Activo, Comisión y sus relaciones." width="400"/> 
 
 ---
 
 ## Prototipos 
 Los prototipos realizados para una mejor implementacion de la aplicacion fueron:
 
-<img src="image-3.png" alt="alt text" width="400"/> <img src="image-7.png" alt="alt text" width="400"/><img src="image-8.png" alt="alt text" width="400"/> <img src="image-9.png" alt="alt text" width="400"/> <img src="image-10.png" alt="alt text" width="400"/> <img src="image-11.png" alt="alt text" width="400"/>
-<img src="image-13.png" alt="alt text" width="400"/>
+<img src="image-3.png" alt="Prototipo de la pantalla de inicio de TradeUy, con menú lateral, gráfica principal de precios, opciones de compra y venta, y cotizaciones de monedas." width="400"/> <img src="image-7.png" alt="Prototipo de la pantalla de portafolio de TradeUy, mostrando categorías de activos como bonos, criptomonedas, forex y acciones con sus respectivas tarjetas de información." width="400"/><img src="image-8.png" alt="Prototipo de la sección de análisis de mercado de TradeUy, donde se listan instrumentos financieros con su rendimiento, costo y botones de compra o venta." width="400"/> <img src="image-9.png" alt="Prototipo de la pantalla de billetera en TradeUy, mostrando saldos por divisa, botones para depósito y retiro, un historial de balance y una calculadora de comisiones." width="400"/> <img src="image-10.png" alt="Prototipo del centro de aprendizaje de TradeUy, con una barra de búsqueda y secciones de archivos y videos educativos para usuarios principiantes." width="400"/> <img src="image-11.png" alt="Prototipo de la pantalla de configuración de TradeUy, donde el usuario puede cambiar idioma, tema visual, modo de cuenta, validación de acciones y método de autenticación." width="400"/>
+<img src="image-13.png" alt="Guía de colores utilizada en el diseño de TradeUy, con tonos azul claro para el fondo, azul oscuro para casillas y texto, verde y rojo para botones principales." width="400"/>
 
 ##  Verificación
 
@@ -372,8 +367,8 @@ Los ítems marcados como 🟨 o 🟥 representan áreas de mejora a abordar en l
 | 07/10 | Requerimientos | 5h |
 | 13/10, 09/10 | User Persona | 3h |
 | 14/10 | User Stories & Use Cases | 1h |
-| 14/10 | Modelo del Dominio | 1h |
-| 14/10, 13/10 | Verificación y Validación | 5h |
+| 14/10, 15/10 | Modelo del Dominio | 3h |
+| 14/10, 13/10, 15/10 | Verificación y Validación | 7h |
 
 
 
@@ -387,9 +382,9 @@ Los ítems marcados como 🟨 o 🟥 representan áreas de mejora a abordar en l
 | 06/10, 05/10 | Ingeniería Reversa | 6h |
 | 07/10 | Requerimientos | 2h |
 | 13/10, 09/10 | User Persona | 5h |
-| 14/10 | User Stories & Use Cases | 4h |
-| 14/10 | Modelo del Dominio | 4h |
-| 14/10, 13/10 | Verificación y Validación | 1h |
+| 14/10, 15/10 | User Stories & Use Cases | 4h |
+| 14/10, 15/10 | Modelo del Dominio | 8h |
+| 14/10, 13/10 | Verificación y Validación | 2h |
 
 ---
 
@@ -397,8 +392,8 @@ Los ítems marcados como 🟨 o 🟥 representan áreas de mejora a abordar en l
 
 | Nombre | Horas trabajadas | Entrevistas Realizadas | Aplicaciones Analizadas |
 |:-------:|:----------------:|:----------------------:|:-----------------------:|
-| Romina Carsin | 40h | 2 | 2 |
-| Guzmán Costa | 37h | 1 | 1 |
+| Romina Carsin | 44h | 2 | 2 |
+| Guzmán Costa | 42h | 1 | 1 |
 
 
 ---
