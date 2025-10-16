@@ -418,6 +418,23 @@ La experiencia también nos ayudó a desarrollar **habilidades de investigación
 
 En conclusión, el proyecto representa una oportunidad valiosa para **aprender desde cero sobre el mercado financiero digital**, aplicar metodologías ágiles, mejorar la organización del trabajo y fortalecer la comunicación entre los integrantes.  
 
+##  Uso de Inteligencia Artificial en el Proyecto 
+
+A lo largo del desarrollo del proyecto se utilizó **inteligencia artificial (ChatGPT) de forma moderada y responsable**, principalmente como **herramienta de apoyo** para mejorar la presentación y organización del trabajo.  
+
+El uso de estas herramientas se limitó a tareas puntuales, tales como:  
+- **Corregir formato y mantener coherencia** en los documentos Markdown.  
+- **Asistir en la redacción**, mejorando la claridad y fluidez de algunos apartados.  
+- **Generar tablas o estructuras base**, que luego fueron completadas y revisadas por los integrantes del equipo.  
+- **Sugerir ajustes en el estilo y presentación visual** del informe para hacerlo más claro y legible.  
+
+En ningún caso la IA reemplazó el trabajo analítico, el razonamiento técnico ni la toma de decisiones del grupo.  
+Todas las definiciones, el análisis conceptual, la elaboración del modelo de dominio, las historias de usuario y los diagramas fueron realizados por los integrantes del equipo.  
+
+El uso de inteligencia artificial se concibió como una **herramienta complementaria**, similar al uso de editores de texto o correctores automáticos, buscando optimizar el tiempo de producción y mantener un estilo uniforme sin afectar la **autenticidad ni la autoría del trabajo**.  
+
+**El equipo confirma que el uso de IA se realizó siguiendo criterios éticos y académicos acordes a la Universidad ORT Uruguay.**
+
 
 
 
