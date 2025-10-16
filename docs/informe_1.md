@@ -281,34 +281,33 @@ Además, se detallan los **criterios INVEST** (Independiente, Negociable, Valios
 
 # Modelo de Dominio
 
-## Entidades clave
+# Dominio del Sistema – TradeUy
 
-- **Usuario**  
-  Representa a la persona que utiliza la plataforma. Contiene datos personales, credenciales de acceso y configuraciones individuales.
+**TradeUy** se enmarca dentro del dominio de las plataformas de inversión y educación financiera digital, pensada especialmente para usuarios de **Uruguay**.  
+El objetivo principal del sistema es brindar un espacio accesible y seguro donde las personas puedan **invertir, analizar el mercado y gestionar su portafolio de activos financieros**, todo desde una misma aplicación web.
 
-- **Cuenta**  
-  Asocia al usuario con sus fondos disponibles en distintas monedas o tipos de activos. Permite realizar operaciones y consultar el saldo.
+El sistema busca simplificar el acceso al mundo de las inversiones, ofreciendo tanto herramientas para usuarios con experiencia como una **cuenta demo** para quienes recién empiezan. Además, incluye una **sección educativa**, donde se pueden consultar artículos, videos y recursos que ayudan a entender los conceptos básicos antes de invertir dinero real.
 
-- **Transacción**  
-  Registra las operaciones de compra, venta, fondeo o retiro. Incluye información sobre montos, comisiones y estado de ejecución.
+Dentro del dominio, TradeUy cubre distintos procesos y elementos típicos del ámbito financiero, como la **compra y venta de activos** (acciones, criptomonedas, bonos o divisas), el **seguimiento de precios**, la **gestión de fondos en distintas monedas** y la **generación de reportes con métricas de rentabilidad**.  
+También contempla la parte regulatoria: los usuarios deben validar su identidad y métodos de pago, cumpliendo con las normas del **Banco Central del Uruguay (BCU)**. Antes de ejecutar una operación, el sistema muestra advertencias sobre los posibles riesgos, fomentando una inversión responsable.
 
-- **Activo**  
-  Representa un instrumento financiero disponible para invertir (acción, criptomoneda, bono, etc.). Contiene su precio y variación de mercado.
+## Entidades principales del dominio
 
-- **Portafolio**  
-  Conjunto de activos que posee el usuario. Muestra su valor total, variación diaria y rendimiento histórico.
+- **Usuario:** representa a la persona registrada en la plataforma. Puede operar con activos, usar la cuenta demo o acceder a contenido educativo.
+- **Cuenta:** refleja los fondos del usuario, permitiendo hacer depósitos, retiros y operaciones en diferentes monedas.
+- **Activo:** son los instrumentos financieros disponibles, como acciones, criptomonedas o bonos, con su precio actualizado en tiempo real.
+- **Transacción:** modela cada operación de compra o venta, guardando datos como monto, fecha y comisión.
+- **Portafolio:** agrupa los activos del usuario y muestra el rendimiento total e histórico.
+- **Alerta:** permite configurar notificaciones cuando un activo cambia de precio o se cumplen ciertos umbrales.
+- **ContenidoEducativo:** almacena los materiales disponibles para aprender sobre inversión y finanzas personales.
+- **Comisión:** define los costos asociados a las operaciones según su tipo o monto.
+- **Reporte:** genera documentos descargables con un resumen de las ganancias, pérdidas y movimientos.
+- **ConfiguraciónUsuario:** guarda las preferencias personales, idioma, validaciones y tipos de notificación elegidos.
 
-- **Alerta**  
-  Permite al usuario configurar notificaciones automáticas cuando un activo alcanza un determinado umbral de precio o variación.
+## En resumen
 
-- **Reporte**  
-  Documento generado automáticamente con el detalle de operaciones, ganancias o pérdidas. Puede exportarse en distintos formatos (PDF, CSV).
-
-- **ContenidoEducativo**  
-  Material informativo (artículos, videos o guías) destinado a la educación financiera y la formación del inversionista.
-
-- **Broker** *(entidad conceptual)*  
-  Representa la validación y regulación de operaciones financieras bajo la supervisión del **Banco Central del Uruguay (BCU)**.
+TradeUy combina **operativa real, simulación y aprendizaje**, ofreciendo una experiencia completa para el usuario uruguayo.  
+El sistema busca acercar el mundo de las finanzas de manera **didáctica, transparente y adaptada al contexto local**, brindando tanto herramientas de análisis como funciones educativas para promover la inversión informada.
 
 
 ## Diagrama UML
@@ -359,29 +358,7 @@ La verificación demuestra que el prototipo cumple con la mayoría de los requis
 Los ítems marcados como 🟨 o 🟥 representan áreas de mejora a abordar en la siguiente iteración de desarrollo.
 
 ## Validación
-A partir de los requisitos iniciales, se desarrolló un prototipo de papel con el objetivo de representar de manera preliminar la estructura y el flujo principal de la aplicación. Este prototipo fue presentado a futuros usuarios para obtener una primera instancia de comentarios y observaciones que guiaran las siguientes etapas del diseño.
 
-**Aspectos Positivo**
-
-El concepto y el diseño de la aplicación fue algo que gusto.Estos destacaron la claridad en la estructura, el diseño moderno y la facilidad de navegación entre las secciones principales (Inicio, Portafolio, Análisis, etc.), comentarion que era "intuitivo y bastante logico" y que si provarian utilidar TradeUy.
-
-Aparte, los usuarios valoraron la estética limpia y la correcta organización visual de los elementos, señalando que la jerarquía de la información facilitaba la comprensión inmediata del contenido.
-
-**Posibles Mejoras**
-
-A partir del feedback obtenido tambien nos informaron sobre observaciones concretas sobre elementos funcionales y de contenido que mejorarian aun mas la aplicación.
-Los apartos mensionados a implementar son:
-
-**Pantalla de Inicio:** se agregará un espacio visible para mostrar las comisiones aplicables y la hora de la última actualización de los datos.
-
-**Sección de Portafolio:** se diseñará una vista de historial de ganancias, complementada con gráficos de rendimiento a lo largo del tiempo.
-
-**Sistema de Notificaciones:** se planificará un sistema que permita personalizar alertas según los intereses del usuario y los activos que desee monitorear.
-
-
-Los **usuarios que participaron en User Testing** fueron las **mismas personas entrevistadas anteriormente**, complementadas con **dos nuevos participantes** que contaban con **conocimientos limitados sobre trading**.  
-
-Esta combinación permitió obtener una **visión más equilibrada**, considerando tanto la perspectiva de usuarios con cierto nivel de entendimiento del mercado financiero, como las personas que se enfrentan por primera vez a este tipo de plataformas.
 
 ## Descripción del Trabajo Individual de cada Integrannte
 
@@ -394,9 +371,9 @@ Esta combinación permitió obtener una **visión más equilibrada**, consideran
 | 06/10, 05/10 | Ingeniería Reversa | 8h |
 | 07/10 | Requerimientos | 5h |
 | 13/10, 09/10 | User Persona | 3h |
-| 15/10, 14/10 | User Stories & Use Cases | 1h |
+| 14/10 | User Stories & Use Cases | 1h |
 | 14/10 | Modelo del Dominio | 1h |
-| 15/10, 14/10, 13/10 | Verificación y Validación | 5h |
+| 14/10, 13/10 | Verificación y Validación | 5h |
 
 
 
@@ -404,16 +381,17 @@ Esta combinación permitió obtener una **visión más equilibrada**, consideran
 
 | Fecha | Actividad | Horas invertidas |
 |:------:|:----------:|:----------------:|
-| 15/10, 06/10 | Estructura del repositorio | 7h |
+| 06/10 | Estructura del repositorio | 7h |
 | 10/10, 9/10, 06/10 | Investigación de Información | 3h |
 | 04/10, 03/10 | Entrevistas | 5h |
 | 06/10, 05/10 | Ingeniería Reversa | 6h |
 | 07/10 | Requerimientos | 2h |
 | 13/10, 09/10 | User Persona | 5h |
 | 14/10 | User Stories & Use Cases | 4h |
-| 15/10, 14/10 | Modelo del Dominio | 4h |
+| 14/10 | Modelo del Dominio | 4h |
 | 14/10, 13/10 | Verificación y Validación | 1h |
 
+---
 
 ### Resumen General
 
@@ -423,7 +401,7 @@ Esta combinación permitió obtener una **visión más equilibrada**, consideran
 | Guzmán Costa | 37h | 1 | 1 |
 
 
-
+---
 
 ## Reflexión
 
@@ -431,8 +409,7 @@ El desarrollo del proyecto implicó una importante inversión de tiempo, comunic
 A lo largo del proceso, mantuvimos una dinámica de trabajo **basada en la coordinación, la autonomía y el intercambio permanente de avances**.  
 
 Realizamos múltiples **llamadas y reuniones virtuales**, además de algunos encuentros presenciales, donde planificamos tareas, revisamos entregas y discutimos decisiones de diseño e investigación.  
-Si bien cada integrante trabajó de forma **individual en “su parte del proyecto”** ,ambos hicimos de todo. Empleo de esto es que los dos realizamos entrevistas, ingeniería reversa a alguna aplicación, buscamos información y en otros casos íbamos comentando cada avance y revisando mutuamente los aportes del otro previo y pos subida al repositorio. Generando así un informe lo más completo posible.
-
+Si bien cada integrante trabajó de forma **individual en distintos módulos del proyecto** —entrevistas, análisis de aplicaciones, documentación o prototipos—, mantuvimos una **comunicación continua por mensajes**, comentando cada avance y revisando mutuamente los aportes antes de incorporarlos al repositorio.
 
 Ninguno de los dos integrantes tenía conocimientos previos en el área de **inversiones financieras o plataformas de trading**, por lo que fue necesario **estudiar en profundidad el tema**, investigar fuentes confiables y analizar múltiples plataformas internacionales.  
 Esto nos permitió **comprender los fundamentos legales, técnicos y de usabilidad** que deben tener este tipo de aplicaciones en el contexto uruguayo.
@@ -441,9 +418,10 @@ Entre las principales **dificultades**, destacamos la necesidad de adaptar infor
 Sin embargo, logramos superarlas gracias a una **división clara de tareas**, revisiones conjuntas y la adopción de buenas prácticas de control de versiones en GitHub.
 
 Consideramos que la **dinámica de trabajo fue positiva**, ya que combinó independencia y colaboración efectiva.  
-Si bien en un inició se nos dificulto el uso de ramas específicas, commits convencionales y documentación compartida; al final  nos permitió mantener un flujo ordenado y trazable facilitandonos en gran medida el trabajo. 
+El uso de ramas específicas, commits convencionales y documentación compartida nos permitió mantener un flujo ordenado y trazable.  
 La experiencia también nos ayudó a desarrollar **habilidades de investigación aplicada, redacción técnica y trabajo en equipo** dentro de un contexto académico que simula un entorno profesional.
 
+En conclusión, el proyecto representa una oportunidad valiosa para **aprender desde cero sobre el mercado financiero digital**, aplicar metodologías ágiles, mejorar la organización del trabajo y fortalecer la comunicación entre los integrantes.  
 
 
 
