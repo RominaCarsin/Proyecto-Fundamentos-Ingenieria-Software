@@ -1,131 +1,115 @@
+
 # Trading
 
 El trading consiste en comprar y vender activos en los mercados financieros.  
-Para operar necesitás un intermediario, conocido como **broker**, que permite ejecutar las operaciones casi al instante (milésimas de segundo) y cobra comisiones por cada operación. Los brokers ofrecen diferentes herramientas para facilitar la actividad:
+Para operar necesitás un intermediario, conocido como <strong>broker</strong>, que permite ejecutar las operaciones casi al instante (milésimas de segundo) y cobra comisiones por cada operación. Los brokers ofrecen diferentes herramientas para facilitar la actividad:
 
-- **Cuentas demo:** para practicar sin arriesgar dinero real.  (DONDE NOS VAMOS A SENTRAR)
-- **Plataformas:** apps, web y de escritorio.  
-- **Depósitos y retiros:** facilidad de manejar fondos.  
-- **Apalancamiento:** permite mover más dinero del que realmente tenés. 
-
+- <strong>Cuentas demo:</strong> para practicar sin arriesgar dinero real.  
+  - <em>Ejemplo destacado: IQ Option ofrece una cuenta demo con USD 10.000 virtuales para practicar sin riesgo</em>  
+  - <a href="https://sololosmejores.net/iqoption-libertex-latam">Fuente: SoloLosMejores.net</a>
+- <strong>Plataformas:</strong> apps, web y de escritorio.  
+- <strong>Depósitos y retiros:</strong> facilidad de manejar fondos.  
+- <strong>Apalancamiento:</strong> permite mover más dinero del que realmente tenés.  
 
 ## Rentabilidad y riesgo
 
-- **Rentabilidad:**  
-Rentabilidad = ((Val final - Val inicial)/Val inical )*100
-    *Rentabilidad = ((Valor final- Valor inicial)/Valor inicial)x100**
+- <strong>Rentabilidad:</strong>  
+  Rentabilidad = ((Valor final - Valor inicial)/Valor inicial) × 100
 
+- <strong>Riesgo:</strong> no es solo “puedo perder”, sino <strong>cuánto puedo perder</strong>.  
 
-- **Riesgo:** no es solo “puedo perder”, sino **cuánto puedo perder**.  
+<strong>Conceptos clave:</strong>
 
- **Conceptos clave:**
+- <strong>Drawdown:</strong> caída desde un pico hasta un valle en el valor de tu cuenta.  
+  Drawdown = ((Valor en pico - Valor en valle)/Valor en pico) × 100
+- <strong>Volatilidad:</strong> cuánto fluctúa el precio de un activo. Mayor volatilidad = mayor riesgo y oportunidad.  
+- <strong>Ratio riesgo/beneficio (R:R):</strong> relación entre lo que arriesgás y lo que esperás ganar.  
+- <strong>Value at Risk (VaR):</strong> estimación de la máxima pérdida esperada en un período con cierto nivel de confianza.  
 
-- **Drawdown:** caída desde un pico hasta un valle en el valor de tu cuenta.  
-Drowdown = ((Val en pico - Val en Valle)/Val en pico)*100
-- **Drawdown:** caída desde un pico hasta un valle en el valor de tu cuenta.
-
-    *Drawdown= ((Valor en pico - Valor en valle )/ Valor en pico) x 100** 
-  
-- **Volatilidad:** cuánto fluctúa el precio de un activo. Mayor volatilidad = mayor riesgo y oportunidad.  
-- **Ratio riesgo/beneficio (R:R):** relación entre lo que arriesgás y lo que esperás ganar.  
-- **Value at Risk (VaR):** estimación de la máxima pérdida esperada en un período con cierto nivel de confianza.  
-
-**Factores de riesgo a considerar:**  
-
+<strong>Factores de riesgo a considerar:</strong>  
 - Volatilidad histórica  
 - Apalancamiento  
 - Liquidez del activo  
 - Eventos macroeconómicos (bancos centrales, inflación, elecciones)  
 - Noticias de empresas o sectores  
 
-
 ## Métricas de eficiencia
 
-- **Ratio de Sharpe:** mide rentabilidad por unidad de riesgo (volatilidad).  
+- <strong>Ratio de Sharpe:</strong> mide rentabilidad por unidad de riesgo (volatilidad).  
   - >1: Bueno  
   - >2: Muy bueno  
   - >3: Excelente  
 
-- **Ratio de Calmar:** compara rentabilidad anualizada con máximo drawdown.  
+- <strong>Ratio de Calmar:</strong> compara rentabilidad anualizada con máximo drawdown.  
   - Valor alto → buenas ganancias sin caídas grandes.  
-
 
 ## Leyes y beneficios fiscales en Uruguay
 
-- **IRAE:** 3% de la utilidad bruta, gravado al 25% → tasa efectiva 0,75%.  
-- **Impuesto sobre dividendos:** 7% sobre la renta neta fiscal → tasa efectiva 0,21%.  
-- **Carga fiscal total:** 0,96% sobre la utilidad bruta.  
+Según el régimen fiscal uruguayo descrito por <a href="https://bac.com.uy/trading-en-uruguay/">Borche & Asuaga</a> y respaldado por la <a href="https://www.impo.com.uy/bases/leyes/16906-1998">Ley N.º 16906</a>:
 
-**Requisitos importantes:**  
+- <strong>IRAE:</strong> 3% de la utilidad bruta, gravado al 25% → tasa efectiva 0,75%.  
+- <strong>Impuesto sobre dividendos:</strong> 7% sobre la renta neta fiscal → tasa efectiva 0,21%.  
+- <strong>Carga fiscal total:</strong> 0,96% sobre la utilidad bruta.  
 
+<strong>Requisitos importantes:</strong>  
 - Bienes no deben ingresar físicamente a Uruguay.  
 - Solo se considera costo de compra, sin gastos adicionales (fletes, seguros).  
 
-
-
 ## Plataformas locales en Uruguay
 
-Ejemplos: **TGB, Sociedad de Bolsa, Afex**  
+Ejemplos: <strong>TGB, Sociedad de Bolsa, Afex</strong>
 
-**Ventajas:**  
-
+<strong>Ventajas:</strong>  
 - Soporte local  
 - Depósitos y retiros en pesos uruguayos  
 - Acceso al mercado local  
 
-**Desventajas:**  
-
+<strong>Desventajas:</strong>  
 - Comisiones más altas  
 - Oferta limitada de activos  
 - Plataformas menos avanzadas  
 
-
-
 ## Emociones y psicología del trading
 
-- **Miedo:** cerrar operaciones ganadoras antes de tiempo o no entrar al mercado.  
-- **Avaricia:** dejar correr demasiado una posición o sobreoperar.  
-- **Esperanza:** mantener posiciones perdedoras sin fundamento.  
-- **Euforia:** exceso de confianza tras rachas ganadoras.  
+Según <a href="https://www.ig.com/es/estrategias-de-trading/las-7-emociones-a-controlar-en-el-trading-230518">IG</a>, las emociones más comunes que afectan el trading son:
 
-**Sesgos cognitivos comunes:**  
+- <strong>Miedo:</strong> cerrar operaciones ganadoras antes de tiempo o no entrar al mercado.  
+- <strong>Avaricia:</strong> dejar correr demasiado una posición o sobreoperar.  
+- <strong>Esperanza:</strong> mantener posiciones perdedoras sin fundamento.  
+- <strong>Euforia:</strong> exceso de confianza tras rachas ganadoras.  
 
+<strong>Sesgos cognitivos comunes:</strong>  
 - Confirmación: solo buscas info que respalde tus ideas.  
 - Aversión a la pérdida: duele perder más de lo que satisface ganar.  
 - Exceso de confianza: saltarse el plan.  
 
-Se recomienda respetar el plan, ser paciente y poner un límite de inversión antes de operar.  
-
-
+Se recomienda respetar el plan, ser paciente y poner un límite de inversión antes de operar.
 
 ## Gestión de operaciones
 
-- **Apalancamiento:** permite operar con más dinero del que tenés (ej: 1:100).  
+- <strong>Apalancamiento:</strong> permite operar con más dinero del que tenés (ej: 1:100).  
   - Mayor apalancamiento → mayor riesgo.  
 
-- **Tamaño de la posición:** define cuánto dinero arriesgás en una operación.  
+- <strong>Tamaño de la posición:</strong> define cuánto dinero arriesgás en una operación.  
   - Ejemplo: capital $1.000, riesgo 2% → $20. Stop loss 50 pips → valor por pip = $0,40 → posición = 0,04 lotes.  
 
-- **Diversificación:** no concentrar todo en un solo activo o sector.  
+- <strong>Diversificación:</strong> no concentrar todo en un solo activo o sector.  
 
-- **Stop loss:** orden automática para limitar pérdidas.  
+- <strong>Stop loss:</strong> orden automática para limitar pérdidas.  
   - Fijo: cantidad de pips fija  
   - Por volatilidad: ajustado al mercado (ej: indicador ATR)  
   - Dinámico/trailing: se mueve a tu favor si el precio avanza  
 
-
-
 ## Ratio riesgo/beneficio y drawdown
 
-- **R:R recomendado:** al menos 1:2  
+- <strong>R:R recomendado:</strong> al menos 1:2  
   - Ejemplo: arriesgás $100 esperando ganar $300 → R:R = 1:3  
 
-- **Drawdown:** pérdida máxima desde pico hasta valle.  
+- <strong>Drawdown:</strong> pérdida máxima desde pico hasta valle.  
   - Estrategias:  
     - No arriesgar más de 1%-2% por operación  
     - Limitar posiciones abiertas  
     - Pausar tras varias pérdidas seguidas (stop diario)
-
 
 
 # Análisis del Whitepaper de Capital.com
@@ -191,3 +175,4 @@ Sin embargo, llevar esta idea a la práctica requiere adaptaciones. En el contex
 - **Capital.com.** (2023). *Capital.com White Paper (April 2023 Update).* 
 
 - **Capital.com.** (2023). *Capital.com White Paper (April 2023 Update).* 
+
