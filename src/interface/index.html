@@ -1,84 +1,48 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
-
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Ejemplo de obligatorio para FIS ORT 2023." />
-  <title>Países</title>
-  <link rel="icon" href="./favicon.ico" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-  <link href="style.css" rel="stylesheet" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TradeUy</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-  <nav class="navbar navbar-expand">
-    <a class="navbar-brand ps-2" href="#">Países</a>
-    <div class="nav nav-pills" id="nav-tab" role="tablist">
-      <button class="nav-link active me-3" id="nav-add-country-tab" data-bs-toggle="tab"
-        data-bs-target="#nav-add-country" type="button" role="tab" aria-controls="nav-add-country" aria-selected="true">
-        Agregar país
-      </button>
-      <button class="nav-link" id="nav-countries-list-tab" data-bs-toggle="tab" data-bs-target="#nav-countries-list"
-        type="button" role="tab" aria-controls="nav-countries-list" aria-selected="false">
-        Lista países
-      </button>
-    </div>
-  </nav>
-  <div class="tab-content" id="nav-tabContent">
-    <div class="tab-pane fade show active" id="nav-add-country" role="tabpanel" aria-labelledby="nav-add-country-tab">
-      <div class="row justify-content-end px-5" style="width: 100%">
-        <div class="col-8 col-lg-4 col-xs-8" id="alerts"></div>
-      </div>
-      <div class="container shadow bg-white rounded">
-        <div class="row">
-          <div class="col-sm p-0 fill">
-            <img src="./img/countries-flags.jpg" alt="Flags" id="add-countries-image" class="rounded-start" />
-          </div>
-          <div class="col-sm pt-2 px-4">
-            <h1 class="title">Registro de países</h1>
-            <form id="register-form">
-              <div class="row">
-                <div class="col-sm">
-                  <label for="inp-name" class="form-label">Nombre:</label>
-                  <input type="text" class="form-control" id="inp-name" name="name" placeholder="Ingrese el nombre"
-                    required />
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-sm pt-3">
-                  <label for="inp-capital" class="form-label">Capital:</label>
-                  <input type="text" class="form-control" id="inp-capital" name="capital"
-                    placeholder="Ingrese la capital" required />
-                </div>
-              </div>
-              <div class="d-none" id="add-countries-error">
-                <p class="text-danger pt-2" id="add-countries-error-msg"></p>
-              </div>
-              <div class="row-sm py-3 text-end">
-                <button id="btn-add" type="button" class="btn btn-primary">
-                  Agregar
-                </button>
-              </div>
-            </form>
-          </div>
+
+    <aside class="sidebar">
+        <div class="logo-container">
+            <img src="img/Logo.png" class="logo" alt="Logo de TradeUy">
+            <span class="brand">TradeUy</span>
         </div>
-      </div>
-    </div>
-    <div class="tab-pane fade" id="nav-countries-list" role="tabpanel" aria-labelledby="nav-countries-list-tab">
-      <h2 class="position-absolute top-50 start-50 translate-middle" id="empty-list">
-        No ha ingresado ningún país :(
-      </h2>
-      <div id="countries" class="container shadow bg-white rounded mt-4 p-2 d-none">
-        <h1 class="title ps-2">Países:</h1>
-        <ul id="countries-list" class="list-group-numbered"></ul>
-      </div>
-    </div>
-  </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+        <ul class="menu">
+            <li><a href="#" class="active"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" style="fill: white;">
+        <path d="M12.71 2.29a1 1 0 0 0-1.42 0l-9 9a1 1 0 0 0 0 1.42A1 1 0 0 0 3 13h1v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7h1a1 1 0 0 0 1-1 1 1 0 0 0-.29-.71zM6 20v-9.59l6-6 6 6V20z"></path>
+      </svg></span><span class="text">Inicio</span></a></li>
+            <li><a href="#"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" style="fill: white;">
+        <path d="M5 22h14c1.103 0 2-.897 2-2V9a1 1 0 0 0-1-1h-3V7c0-2.757-2.243-5-5-5S7 4.243 7 7v1H4a1 1 0 0 0-1 1v11c0 1.103.897 2 2 2zM9 7c0-1.654 1.346-3 3-3s3 1.346 3 3v1H9V7zm-4 3h2v2h2v-2h6v2h2v-2h2l.002 10H5V10z"></path>
+      </svg></span><span class="text">Portafolio</span></a></li>
+            <li><a href="#"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" style="fill: white;">
+        <path d="M3 3v17a1 1 0 0 0 1 1h17v-2H5V3H3z"></path>
+        <path d="M15.293 14.707a.999.999 0 0 0 1.414 0l5-5-1.414-1.414L16 12.586l-2.293-2.293a.999.999 0 0 0-1.414 0l-5 5 1.414 1.414L13 12.414l2.293 2.293z"></path>
+      </svg></span><span class="text">Análisis Mercado</span></a></li>
+            <li><a href="#"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" style="fill: white;">
+        <path d="M16 12h2v4h-2z"></path>
+        <path d="M20 7V5c0-1.103-.897-2-2-2H5C3.346 3 2 4.346 2 6v12c0 2.201 1.794 3 3 3h15c1.103 0 2-.897 2-2V9c0-1.103-.897-2-2-2zM5 5h13v2H5a1.001 1.001 0 0 1 0-2zm15 14H5.012C4.55 18.988 4 18.805 4 18V8.815c.314.113.647.185 1 .185h15v10z"></path>
+      </svg></span><span class="text">Billetera</span></a></li>
+            <li><a href="#"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" style="fill: white;">
+        <path d="M2 7v1l11 4 9-4V7L11 4z"></path>
+        <path d="M4 11v4.267c0 1.621 4.001 3.893 9 3.734 4-.126 6.586-1.972 7-3.467.024-.089.037-.178.037-.268V11L13 14l-5-1.667v3.213l-1-.364V12l-3-1z"></path>
+      </svg></span><span class="text">Centro Aprendizaje</span></a></li>
+            <li><a href="#"><span class="icon"> <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" style="fill: white;">
+        <path d="M12 16c2.206 0 4-1.794 4-4s-1.794-4-4-4-4 1.794-4 4 1.794 4 4 4zm0-6c1.084 0 2 .916 2 2s-.916 2-2 2-2-.916-2-2 .916-2 2-2z"></path>
+        <path d="m2.845 16.136 1 1.73c.531.917 1.809 1.261 2.73.73l.529-.306A8.1 8.1 0 0 0 9 19.402V20c0 1.103.897 2 2 2h2c1.103 0 2-.897 2-2v-.598a8.132 8.132 0 0 0 1.896-1.111l.529.306c.923.53 2.198.188 2.731-.731l.999-1.729a2.001 2.001 0 0 0-.731-2.732l-.505-.292a7.718 7.718 0 0 0 0-2.224l.505-.292a2.002 2.002 0 0 0 .731-2.732l-.999-1.729c-.531-.92-1.808-1.265-2.731-.732l-.529.306A8.1 8.1 0 0 0 15 4.598V4c0-1.103-.897-2-2-2h-2c-1.103 0-2 .897-2 2v.598a8.132 8.132 0 0 0-1.896 1.111l-.529-.306c-.924-.531-2.2-.187-2.731.732l-.999 1.729a2.001 2.001 0 0 0 .731 2.732l.505.292a7.683 7.683 0 0 0 0 2.223l-.505.292a2.003 2.003 0 0 0-.731 2.733zm3.326-2.758A5.703 5.703 0 0 1 6 12c0-.462.058-.926.17-1.378a.999.999 0 0 0-.47-1.108l-1.123-.65.998-1.729 1.145.662a.997.997 0 0 0 1.188-.142 6.071 6.071 0 0 1 2.384-1.399A1 1 0 0 0 11 5.3V4h2v1.3a1 1 0 0 0 .708.956 6.083 6.083 0 0 1 2.384 1.399.999.999 0 0 0 1.188.142l1.144-.661 1 1.729-1.124.649a1 1 0 0 0-.47 1.108c.112.452.17.916.17 1.378 0 .461-.058.925-.171 1.378a1 1 0 0 0 .471 1.108l1.123.649-.998 1.729-1.145-.661a.996.996 0 0 0-1.188.142 6.071 6.071 0 0 1-2.384 1.399A1 1 0 0 0 13 18.7l.002 1.3H11v-1.3a1 1 0 0 0-.708-.956 6.083 6.083 0 0 1-2.384-1.399.992.992 0 0 0-1.188-.141l-1.144.662-1-1.729 1.124-.651a1 1 0 0 0 .471-1.108z"></path>
+      </svg></span><span class="text">Configuración</span></a></li>
+        </ul>
+    </aside>
 
-  <script src="main.js" type="module"></script>
+    <main class="content">
+        <h1>Bienvenido a TradeUy</h1>
+    </main>
+
 </body>
-
 </html>

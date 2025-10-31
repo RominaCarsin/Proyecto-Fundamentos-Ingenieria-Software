@@ -1,15 +1,97 @@
-.navbar {
-  margin-bottom: 40px;
-  background-color: rgba(237, 237, 237, 0.95);
+body {
+  margin: 0;
+  font-family: sans-serif;
+  display: flex;
+  height: 100vh;
 }
 
-#add-countries-image {
-  width: 100%;
-  height: 100%;
+/* Sidebar general */
+.sidebar {
+  width: 70px; /* Cerrado por defecto */
+  background: #87b2e3;
+  color: rgb(27, 8, 99);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  transition: width 0.3s ease;
 }
 
-.error-container {
-  position: absolute;
-  bottom: 0;
-  right: 20px;
+/* Al pasar el cursor, se despliega */
+.sidebar:hover {
+  width: 230px;
+}
+
+/* Logo y texto */
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px;
+}
+
+.logo {
+  width: 60px;
+}
+
+.brand {
+  font-size: 20px;
+  font-weight: bold;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s;
+}
+
+/* Mostrar texto al pasar el mouse */
+.sidebar:hover .brand {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Menú */
+.menu {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+.menu li a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px;
+  text-decoration: none;
+  color: #FFFFFFD9;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+
+.menu li a:hover,
+.menu li a.active {
+  background: #3f5881;
+  color: #fff;
+}
+
+/* Ocultar texto cuando está cerrado */
+.text {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s;
+}
+
+.sidebar:hover .text {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Íconos */
+.icon {
+  font-size: 20px;
+}
+
+/* Contenido principal */
+.content {
+  flex: 1;
+  background: #F1F5F9;
+  padding: 20px;
 }
