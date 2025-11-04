@@ -1,280 +1,109 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TradeUy</title>
-    <link rel="stylesheet" href="style.css" />
-     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-    crossorigin="anonymous" />
-  <link rel="stylesheet" href="styles.css" />
-  </head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TradeUy</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-  <body>
-    <!-- Menu lateral -->
-    <aside id="barraLateral" class="barraLateral">
-      <div id="contenedorLogo" class="contenedorLogo">
-        <img id="logo" src="img/Logo.png" class="logo" alt="Logo de TradeUy" />
-        <h1 id="banda" class="banda">TradeUy</h1>
+  <!-- Sidebar -->
+  <aside class="barraLateral">
+    <div class="contenedorLogo p-3">
+      <img src="img/Logo.png" class="logo" alt="Logo">
+      <span class="banda ms-2">TradeUy</span>
+    </div>
+   <ul class="menu"> <li><a href="#" class="active"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" style="fill: white;"> <path d="M12.71 2.29a1 1 0 0 0-1.42 0l-9 9a1 1 0 0 0 0 1.42A1 1 0 0 0 3 13h1v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7h1a1 1 0 0 0 1-1 1 1 0 0 0-.29-.71zM6 20v-9.59l6-6 6 6V20z"></path> </svg></span><span class="text">Inicio</span></a></li> <li><a href="#"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" style="fill: white;"> <path d="M5 22h14c1.103 0 2-.897 2-2V9a1 1 0 0 0-1-1h-3V7c0-2.757-2.243-5-5-5S7 4.243 7 7v1H4a1 1 0 0 0-1 1v11c0 1.103.897 2 2 2zM9 7c0-1.654 1.346-3 3-3s3 1.346 3 3v1H9V7zm-4 3h2v2h2v-2h6v2h2v-2h2l.002 10H5V10z"></path> </svg></span><span class="text">Portafolio</span></a></li> <li><a href="#"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" style="fill: white;"> <path d="M3 3v17a1 1 0 0 0 1 1h17v-2H5V3H3z"></path> <path d="M15.293 14.707a.999.999 0 0 0 1.414 0l5-5-1.414-1.414L16 12.586l-2.293-2.293a.999.999 0 0 0-1.414 0l-5 5 1.414 1.414L13 12.414l2.293 2.293z"></path> </svg></span><span class="text">Análisis Mercado</span></a></li> <li><a href="#"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" style="fill: white;"> <path d="M16 12h2v4h-2z"></path> <path d="M20 7V5c0-1.103-.897-2-2-2H5C3.346 3 2 4.346 2 6v12c0 2.201 1.794 3 3 3h15c1.103 0 2-.897 2-2V9c0-1.103-.897-2-2-2zM5 5h13v2H5a1.001 1.001 0 0 1 0-2zm15 14H5.012C4.55 18.988 4 18.805 4 18V8.815c.314.113.647.185 1 .185h15v10z"></path> </svg></span><span class="text">Billetera</span></a></li> <li><a href="#"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" style="fill: white;"> <path d="M2 7v1l11 4 9-4V7L11 4z"></path> <path d="M4 11v4.267c0 1.621 4.001 3.893 9 3.734 4-.126 6.586-1.972 7-3.467.024-.089.037-.178.037-.268V11L13 14l-5-1.667v3.213l-1-.364V12l-3-1z"></path> </svg></span><span class="text">Centro Aprendizaje</span></a></li> <li><a href="#"><span class="icon"> <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" style="fill: white;"> <path d="M12 16c2.206 0 4-1.794 4-4s-1.794-4-4-4-4 1.794-4 4 1.794 4 4 4zm0-6c1.084 0 2 .916 2 2s-.916 2-2 2-2-.916-2-2 .916-2 2-2z"></path> <path d="m2.845 16.136 1 1.73c.531.917 1.809 1.261 2.73.73l.529-.306A8.1 8.1 0 0 0 9 19.402V20c0 1.103.897 2 2 2h2c1.103 0 2-.897 2-2v-.598a8.132 8.132 0 0 0 1.896-1.111l.529.306c.923.53 2.198.188 2.731-.731l.999-1.729a2.001 2.001 0 0 0-.731-2.732l-.505-.292a7.718 7.718 0 0 0 0-2.224l.505-.292a2.002 2.002 0 0 0 .731-2.732l-.999-1.729c-.531-.92-1.808-1.265-2.731-.732l-.529.306A8.1 8.1 0 0 0 15 4.598V4c0-1.103-.897-2-2-2h-2c-1.103 0-2 .897-2 2v.598a8.132 8.132 0 0 0-1.896 1.111l-.529-.306c-.924-.531-2.2-.187-2.731.732l-.999 1.729a2.001 2.001 0 0 0 .731 2.732l.505.292a7.683 7.683 0 0 0 0 2.223l-.505.292a2.003 2.003 0 0 0-.731 2.733zm3.326-2.758A5.703 5.703 0 0 1 6 12c0-.462.058-.926.17-1.378a.999.999 0 0 0-.47-1.108l-1.123-.65.998-1.729 1.145.662a.997.997 0 0 0 1.188-.142 6.071 6.071 0 0 1 2.384-1.399A1 1 0 0 0 11 5.3V4h2v1.3a1 1 0 0 0 .708.956 6.083 6.083 0 0 1 2.384 1.399.999.999 0 0 0 1.188.142l1.144-.661 1 1.729-1.124.649a1 1 0 0 0-.47 1.108c.112.452.17.916.17 1.378 0 .461-.058.925-.171 1.378a1 1 0 0 0 .471 1.108l1.123.649-.998 1.729-1.145-.661a.996.996 0 0 0-1.188.142 6.071 6.071 0 0 1-2.384 1.399A1 1 0 0 0 13 18.7l.002 1.3H11v-1.3a1 1 0 0 0-.708-.956 6.083 6.083 0 0 1-2.384-1.399.992.992 0 0 0-1.188-.141l-1.144.662-1-1.729 1.124-.651a1 1 0 0 0 .471-1.108z"></path> </svg></span><span class="text">Configuración</span></a></li> </ul> </aside>
+
+  <!-- Main content -->
+  <main class="content container-fluid">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h2 class="fw-bold">Inicio</h2>
+      <div class="d-flex align-items-center gap-2">
+        <span>Cuenta Demo</span>
+        <div class="form-check form-switch m-0">
+          <input class="form-check-input" type="checkbox" role="switch">
+        </div>
       </div>
-      <nav>
-        <ul id="menu" class="menu">
-          <li id="itemInicio">
-            <a href="#" class="active">
-              <span class="icon">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  style="fill: white"
-                >
-                  <path
-                    d="M12.71 2.29a1 1 0 0 0-1.42 0l-9 9a1 1 0 0 0 0 1.42A1 1 0 0 0 3 13h1v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7h1a1 1 0 0 0 1-1 1 1 0 0 0-.29-.71zM6 20v-9.59l6-6 6 6V20z"
-                  ></path>
-                </svg>
-              </span>
-              <span class="text">Inicio</span>
-            </a>
-          </li>
+    </div>
 
-          <li id="itemPortafolio">
-            <a href="#">
-              <span class="icon">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  style="fill: white"
-                >
-                  <path
-                    d="M5 22h14c1.103 0 2-.897 2-2V9a1 1 0 0 0-1-1h-3V7c0-2.757-2.243-5-5-5S7 4.243 7 7v1H4a1 1 0 0 0-1 1v11c0 1.103.897 2 2 2zM9 7c0-1.654 1.346-3 3-3s3 1.346 3 3v1H9V7zm-4 3h2v2h2v-2h6v2h2v-2h2l.002 10H5V10z"
-                  ></path>
-                </svg>
-              </span>
-              <span class="text">Portafolio</span>
-            </a>
-          </li>
+    <div class="row g-3">
 
-          <li id="itemAnalisis">
-            <a href="#">
-              <span class="icon">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  style="fill: white"
-                >
-                  <path d="M3 3v17a1 1 0 0 0 1 1h17v-2H5V3H3z"></path>
-                  <path
-                    d="M15.293 14.707a.999.999 0 0 0 1.414 0l5-5-1.414-1.414L16 12.586l-2.293-2.293a.999.999 0 0 0-1.414 0l-5 5 1.414 1.414L13 12.414l2.293 2.293z"
-                  ></path>
-                </svg>
-              </span>
-              <span class="text">Análisis Mercado</span>
-            </a>
-          </li>
-
-          <li id="itemBilletera">
-            <a href="#">
-              <span class="icon">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  style="fill: white"
-                >
-                  <path d="M16 12h2v4h-2z"></path>
-                  <path
-                    d="M20 7V5c0-1.103-.897-2-2-2h3C3.346 3 2 4.346 2 6v12c0 2.201 1.794 3 3 3h15c1.103 0 2-.897 2-2V9c0-1.103-.897-2-2-2zM5 5h13v2h3a1.001 1.001 0 0 1 0-2zm15 14h3.012C4.55 18.988 4 18.805 4 18V8.815c.314.113.647.185 1 .185h15v10z"
-                  ></path>
-                </svg>
-              </span>
-              <span class="text">Billetera</span>
-            </a>
-          </li>
-
-          <li id="itemCentroAprendizaje">
-            <a href="#">
-              <span class="icon">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  style="fill: white"
-                >
-                  <path d="M2 7v1l11 4 9-4V7L11 4z"></path>
-                  <path
-                    d="M4 11v4.267c0 1.621 4.001 3.893 9 3.734 4-.126 6.586-1.972 7-3.467.024-.089.037-.178.037-.268V11L13 14l-5-1.667v3.213l-1-.364V12l-3-1z"
-                  ></path>
-                </svg>
-              </span>
-              <span class="text">Centro Aprendizaje</span>
-            </a>
-          </li>
-
-          <li id="itemConfiguracion">
-            <a href="#">
-              <span class="icon">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  style="fill: white"
-                >
-                  <path
-                    d="M12 16c2.206 0 4-1.794 4-4s-1.794-4-4-4-4 1.794-4 4 1.794 4 4 4zm0-6c1.084 0 2 .916 2 2s-.916 2-2 2-2-.916-2-2 .916-2 2-2z"
-                  ></path>
-                  <path
-                    d="m2.845 16.136 1 1.73c.531.917 1.809 1.261 2.73.73l.529-.306A8.1 8.1 0 0 0 9 19.402V20c0 1.103.897 2 2 2h2c1.103 0 2-.897 2-2v-.598a8.132 8.132 0 0 0 1.896-1.111l.529.306c.923.53 2.198.188 2.731-.731l.999-1.729a2.001 2.001 0 0 0-.731-2.732l-.505-.292a7.718 7.718 0 0 0 0-2.224l.505-.292a2.002 2.002 0 0 0 .731-2.732l-.999-1.729c-.531-.92-1.808-1.265-2.731-.732l-.529.306A8.1 8.1 0 0 0 15 4.598V4c0-1.103-.897-2-2-2h-2c-1.103 0-2 .897-2 2v.598a8.132 8.132 0 0 0-1.896 1.111l-.529-.306c-.924-.531-2.2-.187-2.731.732l-.999 1.729a2.001 2.001 0 0 0 .731 2.732l.505.292a7.683 7.683 0 0 0 0 2.223l-.505.292a2.003 2.003 0 0 0-.731 2.733zm3.326-2.758A5.703 5.703 0 0 1 6 12c0-.462.058-.926.17-1.378a.999.999 0 0 0-.47-1.108l-1.123-.65.998-1.729 1.145.662a.997.997 0 0 0 1.188-.142 6.071 6.071 0 0 1 2.384-1.399A1 1 0 0 0 11 5.3V4h2v1.3a1 1 0 0 0 .708.956 6.083 6.083 0 0 1 2.384 1.399.999.999 0 0 0 1.188.142l1.144-.661 1 1.729-1.124.649a1 1 0 0 0-.47 1.108c.112.452.17.916.17 1.378 0 .461-.058.925-.171 1.378a1 1 0 0 0 .471 1.108l1.123.649-.998 1.729-1.145-.661a.996.996 0 0 0-1.188.142 6.071 6.071 0 0 1-2.384 1.399A1 1 0 0 0 13 18.7l.002 1.3H11v-1.3a1 1 0 0 0-.708-.956 6.083 6.083 0 0 1-2.384-1.399.992.992 0 0 0-1.188-.141l-1.144.662-1-1.729 1.124-.651a1 1 0 0 0 .471-1.108z"
-                  ></path>
-                </svg>
-              </span>
-              <span class="text">Configuración</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
-    </aside>
-
-    <!--Ventana Inicio-->
-    <main id="paginaInicio" class="content container-fluid py-4">
-      <header
-        id="encabezadoInicio"
-        class="d-flex justify-content-between align-items-center mb-4"
-      >
-        <h2 class="fw-bold">Inicio</h2>
-        <section id="estadoCuentaInicio">
-          <label class="form-check-label fw-semibold" for="switchCheckDefault"
-            >Cuenta Demo</label
-          >
-          <div class="form-check form-switch">
-            <input
-              class="form-check-input"
-              type="checkbox"
-              id="switchCheckDefault"
-              checked
-            />
-          </div>
-        </section>
-      </header>
-
-      <section id="ventana1" class="row g-3">
-        <!--grafico y cotizazciones-->
-        <article id="panelIzqSup">
-          <nav id="navGrafico">
-            <button
-              id="btnAlertas"
-              type="button"
-              class="btn btn-light"
-              data-bs-toggle="tooltip"
-              data-bs-placement="bottom"
-              title="Ver alertas de mercado"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="black"
-              >
-                <path
-                  d="M19 13.586V10c0-3.217-2.185-5.927-5.145-6.742C13.562 2.52 12.846 2 12 2s-1.562.52-1.855 1.258C7.185 4.074 5 6.783 5 10v3.586l-1.707 1.707A.996.996 0 0 0 3 16v2a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-2a.996.996 0 0 0-.293-.707L19 13.586zM19 17h3v-.586l1.707-1.707A.996.996 0 0 0 7 14v-4c0-2.757 2.243-5 5-5s5 2.243 5 5v4c0 .266.105.52.293.707L19 16.414V17zm-7 5a2.98 2.98 0 0 0 2.818-2H9.182A2.98 2.98 0 0 0 12 22z"
-                ></path>
-              </svg>
-            </button>
-
-            <button
-              id="btnAnalisis"
-              type="button"
-              class="btn btn-light"
-              data-bs-toggle="tooltip"
-              data-bs-placement="bottom"
-              title="Analisis de grafica"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="black"
-              >
-                <path
-                  d="M20 12a2 2 0 0 0-.703.133l-2.398-1.963c.059-.214.101-.436.101-.67C17 8.114 15.886 7 14.5 7S12 8.114 12 9.5c0 .396.1.765.262 1.097l-2.909 3.438A2.06 2.06 0 0 0 9 14c-.179 0-.348.03-.512.074l-2.563-2.563C5.97 11.348 6 11.179 6 11c0-1.108-.892-2-2-2s-2 .892-2 2 .892 2 2 2c.179 0 .348-.03.512-.074l2.563 2.563A1.906 1.906 0 0 0 7 16c0 1.108.892 2 2 2s2-.892 2-2c0-.237-.048-.46-.123-.671l2.913-3.442c.227.066.462.113.71.113a2.48 2.48 0 0 0 1.133-.281l2.399 1.963A2.077 2.077 0 0 0 18 14c0 1.108.892 2 2 2s2-.892 2-2-.892-2-2-2z"
-                ></path>
-              </svg>
-            </button>
-          </nav>
-
-          <section id="contenedorGrafico">
-            <h3 class="text-secondary mb-0">Gráfica</h3>
-            <!-- Aquí ira el gráfico -->
-          </section>
-        </article>
-
-        <article id="panelIzqInf">
-          <section id="cotizaciones" class="card shadow-sm p-3">
-            <h3 class="fw-semibold mb-3">Cotizaciones</h3>
-
-            <button type="button" class="btn btn-outline-secondary">UYU</button>
-            <button type="button" class="btn btn-outline-secondary" disabled>
-              USD
-            </button>
-            <button type="button" class="btn btn-outline-secondary" disabled>
-              EUR
-            </button>
-          </section>
-        </article>
-
-        <aside
-          id="panelDerecho"
-          class="col-12 col-lg-4 d-flex flex-column gap-4"
-        >
-          <div class="card shadow-sm p-3">
-            <h3 class="fw-semibold mb-3">Información</h3>
-            <h5 class="fw-semibold mb-3">Información</h5>
-
-            <label for="campoAccion" class="form-label">Acción</label>
-            <input
-              type="number"
-              id="campoAccion"
-              class="form-control mb-3"
-              placeholder="0.00"
-            />
-
-            <label for="campoDinero" class="form-label">Monto</label>
-            <input
-              type="number"
-              id="campoDinero"
-              class="form-control mb-3"
-              placeholder="0.00"
-            />
-
-            <div class="d-flex justify-content-between gap-2">
-              <button type="button" class="btn btn-success w-50">
-                Comprar
-              </button>
-              <button type="button" class="btn btn-danger w-50">Vender</button>
+      <!-- Panel izquierdo -->
+      <div class="col-lg-8">
+        <div class="card p-3 mb-3">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <div class="d-flex gap-2">
+              <button class="btn btn-light btn-sm"><i class="bi bi-bell"></i> Alertas</button>
+              <button class="btn btn-light btn-sm"><i class="bi bi-graph-up"></i> Análisis</button>
+            </div>
+            <div class="d-flex gap-1">
+              <button class="btn btn-outline-secondary btn-sm">min</button>
+              <button class="btn btn-outline-secondary btn-sm">h</button>
+              <button class="btn btn-outline-secondary btn-sm">d</button>
+              <button class="btn btn-outline-secondary btn-sm">m</button>
             </div>
           </div>
-
-          <div class="card shadow-sm p-3">
-            <h3 class="fw-semibold">Comisiones</h3>
-            <p class="text-muted small mb-0">Sin operaciones recientes.</p>
+          <div id="contenedorGrafico" class="text-center p-4 border rounded bg-light">
+            <h5>Gráfica</h5>
+            <img src="img/grafico-ejemplo.png" class="img-fluid mt-3" alt="Gráfico">
           </div>
-        </aside>
-      </section>
+        </div>
 
-       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-    crossorigin="anonymous"></script> 
-    </main>
-    
-  </body>
+        <div class="card p-3">
+          <h5 class="mb-3">Cotizaciones</h5>
+          <div class="d-flex justify-content-between">
+            <div class="cot-box flex-fill text-center border p-2 mx-1 rounded">USD</div>
+            <div class="cot-box flex-fill text-center border p-2 mx-1 rounded">EUR</div>
+            <div class="cot-box flex-fill text-center border p-2 mx-1 rounded">UYU</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel derecho -->
+      <div class="col-lg-4 d-flex flex-column gap-3">
+
+        <div class="card p-3">
+          <h5 class="mb-3">Operaciones</h5>
+          <div class="mb-2">
+            <label class="form-label">Tipo de Acción</label>
+            <select class="form-select">
+              <option>Limite</option>
+              <option>Market</option>
+            </select>
+          </div>
+          <div class="mb-2">
+            <label class="form-label">Tipo de Orden</label>
+            <select class="form-select">
+              <option>Compra</option>
+              <option>Venta</option>
+            </select>
+          </div>
+          <div class="mb-2">
+            <label class="form-label">Acción</label>
+            <input type="text" class="form-control" placeholder="Ej: AAPL">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Dinero</label>
+            <input type="number" class="form-control" placeholder="0.00">
+          </div>
+          <div class="d-flex gap-2">
+            <button class="btn btn-success flex-fill">Comprar</button>
+            <button class="btn btn-danger flex-fill">Vender</button>
+          </div>
+        </div>
+
+        <div class="card p-3">
+          <h5 class="mb-2">Posiciones Abiertas</h5>
+          <p class="text-muted mb-0">Sin operaciones recientes.</p>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>
