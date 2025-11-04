@@ -1,32 +1,39 @@
+/* ======== ESTILOS GENERALES ======== */
 body {
   margin: 0;
   font-family: sans-serif;
   display: flex;
   height: 100vh;
+  background: #eaf1fa; /* Fondo tipo plataforma */
 }
 
-/* barraLateral general */
-.barraLateral {
-  width: 70px; /* Cerrado por defecto */
-  background: #5374a9;
-  color: rgb(255, 255, 255);  /*rgb(27, 8, 99)*/
+.content {
+  flex: 1;
+  background: #F1F5F9;
+  padding: 20px;
   display: flex;
   flex-direction: column;
-  position: relative;
+  overflow-y: auto;
+}
+
+/* ======== BARRA LATERAL ======== */
+.barraLateral {
+  width: 70px;
+  background: #5374a9;
+  color: white;
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
   transition: width 0.3s ease;
 }
 
-/* Al pasar el cursor, se despliega */
 .barraLateral:hover {
   width: 230px;
 }
 
-/* Logo y texto */
 .contenedorLogo {
   display: flex;
   align-items: center;
-  
 }
 
 .logo {
@@ -41,18 +48,16 @@ body {
   transition: opacity 0.3s;
 }
 
-/* Mostrar texto al pasar el mouse */
 .barraLateral:hover .banda {
   opacity: 1;
   visibility: visible;
 }
 
-/* Menú */
+/* ======== MENÚ LATERAL ======== */
 .menu {
   padding: 0;
   margin: 20px 0;
 }
-
 
 .menu li a {
   display: flex;
@@ -66,11 +71,10 @@ body {
 
 .menu li a:hover,
 .menu li a.active {
-  background:#7cabe1e9;
+  background: #7cabe1e9;
   color: #fff;
 }
 
-/* Ocultar texto cuando está cerrado */
 .text {
   opacity: 0;
   visibility: hidden;
@@ -82,14 +86,147 @@ body {
   visibility: visible;
 }
 
-/* Íconos */
 .icon {
   font-size: 20px;
 }
 
-/* Contenido principal */
-.content {
+/* ======== ENCABEZADO PRINCIPAL ======== */
+#encabezadoInicio {
+  border-bottom: 1px solid #d5e0f0;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  background: transparent;
+}
+
+#encabezadoInicio h2 {
+  color: #1a2b49;
+  font-weight: 700;
+}
+
+#estadoCuentaInicio {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ======== PANEL PRINCIPAL ======== */
+#ventana1 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+/* Panel izquierdo */
+#panelIzqSup {
+  flex: 2;
+  min-width: 600px;
+}
+
+/* Panel derecho */
+#panelDerecho {
   flex: 1;
-  background: #F1F5F9;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ======== TARJETAS ======== */
+.card {
+  background-color: #ffffff;
+  border: none;
+  border-radius: 12px;
   padding: 20px;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* ======== GRÁFICO ======== */
+#contenedorGrafico {
+  background-color: #f9fbfd;
+  border: 1px solid #e0e6ef;
+  border-radius: 10px;
+  padding: 30px;
+  text-align: center;
+}
+
+#contenedorGrafico h3 {
+  color: #6b7a99;
+  font-weight: 500;
+}
+
+/* ======== BOTONES ======== */
+.btn {
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.btn-outline-secondary {
+  color: #334155;
+  border-color: #cbd5e1;
+}
+
+.btn-outline-secondary:hover {
+  background-color: #e2e8f0;
+  color: #000;
+}
+
+.btn-success {
+  background-color: #28a745;
+  border: none;
+}
+
+.btn-success:hover {
+  background-color: #218838;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  border: none;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+}
+
+/* ======== INPUTS Y SELECTS ======== */
+.form-control,
+.form-select {
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  box-shadow: none;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #5374a9;
+  box-shadow: 0 0 0 0.1rem rgba(83, 116, 169, 0.25);
+}
+
+/* ======== TEXTOS ======== */
+h3, h5 {
+  color: #1a2b49;
+  font-weight: 600;
+}
+
+/* ======== TARJETA DE COMISIONES ======== */
+#panelDerecho .card p {
+  font-size: 0.9rem;
+  color: #6b7a99;
+}
+
+/* ======== RESPONSIVE ======== */
+@media (max-width: 992px) {
+  #ventana1 {
+    flex-direction: column;
+  }
+
+  #panelIzqSup,
+  #panelDerecho {
+    min-width: 100%;
+  }
+
+  #contenedorGrafico {
+    padding: 20px;
+  }
 }

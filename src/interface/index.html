@@ -31,7 +31,7 @@
           <a href="#">
             <span class="icon">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" style="fill: white;">
-                <path d="M5 22h14c1.103 0 2-.897 2-2V9a1 1 0 0 0-1-1h-3V7c0-2.757-2.243-5-5-5S7 4.243 7 7v1H4a1 1 0 0 0-1 1v11c0 1.103.897 2 2 2zM9 7c0-1.654 1.346-3 3-3s3 1.346 3 3v1H9V7zm-4 3h2v2h2v-2h6v2h2v-2h2l.002 10H5V10z"></path>
+                <path d="M5 22h14c1.103 0 2-.897 2-2V9a1 1 0 0 0-1-1h-3V7c0-2.757-2.243-5-5-5S7 4.243 7 7v1h3a1 1 0 0 0-1 1v11c0 1.103.897 2 2 2zM9 7c0-1.654 1.346-3 3-3s3 1.346 3 3v1H9V7zm-4 3h2v2h2v-2h6v2h2v-2h2l.002 10h3V10z"></path>
               </svg>
             </span>
             <span class="text">Portafolio</span>
@@ -42,7 +42,7 @@
           <a href="#">
             <span class="icon">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" style="fill: white;">
-                <path d="M3 3v17a1 1 0 0 0 1 1h17v-2H5V3H3z"></path>
+                <path d="M3 3v17a1 1 0 0 0 1 1h17v-2h3V3H3z"></path>
                 <path d="M15.293 14.707a.999.999 0 0 0 1.414 0l5-5-1.414-1.414L16 12.586l-2.293-2.293a.999.999 0 0 0-1.414 0l-5 5 1.414 1.414L13 12.414l2.293 2.293z"></path>
               </svg>
             </span>
@@ -55,7 +55,7 @@
             <span class="icon">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" style="fill: white;">
                 <path d="M16 12h2v4h-2z"></path>
-                <path d="M20 7V5c0-1.103-.897-2-2-2H5C3.346 3 2 4.346 2 6v12c0 2.201 1.794 3 3 3h15c1.103 0 2-.897 2-2V9c0-1.103-.897-2-2-2zM5 5h13v2H5a1.001 1.001 0 0 1 0-2zm15 14H5.012C4.55 18.988 4 18.805 4 18V8.815c.314.113.647.185 1 .185h15v10z"></path>
+                <path d="M20 7V5c0-1.103-.897-2-2-2h3C3.346 3 2 4.346 2 6v12c0 2.201 1.794 3 3 3h15c1.103 0 2-.897 2-2V9c0-1.103-.897-2-2-2zM5 5h13v2h3a1.001 1.001 0 0 1 0-2zm15 14h3.012C4.55 18.988 4 18.805 4 18V8.815c.314.113.647.185 1 .185h15v10z"></path>
               </svg>
             </span>
             <span class="text">Billetera</span>
@@ -89,9 +89,77 @@
     
   </aside>
 
-  <!-- Contenido principal -->
-  <main id="contenidoPrincipal" class="content">
-    <h1>Bienvenido a TradeUy</h1>
+  <!--Ventana Inicio-->
+  <main id="paginaInicio" class="content container-fluid py-4">
+    <header id="encabezadoInicio" class="d-flex justify-content-between align-items-center mb-4">
+      <h2 class="fw-bold">Inicio</h2>
+      <section id="estadoCuentaInicio">
+        <label class="form-check-label fw-semibold" for="switchCheckDefault">Cuenta Demo</label>
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" id="switchCheckDefault" checked>
+        </div>
+      </section>
+    </header>
+
+    <section id="ventana1" class="row g-3">
+      <!--grafico y cotizazciones-->
+      <article id="panelIzqSup">
+        <nav id="navGrafico"> 
+          <button id="btnAlertas" type="button" class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ver alertas de mercado">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="black">
+              <path d="M19 13.586V10c0-3.217-2.185-5.927-5.145-6.742C13.562 2.52 12.846 2 12 2s-1.562.52-1.855 1.258C7.185 4.074 5 6.783 5 10v3.586l-1.707 1.707A.996.996 0 0 0 3 16v2a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-2a.996.996 0 0 0-.293-.707L19 13.586zM19 17h3v-.586l1.707-1.707A.996.996 0 0 0 7 14v-4c0-2.757 2.243-5 5-5s5 2.243 5 5v4c0 .266.105.52.293.707L19 16.414V17zm-7 5a2.98 2.98 0 0 0 2.818-2H9.182A2.98 2.98 0 0 0 12 22z"></path>
+            </svg>
+          </button>
+
+          <button id="btnAnalisis" type="button" class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="bottom" title= "Analisis de grafica">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="black">
+              <path d="M20 12a2 2 0 0 0-.703.133l-2.398-1.963c.059-.214.101-.436.101-.67C17 8.114 15.886 7 14.5 7S12 8.114 12 9.5c0 .396.1.765.262 1.097l-2.909 3.438A2.06 2.06 0 0 0 9 14c-.179 0-.348.03-.512.074l-2.563-2.563C5.97 11.348 6 11.179 6 11c0-1.108-.892-2-2-2s-2 .892-2 2 .892 2 2 2c.179 0 .348-.03.512-.074l2.563 2.563A1.906 1.906 0 0 0 7 16c0 1.108.892 2 2 2s2-.892 2-2c0-.237-.048-.46-.123-.671l2.913-3.442c.227.066.462.113.71.113a2.48 2.48 0 0 0 1.133-.281l2.399 1.963A2.077 2.077 0 0 0 18 14c0 1.108.892 2 2 2s2-.892 2-2-.892-2-2-2z"></path>
+            </svg>
+          </button>
+        </nav>
+
+        <section id="contenedorGrafico">
+          <h3 class="text-secondary mb-0">Gráfica</h3>
+          <!-- Aquí ira el gráfico -->
+        </section>
+      </article>
+
+      <article id="panelIzqInf">
+        <article id="cotizaciones" class="card shadow-sm p-3">
+        <h3 class="fw-semibold mb-3">Cotizaciones</h3>
+        <div id="opcionesDivisas" class="d-flex gap-2 flex-wrap"></div>
+          <button type="button" class="btn btn-outline-secondary">UYU</button>
+          <button type="button" class="btn btn-outline-secondary" disabled>USD</button>
+          <button type="button" class="btn btn-outline-secondary" disabled>EUR</button>
+
+        </div>
+      </article>
+      </article>
+     
+      <aside id="panelDerecho" class="col-12 col-lg-4 d-flex flex-column gap-4">
+        
+        <div class="card shadow-sm p-3">
+          <h3 class="fw-semibold mb-3">Información</h3>
+          <h5 class="fw-semibold mb-3">Información</h5>
+          
+          <label for="campoAccion" class="form-label">Acción</label>
+          <input type="number" id="campoAccion" class="form-control mb-3" placeholder= "0.00" >
+
+          <label for="campoDinero" class="form-label">Monto</label>
+          <input type="number" id="campoDinero" class="form-control mb-3" placeholder="0.00">
+
+          <div class="d-flex justify-content-between gap-2">
+            <button type="button" class="btn btn-success w-50">Comprar</button>
+            <button type="button" class="btn btn-danger w-50">Vender</button>
+          </div>
+        </div>
+
+        <div class="card shadow-sm p-3">
+          <h3 class="fw-semibold">Comisiones</h3>
+          <p class="text-muted small mb-0">Sin operaciones recientes.</p>
+        </div>
+      </aside>
+    </section>
   </main>
 
 </body>
