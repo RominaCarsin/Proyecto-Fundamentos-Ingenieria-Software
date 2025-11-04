@@ -6,10 +6,17 @@ body {
   height: 100vh;
   background: #eaf1fa; /* Fondo tipo plataforma */
 }
+html[data-wave-loaded="true"] .barraLateral {
+  left: 350px !important;
+}
+
+html[data-wave-loaded="true"] .content {
+  margin-left: 420px !important;
+}
 
 .content {
   flex: 1;
-  background: #F1F5F9;
+  background: #f1f5f9;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -65,7 +72,7 @@ body {
   gap: 12px;
   padding: 15px;
   text-decoration: none;
-  color: #FFFFFFD9;
+  color: #ffffffd9;
   white-space: nowrap;
 }
 
@@ -204,7 +211,8 @@ body {
 }
 
 /* ======== TEXTOS ======== */
-h3, h5 {
+h3,
+h5 {
   color: #1a2b49;
   font-weight: 600;
 }
