@@ -18,8 +18,8 @@ html[data-wave-loaded="true"] .content {
   flex: 1;
   background: #f1f5f9;
   padding: 20px;
-  display: flex;
-  flex-direction: column;
+  display: block;
+  /*flex-direction: column;*/
   overflow-y: auto;
 }
 
@@ -99,6 +99,10 @@ html[data-wave-loaded="true"] .content {
 
 /* ======== ENCABEZADO PRINCIPAL ======== */
 #encabezadoInicio {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* empuja "Cuenta Demo" a la derecha */
   border-bottom: 1px solid #d5e0f0;
   padding-bottom: 10px;
   margin-bottom: 20px;
@@ -106,6 +110,10 @@ html[data-wave-loaded="true"] .content {
 }
 
 #encabezadoInicio h2 {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
   color: #1a2b49;
   font-weight: 700;
 }
@@ -196,6 +204,12 @@ html[data-wave-loaded="true"] .content {
   background-color: #c82333;
 }
 
+/*.btn-outline-secondary.active {
+  color: #fff;
+  background-color: #6c757d;
+  border-color: #6c757d;
+}*/
+
 /* ======== INPUTS Y SELECTS ======== */
 .form-control,
 .form-select {
@@ -229,12 +243,27 @@ h5 {
     flex-direction: column;
   }
 
-  #panelIzqSup,
-  #panelDerecho {
+  #ventana1 .col-lg-8,
+  #ventana1 .col-lg-4 {
     min-width: 100%;
   }
 
   #contenedorGrafico {
     padding: 20px;
   }
+}
+
+#ventana1 .card {
+  border-radius: 12px;
+  background: #fff;
+}
+
+#ventana1 img {
+  max-height: 180px;
+  object-fit: contain;
+}
+
+#ventana1 h5 {
+  font-weight: 600;
+  color: #1a2b49;
 }
