@@ -165,7 +165,7 @@ html[data-wave-loaded="true"] .content {
 }
 
 #contenedorGrafico h3 {
-  color: #6b7a99;
+  color: #050c18;/* #6b7a99 */
   font-weight: 500;
 }
 
@@ -234,7 +234,7 @@ h5 {
 /* ======== TARJETA DE COMISIONES ======== */
 #panelDerecho .card p {
   font-size: 0.9rem;
-  color: #6b7a99;
+  color: #000000;
 }
 
 /* ======== RESPONSIVE ======== */

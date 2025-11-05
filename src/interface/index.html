@@ -218,7 +218,7 @@
               id="contenedorGrafico"
               class="text-center p-4 border rounded bg-light"
             >
-              <h5>Gráfica</h5>
+              <h3>Gráfica</h3>
               <img
                 src="img/grafico-ejemplo.png"
                 alt="Gráfico"
@@ -229,7 +229,7 @@
 
           <!-- Cotizaciones -->
           <div class="card p-3">
-            <h5 class="mb-3">Cotizaciones</h5>
+            <h4 class="mb-3">Cotizaciones</h4>
             <div class="d-flex justify-content-between">
               <button
                 name="btnCotizaciones"
@@ -270,13 +270,25 @@
               <option value="stop">Acciones</option>
             </select>
 
-            <label class="form-label">Valor de Acción: </label>
+            <p class="form-label fw-semibold">Valor de Acción:</p>
 
-            <label class="form-label">Acción</label>
-            <input type="number" class="form-control mb-3" placeholder="0.00" />
+            <label for="accion" class="form-label">Acción</label>
+            <input
+              id="accion"
+              type="number"
+              class="form-control mb-3"
+              placeholder="0.00"
+            />
 
-            <label class="form-label">Dinero</label>
-            <input type="number" class="form-control mb-3" placeholder="0.00" />
+            <label for="dinero" class="form-label">Dinero</label>
+            <input
+              id="dinero"
+              type="number"
+              class="form-control mb-3"
+              placeholder="0.00"
+            />
+
+            
 
             <div class="d-flex gap-2">
               <button class="btn btn-success flex-fill">Comprar</button>
