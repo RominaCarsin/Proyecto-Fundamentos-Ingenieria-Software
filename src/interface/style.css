@@ -18,8 +18,8 @@ html[data-wave-loaded="true"] .content {
   flex: 1;
   background: #f1f5f9;
   padding: 20px;
-  display: block;
-  /*flex-direction: column;*/
+  display: flex;
+  flex-direction: column;
   overflow-y: auto;
 }
 
@@ -99,10 +99,6 @@ html[data-wave-loaded="true"] .content {
 
 /* ======== ENCABEZADO PRINCIPAL ======== */
 #encabezadoInicio {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end; /* empuja "Cuenta Demo" a la derecha */
   border-bottom: 1px solid #d5e0f0;
   padding-bottom: 10px;
   margin-bottom: 20px;
@@ -110,10 +106,6 @@ html[data-wave-loaded="true"] .content {
 }
 
 #encabezadoInicio h2 {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  margin: 0;
   color: #1a2b49;
   font-weight: 700;
 }
@@ -165,7 +157,7 @@ html[data-wave-loaded="true"] .content {
 }
 
 #contenedorGrafico h3 {
-  color: #050c18;/* #6b7a99 */
+  color: #6b7a99;
   font-weight: 500;
 }
 
@@ -204,12 +196,6 @@ html[data-wave-loaded="true"] .content {
   background-color: #c82333;
 }
 
-/*.btn-outline-secondary.active {
-  color: #fff;
-  background-color: #6c757d;
-  border-color: #6c757d;
-}*/
-
 /* ======== INPUTS Y SELECTS ======== */
 .form-control,
 .form-select {
@@ -234,7 +220,7 @@ h5 {
 /* ======== TARJETA DE COMISIONES ======== */
 #panelDerecho .card p {
   font-size: 0.9rem;
-  color: #000000;
+  color: #6b7a99;
 }
 
 /* ======== RESPONSIVE ======== */
@@ -243,8 +229,8 @@ h5 {
     flex-direction: column;
   }
 
-  #ventana1 .col-lg-8,
-  #ventana1 .col-lg-4 {
+  #panelIzqSup,
+  #panelDerecho {
     min-width: 100%;
   }
 
@@ -252,18 +238,143 @@ h5 {
     padding: 20px;
   }
 }
+/* ====== PORTAFOLIO ====== */
+#paginaPortafolio {
+  background: #eaf1fa;
+}
 
-#ventana1 .card {
-  border-radius: 12px;
+#encabezadoPortafolio h2 {
+  color: #1a2b49;
+  font-weight: 800;
+}
+
+.buscador-container {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.buscador-portafolio {
+  max-width: 400px;
+}
+
+.buscador-portafolio input {
+  border-radius: 20px 0 0 20px;
+  border-color: #cbd5e1;
   background: #fff;
 }
 
-#ventana1 img {
-  max-height: 180px;
-  object-fit: contain;
+.buscador-portafolio button {
+  border-radius: 0 20px 20px 0;
+  background: #f8fafc;
 }
 
-#ventana1 h5 {
-  font-weight: 600;
-  color: #1a2b49;
+#categorias .btn-outline-primary {
+  border-radius: 25px;
+  padding: 6px 18px;
+  color: #5374a9;
+  border-color: #5374a9;
+  font-weight: 500;
 }
+
+#categorias .btn-outline-primary.active {
+  background-color: #5374a9;
+  color: #fff;
+}
+
+#grillaActivos .card.activo {
+  border: 1px solid #d8e3f0;
+  border-radius: 14px;
+  background: #fff;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  min-height: 200px;
+}
+
+#grillaActivos .card.activo:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+#grillaActivos .card.activo button {
+  border-radius: 25px;
+  font-weight: 500;
+}
+
+#grillaActivos .card.activo .badge {
+  border-radius: 15px;
+}
+
+#paginaPortafolio .btn-outline-secondary {
+  border-radius: 20px;
+  padding: 6px 20px;
+}
+/* ====== ANÁLISIS DE MERCADO ====== */
+#paginaAnalisis {
+  background: #eaf1fa;
+}
+
+#encabezadoAnalisis h2 {
+  color: #1a2b49;
+  font-weight: 800;
+}
+
+.buscador-analisis {
+  max-width: 600px;
+}
+
+.buscador-analisis input {
+  border-radius: 20px 0 0 20px;
+  border-color: #cbd5e1;
+  background: #fff;
+}
+
+.buscador-analisis button {
+  border-radius: 0 20px 20px 0;
+  background: #f8fafc;
+}
+
+#categoriasAnalisis .btn-outline-primary {
+  border-radius: 25px;
+  padding: 6px 18px;
+  color: #5374a9;
+  border-color: #5374a9;
+  font-weight: 500;
+}
+
+#categoriasAnalisis .btn-outline-primary.active {
+  background-color: #5374a9;
+  color: #fff;
+}
+
+#contenidoAnalisis table {
+  border-color: #dee2e6;
+}
+
+#contenidoAnalisis th {
+  color: #1a2b49;
+  font-weight: 600;
+}
+
+#contenidoAnalisis td {
+  vertical-align: middle;
+}
+
+#contenidoAnalisis .btn {
+  border-radius: 6px;
+  padding: 3px 10px;
+  font-weight: 600;
+}
+
+#contenidoAnalisis .form-check-label {
+  color: #334155;
+  font-weight: 500;
+}
+
+#contenidoAnalisis .list-group-item {
+  border: none;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+#contenidoAnalisis .list-group-item:last-child {
+  border-bottom: none;
+}
+

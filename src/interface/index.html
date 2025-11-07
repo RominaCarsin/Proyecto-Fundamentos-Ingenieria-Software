@@ -303,6 +303,238 @@
         </aside>
       </section>
     </main>
+    <!-- ====== SECCIÓN PORTAFOLIO ====== -->
+<main id="paginaPortafolio" class="content container-fluid py-4 d-none">
+  <header id="encabezadoPortafolio" class="mb-3">
+    <h2 class="fw-bold mb-3">Portafolio</h2>
+    <div class="buscador-container mb-4">
+      <div class="input-group buscador-portafolio">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Buscar activo..."
+          aria-label="Buscar activo"
+        />
+        <button class="btn btn-outline-secondary" type="button">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
+            <path
+              d="M21.707 20.293l-3.388-3.388A8.928 8.928 0 0 0 19 11a9 9 0 1 0-9 9 8.928 8.928 0 0 0 5.905-2.681l3.388 3.388a1 1 0 0 0 1.414-1.414zM11 18a7 7 0 1 1 7-7 7.008 7.008 0 0 1-7 7z"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div id="categorias" class="d-flex flex-wrap gap-2 mb-4">
+      <button class="btn btn-outline-primary active">Bonos</button>
+      <button class="btn btn-outline-primary">Criptomonedas</button>
+      <button class="btn btn-outline-primary">Forex</button>
+      <button class="btn btn-outline-primary">Acciones</button>
+    </div>
+  </header>
+
+  <section id="grillaActivos" class="row g-4">
+    <!-- Ejemplo de tarjeta -->
+    <div class="col-sm-6 col-md-4 col-lg-3">
+      <div class="card activo text-center p-3" data-tipo="Bonos">
+        <h6 class="fw-bold mb-1">Bono del Tesoro</h6>
+        <p class="text-muted small mb-2">Tipo: Bonos</p>
+        <div class="d-flex justify-content-around align-items-center mb-2">
+          <span class="badge bg-light text-dark px-3">Rendimiento fijo</span>
+          <span class="fw-bold text-success">$ 250</span>
+        </div>
+        <button class="btn btn-outline-primary btn-sm">Ir</button>
+      </div>
+    </div>
+
+    <div class="col-sm-6 col-md-4 col-lg-3">
+      <div class="card activo text-center p-3" data-tipo="Criptomonedas">
+        <h6 class="fw-bold mb-1">Bitcoin</h6>
+        <p class="text-muted small mb-2">Tipo: Criptomoneda</p>
+        <div class="d-flex justify-content-around align-items-center mb-2">
+          <span class="badge bg-light text-dark px-3">BTC</span>
+          <span class="fw-bold text-success">$ 42,000</span>
+        </div>
+        <button class="btn btn-outline-primary btn-sm">Ir</button>
+      </div>
+    </div>
+
+    <div class="col-sm-6 col-md-4 col-lg-3">
+      <div class="card activo text-center p-3" data-tipo="Forex">
+        <h6 class="fw-bold mb-1">EUR/USD</h6>
+        <p class="text-muted small mb-2">Tipo: Forex</p>
+        <div class="d-flex justify-content-around align-items-center mb-2">
+          <span class="badge bg-light text-dark px-3">Par de divisas</span>
+          <span class="fw-bold text-success">1.09</span>
+        </div>
+        <button class="btn btn-outline-primary btn-sm">Ir</button>
+      </div>
+    </div>
+
+    <div class="col-sm-6 col-md-4 col-lg-3">
+      <div class="card activo text-center p-3" data-tipo="Acciones">
+        <h6 class="fw-bold mb-1">Tesla</h6>
+        <p class="text-muted small mb-2">Tipo: Acción</p>
+        <div class="d-flex justify-content-around align-items-center mb-2">
+          <span class="badge bg-light text-dark px-3">NASDAQ</span>
+          <span class="fw-bold text-success">$ 200</span>
+        </div>
+        <button class="btn btn-outline-primary btn-sm">Ir</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="text-center mt-4">
+    <button class="btn btn-outline-secondary">Ver más</button>
+  </div>
+</main>
+ <!-- ====== SECCIÓN ANÁLISIS DE MERCADO ====== -->
+<main id="paginaAnalisis" class="content container-fluid py-4 d-none">
+  <header id="encabezadoAnalisis" class="mb-3">
+    <h2 class="fw-bold mb-3">Análisis de Mercado</h2>
+
+    <!-- Buscador -->
+    <div class="buscador-container mb-4">
+      <div class="input-group buscador-analisis">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Buscar instrumento..."
+          aria-label="Buscar instrumento"
+        />
+        <button class="btn btn-outline-secondary" type="button">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
+            <path
+              d="M21.707 20.293l-3.388-3.388A8.928 8.928 0 0 0 19 11a9 9 0 1 0-9 9 8.928 8.928 0 0 0 5.905-2.681l3.388 3.388a1 1 0 0 0 1.414-1.414zM11 18a7 7 0 1 1 7-7 7.008 7.008 0 0 1-7 7z"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Categorías -->
+    <div id="categoriasAnalisis" class="d-flex flex-wrap gap-2 mb-4">
+      <button class="btn btn-outline-primary active">Bonos</button>
+      <button class="btn btn-outline-primary">Criptomonedas</button>
+      <button class="btn btn-outline-primary">Forex</button>
+      <button class="btn btn-outline-primary">Acciones</button>
+    </div>
+  </header>
+
+  <section id="contenidoAnalisis" class="row g-4">
+    <!-- TABLA DE INSTRUMENTOS -->
+    <div class="col-lg-8">
+      <div class="card p-3">
+        <table class="table align-middle">
+          <thead>
+            <tr>
+              <th>Instrumento</th>
+              <th class="text-center">Rendimiento</th>
+              <th class="text-center">Costo</th>
+              <th class="text-center">Operar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" />
+                  <label class="form-check-label">Bono del Tesoro</label>
+                </div>
+              </td>
+              <td class="text-center">
+                <span class="text-danger me-2">-2.3%</span>
+                <img src="img/grafico-rojo.png" alt="Gráfico" width="60" />
+              </td>
+              <td class="text-center">$240</td>
+              <td class="text-center">
+                <button class="btn btn-danger btn-sm">V</button>
+                <button class="btn btn-success btn-sm">C</button>
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" />
+                  <label class="form-check-label">Bitcoin</label>
+                </div>
+              </td>
+              <td class="text-center">
+                <span class="text-success me-2">+3.5%</span>
+                <img src="img/grafico-verde.png" alt="Gráfico" width="60" />
+              </td>
+              <td class="text-center">$42,000</td>
+              <td class="text-center">
+                <button class="btn btn-danger btn-sm">V</button>
+                <button class="btn btn-success btn-sm">C</button>
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" />
+                  <label class="form-check-label">EUR/USD</label>
+                </div>
+              </td>
+              <td class="text-center">
+                <span class="text-success me-2">+0.8%</span>
+                <img src="img/grafico-verde.png" alt="Gráfico" width="60" />
+              </td>
+              <td class="text-center">1.09</td>
+              <td class="text-center">
+                <button class="btn btn-danger btn-sm">V</button>
+                <button class="btn btn-success btn-sm">C</button>
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" />
+                  <label class="form-check-label">Tesla</label>
+                </div>
+              </td>
+              <td class="text-center">
+                <span class="text-danger me-2">-1.1%</span>
+                <img src="img/grafico-rojo.png" alt="Gráfico" width="60" />
+              </td>
+              <td class="text-center">$200</td>
+              <td class="text-center">
+                <button class="btn btn-danger btn-sm">V</button>
+                <button class="btn btn-success btn-sm">C</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- PANEL RESUMEN -->
+    <aside class="col-lg-4">
+      <div class="card p-3">
+        <h5 class="fw-semibold mb-3">Resumen</h5>
+        <ul class="list-group small">
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            Total seleccionados <span class="fw-bold">2</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            Promedio rendimiento <span class="text-success fw-bold">+1.5%</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            Costo estimado <span class="fw-bold">$42,240</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            Última actualización <span class="text-muted">hace 5 min</span>
+          </li>
+        </ul>
+      </div>
+    </aside>
+  </section>
+</main>
+
+
 
     <!--No borrar esto-->
     <script
@@ -329,5 +561,63 @@
         });
       });
     </script>
+    <!-- === SCRIPT DE NAVEGACIÓN ENTRE PÁGINAS === -->
+<script>
+  // === SELECCIÓN DE ELEMENTOS ===
+  const itemInicio = document.getElementById("itemInicio");
+  const itemPortafolio = document.getElementById("itemPortafolio");
+  const itemAnalisis = document.getElementById("itemAnalisis");
+
+  const paginaInicio = document.getElementById("paginaInicio");
+  const paginaPortafolio = document.getElementById("paginaPortafolio");
+  const paginaAnalisis = document.getElementById("paginaAnalisis");
+
+  // ---- Inicio ----
+  itemInicio.querySelector("a").addEventListener("click", (e) => {
+    e.preventDefault();
+
+    // Mostrar solo la página de inicio
+    paginaInicio.classList.remove("d-none");
+    paginaPortafolio.classList.add("d-none");
+    paginaAnalisis.classList.add("d-none");
+
+    // Activar el botón correcto
+    itemInicio.querySelector("a").classList.add("active");
+    itemPortafolio.querySelector("a").classList.remove("active");
+    itemAnalisis.querySelector("a").classList.remove("active");
+  });
+
+  // ---- Portafolio ----
+  itemPortafolio.querySelector("a").addEventListener("click", (e) => {
+    e.preventDefault();
+
+    // Mostrar solo la página de portafolio
+    paginaInicio.classList.add("d-none");
+    paginaPortafolio.classList.remove("d-none");
+    paginaAnalisis.classList.add("d-none");
+
+    // Activar el botón correcto
+    itemPortafolio.querySelector("a").classList.add("active");
+    itemInicio.querySelector("a").classList.remove("active");
+    itemAnalisis.querySelector("a").classList.remove("active");
+  });
+
+  // ---- Análisis de Mercado ----
+  itemAnalisis.querySelector("a").addEventListener("click", (e) => {
+    e.preventDefault();
+
+    // Mostrar solo la página de análisis
+    paginaInicio.classList.add("d-none");
+    paginaPortafolio.classList.add("d-none");
+    paginaAnalisis.classList.remove("d-none");
+
+    // Activar el botón correcto
+    itemAnalisis.querySelector("a").classList.add("active");
+    itemInicio.querySelector("a").classList.remove("active");
+    itemPortafolio.querySelector("a").classList.remove("active");
+  });
+</script>
+
+
   </body>
 </html>

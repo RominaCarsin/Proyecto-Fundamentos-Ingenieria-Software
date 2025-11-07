@@ -64,3 +64,49 @@ const appendAlert = (message, type) => {
 
   alertPlaceholder.append(wrapper);
 };
+
+
+
+// === FUNCIONES DE NAVEGACIÓN ===
+function mostrarPagina(paginaMostrar, itemActivo) {
+  // Oculta todas
+  [paginaInicio, paginaPortafolio, paginaAnalisis].forEach(p => p.classList.add("d-none"));
+  [itemInicio, itemPortafolio, itemAnalisis].forEach(i => i.querySelector("a").classList.remove("active"));
+
+  // Muestra la elegida
+  paginaMostrar.classList.remove("d-none");
+  itemActivo.querySelector("a").classList.add("active");
+}
+
+// === SELECCIÓN DE ELEMENTOS ===
+const itemInicio = document.getElementById("itemInicio");
+const itemPortafolio = document.getElementById("itemPortafolio");
+const itemAnalisis = document.getElementById("itemAnalisis");
+
+const paginaInicio = document.getElementById("paginaInicio");
+const paginaPortafolio = document.getElementById("paginaPortafolio");
+const paginaAnalisis = document.getElementById("paginaAnalisis");
+
+// === FUNCIÓN GENERAL ===
+function mostrarPagina(paginaMostrar, itemActivo) {
+  [paginaInicio, paginaPortafolio, paginaAnalisis].forEach(p => p.classList.add("d-none"));
+  [itemInicio, itemPortafolio, itemAnalisis].forEach(i => i.querySelector("a").classList.remove("active"));
+  paginaMostrar.classList.remove("d-none");
+  itemActivo.querySelector("a").classList.add("active");
+}
+
+// === EVENTOS DE CLIC ===
+itemInicio.querySelector("a").addEventListener("click", e => {
+  e.preventDefault();
+  mostrarPagina(paginaInicio, itemInicio);
+});
+
+itemPortafolio.querySelector("a").addEventListener("click", e => {
+  e.preventDefault();
+  mostrarPagina(paginaPortafolio, itemPortafolio);
+});
+
+itemAnalisis.querySelector("a").addEventListener("click", e => {
+  e.preventDefault();
+  mostrarPagina(paginaAnalisis, itemAnalisis);
+});
