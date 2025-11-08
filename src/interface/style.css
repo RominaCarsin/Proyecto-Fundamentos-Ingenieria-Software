@@ -60,6 +60,8 @@ html[data-wave-loaded="true"] .content {
   visibility: visible;
 }
 
+
+
 /* ======== MENÚ LATERAL ======== */
 .menu {
   padding: 0;
@@ -96,6 +98,8 @@ html[data-wave-loaded="true"] .content {
 .icon {
   font-size: 20px;
 }
+
+
 
 /* ======== ENCABEZADO PRINCIPAL ======== */
 #encabezadoInicio {
@@ -137,6 +141,8 @@ html[data-wave-loaded="true"] .content {
   flex-direction: column;
   gap: 20px;
 }
+
+
 
 /* ======== TARJETAS ======== */
 .card {
@@ -220,7 +226,7 @@ h5 {
 /* ======== TARJETA DE COMISIONES ======== */
 #panelDerecho .card p {
   font-size: 0.9rem;
-  color: #6b7a99;
+  color: #000000;
 }
 
 /* ======== RESPONSIVE ======== */
@@ -378,3 +384,88 @@ h5 {
   border-bottom: none;
 }
 
+
+/* === ENLACE DESHABILITADO (Configuración, Centro Aprendizaje, etc.) === */
+.menu li.disabled-link a {
+  pointer-events: none !important; /* No clickeable */
+  cursor: not-allowed;
+  color: rgba(255, 255, 255, 0.5) !important; /* Texto más claro */
+}
+
+.menu li.disabled-link a:hover {
+  background: transparent !important; /* sin cambio al pasar el mouse */
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.menu li.disabled-link .icon svg {
+  fill: rgba(255, 255, 255, 0.5) !important; /* Ícono más claro */
+}
+
+
+
+
+.buscador-portafolio {
+  max-width: 400px;
+}
+
+.buscador-portafolio input {
+  border-radius: 12px 0 0 12px;
+  border-color: #cbd5e1;
+  background-color: #fff;
+}
+
+.buscador-portafolio button {
+  border-radius: 0 12px 12px 0;
+  border-color: #cbd5e1;
+  background-color: #f8fafc;
+  transition: background-color 0.2s ease;
+}
+
+.buscador-portafolio button:hover {
+  background-color: #e2e8f0;
+}
+
+.buscador-portafolio svg {
+  vertical-align: middle;
+}
+
+
+#categorias .btn-outline-primary:hover {
+  background-color: #5374a9;
+  color: #fff;
+  border-color: #5374a9;
+} 
+
+/* ====== Análisis de Mercado: hover = mismo estilo que activo ====== */
+#categoriasAnalisis .btn-outline-primary:hover {
+  background-color: #5374a9;
+  color: #fff;
+  border-color: #5374a9;
+}
+
+#categorias .btn-outline-primary,
+#categoriasAnalisis .btn-outline-primary {
+  color: #3C5A93; /* nuevo azul accesible */
+  border-color: #3C5A93;
+}
+
+.btn-outline-secondary {
+  color: #374151 !important;      /* Gris oscuro accesible */
+  border-color: #374151 !important;
+  background-color: #eaf1fa;      /* Fondo igual al de la página */
+}
+
+.btn-outline-secondary:hover {
+  background-color: #374151 !important;
+  color: #ffffff !important;
+}
+
+
+
+/* Active (botón seleccionado) = gris oscuro sólido */
+.btn-outline-secondary.active/* ,
+.btn-outline-secondary:active */ {
+  background-color: #495057 !important;
+  color: #ffffff !important;
+  border-color: #495057 !important;
+}

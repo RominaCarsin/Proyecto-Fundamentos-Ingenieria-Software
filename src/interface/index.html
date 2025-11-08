@@ -16,6 +16,7 @@
 
   <body>
     <!-- Menu lateral -->
+     
     <aside id="barraLateral" class="barraLateral">
       <div id="contenedorLogo" class="contenedorLogo">
         <img id="logo" src="img/Logo.png" class="logo" alt="Logo de TradeUy" />
@@ -101,8 +102,8 @@
             </a>
           </li>
 
-          <li id="itemCentroAprendizaje">
-            <a href="#">
+          <li id="itemCentroAprendizaje" class="disabled-link">
+            <a href="#" tabindex="-1" aria-disabled="true">
               <span class="icon">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -121,8 +122,8 @@
             </a>
           </li>
 
-          <li id="itemConfiguracion">
-            <a href="#">
+          <li id="itemConfiguracion" class="disabled-link">
+            <a href="#" tabindex="-1" aria-disabled="true">
               <span class="icon">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -315,13 +316,11 @@
           placeholder="Buscar activo..."
           aria-label="Buscar activo"
         />
-        <button class="btn btn-outline-secondary" type="button">
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
-            <path
-              d="M21.707 20.293l-3.388-3.388A8.928 8.928 0 0 0 19 11a9 9 0 1 0-9 9 8.928 8.928 0 0 0 5.905-2.681l3.388 3.388a1 1 0 0 0 1.414-1.414zM11 18a7 7 0 1 1 7-7 7.008 7.008 0 0 1-7 7z"
-            />
-          </svg>
-        </button>
+        <button class="btn btn-outline-secondary" type="button" aria-label="Buscar">
+  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
+    <path d="M21.707 20.293l-3.388-3.388A8.928 8.928 0 0 0 19 11a9 9 0 1 0-9 9 8.928 8.928 0 0 0 5.905-2.681l3.388 3.388a1 1 0 0 0 1.414-1.414zM11 18a7 7 0 1 1 7-7 7.008 7.008 0 0 1-7 7z"></path>
+  </svg>
+</button>
       </div>
     </div>
 
@@ -337,7 +336,7 @@
     <!-- Ejemplo de tarjeta -->
     <div class="col-sm-6 col-md-4 col-lg-3">
       <div class="card activo text-center p-3" data-tipo="Bonos">
-        <h6 class="fw-bold mb-1">Bono del Tesoro</h6>
+        <h3 class="fw-bold mb-1">Bono del Tesoro</h3>
         <p class="text-muted small mb-2">Tipo: Bonos</p>
         <div class="d-flex justify-content-around align-items-center mb-2">
           <span class="badge bg-light text-dark px-3">Rendimiento fijo</span>
@@ -349,7 +348,7 @@
 
     <div class="col-sm-6 col-md-4 col-lg-3">
       <div class="card activo text-center p-3" data-tipo="Criptomonedas">
-        <h6 class="fw-bold mb-1">Bitcoin</h6>
+        <h3 class="fw-bold mb-1">Bitcoin</h3>
         <p class="text-muted small mb-2">Tipo: Criptomoneda</p>
         <div class="d-flex justify-content-around align-items-center mb-2">
           <span class="badge bg-light text-dark px-3">BTC</span>
@@ -361,7 +360,7 @@
 
     <div class="col-sm-6 col-md-4 col-lg-3">
       <div class="card activo text-center p-3" data-tipo="Forex">
-        <h6 class="fw-bold mb-1">EUR/USD</h6>
+        <h3 class="fw-bold mb-1">EUR/USD</h3>
         <p class="text-muted small mb-2">Tipo: Forex</p>
         <div class="d-flex justify-content-around align-items-center mb-2">
           <span class="badge bg-light text-dark px-3">Par de divisas</span>
@@ -373,7 +372,7 @@
 
     <div class="col-sm-6 col-md-4 col-lg-3">
       <div class="card activo text-center p-3" data-tipo="Acciones">
-        <h6 class="fw-bold mb-1">Tesla</h6>
+        <h3 class="fw-bold mb-1">Tesla</h3>
         <p class="text-muted small mb-2">Tipo: Acción</p>
         <div class="d-flex justify-content-around align-items-center mb-2">
           <span class="badge bg-light text-dark px-3">NASDAQ</span>
@@ -402,13 +401,17 @@
           placeholder="Buscar instrumento..."
           aria-label="Buscar instrumento"
         />
-        <button class="btn btn-outline-secondary" type="button">
+        <button class="btn btn-outline-secondary" type="button" aria-label="Buscar">
           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
             <path
               d="M21.707 20.293l-3.388-3.388A8.928 8.928 0 0 0 19 11a9 9 0 1 0-9 9 8.928 8.928 0 0 0 5.905-2.681l3.388 3.388a1 1 0 0 0 1.414-1.414zM11 18a7 7 0 1 1 7-7 7.008 7.008 0 0 1-7 7z"
             />
           </svg>
         </button>
+
+
+
+        
       </div>
     </div>
 
@@ -438,9 +441,9 @@
             <tr>
               <td>
                 <div class="form-check">
-                  <input class="form-check-input" type="checkbox" />
-                  <label class="form-check-label">Bono del Tesoro</label>
-                </div>
+                  <input id="checkBono" class="form-check-input" type="checkbox">
+<label for="checkBono" class="form-check-label">Bono del Tesoro</label>
+</div>
               </td>
               <td class="text-center">
                 <span class="text-danger me-2">-2.3%</span>
@@ -456,13 +459,13 @@
             <tr>
               <td>
                 <div class="form-check">
-                  <input class="form-check-input" type="checkbox" />
-                  <label class="form-check-label">Bitcoin</label>
+                  <input id="checkBitcoin" class="form-check-input" type="checkbox">
+  <label for="checkBitcoin" class="form-check-label">Bitcoin</label>
                 </div>
               </td>
               <td class="text-center">
                 <span class="text-success me-2">+3.5%</span>
-                <img src="img/grafico-verde.png" alt="Gráfico" width="60" />
+                <img src="img/grafico-verde.png" alt="Gráfico verde" width="60" />
               </td>
               <td class="text-center">$42,000</td>
               <td class="text-center">
@@ -474,13 +477,14 @@
             <tr>
               <td>
                 <div class="form-check">
-                  <input class="form-check-input" type="checkbox" />
-                  <label class="form-check-label">EUR/USD</label>
+                  <input id="checkEurUsd" class="form-check-input" type="checkbox">
+<label for="checkEurUsd" class="form-check-label">
+  EUR/USD</label>
                 </div>
               </td>
               <td class="text-center">
                 <span class="text-success me-2">+0.8%</span>
-                <img src="img/grafico-verde.png" alt="Gráfico" width="60" />
+                <img src="img/grafico-verde.png" alt="G" width="60" />
               </td>
               <td class="text-center">1.09</td>
               <td class="text-center">
@@ -492,13 +496,14 @@
             <tr>
               <td>
                 <div class="form-check">
-                  <input class="form-check-input" type="checkbox" />
-                  <label class="form-check-label">Tesla</label>
+                  <input id="checkTesla" class="form-check-input" type="checkbox">
+<label for="checkTesla" class="form-check-label">
+  Tesla</label>
                 </div>
               </td>
               <td class="text-center">
                 <span class="text-danger me-2">-1.1%</span>
-                <img src="img/grafico-rojo.png" alt="Gráfico" width="60" />
+                <img src="img/grafico-rojo.png" alt="Gráfico a borrar" width="60" />
               </td>
               <td class="text-center">$200</td>
               <td class="text-center">
@@ -514,7 +519,7 @@
     <!-- PANEL RESUMEN -->
     <aside class="col-lg-4">
       <div class="card p-3">
-        <h5 class="fw-semibold mb-3">Resumen</h5>
+        <h3 class="fw-semibold mb-3">Resumen</h3>
         <ul class="list-group small">
           <li class="list-group-item d-flex justify-content-between align-items-center">
             Total seleccionados <span class="fw-bold">2</span>
