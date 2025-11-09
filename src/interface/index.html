@@ -167,116 +167,106 @@
         </section>
       </header>
 
-      <section id="ventana1" class="row g-4">
-        <!-- PANEL IZQUIERDO -->
-        <div id="panelIzqSup" class="col-lg-8 d-flex flex-column gap-3">
-          <!-- Gráfico -->
-          <div class="card p-3">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-              <nav class="d-flex gap-2" aria-label="Herramientas del gráfico">
-                <button class="btn btn-light btn-sm" title="Ver alertas de mercado">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black" viewBox="0 0 24 24">
-                    <path
-                      d="M19 13.586V10c0-3.217-2.185-5.927-5.145-6.742C13.562 2.52 12.846 2 12 2s-1.562.52-1.855 1.258C7.185 4.074 5 6.783 5 10v3.586l-1.707 1.707A.996.996 0 0 0 3 16v2a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-2a.996.996 0 0 0-.293-.707L19 13.586z"
-                    />
-                  </svg>
-                </button>
-                <button
-                  class="btn btn-light btn-sm"
-                  title="Análisis de gráfica"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    fill="black"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M20 12a2 2 0 0 0-.703.133l-2.398-1.963c.059-.214.101-.436.101-.67C17 8.114 15.886 7 14.5 7S12 8.114 12 9.5c0 .396.1.765.262 1.097l-2.909 3.438A2.06 2.06 0 0 0 9 14c-.179 0-.348.03-.512.074l-2.563-2.563C5.97 11.348 6 11.179 6 11c0-1.108-.892-2-2-2s-2 .892-2 2 .892 2 2 2c.179 0 .348-.03.512-.074l2.563 2.563A1.906 1.906 0 0 0 7 16c0 1.108.892 2 2 2s2-.892 2-2c0-.237-.048-.46-.123-.671l2.913-3.442c.227.066.462.113.71.113a2.48 2.48 0 0 0 1.133-.281l2.399 1.963A2.077 2.077 0 0 0 18 14c0 1.108.892 2 2 2s2-.892 2-2-.892-2-2-2z"
-                    />
-                  </svg>
-                </button>
-              </nav>
-              <nav class="d-flex gap-1" aria-label="Intervalos de tiempo del gráfico">
-                <button class="btn btn-outline-secondary btn-sm">min</button>
-                <button class="btn btn-outline-secondary btn-sm">h</button>
-                <button class="btn btn-outline-secondary btn-sm">d</button>
-                <button class="btn btn-outline-secondary btn-sm">m</button>
-              </nav>
-            </div>
+      <section id="ventana1" class="container-fluid">
+        <!-- ====== FILA 1 ====== -->
+        <div class="row g-4 mb-4">
+          <!-- GRÁFICO (Izquierda) -->
+          <div class="col-lg-8">
+            <div class="card p-3 h-100">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <nav class="d-flex gap-2" aria-label="Herramientas del gráfico">
+                  <button class="btn btn-light btn-sm" title="Ver alertas de mercado">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black" viewBox="0 0 24 24">
+                      <path
+                        d="M19 13.586V10c0-3.217-2.185-5.927-5.145-6.742C13.562 2.52 12.846 2 12 2s-1.562.52-1.855 1.258C7.185 4.074 5 6.783 5 10v3.586l-1.707 1.707A.996.996 0 0 0 3 16v2a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-2a.996.996 0 0 0-.293-.707L19 13.586z"
+                      />
+                    </svg>
+                  </button>
+                  <button class="btn btn-light btn-sm" title="Análisis de gráfica">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                      fill="black"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M20 12a2 2 0 0 0-.703.133l-2.398-1.963c.059-.214.101-.436.101-.67C17 8.114 15.886 7 14.5 7S12 8.114 12 9.5c0 .396.1.765.262 1.097l-2.909 3.438A2.06 2.06 0 0 0 9 14c-.179 0-.348.03-.512.074l-2.563-2.563C5.97 11.348 6 11.179 6 11c0-1.108-.892-2-2-2s-2 .892-2 2 .892 2 2 2c.179 0 .348-.03.512-.074l2.563 2.563A1.906 1.906 0 0 0 7 16c0 1.108.892 2 2 2s2-.892 2-2c0-.237-.048-.46-.123-.671l2.913-3.442c.227.066.462.113.71.113a2.48 2.48 0 0 0 1.133-.281l2.399 1.963A2.077 2.077 0 0 0 18 14c0 1.108.892 2 2 2s2-.892 2-2-.892-2-2-2z"
+                      />
+                    </svg>
+                  </button>
+                </nav>
+                <nav class="d-flex gap-1" aria-label="Intervalos de tiempo del gráfico">
+                  <button class="btn btn-outline-secondary btn-sm">min</button>
+                  <button class="btn btn-outline-secondary btn-sm">h</button>
+                  <button class="btn btn-outline-secondary btn-sm">d</button>
+                  <button class="btn btn-outline-secondary btn-sm">m</button>
+                </nav>
+              </div>
 
-            <div
-              id="contenedorGrafico"
-              class="text-center p-4 border rounded bg-light"
-            >
-              <h3>Gráfica</h3>
-              <img
-                src="img/grafico-ejemplo.png"
-                alt="Gráfico"
-                class="img-fluid mt-3"
-              />
+              <div id="contenedorGrafico" class="text-center p-4 border rounded bg-light h-100">
+                <h3>Gráfica</h3>
+                <img src="img/grafico-ejemplo.png" alt="Gráfico" class="img-fluid mt-3" />
+              </div>
             </div>
           </div>
 
-          <!-- Cotizaciones -->
-          <div class="card p-3">
-            <h4 class="mb-3">Cotizaciones</h4>
-            <nav class="d-flex justify-content-between" aria-label="Selección de divisas">
-              <button name="btnCotizaciones" class="btn btn-outline-secondary flex-fill mx-1 active" data-currency="USD"> USD </button>
-              <button name="btnCotizaciones" class="btn btn-outline-secondary flex-fill mx-1" data-currency="EUR" disabled>EUR</button>
-              <button name="btnCotizaciones" class="btn btn-outline-secondary flex-fill mx-1" data-currency="UYU"> UYU</button>
-            </nav>
+          <!-- OPERACIONES (Derecha) -->
+          <div class="col-lg-4">
+            <div class="card p-3 h-100">
+              <h3 class="fw-semibold mb-3">Operaciones</h3>
+
+              <label for="tipoAccion" class="form-label">Tipo de Acción</label>
+              <select id="tipoAccion" class="form-select mb-3">
+                <option value="">Bonos</option>
+                <option value="limite">Criptomonedas</option>
+                <option value="market">Forex</option>
+                <option value="stop">Acciones</option>
+              </select>
+
+              <p class="form-label fw-semibold">Valor de Acción:</p>
+
+              <label for="accion" class="form-label">Acción</label>
+              <input id="accion" type="number" class="form-control mb-3" placeholder="0.00" />
+
+              <label for="dinero" class="form-label">Dinero</label>
+              <input id="dinero" type="number" class="form-control mb-3" placeholder="0.00" />
+
+              <div class="d-flex gap-2 mt-auto">
+                <button type="button" class="btn btn-success flex-fill">Comprar</button>
+                <button type="button" class="btn btn-danger flex-fill">Vender</button>
+              </div>
+            </div>
           </div>
         </div>
 
-        <!-- PANEL DERECHO -->
-        <aside id="panelDerecho" class="col-lg-4 d-flex flex-column gap-3">
-          <div class="card p-3">
-            <h5 class="fw-semibold mb-3">Operaciones</h5>
-
-            <label for="tipoAccion" class="form-label">Tipo de Acción</label>
-            <select id="tipoAccion" class="form-select mb-3" disabled>
-              <option value="">Bonos</option>
-              <option value="limite">Criptomonedas</option>
-              <option value="market">Fores</option>
-              <option value="stop">Acciones</option>
-            </select>
-
-            <p class="form-label fw-semibold">Valor de Acción:</p>
-
-            <label for="accion" class="form-label">Acción</label>
-            <input
-              id="accion"
-              type="number"
-              class="form-control mb-3"
-              placeholder="0.00"
-            />
-
-            <label for="dinero" class="form-label">Dinero</label>
-            <input
-              id="dinero"
-              type="number"
-              class="form-control mb-3"
-              placeholder="0.00"
-            />
-
-            <div class="d-flex gap-2">
-              <button type="button" class="btn btn-success flex-fill">Comprar</button>
-              <button type="button" class="btn btn-danger flex-fill">Vender</button>
+        <!-- ====== FILA 2 ====== -->
+        <div class="row g-4">
+          <!-- COTIZACIONES (Izquierda) -->
+          <div class="col-lg-8">
+            <div class="card p-3 h-100">
+              <h4 class="mb-3">Cotizaciones</h4>
+              <div class="d-flex justify-content-between gap-2">
+                <button class="btn btn-outline-secondary flex-fill mx-1 active" >USD</button>
+                <button class="btn btn-outline-secondary flex-fill mx-1" disabled>EUR</button>
+                <button class="btn btn-outline-secondary flex-fill mx-1">UYU</button>
+              </div>
             </div>
           </div>
 
-          <div class="card p-3">
-            <h5>Posiciones Abiertas</h5>
-            <p class="text-muted small mb-0">Sin operaciones recientes.</p>
+          <!-- POSICIONES ABIERTAS (Derecha) -->
+          <div class="col-lg-4">
+            <div class="card p-3 h-100">
+              <h3>Posiciones Abiertas</h3>
+              <p class="text-muted small mb-0">Sin operaciones recientes.</p>
+            </div>
           </div>
-        </aside>
+        </div>
       </section>
     </main>
 
     <!-- ====== SECCIÓN PORTAFOLIO ====== -->
-    <main id="paginaPortafolio" class="content container-fluid py-4 d-none">
+    <section id="paginaPortafolio" class="content container-fluid py-4 d-none">
       <header id="encabezadoPortafolio" class="mb-3">
         <h2 class="fw-bold mb-3">Portafolio</h2>
         <div class="buscador-container mb-4">
@@ -357,10 +347,10 @@
       <div class="text-center mt-4">
         <button type="button" class="btn btn-outline-secondary">Ver más</button>
       </div>
-    </main>
+    </section>
 
     <!-- ====== SECCIÓN ANÁLISIS DE MERCADO ====== -->
-    <main id="paginaAnalisis" class="content container-fluid py-4 d-none">
+    <section id="paginaAnalisis" class="content container-fluid py-4 d-none">
       <header id="encabezadoAnalisis" class="mb-3">
         <h2 class="fw-bold mb-3">Análisis de Mercado</h2>
 
@@ -503,10 +493,10 @@
           </div>
         </aside>
       </section>
-    </main>
+    </section>
 
     <!-- ====== SECCIÓN BILLETERA ====== -->
-    <main id="paginaBilletera" class="content container-fluid py-4 d-none">
+    <section id="paginaBilletera" class="content container-fluid py-4 d-none">
       <header id="encabezadoBilletera" class="mb-4">
         <h2 class="fw-bold mb-3">Billetera</h2>
       </header>
@@ -554,10 +544,10 @@
                 <p class="fw-bold">$ 3,000</p>
               </div>
             </div>
-            <div class="d-flex justify-content-center gap-2">
+            <nav class="d-flex justify-content-center gap-2" aria-label="Acciones de cuenta">
               <button class="btn btn-success px-4">↑ Depósito</button>
               <button class="btn btn-outline-danger px-4">↓ Retiro</button>
-            </div>
+            </nav>
           </div>
         </div>
       </section>
@@ -623,7 +613,7 @@
           </form>
         </div>
       </section>
-    </main>
+    </section>
 
     <!-- Bootstrap JS -->
     <script

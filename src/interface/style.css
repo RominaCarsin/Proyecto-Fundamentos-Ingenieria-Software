@@ -1,10 +1,11 @@
 /* ======== ESTILOS GENERALES ======== */
 body {
   margin: 0;
-  font-family: "Segoe UI", sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   display: flex;
   height: 100vh;
   background: #eaf1fa;
+  overflow: hidden;
 }
 
 .content {
@@ -14,6 +15,8 @@ body {
   display: flex;
   flex-direction: column;
   overflow-y: auto;
+  margin-left: 70px;
+  transition: margin-left 0.3s ease;
 }
 
 /* ======== BARRA LATERAL ======== */
@@ -23,28 +26,45 @@ body {
   color: white;
   display: flex;
   flex-direction: column;
+  position: fixed;
+  height: 100vh;
   overflow: hidden;
   transition: width 0.3s ease;
+  z-index: 1000;
 }
+
 .barraLateral:hover {
   width: 230px;
+}
+
+.barraLateral:hover ~ .content {
+  margin-left: 230px;
 }
 
 .contenedorLogo {
   display: flex;
   align-items: center;
+  padding: 20px 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
+
 .logo {
-  width: 60px;
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
 }
 
 .banda {
-  font-size: 28px;
+  font-size: 24px;
   font-weight: bold;
+  margin: 0;
+  margin-left: 15px;
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s;
+  white-space: nowrap;
 }
+
 .barraLateral:hover .banda {
   opacity: 1;
   visibility: visible;
@@ -54,28 +74,39 @@ body {
 .menu {
   padding: 0;
   margin: 20px 0;
+  list-style: none;
 }
+
+.menu li {
+  margin: 5px 0;
+}
+
 .menu li a {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 15px;
+  padding: 12px 15px;
   text-decoration: none;
   color: rgba(255, 255, 255, 0.9);
   white-space: nowrap;
-  transition: background 0.2s;
+  transition: all 0.2s ease;
+  border-left: 3px solid transparent;
 }
+
 .menu li a:hover,
 .menu li a.active {
-  background: #7cabe1e9;
+  background: rgba(124, 171, 225, 0.9);
   color: #fff;
+  border-left-color: #fff;
 }
 
 .text {
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s;
+  font-weight: 500;
 }
+
 .barraLateral:hover .text {
   opacity: 1;
   visibility: visible;
@@ -83,6 +114,9 @@ body {
 
 .icon {
   font-size: 20px;
+  min-width: 20px;
+  display: flex;
+  justify-content: center;
 }
 
 /* Enlaces deshabilitados (Configuración, Centro de Aprendizaje) */
@@ -91,9 +125,12 @@ body {
   cursor: not-allowed;
   color: rgba(255, 255, 255, 0.5) !important;
 }
+
 .menu li.disabled-link a:hover {
   background: transparent !important;
+  border-left-color: transparent !important;
 }
+
 .menu li.disabled-link .icon svg {
   fill: rgba(255, 255, 255, 0.5) !important;
 }
@@ -114,26 +151,18 @@ body {
   gap: 10px;
 }
 
-/* ======== PANEL PRINCIPAL ======== */
+/* ======== ESTRUCTURA DE VENTANA1 ======== */
 #ventana1 {
   display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-#panelIzqSup {
-  flex: 2;
-  min-width: 600px;
-}
-#panelDerecho {
-  flex: 1;
-  min-width: 300px;
-  display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 1.5rem;
 }
 
-/* ======== TARJETAS ======== */
-.card {
+/* Asegurar altura consistente en todas las cards */
+#ventana1 .card {
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
   background-color: #ffffff;
   border: none;
   border-radius: 12px;
@@ -141,19 +170,52 @@ body {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
-/* ======== GRÁFICO ======== */
+/* Gráfico más alto */
+#ventana1 .col-lg-8 .card {
+  min-height: 350px;
+}
+
+/* Contenedor del gráfico ocupa todo el espacio disponible */
 #contenedorGrafico {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   background-color: #f9fbfd;
   border: 1px solid #e0e6ef;
   border-radius: 10px;
   padding: 30px;
   text-align: center;
 }
+
 #contenedorGrafico h3 {
   color: #6b7a99;
   font-weight: 500;
 }
 
+/* Operaciones - botones al final */
+#ventana1 .card .mt-auto {
+  margin-top: auto;
+}
+
+/* Asegurar que las cards tengan la misma altura en cada fila */
+#ventana1 .row {
+  align-items: stretch;
+}
+
+#ventana1 .card.h-100 {
+  height: 100% !important;
+}
+
+/* Reducir altura de Cotizaciones */
+#ventana1 .row.g-4:last-child .col-lg-8 .card {
+  min-height: 125px !important; /* Cambia este valor */
+}
+
+/* Reducir altura de Posiciones Abiertas */
+#ventana1 .row.g-4:last-child .col-lg-4 .card {
+  min-height: 125px !important; /* Cambia este valor */
+}
 /* ======== BOTONES ======== */
 .btn {
   border-radius: 8px;
@@ -207,14 +269,13 @@ body {
 }
 
 /* ======== TEXTOS ======== */
-h3,
-h5 {
+h3, h4, h5 {
   color: #1a2b49;
   font-weight: 600;
 }
-#panelDerecho .card p {
-  font-size: 0.9rem;
-  color: #000;
+
+.text-muted {
+  color: #6b7280 !important;
 }
 
 /* ======== PORTAFOLIO ======== */
@@ -330,20 +391,99 @@ h5 {
 
 /* ======== RESPONSIVE ======== */
 @media (max-width: 992px) {
-  #ventana1 {
-    flex-direction: column;
+  #ventana1 .card {
+    min-height: 250px;
   }
-  #panelIzqSup,
-  #panelDerecho {
-    min-width: 100%;
+  
+  #ventana1 .col-lg-8 .card {
+    min-height: 300px;
   }
+  
   #contenedorGrafico {
-    padding: 20px;
+    padding: 15px;
   }
+  
   .barraLateral {
     width: 60px;
   }
+  
   .banda {
     display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  #ventana1 .card {
+    min-height: 200px;
+  }
+  
+  #ventana1 .col-lg-8 .card {
+    min-height: 250px;
+  }
+  
+  #contenedorGrafico {
+    padding: 10px;
+  }
+  
+  #contenedorGrafico h3 {
+    font-size: 1.2rem;
+  }
+}
+
+/* ======== MEJORAS PARA LA NUEVA ESTRUCTURA ======== */
+/* Asegurar que los botones de cotizaciones se vean bien */
+#ventana1 .btn-outline-secondary {
+  padding: 8px 12px;
+  font-size: 0.9rem;
+}
+
+/* Mejor espaciado en formularios de operaciones */
+#ventana1 .form-label {
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+#ventana1 .form-control, 
+#ventana1 .form-select {
+  margin-bottom: 16px;
+}
+
+/* Ajustes para posiciones abiertas */
+#ventana1 .card:has(h5:contains("Posiciones Abiertas")) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* Estados hover para mejor UX */
+#ventana1 .card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#ventana1 .card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Mejor contraste para textos importantes */
+.fw-semibold {
+  color: #1a2b49;
+}
+
+/* Ajustes específicos para el gráfico */
+#contenedorGrafico img {
+  max-height: 200px;
+  object-fit: contain;
+}
+
+/* Para pantallas muy grandes */
+@media (min-width: 1400px) {
+  #ventana1 .card {
+    min-height: 320px;
+  }
+  
+  #ventana1 .col-lg-8 .card {
+    min-height: 380px;
   }
 }
