@@ -1,17 +1,10 @@
 /* ======== ESTILOS GENERALES ======== */
 body {
   margin: 0;
-  font-family: sans-serif;
+  font-family: "Segoe UI", sans-serif;
   display: flex;
   height: 100vh;
-  background: #eaf1fa; /* Fondo tipo plataforma */
-}
-html[data-wave-loaded="true"] .barraLateral {
-  left: 350px !important;
-}
-
-html[data-wave-loaded="true"] .content {
-  margin-left: 420px !important;
+  background: #eaf1fa;
 }
 
 .content {
@@ -33,7 +26,6 @@ html[data-wave-loaded="true"] .content {
   overflow: hidden;
   transition: width 0.3s ease;
 }
-
 .barraLateral:hover {
   width: 230px;
 }
@@ -42,42 +34,37 @@ html[data-wave-loaded="true"] .content {
   display: flex;
   align-items: center;
 }
-
 .logo {
   width: 60px;
 }
 
 .banda {
-  font-size: 30px;
+  font-size: 28px;
   font-weight: bold;
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s;
 }
-
 .barraLateral:hover .banda {
   opacity: 1;
   visibility: visible;
 }
-
-
 
 /* ======== MENÚ LATERAL ======== */
 .menu {
   padding: 0;
   margin: 20px 0;
 }
-
 .menu li a {
   display: flex;
   align-items: center;
   gap: 12px;
   padding: 15px;
   text-decoration: none;
-  color: #ffffffd9;
+  color: rgba(255, 255, 255, 0.9);
   white-space: nowrap;
+  transition: background 0.2s;
 }
-
 .menu li a:hover,
 .menu li a.active {
   background: #7cabe1e9;
@@ -89,7 +76,6 @@ html[data-wave-loaded="true"] .content {
   visibility: hidden;
   transition: opacity 0.3s;
 }
-
 .barraLateral:hover .text {
   opacity: 1;
   visibility: visible;
@@ -99,21 +85,29 @@ html[data-wave-loaded="true"] .content {
   font-size: 20px;
 }
 
-
+/* Enlaces deshabilitados (Configuración, Centro de Aprendizaje) */
+.menu li.disabled-link a {
+  pointer-events: none !important;
+  cursor: not-allowed;
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+.menu li.disabled-link a:hover {
+  background: transparent !important;
+}
+.menu li.disabled-link .icon svg {
+  fill: rgba(255, 255, 255, 0.5) !important;
+}
 
 /* ======== ENCABEZADO PRINCIPAL ======== */
 #encabezadoInicio {
   border-bottom: 1px solid #d5e0f0;
   padding-bottom: 10px;
   margin-bottom: 20px;
-  background: transparent;
 }
-
 #encabezadoInicio h2 {
   color: #1a2b49;
   font-weight: 700;
 }
-
 #estadoCuentaInicio {
   display: flex;
   align-items: center;
@@ -126,14 +120,10 @@ html[data-wave-loaded="true"] .content {
   flex-wrap: wrap;
   gap: 20px;
 }
-
-/* Panel izquierdo */
 #panelIzqSup {
   flex: 2;
   min-width: 600px;
 }
-
-/* Panel derecho */
 #panelDerecho {
   flex: 1;
   min-width: 300px;
@@ -142,15 +132,13 @@ html[data-wave-loaded="true"] .content {
   gap: 20px;
 }
 
-
-
 /* ======== TARJETAS ======== */
 .card {
   background-color: #ffffff;
   border: none;
   border-radius: 12px;
   padding: 20px;
-  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
 /* ======== GRÁFICO ======== */
@@ -161,7 +149,6 @@ html[data-wave-loaded="true"] .content {
   padding: 30px;
   text-align: center;
 }
-
 #contenedorGrafico h3 {
   color: #6b7a99;
   font-weight: 500;
@@ -174,30 +161,34 @@ html[data-wave-loaded="true"] .content {
   transition: all 0.2s ease;
 }
 
+/* Botones grises */
 .btn-outline-secondary {
-  color: #334155;
-  border-color: #cbd5e1;
+  color: #374151 !important;
+  border-color: #374151 !important;
+  background-color: #ffffff;
+}
+.btn-outline-secondary:hover,
+.btn-outline-secondary.active {
+  background-color: #495057 !important;
+  color: #ffffff !important;
+  border-color: #495057 !important;
 }
 
-.btn-outline-secondary:hover {
-  background-color: #e2e8f0;
-  color: #000;
-}
-
+/* Botones verdes y rojos */
 .btn-success {
-  background-color: #28a745;
-  border: none;
-}
-
-.btn-success:hover {
   background-color: #218838;
+  border: none;
+  color: #ffffff;
+}
+.btn-success:hover {
+  background-color: #1e7e34;
 }
 
 .btn-danger {
   background-color: #dc3545;
   border: none;
+  color: #ffffff;
 }
-
 .btn-danger:hover {
   background-color: #c82333;
 }
@@ -209,7 +200,6 @@ html[data-wave-loaded="true"] .content {
   border: 1px solid #cbd5e1;
   box-shadow: none;
 }
-
 .form-control:focus,
 .form-select:focus {
   border-color: #5374a9;
@@ -222,71 +212,75 @@ h5 {
   color: #1a2b49;
   font-weight: 600;
 }
-
-/* ======== TARJETA DE COMISIONES ======== */
 #panelDerecho .card p {
   font-size: 0.9rem;
-  color: #000000;
+  color: #000;
 }
 
-/* ======== RESPONSIVE ======== */
-@media (max-width: 992px) {
-  #ventana1 {
-    flex-direction: column;
-  }
-
-  #panelIzqSup,
-  #panelDerecho {
-    min-width: 100%;
-  }
-
-  #contenedorGrafico {
-    padding: 20px;
-  }
-}
-/* ====== PORTAFOLIO ====== */
-#paginaPortafolio {
+/* ======== PORTAFOLIO ======== */
+#paginaPortafolio,
+#paginaAnalisis {
   background: #eaf1fa;
 }
-
-#encabezadoPortafolio h2 {
+#encabezadoPortafolio h2,
+#encabezadoAnalisis h2 {
   color: #1a2b49;
   font-weight: 800;
 }
 
+/* ======== BUSCADORES ======== */
 .buscador-container {
   display: flex;
   justify-content: flex-start;
 }
-
-.buscador-portafolio {
+.buscador-portafolio,
+.buscador-analisis {
   max-width: 400px;
 }
-
-.buscador-portafolio input {
-  border-radius: 20px 0 0 20px;
+.buscador-analisis {
+  max-width: 600px;
+}
+.buscador-portafolio input,
+.buscador-analisis input {
+  border-radius: 12px 0 0 12px;
   border-color: #cbd5e1;
-  background: #fff;
+  background-color: #fff;
+}
+.buscador-portafolio button,
+.buscador-analisis button {
+  border-radius: 0 12px 12px 0;
+  border-color: #cbd5e1;
+  background-color: #f8fafc;
+  transition: background-color 0.2s ease;
+}
+.buscador-portafolio button:hover,
+.buscador-analisis button:hover {
+  background-color: #e2e8f0;
+}
+.buscador-portafolio svg,
+.buscador-analisis svg {
+  vertical-align: middle;
 }
 
-.buscador-portafolio button {
-  border-radius: 0 20px 20px 0;
-  background: #f8fafc;
-}
-
-#categorias .btn-outline-primary {
+/* ======== CATEGORÍAS ======== */
+#categorias .btn-outline-primary,
+#categoriasAnalisis .btn-outline-primary {
   border-radius: 25px;
   padding: 6px 18px;
-  color: #5374a9;
-  border-color: #5374a9;
   font-weight: 500;
+  color: #3c5a93;
+  border-color: #3c5a93;
 }
-
-#categorias .btn-outline-primary.active {
+#categorias .btn-outline-primary.active,
+#categoriasAnalisis .btn-outline-primary.active,
+#categorias .btn-outline-primary:hover,
+#categoriasAnalisis .btn-outline-primary:hover {
   background-color: #5374a9;
   color: #fff;
+  border-color: #5374a9;
 }
 
+/* ======== TARJETAS DE ACTIVOS ======== */
 #grillaActivos .card.activo {
   border: 1px solid #d8e3f0;
   border-radius: 14px;
@@ -294,178 +288,62 @@ h5 {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   min-height: 200px;
 }
-
 #grillaActivos .card.activo:hover {
   transform: translateY(-6px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
-
 #grillaActivos .card.activo button {
   border-radius: 25px;
   font-weight: 500;
 }
-
 #grillaActivos .card.activo .badge {
   border-radius: 15px;
 }
 
-#paginaPortafolio .btn-outline-secondary {
-  border-radius: 20px;
-  padding: 6px 20px;
-}
-/* ====== ANÁLISIS DE MERCADO ====== */
-#paginaAnalisis {
-  background: #eaf1fa;
-}
-
-#encabezadoAnalisis h2 {
-  color: #1a2b49;
-  font-weight: 800;
-}
-
-.buscador-analisis {
-  max-width: 600px;
-}
-
-.buscador-analisis input {
-  border-radius: 20px 0 0 20px;
-  border-color: #cbd5e1;
-  background: #fff;
-}
-
-.buscador-analisis button {
-  border-radius: 0 20px 20px 0;
-  background: #f8fafc;
-}
-
-#categoriasAnalisis .btn-outline-primary {
-  border-radius: 25px;
-  padding: 6px 18px;
-  color: #5374a9;
-  border-color: #5374a9;
-  font-weight: 500;
-}
-
-#categoriasAnalisis .btn-outline-primary.active {
-  background-color: #5374a9;
-  color: #fff;
-}
-
+/* ======== ANÁLISIS DE MERCADO ======== */
 #contenidoAnalisis table {
   border-color: #dee2e6;
 }
-
 #contenidoAnalisis th {
   color: #1a2b49;
   font-weight: 600;
 }
-
 #contenidoAnalisis td {
   vertical-align: middle;
 }
-
 #contenidoAnalisis .btn {
   border-radius: 6px;
   padding: 3px 10px;
   font-weight: 600;
 }
-
 #contenidoAnalisis .form-check-label {
   color: #334155;
   font-weight: 500;
 }
-
 #contenidoAnalisis .list-group-item {
   border: none;
   border-bottom: 1px solid #e5e7eb;
 }
-
 #contenidoAnalisis .list-group-item:last-child {
   border-bottom: none;
 }
 
-
-/* === ENLACE DESHABILITADO (Configuración, Centro Aprendizaje, etc.) === */
-.menu li.disabled-link a {
-  pointer-events: none !important; /* No clickeable */
-  cursor: not-allowed;
-  color: rgba(255, 255, 255, 0.5) !important; /* Texto más claro */
-}
-
-.menu li.disabled-link a:hover {
-  background: transparent !important; /* sin cambio al pasar el mouse */
-  color: rgba(255, 255, 255, 0.5) !important;
-}
-
-.menu li.disabled-link .icon svg {
-  fill: rgba(255, 255, 255, 0.5) !important; /* Ícono más claro */
-}
-
-
-
-
-.buscador-portafolio {
-  max-width: 400px;
-}
-
-.buscador-portafolio input {
-  border-radius: 12px 0 0 12px;
-  border-color: #cbd5e1;
-  background-color: #fff;
-}
-
-.buscador-portafolio button {
-  border-radius: 0 12px 12px 0;
-  border-color: #cbd5e1;
-  background-color: #f8fafc;
-  transition: background-color 0.2s ease;
-}
-
-.buscador-portafolio button:hover {
-  background-color: #e2e8f0;
-}
-
-.buscador-portafolio svg {
-  vertical-align: middle;
-}
-
-
-#categorias .btn-outline-primary:hover {
-  background-color: #5374a9;
-  color: #fff;
-  border-color: #5374a9;
-} 
-
-/* ====== Análisis de Mercado: hover = mismo estilo que activo ====== */
-#categoriasAnalisis .btn-outline-primary:hover {
-  background-color: #5374a9;
-  color: #fff;
-  border-color: #5374a9;
-}
-
-#categorias .btn-outline-primary,
-#categoriasAnalisis .btn-outline-primary {
-  color: #3C5A93; /* nuevo azul accesible */
-  border-color: #3C5A93;
-}
-
-.btn-outline-secondary {
-  color: #374151 !important;      /* Gris oscuro accesible */
-  border-color: #374151 !important;
-  background-color: #eaf1fa;      /* Fondo igual al de la página */
-}
-
-.btn-outline-secondary:hover {
-  background-color: #374151 !important;
-  color: #ffffff !important;
-}
-
-
-
-/* Active (botón seleccionado) = gris oscuro sólido */
-.btn-outline-secondary.active/* ,
-.btn-outline-secondary:active */ {
-  background-color: #495057 !important;
-  color: #ffffff !important;
-  border-color: #495057 !important;
+/* ======== RESPONSIVE ======== */
+@media (max-width: 992px) {
+  #ventana1 {
+    flex-direction: column;
+  }
+  #panelIzqSup,
+  #panelDerecho {
+    min-width: 100%;
+  }
+  #contenedorGrafico {
+    padding: 20px;
+  }
+  .barraLateral {
+    width: 60px;
+  }
+  .banda {
+    display: none;
+  }
 }

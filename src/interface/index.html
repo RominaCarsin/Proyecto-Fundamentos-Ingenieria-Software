@@ -4,19 +4,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TradeUy</title>
-    <link rel="stylesheet" href="style.css" />
-    <!-- No borrar esto -->
+
+    <!-- Bootstrap primero -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
+
+    <!-- CSS después (personalizaciones finales) -->
+    <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
     <!-- Menu lateral -->
-     
     <aside id="barraLateral" class="barraLateral">
       <div id="contenedorLogo" class="contenedorLogo">
         <img id="logo" src="img/Logo.png" class="logo" alt="Logo de TradeUy" />
@@ -93,9 +95,8 @@
                   style="fill: white"
                 >
                   <path d="M16 12h2v4h-2z"></path>
-                  <path
-                    d="M20 7V5c0-1.103-.897-2-2-2h3C3.346 3 2 4.346 2 6v12c0 2.201 1.794 3 3 3h15c1.103 0 2-.897 2-2V9c0-1.103-.897-2-2-2zM5 5h13v2h3a1.001 1.001 0 0 1 0-2zm15 14h3.012C4.55 18.988 4 18.805 4 18V8.815c.314.113.647.185 1 .185h15v10z"
-                  ></path>
+                  <path d="M20 7V5c0-1.103-.897-2-2-2H5C3.346 3 2 4.346 2 6v12c0 1.103.897 2 2 2h15c1.103 0 2-.897 2-2V9c0-1.103-.897-2-2-2zM5 5h13v2H5V5zm15 14H4V8h16v11z"></path>
+
                 </svg>
               </span>
               <span class="text">Billetera</span>
@@ -292,8 +293,9 @@
             
 
             <div class="d-flex gap-2">
-              <button class="btn btn-success flex-fill">Comprar</button>
-              <button class="btn btn-danger flex-fill">Vender</button>
+              
+              <button type="button" class="btn btn-success flex-fill">Comprar</button>
+              <button type="button" class="btn btn-danger flex-fill">Vender</button>
             </div>
           </div>
 
@@ -384,7 +386,7 @@
   </section>
 
   <div class="text-center mt-4">
-    <button class="btn btn-outline-secondary">Ver más</button>
+    <button type="button" class="btn btn-outline-secondary">Ver más</button>
   </div>
 </main>
  <!-- ====== SECCIÓN ANÁLISIS DE MERCADO ====== -->
@@ -539,90 +541,172 @@
   </section>
 </main>
 
+<!-- ====== SECCIÓN BILLETERA ====== -->
+<main id="paginaBilletera" class="content container-fluid py-4 d-none">
+  <header id="encabezadoBilletera" class="mb-4">
+    <h2 class="fw-bold mb-3">Billetera</h2>
+  </header>
 
+  <section id="billetera" class="row g-4">
+    <!-- === Tarjetas de divisas === -->
+    <div class="col-md-6 col-lg-4">
+      <div class="card text-center p-3 shadow-sm">
+        <h3 class="fw-semibold mb-2">USD - Dólar Estadounidense</h3>
+        <div class="d-flex justify-content-around mb-3">
+          <div>
+            <p class="text-muted small mb-1">Saldo total</p>
+            <p class="fw-bold">$ 2,450</p>
+          </div>
+          <div>
+            <p class="text-muted small mb-1">Disponible</p>
+            <p class="fw-bold">$ 2,000</p>
+          </div>
+          <div>
+            <p class="text-muted small mb-1">En garantía</p>
+            <p class="fw-bold">$ 450</p>
+          </div>
+        </div>
+        <div class="d-flex justify-content-center gap-2">
+          <button class="btn btn-success px-4">↑ Depósito</button>
+          <button class="btn btn-outline-danger px-4">↓ Retiro</button>
+        </div>
+      </div>
+    </div>
 
-    <!--No borrar esto-->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-      crossorigin="anonymous"
-    ></script>
+    <div class="col-md-6 col-lg-4">
+      <div class="card text-center p-3 shadow-sm">
+        <h3 class="fw-semibold mb-2">UYU - Peso Uruguayo</h3>
+        <div class="d-flex justify-content-around mb-3">
+          <div>
+            <p class="text-muted small mb-1">Saldo total</p>
+            <p class="fw-bold">$ 73,000</p>
+          </div>
+          <div>
+            <p class="text-muted small mb-1">Disponible</p>
+            <p class="fw-bold">$ 70,000</p>
+          </div>
+          <div>
+            <p class="text-muted small mb-1">En garantía</p>
+            <p class="fw-bold">$ 3,000</p>
+          </div>
+        </div>
+        <div class="d-flex justify-content-center gap-2">
+          <button class="btn btn-success px-4">↑ Depósito</button>
+          <button class="btn btn-outline-danger px-4">↓ Retiro</button>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <!-- Selecciona solo una de las cotizaciones a la vez-->
-    <script>
-      const cotizacionBtns = document.querySelectorAll(
-        'button[name="btnCotizaciones"]'
-      );
+ <!-- === Calculadora de comisiones === -->
+  <section class="mt-5">
+    <div class="card p-4">
+      <h3 class="fw-semibold mb-3">Calculadora de Comisiones</h3>
+      <form aria-label="Calculadora de comisiones">
+        <div class="row g-3">
+          <!-- Tipo de operación -->
+          <div class="col-md-6">
+            <label for="tipoOperacion" class="form-label">Tipo de operación</label>
+            <select id="tipoOperacion" class="form-select rounded-pill">
+              <option>Depósito</option>
+              <option>Retiro</option>
+            </select>
+          </div>
 
-      cotizacionBtns.forEach((btn) => {
-        btn.addEventListener("click", () => {
-          if (btn.disabled) return; // ignora los deshabilitados
+          <!-- Método -->
+          <div class="col-md-6">
+            <label for="metodo" class="form-label">Método</label>
+            <input
+              type="text"
+              id="metodo"
+              class="form-control rounded-pill"
+              placeholder="Ej: Transferencia bancaria"
+            />
+          </div>
 
-          // quitar "active" de todos
-          cotizacionBtns.forEach((b) => b.classList.remove("active"));
+          <!-- Monto -->
+          <div class="col-md-6">
+            <label for="monto" class="form-label">Monto</label>
+            <input
+              id="monto"
+              type="number"
+              class="form-control rounded-pill"
+              placeholder="0.00"
+            />
+          </div>
 
-          // marcar el clicado
-          btn.classList.add("active");
-        });
-      });
-    </script>
-    <!-- === SCRIPT DE NAVEGACIÓN ENTRE PÁGINAS === -->
+          <!-- Divisa -->
+          <div class="col-md-6">
+            <label for="divisa" class="form-label">Divisa</label>
+            <select id="divisa" class="form-select rounded-pill">
+              <option>USD</option>
+              <option>UYU</option>
+              <option disabled>EUR</option>
+            </select>
+          </div>
+
+          <!-- Tasa actual -->
+          <div class="col-12">
+            <label for="tasa" class="form-label">Tasa actual</label>
+            <input
+              type="text"
+              id="tasa"
+              class="form-control rounded-pill"
+              placeholder="Ej: 1.3%"
+            />
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<!-- Bootstrap JS -->
+<script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+  crossorigin="anonymous"
+></script>
+
 <script>
-  // === SELECCIÓN DE ELEMENTOS ===
-  const itemInicio = document.getElementById("itemInicio");
-  const itemPortafolio = document.getElementById("itemPortafolio");
-  const itemAnalisis = document.getElementById("itemAnalisis");
+  // === NAVEGACIÓN ENTRE SECCIONES ===
+  const paginas = {
+    inicio: document.getElementById("paginaInicio"),
+    portafolio: document.getElementById("paginaPortafolio"),
+    analisis: document.getElementById("paginaAnalisis"),
+    billetera: document.getElementById("paginaBilletera"),
+  };
+  const items = {
+    inicio: document.getElementById("itemInicio"),
+    portafolio: document.getElementById("itemPortafolio"),
+    analisis: document.getElementById("itemAnalisis"),
+    billetera: document.getElementById("itemBilletera"),
+  };
 
-  const paginaInicio = document.getElementById("paginaInicio");
-  const paginaPortafolio = document.getElementById("paginaPortafolio");
-  const paginaAnalisis = document.getElementById("paginaAnalisis");
+  function mostrarPagina(activa) {
+    Object.values(paginas).forEach((p) => p.classList.add("d-none"));
+    paginas[activa].classList.remove("d-none");
+    document.querySelectorAll("#menu a").forEach((a) => a.classList.remove("active"));
+    items[activa].querySelector("a").classList.add("active");
+  }
 
-  // ---- Inicio ----
-  itemInicio.querySelector("a").addEventListener("click", (e) => {
+  items.inicio.querySelector("a").addEventListener("click", (e) => {
     e.preventDefault();
-
-    // Mostrar solo la página de inicio
-    paginaInicio.classList.remove("d-none");
-    paginaPortafolio.classList.add("d-none");
-    paginaAnalisis.classList.add("d-none");
-
-    // Activar el botón correcto
-    itemInicio.querySelector("a").classList.add("active");
-    itemPortafolio.querySelector("a").classList.remove("active");
-    itemAnalisis.querySelector("a").classList.remove("active");
+    mostrarPagina("inicio");
   });
-
-  // ---- Portafolio ----
-  itemPortafolio.querySelector("a").addEventListener("click", (e) => {
+  items.portafolio.querySelector("a").addEventListener("click", (e) => {
     e.preventDefault();
-
-    // Mostrar solo la página de portafolio
-    paginaInicio.classList.add("d-none");
-    paginaPortafolio.classList.remove("d-none");
-    paginaAnalisis.classList.add("d-none");
-
-    // Activar el botón correcto
-    itemPortafolio.querySelector("a").classList.add("active");
-    itemInicio.querySelector("a").classList.remove("active");
-    itemAnalisis.querySelector("a").classList.remove("active");
+    mostrarPagina("portafolio");
   });
-
-  // ---- Análisis de Mercado ----
-  itemAnalisis.querySelector("a").addEventListener("click", (e) => {
+  items.analisis.querySelector("a").addEventListener("click", (e) => {
     e.preventDefault();
-
-    // Mostrar solo la página de análisis
-    paginaInicio.classList.add("d-none");
-    paginaPortafolio.classList.add("d-none");
-    paginaAnalisis.classList.remove("d-none");
-
-    // Activar el botón correcto
-    itemAnalisis.querySelector("a").classList.add("active");
-    itemInicio.querySelector("a").classList.remove("active");
-    itemPortafolio.querySelector("a").classList.remove("active");
+    mostrarPagina("analisis");
+  });
+  items.billetera.querySelector("a").addEventListener("click", (e) => {
+    e.preventDefault();
+    mostrarPagina("billetera");
   });
 </script>
 
-
-  </body>
+</body>
 </html>
