@@ -13,6 +13,9 @@
       crossorigin="anonymous"
     />
 
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
     <!-- CSS después (personalizaciones finales) -->
     <link rel="stylesheet" href="style.css" />
   </head>
@@ -150,21 +153,22 @@
     <!--Ventana Inicio-->
     <main id="paginaInicio" class="content container-fluid py-4">
       <header id="encabezadoInicio" class="mb-4">
-        <h2 class="fw-bold">Inicio</h2>
-
-        <section id="estadoCuentaInicio">
-          <label class="form-check-label fw-semibold" for="switchCheckDefault">
-            Cuenta Demo
-          </label>
-          <div class="form-check form-switch">
-            <input
-              class="form-check-input"
-              type="checkbox"
-              id="switchCheckDefault"
-              checked
-            />
-          </div>
-        </section>
+        <div class="d-flex justify-content-between align-items-center">
+          <h2 class="fw-bold">Inicio</h2>
+          <section id="estadoCuentaInicio" class="d-flex align-items-center gap-2">
+            <label class="form-check-label fw-semibold" for="switchCheckDefault">
+              Cuenta Demo
+            </label>
+            <div class="form-check form-switch">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="switchCheckDefault"
+                checked
+              />
+            </div>
+          </section>
+        </div>
       </header>
 
       <section id="ventana1" class="container-fluid">
@@ -245,9 +249,11 @@
           <!-- COTIZACIONES (Izquierda) -->
           <div class="col-lg-8">
             <div class="card p-3 h-100">
-              <h4 class="mb-3">Cotizaciones</h4>
+              <h4 class="mb-3">
+                <i class="bi bi-currency-exchange me-2"></i>Cotizaciones
+              </h4>
               <div class="d-flex justify-content-between gap-2">
-                <button class="btn btn-outline-secondary flex-fill mx-1 active" >USD</button>
+                <button class="btn btn-outline-secondary flex-fill mx-1 active">USD</button>
                 <button class="btn btn-outline-secondary flex-fill mx-1" disabled>EUR</button>
                 <button class="btn btn-outline-secondary flex-fill mx-1">UYU</button>
               </div>
@@ -257,7 +263,9 @@
           <!-- POSICIONES ABIERTAS (Derecha) -->
           <div class="col-lg-4">
             <div class="card p-3 h-100">
-              <h3>Posiciones Abiertas</h3>
+              <h3>
+                <i class="bi bi-clock-history me-2"></i>Posiciones Abiertas
+              </h3>
               <p class="text-muted small mb-0">Sin operaciones recientes.</p>
             </div>
           </div>
@@ -475,7 +483,9 @@
         <!-- PANEL RESUMEN -->
         <aside class="col-lg-4">
           <div class="card p-3">
-            <h3 class="fw-semibold mb-3">Resumen</h3>
+            <h3 class="fw-semibold mb-3">
+              <i class="bi bi-clipboard-data me-2"></i>Resumen
+            </h3>
             <ul class="list-group small">
               <li class="list-group-item d-flex justify-content-between align-items-center">
                 Total seleccionados <span class="fw-bold">2</span>
@@ -555,44 +565,52 @@
       <!-- === Calculadora de comisiones === -->
       <section class="mt-5">
         <div class="card p-4">
-          <h3 class="fw-semibold mb-3">Calculadora de Comisiones</h3>
+          <h3 class="fw-semibold mb-3">
+            <i class="bi bi-calculator me-2"></i>Calculadora de Comisiones
+          </h3>
           <form aria-label="Calculadora de comisiones">
             <div class="row g-3">
               <!-- Tipo de operación -->
               <div class="col-md-6">
                 <label for="tipoOperacion" class="form-label">Tipo de operación</label>
-                <select id="tipoOperacion" class="form-select rounded-pill">
+                <select id="tipoOperacion" class="form-select">
                   <option>Depósito</option>
                   <option>Retiro</option>
+                  <option>Compra</option>
+                  <option>Venta</option>
                 </select>
               </div>
 
               <!-- Método -->
               <div class="col-md-6">
                 <label for="metodo" class="form-label">Método</label>
-                <input
-                  type="text"
-                  id="metodo"
-                  class="form-control rounded-pill"
-                  placeholder="Ej: Transferencia bancaria"
-                />
+                <select id="metodo" class="form-select">
+                  <option>Transferencia bancaria</option>
+                  <option>Tarjeta de crédito</option>
+                  <option>PayPal</option>
+                  <option>Transferencia electrónica</option>
+                </select>
               </div>
 
               <!-- Monto -->
               <div class="col-md-6">
                 <label for="monto" class="form-label">Monto</label>
-                <input
-                  id="monto"
-                  type="number"
-                  class="form-control rounded-pill"
-                  placeholder="0.00"
-                />
+                <div class="input-group">
+                  <span class="input-group-text">$</span>
+                  <input
+                    id="monto"
+                    type="number"
+                    class="form-control"
+                    placeholder="0.00"
+                    step="0.01"
+                  />
+                </div>
               </div>
 
               <!-- Divisa -->
               <div class="col-md-6">
                 <label for="divisa" class="form-label">Divisa</label>
-                <select id="divisa" class="form-select rounded-pill">
+                <select id="divisa" class="form-select">
                   <option>USD</option>
                   <option>UYU</option>
                   <option disabled>EUR</option>
@@ -601,13 +619,36 @@
 
               <!-- Tasa actual -->
               <div class="col-12">
-                <label for="tasa" class="form-label">Tasa actual</label>
+                <label for="tasa" class="form-label">Tasa de comisión (%)</label>
                 <input
-                  type="text"
+                  type="number"
                   id="tasa"
-                  class="form-control rounded-pill"
-                  placeholder="Ej: 1.3%"
+                  class="form-control"
+                  placeholder="1.3"
+                  step="0.1"
+                  min="0"
+                  max="10"
                 />
+              </div>
+
+              <!-- Resultado -->
+              <div class="col-12">
+                <div class="alert alert-info" role="alert">
+                  <div class="d-flex justify-content-between">
+                    <span>Comisión estimada:</span>
+                    <strong>$0.00</strong>
+                  </div>
+                  <div class="d-flex justify-content-between">
+                    <span>Total a recibir:</span>
+                    <strong>$0.00</strong>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-12">
+                <button type="button" class="btn btn-primary w-100">
+                  <i class="bi bi-calculator me-1"></i>Calcular Comisión
+                </button>
               </div>
             </div>
           </form>
@@ -659,6 +700,36 @@
       items.billetera.querySelector("a").addEventListener("click", (e) => {
         e.preventDefault();
         mostrarPagina("billetera");
+      });
+
+      // === CALCULADORA DE COMISIONES ===
+      document.addEventListener('DOMContentLoaded', function() {
+        const montoInput = document.getElementById('monto');
+        const tasaInput = document.getElementById('tasa');
+        const calcularBtn = document.querySelector('#paginaBilletera .btn-primary');
+
+        if (calcularBtn) {
+          calcularBtn.addEventListener('click', function() {
+            const monto = parseFloat(montoInput.value) || 0;
+            const tasa = parseFloat(tasaInput.value) || 0;
+            const comision = (monto * tasa) / 100;
+            const total = monto - comision;
+
+            const alert = document.querySelector('#paginaBilletera .alert-info');
+            if (alert) {
+              alert.innerHTML = `
+                <div class="d-flex justify-content-between">
+                  <span>Comisión estimada:</span>
+                  <strong>$${comision.toFixed(2)}</strong>
+                </div>
+                <div class="d-flex justify-content-between">
+                  <span>Total a recibir:</span>
+                  <strong>$${total.toFixed(2)}</strong>
+                </div>
+              `;
+            }
+          });
+        }
       });
     </script>
   </body>
