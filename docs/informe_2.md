@@ -2,9 +2,9 @@
 
 ## Selección de Funcionalidades
 
-En esta primera entrega del sistema de Inversiones, nos enfocamos en implementar las funcionalidades que realmente permiten usar la aplicación desde el primer momento. Por eso, priorizamos todo lo relacionado con invertir: comprar y vender acciones, ver el portafolio con lo que el usuario ya tiene y consultar un análisis básico del mercado para poder decidir dónde invertir. También consideramos necesario que el usuario pueda depositar y retirar dinero, y que el sistema calcule automáticamente las comisiones, para que la experiencia sea lo más realista posible.
+En la entrega del sistema de Inversiones, nos enfocamos en implementar las funcionalidades que realmente permiten usar la aplicación desde el primer momento. Por eso, priorizamos todo lo relacionado con invertir: comprar y vender acciones, ver el portafolio y consultar un análisis básico del mercado para poder decidir dónde invertir. También consideramos necesario que el usuario pueda depositar y retirar dinero, y que el sistema calcule automáticamente las comisiones, para que la experiencia sea lo más realista y transparente posible.
 
-En términos de requerimientos, aplico los RF1, RF2, RF3, RF4, RF8 y RF11, junto con los RNF18 y RNF20, además de las historias de usuario US1 y US2, ya que son los que sostienen el funcionamiento básico y seguro del sistema.
+En términos de requerimientos, aplico los RF1, RF2, RF3, RF4, RF8 y RF11, junto con los RNF18 y RNF20, además de las historias de usuario US1 y US2, ya que son los que sostienen el funcionamiento básico y seguro del sistema. Aparte de esto definimos un nuevo US7 “Como usuario, quiero depositar y retirar dinero en distintas monedas para gestionar mis fondos.”
 
 Si el tiempo lo permite, podría sumar funcionalidades complementarias como un Centro de Aprendizaje con información sobre trading o un resumen más completo de cada acción dentro del análisis de mercado. Son cosas que aportan valor, pero no son críticas para que el usuario pueda empezar a invertir.
 
@@ -16,7 +16,6 @@ Portafolio (ver inversiones realizadas)
 Análisis de Mercado (consultar empresas para invertir)
 Depósito y retiro de dinero
 Aplicación automática de comisiones
-Centro de Aprendizaje (información educativa sobre trading)
 Resumen detallado por acción dentro del análisis de mercado
 
 
