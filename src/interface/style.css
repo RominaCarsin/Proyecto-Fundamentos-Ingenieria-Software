@@ -3,8 +3,55 @@ body {
   margin: 0;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background: #eaf1fa;
-  overflow-x: hidden; /* ✅ solo oculta scroll horizontal, no vertical */
+  overflow-x: hidden; /* solo oculta scroll horizontal, no vertical */
 }
+
+
+/* ======== CORRECCIÓN DE AJUSTE DE PANTALLA ======== */
+
+/* Asegura que no haya scroll horizontal en ningún momento */
+html, body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden !important;
+}
+
+/* Evita que el contenido se desborde del viewport */
+main, .content, section.content {
+  max-width: calc(100vw - 70px);
+  box-sizing: border-box;
+}
+
+/* Cuando el menú se expande, ajusta sin sobrepasar */
+.menuLateral:hover ~ main,
+.menuLateral:hover ~ section.content {
+  max-width: calc(100vw - 230px);
+}
+
+/* En pantallas grandes, forzamos ajuste */
+@media (min-width: 1200px) {
+  #ventana1 .row {
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+  }
+
+  #ventana1 .col-lg-8,
+  #ventana1 .col-lg-4 {
+    padding-right: 10px !important;
+    padding-left: 10px !important;
+  }
+}
+
+/* Previene que el card de operaciones se expanda demasiado */
+#ventana1 .card {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+
+
+
 
 main,
 section.content {
@@ -120,7 +167,15 @@ section.content {
 
 
 .content {
-    margin-left: 70px;
+    
+    flex: 1;
+  background: #f1f5f9;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  margin-left: 70px;
+  transition: margin-left 0.3s ease;
   }
   
 /* Enlaces deshabilitados (Configuración, Centro de Aprendizaje) */
