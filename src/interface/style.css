@@ -478,7 +478,7 @@ h3, h4, h5 {
 }
 
 /* Para pantallas muy grandes */
-@media (min-width: 1400px) {
+/* @media (min-width: 1400px) {
   #ventana1 .card {
     min-height: 320px;
   }
@@ -486,4 +486,6 @@ h3, h4, h5 {
   #ventana1 .col-lg-8 .card {
     min-height: 380px;
   }
-}
+} */
+
+
