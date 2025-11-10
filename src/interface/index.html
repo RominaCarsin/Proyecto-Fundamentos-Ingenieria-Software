@@ -1,636 +1,579 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TradeUy</title>
 
-    <!-- Bootstrap primero -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-      crossorigin="anonymous"
-    />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TradeUy</title>
 
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <!-- Bootstrap primero -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
 
-    <!-- CSS después (personalizaciones finales) -->
-    <link rel="stylesheet" href="style.css" />
-  </head>
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
 
-  <body>
-    <!-- Menu lateral -->
+  <!-- CSS después (personalizaciones finales) -->
+  <link rel="stylesheet" href="style.css" />
+</head>
 
+<body>
+  <!-- Menu lateral -->
 
-    <aside id="menuLateral" class="menuLateral">
-      <div id="contenedorLogo" class="contenedorLogo">
-        <img id="logo" src="img/Logo.png" class="logo" alt="Logo de TradeUy" />
-        <h1 id="banda" class="banda">TradeUy</h1>
-      </div>
-      <nav>
-        <ul id="menu" class="menu">
-          <li id="itemInicio">
-            <a href="#paginaInicio" class="active">
-              <span class="icon">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  style="fill: white"
-                >
-                  <path
-                    d="M12.71 2.29a1 1 0 0 0-1.42 0l-9 9a1 1 0 0 0 0 1.42A1 1 0 0 0 3 13h1v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7h1a1 1 0 0 0 1-1 1 1 0 0 0-.29-.71zM6 20v-9.59l6-6 6 6V20z"
-                  />
-                </svg>
-              </span>
-              <span class="text">Inicio</span>
-            </a>
-          </li>
-
-          <li id="itemPortafolio">
-            <a href="#">
-              <span class="icon">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  style="fill: white"
-                >
-                  <path
-                    d="M5 22h14c1.103 0 2-.897 2-2V9a1 1 0 0 0-1-1h-3V7c0-2.757-2.243-5-5-5S7 4.243 7 7v1H4a1 1 0 0 0-1 1v11c0 1.103.897 2 2 2zM9 7c0-1.654 1.346-3 3-3s3 1.346 3 3v1H9V7zm-4 3h2v2h2v-2h6v2h2v-2h2l.002 10H5V10z"
-                  />
-                </svg>
-              </span>
-              <span class="text">Portafolio</span>
-            </a>
-          </li>
-
-          <li id="itemAnalisis">
-            <a href="#">
-              <span class="icon">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  style="fill: white"
-                >
-                  <path d="M3 3v17a1 1 0 0 0 1 1h17v-2H5V3H3z" />
-                  <path
-                    d="M15.293 14.707a.999.999 0 0 0 1.414 0l5-5-1.414-1.414L16 12.586l-2.293-2.293a.999.999 0 0 0-1.414 0l-5 5 1.414 1.414L13 12.414l2.293 2.293z"
-                  />
-                </svg>
-              </span>
-              <span class="text">Análisis Mercado</span>
-            </a>
-          </li>
-
-          <li id="itemBilletera">
-            <a href="#">
-              <span class="icon">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  style="fill: white"
-                >
-                  <path d="M16 12h2v4h-2z" />
-                  <path d="M20 7V5c0-1.103-.897-2-2-2H5C3.346 3 2 4.346 2 6v12c0 1.103.897 2 2 2h15c1.103 0 2-.897 2-2V9c0-1.103-.897-2-2-2zM5 5h13v2H5V5zm15 14H4V8h16v11z" />
-                </svg>
-              </span>
-              <span class="text">Billetera</span>
-            </a>
-          </li>
-
-          <li id="itemCentroAprendizaje" class="disabled-link">
-            <a href="#" tabindex="-1" aria-disabled="true">
-              <span class="icon">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  style="fill: white"
-                >
-                  <path d="M2 7v1l11 4 9-4V7L11 4z" />
-                  <path
-                    d="M4 11v4.267c0 1.621 4.001 3.893 9 3.734 4-.126 6.586-1.972 7-3.467.024-.089.037-.178.037-.268V11L13 14l-5-1.667v3.213l-1-.364V12l-3-1z"
-                  />
-                </svg>
-              </span>
-              <span class="text">Centro Aprendizaje</span>
-            </a>
-          </li>
-
-          <li id="itemConfiguracion" class="disabled-link">
-            <a href="#" tabindex="-1" aria-disabled="true">
-              <span class="icon">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  style="fill: white"
-                >
-                  <path
-                    d="M12 16c2.206 0 4-1.794 4-4s-1.794-4-4-4-4 1.794-4 4 1.794 4 4 4zm0-6c1.084 0 2 .916 2 2s-.916 2-2 2-2-.916-2-2 .916-2 2-2z"
-                  />
-                  <path
-                    d="m2.845 16.136 1 1.73c.531.917 1.809 1.261 2.73.73l.529-.306A8.1 8.1 0 0 0 9 19.402V20c0 1.103.897 2 2 2h2c1.103 0 2-.897 2-2v-.598a8.132 8.132 0 0 0 1.896-1.111l.529.306c.923.53 2.198.188 2.731-.731l.999-1.729a2.001 2.001 0 0 0-.731-2.732l-.505-.292a7.718 7.718 0 0 0 0-2.224l.505-.292a2.002 2.002 0 0 0 .731-2.732l-.999-1.729c-.531-.92-1.808-1.265-2.731-.732l-.529.306A8.1 8.1 0 0 0 15 4.598V4c0-1.103-.897-2-2-2h-2c-1.103 0-2 .897-2 2v.598a8.132 8.132 0 0 0-1.896 1.111l-.529-.306c-.924-.531-2.2-.187-2.731.732l-.999 1.729a2.001 2.001 0 0 0 .731 2.732l.505.292a7.683 7.683 0 0 0 0 2.223l-.505.292a2.003 2.003 0 0 0-.731 2.733zm3.326-2.758A5.703 5.703 0 0 1 6 12c0-.462.058-.926.17-1.378a.999.999 0 0 0-.47-1.108l-1.123-.65.998-1.729 1.145.662a.997.997 0 0 0 1.188-.142 6.071 6.071 0 0 1 2.384-1.399A1 1 0 0 0 11 5.3V4h2v1.3a1 1 0 0 0 .708.956 6.083 6.083 0 0 1 2.384 1.399.999.999 0 0 0 1.188.142l1.144-.661 1 1.729-1.124.649a1 1 0 0 0-.47 1.108c.112.452.17.916.17 1.378 0 .461-.058.925-.171 1.378a1 1 0 0 0 .471 1.108l1.123.649-.998 1.729-1.145-.661a.996.996 0 0 0-1.188.142 6.071 6.071 0 0 1-2.384 1.399A1 1 0 0 0 13 18.7l.002 1.3H11v-1.3a1 1 0 0 0-.708-.956 6.083 6.083 0 0 1-2.384-1.399.992.992 0 0 0-1.188-.141l-1.144.662-1-1.729 1.124-.651a1 1 0 0 0 .471-1.108z"
-                  />
-                </svg>
-              </span>
-              <span class="text">Configuración</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
-    </aside>
-
-    <!--Ventana Inicio-->
-    <main id="paginaInicio" class="content container-fluid py-4">
-      <header id="encabezadoInicio" class="mb-4">
-        <div class="d-flex justify-content-between align-items-center">
-          <h2 class="fw-bold">Inicio</h2>
-          <section id="estadoCuentaInicio" class="d-flex align-items-center gap-2">
-            <label class="form-check-label fw-semibold" for="switchCheckDefault">
-              Cuenta Demo
-            </label>
-            <div class="form-check form-switch">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                id="switchCheckDefault"
-                checked
-              />
-            </div>
-          </section>
-        </div>
-      </header>
-
-      <section id="ventana1" class="container-fluid">
-        <!-- ====== FILA 1 ====== -->
-        <div class="row g-4 mb-4">
-          <!-- GRÁFICO (Izquierda) -->
-          <div class="col-lg-8">
-            <div class="card p-3 h-100">
-              <div class="d-flex justify-content-between align-items-center mb-3">
-                <nav class="d-flex gap-2" aria-label="Herramientas del gráfico">
-                  <button id="btnAlertas" class="btn btn-light btn-sm" title="Ver alertas de mercado">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black" viewBox="0 0 24 24">
-                      <path
-                        d="M19 13.586V10c0-3.217-2.185-5.927-5.145-6.742C13.562 2.52 12.846 2 12 2s-1.562.52-1.855 1.258C7.185 4.074 5 6.783 5 10v3.586l-1.707 1.707A.996.996 0 0 0 3 16v2a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-2a.996.996 0 0 0-.293-.707L19 13.586z"
-                      />
-                    </svg>
-                  </button>
-                  <button id="btnAnalisis" class="btn btn-light btn-sm" title="Análisis de gráfica">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="20"
-                      height="20"
-                      fill="black"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        d="M20 12a2 2 0 0 0-.703.133l-2.398-1.963c.059-.214.101-.436.101-.67C17 8.114 15.886 7 14.5 7S12 8.114 12 9.5c0 .396.1.765.262 1.097l-2.909 3.438A2.06 2.06 0 0 0 9 14c-.179 0-.348.03-.512.074l-2.563-2.563C5.97 11.348 6 11.179 6 11c0-1.108-.892-2-2-2s-2 .892-2 2 .892 2 2 2c.179 0 .348-.03.512-.074l2.563 2.563A1.906 1.906 0 0 0 7 16c0 1.108.892 2 2 2s2-.892 2-2c0-.237-.048-.46-.123-.671l2.913-3.442c.227.066.462.113.71.113a2.48 2.48 0 0 0 1.133-.281l2.399 1.963A2.077 2.077 0 0 0 18 14c0 1.108.892 2 2 2s2-.892 2-2-.892-2-2-2z"
-                      />
-                    </svg>
-                  </button>
-                </nav>
-                <nav class="d-flex gap-1" aria-label="Intervalos de tiempo del gráfico">
-                  <button id="btnIntervaloMin" class="btn btn-outline-secondary btn-sm">min</button>
-                  <button id="btnIntervaloHora" class="btn btn-outline-secondary btn-sm">h</button>
-                  <button id="btnIntervaloDia" class="btn btn-outline-secondary btn-sm">d</button>
-                  <button id="btnIntervaloMes" class="btn btn-outline-secondary btn-sm">m</button>
-                </nav>
-              </div>
-
-              <div id="contenedorGrafico" class="text-center p-4 border rounded bg-light h-100">
-                <h3>Gráfica</h3>
-                <img src="img/grafico-ejemplo.png" alt="Gráfico" class="img-fluid mt-3" />
-              </div>
-            </div>
-          </div>
-
-          <!-- OPERACIONES (Derecha) -->
-          <div class="col-lg-4">
-            <div class="card p-3 h-100">
-              <h3 class="fw-semibold mb-3">Operaciones</h3>
-
-              <label for="tipoAccion" class="form-label">Tipo de Acción</label>
-              <select id="tipoAccion" class="form-select mb-3">
-                <option value="">Bonos</option>
-                <option value="limite">Criptomonedas</option>
-                <option value="market">Forex</option>
-                <option value="stop">Acciones</option>
-              </select>
-
-              <p class="form-label fw-semibold">Valor de Acción:</p>
-
-              <label for="accion" class="form-label">Acción</label>
-              <input id="accion" type="number" class="form-control mb-3" placeholder="0.00" />
-
-              <label for="dinero" class="form-label">Dinero</label>
-              <input id="dinero" type="number" class="form-control mb-3" placeholder="0.00" />
-
-              <div class="d-flex gap-2 mt-auto">
-                <button id="btnComprar" type="button" class="btn btn-success flex-fill">Comprar</button>
-                <button id="btnVender" type="button" class="btn btn-danger flex-fill">Vender</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- ====== FILA 2 ====== -->
-        <div class="row g-4">
-          <!-- COTIZACIONES (Izquierda) -->
-          <div class="col-lg-8">
-            <div class="card p-3 h-100">
-              <h3 class="mb-3">
-                <i class="bi bi-currency-exchange me-2"></i>Cotizaciones
-              </h3>
-              <div class="d-flex justify-content-between gap-2">
-                <button class="btn btn-outline-secondary flex-fill mx-1 active">USD</button>
-                <button class="btn btn-outline-secondary flex-fill mx-1" disabled>EUR</button>
-                <button class="btn btn-outline-secondary flex-fill mx-1">UYU</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- POSICIONES ABIERTAS (Derecha) -->
-          <div class="col-lg-4">
-            <div class="card p-3 h-100">
-              <h3>
-                <i class="bi bi-clock-history me-2"></i>Posiciones Abiertas
-              </h3>
-              <p class="text-muted small mb-0">Sin operaciones recientes.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <!-- ====== SECCIÓN PORTAFOLIO ====== -->
-    <section id="paginaPortafolio" class="content container-fluid py-4 d-none">
-      <header id="encabezadoPortafolio" class="mb-3">
-        <h2 class="fw-bold mb-3">Portafolio</h2>
-        <div class="buscador-container mb-4">
-          <div class="input-group buscador-portafolio">
-            <input
-              id="buscarPortafolio"
-              type="text"
-              class="form-control"
-              placeholder="Buscar activo..."
-              aria-label="Buscar activo"
-            />
-            <button id="btnBuscarPortafolio" class="btn btn-outline-secondary" type="button" aria-label="Buscar">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
-                <path d="M21.707 20.293l-3.388-3.388A8.928 8.928 0 0 0 19 11a9 9 0 1 0-9 9 8.928 8.928 0 0 0 5.905-2.681l3.388 3.388a1 1 0 0 0 1.414-1.414zM11 18a7 7 0 1 1 7-7 7.008 7.008 0 0 1-7 7z" />
-              </svg>
-            </button>
-          </div>
-        </div>
-
-        <nav id="categorias" class="d-flex flex-wrap gap-2 mb-4" aria-label="Filtros de categorías">
-          <button class="btn btn-outline-primary active">Bonos</button>
-          <button class="btn btn-outline-primary">Criptomonedas</button>
-          <button class="btn btn-outline-primary">Forex</button>
-          <button class="btn btn-outline-primary">Acciones</button>
-        </nav>
-      </header>
-
-      <section id="grillaActivos" class="row g-4">
-        <!-- Ejemplo de tarjeta -->
-        <div class="col-sm-6 col-md-4 col-lg-3">
-          <div class="card activo text-center p-3" data-tipo="Bonos">
-            <h3 class="fw-bold mb-1"></h3>
-            <p class="text-muted small mb-2">Tipo:</p>
-            <div class="d-flex justify-content-around align-items-center mb-2">
-              <span class="badge bg-light text-dark px-3">Rendimiento fijo</span>
-              <span class="fw-bold text-success">$ </span>
-            </div>
-            <button class="btn btn-outline-primary btn-sm">Ir</button>
-          </div>
-        </div>
-      </section>
-
-      <div class="text-center mt-4">
-        <button type="button" class="btn btn-outline-secondary">Ver más</button>
-      </div>
-    </section>
-
-    <!-- ====== SECCIÓN ANÁLISIS DE MERCADO ====== -->
-    <section id="paginaAnalisis" class="content container-fluid py-4 d-none">
-      <header id="encabezadoAnalisis" class="mb-3">
-        <h2 class="fw-bold mb-3">Análisis de Mercado</h2>
-
-        <!-- Buscador -->
-        <div class="buscador-container mb-4">
-          <div class="input-group buscador-analisis">
-            <input
-              id="buscarAnalisis"
-              type="text"
-              class="form-control"
-              placeholder="Buscar instrumento..."
-              aria-label="Buscar instrumento"
-            />
-            <button id="btnBuscarAnalisis" class="btn btn-outline-secondary" type="button" aria-label="Buscar">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
+  <aside id="menuLateral" class="menuLateral">
+    <div id="contenedorLogo" class="contenedorLogo">
+      <img id="logo" src="img/Logo.png" class="logo" alt="Logo de TradeUy" />
+      <h1 id="banda" class="banda">TradeUy</h1>
+    </div>
+    <nav>
+      <ul id="menu" class="menu">
+        <li id="itemInicio">
+          <a href="#paginaInicio" class="active">
+            <span class="icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" style="fill: white">
                 <path
-                  d="M21.707 20.293l-3.388-3.388A8.928 8.928 0 0 0 19 11a9 9 0 1 0-9 9 8.928 8.928 0 0 0 5.905-2.681l3.388 3.388a1 1 0 0 0 1.414-1.414zM11 18a7 7 0 1 1 7-7 7.008 7.008 0 0 1-7 7z"
-                />
+                  d="M12.71 2.29a1 1 0 0 0-1.42 0l-9 9a1 1 0 0 0 0 1.42A1 1 0 0 0 3 13h1v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7h1a1 1 0 0 0 1-1 1 1 0 0 0-.29-.71zM6 20v-9.59l6-6 6 6V20z" />
               </svg>
-            </button>
+            </span>
+            <span class="text">Inicio</span>
+          </a>
+        </li>
+
+        <li id="itemPortafolio">
+          <a href="#">
+            <span class="icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" style="fill: white">
+                <path
+                  d="M5 22h14c1.103 0 2-.897 2-2V9a1 1 0 0 0-1-1h-3V7c0-2.757-2.243-5-5-5S7 4.243 7 7v1H4a1 1 0 0 0-1 1v11c0 1.103.897 2 2 2zM9 7c0-1.654 1.346-3 3-3s3 1.346 3 3v1H9V7zm-4 3h2v2h2v-2h6v2h2v-2h2l.002 10H5V10z" />
+              </svg>
+            </span>
+            <span class="text">Portafolio</span>
+          </a>
+        </li>
+
+        <li id="itemAnalisis">
+          <a href="#">
+            <span class="icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" style="fill: white">
+                <path d="M3 3v17a1 1 0 0 0 1 1h17v-2H5V3H3z" />
+                <path
+                  d="M15.293 14.707a.999.999 0 0 0 1.414 0l5-5-1.414-1.414L16 12.586l-2.293-2.293a.999.999 0 0 0-1.414 0l-5 5 1.414 1.414L13 12.414l2.293 2.293z" />
+              </svg>
+            </span>
+            <span class="text">Análisis Mercado</span>
+          </a>
+        </li>
+
+        <li id="itemBilletera">
+          <a href="#">
+            <span class="icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" style="fill: white">
+                <path d="M16 12h2v4h-2z" />
+                <path
+                  d="M20 7V5c0-1.103-.897-2-2-2H5C3.346 3 2 4.346 2 6v12c0 1.103.897 2 2 2h15c1.103 0 2-.897 2-2V9c0-1.103-.897-2-2-2zM5 5h13v2H5V5zm15 14H4V8h16v11z" />
+              </svg>
+            </span>
+            <span class="text">Billetera</span>
+          </a>
+        </li>
+
+        <li id="itemCentroAprendizaje" class="disabled-link">
+          <a href="#" tabindex="-1" aria-disabled="true">
+            <span class="icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" style="fill: white">
+                <path d="M2 7v1l11 4 9-4V7L11 4z" />
+                <path
+                  d="M4 11v4.267c0 1.621 4.001 3.893 9 3.734 4-.126 6.586-1.972 7-3.467.024-.089.037-.178.037-.268V11L13 14l-5-1.667v3.213l-1-.364V12l-3-1z" />
+              </svg>
+            </span>
+            <span class="text"> Centro Aprendizaje</span>
+          </a>
+        </li>
+
+        <li id="itemConfiguracion" class="disabled-link">
+          <a href="#" tabindex="-1" aria-disabled="true">
+            <span class="icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" style="fill: white">
+                <path
+                  d="M12 16c2.206 0 4-1.794 4-4s-1.794-4-4-4-4 1.794-4 4 1.794 4 4 4zm0-6c1.084 0 2 .916 2 2s-.916 2-2 2-2-.916-2-2 .916-2 2-2z" />
+                <path
+                  d="m2.845 16.136 1 1.73c.531.917 1.809 1.261 2.73.73l.529-.306A8.1 8.1 0 0 0 9 19.402V20c0 1.103.897 2 2 2h2c1.103 0 2-.897 2-2v-.598a8.132 8.132 0 0 0 1.896-1.111l.529.306c.923.53 2.198.188 2.731-.731l.999-1.729a2.001 2.001 0 0 0-.731-2.732l-.505-.292a7.718 7.718 0 0 0 0-2.224l.505-.292a2.002 2.002 0 0 0 .731-2.732l-.999-1.729c-.531-.92-1.808-1.265-2.731-.732l-.529.306A8.1 8.1 0 0 0 15 4.598V4c0-1.103-.897-2-2-2h-2c-1.103 0-2 .897-2 2v.598a8.132 8.132 0 0 0-1.896 1.111l-.529-.306c-.924-.531-2.2-.187-2.731.732l-.999 1.729a2.001 2.001 0 0 0 .731 2.732l.505.292a7.683 7.683 0 0 0 0 2.223l-.505.292a2.003 2.003 0 0 0-.731 2.733zm3.326-2.758A5.703 5.703 0 0 1 6 12c0-.462.058-.926.17-1.378a.999.999 0 0 0-.47-1.108l-1.123-.65.998-1.729 1.145.662a.997.997 0 0 0 1.188-.142 6.071 6.071 0 0 1 2.384-1.399A1 1 0 0 0 11 5.3V4h2v1.3a1 1 0 0 0 .708.956 6.083 6.083 0 0 1 2.384 1.399.999.999 0 0 0 1.188.142l1.144-.661 1 1.729-1.124.649a1 1 0 0 0-.47 1.108c.112.452.17.916.17 1.378 0 .461-.058.925-.171 1.378a1 1 0 0 0 .471 1.108l1.123.649-.998 1.729-1.145-.661a.996.996 0 0 0-1.188.142 6.071 6.071 0 0 1-2.384 1.399A1 1 0 0 0 13 18.7l.002 1.3H11v-1.3a1 1 0 0 0-.708-.956 6.083 6.083 0 0 1-2.384-1.399.992.992 0 0 0-1.188-.141l-1.144.662-1-1.729 1.124-.651a1 1 0 0 0 .471-1.108z" />
+              </svg>
+            </span>
+            <span class="text">Configuración</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!--Ventana Inicio-->
+  <main id="paginaInicio" class="content container-fluid py-4">
+    <header id="encabezadoInicio" class="mb-4">
+      <div class="d-flex justify-content-between align-items-center">
+        <h2 class="fw-bold">Inicio</h2>
+        <section id="estadoCuentaInicio" class="d-flex align-items-center gap-2">
+          <label class="form-check-label fw-semibold" for="switchCheckDefault">
+            Cuenta Demo
+          </label>
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="switchCheckDefault" checked />
           </div>
-        </div>
+        </section>
+      </div>
+    </header>
 
-        <!-- Categorías -->
-        <div id="categoriasAnalisis" class="d-flex flex-wrap gap-2 mb-4">
-          <button class="btn btn-outline-primary active">Bonos</button>
-          <button class="btn btn-outline-primary">Criptomonedas</button>
-          <button class="btn btn-outline-primary">Forex</button>
-          <button class="btn btn-outline-primary">Acciones</button>
-        </div>
-      </header>
-
-      <section id="contenidoAnalisis" class="row g-4">
-        <!-- TABLA DE INSTRUMENTOS -->
+    <section id="ventana1" class="container-fluid">
+      <!-- ====== FILA 1 ====== -->
+      <div class="row g-4 mb-4">
+        <!-- GRÁFICO (Izquierda) -->
         <div class="col-lg-8">
-          <div class="card p-3">
-            <table class="table align-middle">
-              <thead>
-                <tr>
-                  <th>Instrumento</th>
-                  <th class="text-center">Rendimiento</th>
-                  <th class="text-center">Costo</th>
-                  <th class="text-center">Operar</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <div class="form-check">
-                      <input id="checkBono" class="form-check-input" type="checkbox">
-                      <label for="checkBono" class="form-check-label">Nombre de la accion</label>
-                    </div>
-                  </td>
-                  <td class="text-center">
-                    <span class="text-danger me-2">porcentaje de ganancia o perdida (danger-rojo y success-verde)</span>
-                  </td>
-                  <td class="text-center">$</td>
-                  <td class="text-center">
-                    <button class="btn btn-danger btn-sm">V</button>
-                    <button class="btn btn-success btn-sm">C</button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+          <div class="card p-3 h-100">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <nav class="d-flex gap-2" aria-label="Herramientas del gráfico">
+                <button id="btnAlertas" class="btn btn-light btn-sm" title="Ver alertas de mercado">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black" viewBox="0 0 24 24">
+                    <path
+                      d="M19 13.586V10c0-3.217-2.185-5.927-5.145-6.742C13.562 2.52 12.846 2 12 2s-1.562.52-1.855 1.258C7.185 4.074 5 6.783 5 10v3.586l-1.707 1.707A.996.996 0 0 0 3 16v2a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-2a.996.996 0 0 0-.293-.707L19 13.586z" />
+                  </svg>
+                </button>
+                <button id="btnAnalisis" class="btn btn-light btn-sm" title="Análisis de gráfica">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black" viewBox="0 0 24 24">
+                    <path
+                      d="M20 12a2 2 0 0 0-.703.133l-2.398-1.963c.059-.214.101-.436.101-.67C17 8.114 15.886 7 14.5 7S12 8.114 12 9.5c0 .396.1.765.262 1.097l-2.909 3.438A2.06 2.06 0 0 0 9 14c-.179 0-.348.03-.512.074l-2.563-2.563C5.97 11.348 6 11.179 6 11c0-1.108-.892-2-2-2s-2 .892-2 2 .892 2 2 2c.179 0 .348-.03.512-.074l2.563 2.563A1.906 1.906 0 0 0 7 16c0 1.108.892 2 2 2s2-.892 2-2c0-.237-.048-.46-.123-.671l2.913-3.442c.227.066.462.113.71.113a2.48 2.48 0 0 0 1.133-.281l2.399 1.963A2.077 2.077 0 0 0 18 14c0 1.108.892 2 2 2s2-.892 2-2-.892-2-2-2z" />
+                  </svg>
+                </button>
+              </nav>
+              <nav class="d-flex gap-1" aria-label="Intervalos de tiempo del gráfico">
+                <button id="btnIntervaloMin" class="btn btn-outline-secondary btn-sm">
+                  min
+                </button>
+                <button id="btnIntervaloHora" class="btn btn-outline-secondary btn-sm">
+                  h
+                </button>
+                <button id="btnIntervaloDia" class="btn btn-outline-secondary btn-sm">
+                  d
+                </button>
+                <button id="btnIntervaloMes" class="btn btn-outline-secondary btn-sm">
+                  m
+                </button>
+              </nav>
+            </div>
+
+            <div id="contenedorGrafico" class="text-center p-4 border rounded bg-light h-100">
+              <h3>Gráfica</h3>
+              <img src="img/grafico-ejemplo.png" alt="Gráfico" class="img-fluid mt-3" />
+            </div>
           </div>
         </div>
 
-        <!-- PANEL RESUMEN -->
-        <aside class="col-lg-4">
-          <div class="card p-3">
-            <h3 class="fw-semibold mb-3">
-              <i class="bi bi-clipboard-data me-2"></i>Resumen
-            </h3>
-            <ul class="list-group small">
-              <li class="list-group-item d-flex justify-content-between align-items-center">
-                Total seleccionados <span class="fw-bold"> cuantos elem seleccione</span>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center">
-                Promedio rendimiento <span class="text-success fw-bold"> cv</span>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center">
-                Costo estimado <span class="fw-bold">$</span>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center">
-                Última actualización <span class="text-muted">tiempo</span>
-              </li>
-            </ul>
+        <!-- OPERACIONES (Derecha) -->
+        <div class="col-lg-4">
+          <div class="card p-3 h-100">
+            <h3 class="fw-semibold mb-3">Operaciones</h3>
+
+            <label for="tipoAccion" class="form-label">Tipo de Acción</label>
+            <select id="tipoAccion" class="form-select mb-3">
+              <option value="">Bonos</option>
+              <option value="limite">Criptomonedas</option>
+              <option value="market">Forex</option>
+              <option value="stop">Acciones</option>
+            </select>
+
+            <p class="form-label fw-semibold">Valor de Acción:</p>
+
+            <label for="accion" class="form-label">Acción</label>
+            <input id="accion" type="number" class="form-control mb-3" placeholder="0.00" />
+
+            <label for="dinero" class="form-label">Dinero</label>
+            <input id="dinero" type="number" class="form-control mb-3" placeholder="0.00" />
+
+            <div class="d-flex gap-2 mt-auto">
+              <button id="btnComprar" type="button" class="btn btn-success flex-fill">
+                Comprar
+              </button>
+              <button id="btnVender" type="button" class="btn btn-danger flex-fill">
+                Vender
+              </button>
+            </div>
           </div>
-        </aside>
-      </section>
+        </div>
+      </div>
+
+      <!-- ====== FILA 2 ====== -->
+      <div class="row g-4">
+        <!-- COTIZACIONES (Izquierda) -->
+        <div class="col-lg-8">
+          <div class="card p-3 h-100">
+            <h3 class="mb-3">
+              <i class="bi bi-currency-exchange me-2"></i>Cotizaciones
+            </h3>
+            <div class="d-flex justify-content-between gap-2">
+              <button class="btn btn-outline-secondary flex-fill mx-1 active">
+                USD
+              </button>
+              <button class="btn btn-outline-secondary flex-fill mx-1" disabled>
+                EUR
+              </button>
+              <button class="btn btn-outline-secondary flex-fill mx-1">
+                UYU
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- POSICIONES ABIERTAS (Derecha) -->
+        <div class="col-lg-4">
+          <div class="card p-3 h-100">
+            <h3>
+              <i class="bi bi-clock-history me-2"></i>Posiciones Abiertas
+            </h3>
+            <p class="text-muted small mb-0">Sin operaciones recientes.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ====== SECCIÓN PORTAFOLIO ====== -->
+  <section id="paginaPortafolio" class="content container-fluid py-4 d-none">
+    <header id="encabezadoPortafolio" class="mb-3">
+      <h2 class="fw-bold mb-3">Portafolio</h2>
+      <div class="buscador-container mb-4">
+        <div class="input-group buscador-portafolio">
+          <input id="buscarPortafolio" type="text" class="form-control" placeholder="Buscar activo..."
+            aria-label="Buscar activo" />
+          <button id="btnBuscarPortafolio" class="btn btn-outline-secondary" type="button" aria-label="Buscar">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
+              <path
+                d="M21.707 20.293l-3.388-3.388A8.928 8.928 0 0 0 19 11a9 9 0 1 0-9 9 8.928 8.928 0 0 0 5.905-2.681l3.388 3.388a1 1 0 0 0 1.414-1.414zM11 18a7 7 0 1 1 7-7 7.008 7.008 0 0 1-7 7z" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <nav id="categorias" class="d-flex flex-wrap gap-2 mb-4" aria-label="Filtros de categorías">
+        <button class="btn btn-outline-primary active">Bonos</button>
+        <button class="btn btn-outline-primary">Criptomonedas</button>
+        <button class="btn btn-outline-primary">Forex</button>
+        <button class="btn btn-outline-primary">Acciones</button>
+      </nav>
+    </header>
+
+    <section id="grillaActivos" class="row g-4">
+      <!-- Ejemplo de tarjeta -->
+      <div class="col-sm-6 col-md-4 col-lg-3">
+        <div class="card activo text-center p-3" data-tipo="Bonos">
+          <h3 class="fw-bold mb-1">Nombre</h3>
+          <p class="text-muted small mb-2">Tipo:</p>
+          <div class="d-flex justify-content-around align-items-center mb-2">
+            <span class="badge bg-light text-dark px-3">Rendimiento fijo</span>
+            <span class="fw-bold text-success">$ </span>
+          </div>
+          <button class="btn btn-outline-primary btn-sm">Ir</button>
+        </div>
+      </div>
     </section>
 
-    <!-- ====== SECCIÓN BILLETERA ====== -->
-    <section id="paginaBilletera" class="content container-fluid py-4 d-none">
-      <header id="encabezadoBilletera" class="mb-4">
-        <h2 class="fw-bold mb-3">Billetera</h2>
-      </header>
+    <div class="text-center mt-4">
+      <button type="button" class="btn btn-outline-secondary">Ver más</button>
+    </div>
+  </section>
 
-      <section id="billetera" class="row g-4">
-        <!-- === Tarjetas de divisas === -->
-        <div class="col-md-6 col-lg-4">
-          <div class="card text-center p-3 shadow-sm">
-            <h3 class="fw-semibold mb-2">USD - Dólar Estadounidense</h3>
-            <dl class="d-flex justify-content-around mb-3">
-              <div>
-                <p class="text-muted small mb-1">Saldo total</p>
-                <p class="fw-bold">$ 0.0</p>
-              </div>
-              <div>
-                <p class="text-muted small mb-1">Disponible</p>
-                <p class="fw-bold">$ 0.0</p>
-              </div>
-              <div>
-                <p class="text-muted small mb-1">En garantía</p>
-                <p class="fw-bold">$ 0.0</p>
-              </div>
-            </dl>
-            <nav class="d-flex justify-content-center gap-2" aria-label="Acciones de cuenta">
-              <button class="btn btn-success px-4">↑ Depósito</button>
-              <button class="btn btn-outline-danger px-4">↓ Retiro</button>
-            </nav>
-          </div>
+  <!-- ====== SECCIÓN ANÁLISIS DE MERCADO ====== -->
+  <section id="paginaAnalisis" class="content container-fluid py-4 d-none">
+    <header id="encabezadoAnalisis" class="mb-3">
+      <h2 class="fw-bold mb-3">Análisis de Mercado</h2>
+
+      <!-- Buscador -->
+      <div class="buscador-container mb-4">
+        <div class="input-group buscador-analisis">
+          <input id="buscarAnalisis" type="text" class="form-control" placeholder="Buscar instrumento..."
+            aria-label="Buscar instrumento" />
+          <button id="btnBuscarAnalisis" class="btn btn-outline-secondary" type="button" aria-label="Buscar">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
+              <path
+                d="M21.707 20.293l-3.388-3.388A8.928 8.928 0 0 0 19 11a9 9 0 1 0-9 9 8.928 8.928 0 0 0 5.905-2.681l3.388 3.388a1 1 0 0 0 1.414-1.414zM11 18a7 7 0 1 1 7-7 7.008 7.008 0 0 1-7 7z" />
+            </svg>
+          </button>
         </div>
+      </div>
 
-        <div class="col-md-6 col-lg-4">
-          <div class="card text-center p-3 shadow-sm">
-            <h3 class="fw-semibold mb-2">UYU - Peso Uruguayo</h3>
-            <dl class="d-flex justify-content-around mb-3">
-              <div>
-                <p class="text-muted small mb-1">Saldo total</p>
-                <p class="fw-bold">$ 0.0</p>
-              </div>
-              <div>
-                <p class="text-muted small mb-1">Disponible</p>
-                <p class="fw-bold">$ 0.0</p>
-              </div>
-              <div>
-                <p class="text-muted small mb-1">En garantía</p>
-                <p class="fw-bold">$ 0.0</p>
-              </div>
-            </dl>
-            <nav class="d-flex justify-content-center gap-2" aria-label="Acciones de cuenta">
-              <button class="btn btn-success px-4">↑ Depósito</button>
-              <button class="btn btn-outline-danger px-4">↓ Retiro</button>
-            </nav>
-          </div>
+      <!-- Categorías -->
+      <div id="categoriasAnalisis" class="d-flex flex-wrap gap-2 mb-4">
+        <button class="btn btn-outline-primary active">Bonos</button>
+        <button class="btn btn-outline-primary">Criptomonedas</button>
+        <button class="btn btn-outline-primary">Forex</button>
+        <button class="btn btn-outline-primary">Acciones</button>
+      </div>
+    </header>
+
+    <section id="contenidoAnalisis" class="row g-4">
+      <!-- TABLA DE INSTRUMENTOS -->
+      <div class="col-lg-8">
+        <div class="card p-3">
+          <table class="table align-middle">
+            <thead>
+              <tr>
+                <th>Instrumento</th>
+                <th class="text-center">Rendimiento</th>
+                <th class="text-center">Costo</th>
+                <th class="text-center">Operar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div class="form-check">
+                    <input id="checkBono" class="form-check-input" type="checkbox" />
+                    <label for="checkBono" class="form-check-label">Nombre de la accion</label>
+                  </div>
+                </td>
+                <td class="text-center">
+                  <span class="text-danger me-2">porcentaje de ganancia o perdida (danger-rojo y
+                    success-verde)</span>
+                </td>
+                <td class="text-center">$</td>
+                <td class="text-center">
+                  <button class="btn btn-danger btn-sm">V</button>
+                  <button class="btn btn-success btn-sm">C</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-      </section>
+      </div>
 
-      <!-- === Calculadora de comisiones === -->
-      <section class="mt-5">
-        <div class="card p-4">
+      <!-- PANEL RESUMEN -->
+      <aside class="col-lg-4">
+        <div class="card p-3">
           <h3 class="fw-semibold mb-3">
-            <i class="bi bi-calculator me-2"></i>Calculadora de Comisiones
+            <i class="bi bi-clipboard-data me-2"></i>Resumen
           </h3>
-          <form aria-label="Calculadora de comisiones">
-            <div class="row g-3">
-              <!-- Tipo de operación -->
-              <div class="col-md-6">
-                <label for="tipoOperacion" class="form-label">Tipo de operación</label>
-                <select id="tipoOperacion" class="form-select">
-                  <option>Depósito</option>
-                  <option>Retiro</option>
-                  <option>Compra</option>
-                  <option>Venta</option>
-                </select>
-              </div>
+          <ul class="list-group small">
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              Total seleccionados
+              <span class="fw-bold"> cuantos elem seleccione</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              Promedio rendimiento
+              <span class="text-success fw-bold"> cv</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              Costo estimado <span class="fw-bold">$</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              Última actualización <span class="text-muted">tiempo</span>
+            </li>
+          </ul>
+        </div>
+      </aside>
+    </section>
+  </section>
 
-              <!-- Método -->
-              <div class="col-md-6">
-                <label for="metodo" class="form-label">Método</label>
-                <select id="metodo" class="form-select">
-                  <option>Transferencia bancaria</option>
-                  <option>Tarjeta de crédito</option>
-                  <option>PayPal</option>
-                  <option>Transferencia electrónica</option>
-                </select>
-              </div>
+  <!-- ====== SECCIÓN BILLETERA ====== -->
+  <section id="paginaBilletera" class="content container-fluid py-4 d-none">
+    <header id="encabezadoBilletera" class="mb-4">
+      <h2 class="fw-bold mb-3">Billetera</h2>
+    </header>
 
-              <!-- Monto -->
-              <div class="col-md-6">
-                <label for="monto" class="form-label">Monto</label>
-                <div class="input-group">
-                  <span class="input-group-text">$</span>
-                  <input
-                    id="monto"
-                    type="number"
-                    class="form-control"
-                    placeholder="0.00"
-                    step="0.01"
-                  />
-                </div>
-              </div>
+    <section id="billetera" class="row g-4">
+      <!-- === Tarjetas de divisas === -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card text-center p-3 shadow-sm">
+          <h3 class="fw-semibold mb-2">USD - Dólar Estadounidense</h3>
+          <dl class="d-flex justify-content-around mb-3">
+            <div>
+              <p class="text-muted small mb-1">Saldo total</p>
+              <p class="fw-bold">$ 0.0</p>
+            </div>
+            <div>
+              <p class="text-muted small mb-1">Disponible</p>
+              <p class="fw-bold">$ 0.0</p>
+            </div>
+            <div>
+              <p class="text-muted small mb-1">En garantía</p>
+              <p class="fw-bold">$ 0.0</p>
+            </div>
+          </dl>
+          <nav class="d-flex justify-content-center gap-2" aria-label="Acciones de cuenta">
+            <button class="btn btn-success px-4">↑ Depósito</button>
+            <button class="btn btn-outline-danger px-4">↓ Retiro</button>
+          </nav>
+        </div>
+      </div>
 
-              <!-- Divisa -->
-              <div class="col-md-6">
-                <label for="divisa" class="form-label">Divisa</label>
-                <select id="divisa" class="form-select">
-                  <option>USD</option>
-                  <option>UYU</option>
-                  <option disabled>EUR</option>
-                </select>
-              </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="card text-center p-3 shadow-sm">
+          <h3 class="fw-semibold mb-2">UYU - Peso Uruguayo</h3>
+          <dl class="d-flex justify-content-around mb-3">
+            <div>
+              <p class="text-muted small mb-1">Saldo total</p>
+              <p class="fw-bold">$ 0.0</p>
+            </div>
+            <div>
+              <p class="text-muted small mb-1">Disponible</p>
+              <p class="fw-bold">$ 0.0</p>
+            </div>
+            <div>
+              <p class="text-muted small mb-1">En garantía</p>
+              <p class="fw-bold">$ 0.0</p>
+            </div>
+          </dl>
+          <nav class="d-flex justify-content-center gap-2" aria-label="Acciones de cuenta">
+            <button class="btn btn-success px-4">↑ Depósito</button>
+            <button class="btn btn-outline-danger px-4">↓ Retiro</button>
+          </nav>
+        </div>
+      </div>
+    </section>
 
-              <!-- Tasa actual -->
-              <div class="col-12">
-                <label for="tasa" class="form-label">Tasa de comisión (%)</label>
-                <input
-                  type="number"
-                  id="tasa"
-                  class="form-control"
-                  placeholder="1.3"
-                  step="0.1"
-                  min="0"
-                  max="10"
-                />
-              </div>
+    <!-- === Calculadora de comisiones === -->
+    <section class="mt-5">
+      <div class="card p-4">
+        <h3 class="fw-semibold mb-3">
+          <i class="bi bi-calculator me-2"></i>Calculadora de Comisiones
+        </h3>
+        <form aria-label="Calculadora de comisiones">
+          <div class="row g-3">
+            <!-- Tipo de operación -->
+            <div class="col-md-6">
+              <label for="tipoOperacion" class="form-label">Tipo de operación</label>
+              <select id="tipoOperacion" class="form-select">
+                <option>Depósito</option>
+                <option>Retiro</option>
+                <option>Compra</option>
+                <option>Venta</option>
+              </select>
+            </div>
 
-              <!-- Resultado -->
-              <div class="col-12">
-                <div class="alert alert-info" role="alert">
-                  <div class="d-flex justify-content-between">
-                    <span>Comisión estimada:</span>
-                    <strong>$0.00</strong>
-                  </div>
-                  <div class="d-flex justify-content-between">
-                    <span>Total a recibir:</span>
-                    <strong>$0.00</strong>
-                  </div>
-                </div>
-              </div>
+            <!-- Método -->
+            <div class="col-md-6">
+              <label for="metodo" class="form-label">Método</label>
+              <select id="metodo" class="form-select">
+                <option>Transferencia bancaria</option>
+                <option>Tarjeta de crédito</option>
+                <option>PayPal</option>
+                <option>Transferencia electrónica</option>
+              </select>
+            </div>
 
-              <div class="col-12">
-                <button type="button" class="btn btn-primary w-100">
-                  <i class="bi bi-calculator me-1"></i>Calcular Comisión
-                </button>
+            <!-- Monto -->
+            <div class="col-md-6">
+              <label for="monto" class="form-label">Monto</label>
+              <div class="input-group">
+                <span class="input-group-text">$</span>
+                <input id="monto" type="number" class="form-control" placeholder="0.00" step="0.01" />
               </div>
             </div>
-          </form>
-        </div>
-      </section>
+
+            <!-- Divisa -->
+            <div class="col-md-6">
+              <label for="divisa" class="form-label">Divisa</label>
+              <select id="divisa" class="form-select">
+                <option>USD</option>
+                <option>UYU</option>
+                <option disabled>EUR</option>
+              </select>
+            </div>
+
+            <!-- Tasa actual -->
+            <div class="col-12">
+              <label for="tasa" class="form-label">Tasa de comisión (%)</label>
+              <input type="number" id="tasa" class="form-control" placeholder="1.3" step="0.1" min="0" max="10" />
+            </div>
+
+            <!-- Resultado -->
+            <div class="col-12">
+              <div class="alert alert-info" role="alert">
+                <div class="d-flex justify-content-between">
+                  <span>Comisión estimada:</span>
+                  <strong>$0.00</strong>
+                </div>
+                <div class="d-flex justify-content-between">
+                  <span>Total a recibir:</span>
+                  <strong>$0.00</strong>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12">
+              <button type="button" class="btn btn-primary w-100">
+                <i class="bi bi-calculator me-1"></i>Calcular Comisión
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
     </section>
+  </section>
 
-    <!-- Bootstrap JS -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-      crossorigin="anonymous"
-    ></script>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
 
-    <script>
-      // === NAVEGACIÓN ENTRE SECCIONES ===
-      const paginas = {
-        inicio: document.getElementById("paginaInicio"),
-        portafolio: document.getElementById("paginaPortafolio"),
-        analisis: document.getElementById("paginaAnalisis"),
-        billetera: document.getElementById("paginaBilletera"),
-      };
-      const items = {
-        inicio: document.getElementById("itemInicio"),
-        portafolio: document.getElementById("itemPortafolio"),
-        analisis: document.getElementById("itemAnalisis"),
-        billetera: document.getElementById("itemBilletera"),
-      };
+  <script>
+    // === NAVEGACIÓN ENTRE SECCIONES ===
+    const paginas = {
+      inicio: document.getElementById("paginaInicio"),
+      portafolio: document.getElementById("paginaPortafolio"),
+      analisis: document.getElementById("paginaAnalisis"),
+      billetera: document.getElementById("paginaBilletera"),
+    };
+    const items = {
+      inicio: document.getElementById("itemInicio"),
+      portafolio: document.getElementById("itemPortafolio"),
+      analisis: document.getElementById("itemAnalisis"),
+      billetera: document.getElementById("itemBilletera"),
+    };
 
-      function mostrarPagina(activa) {
-        Object.values(paginas).forEach((p) => p.classList.add("d-none"));
-        paginas[activa].classList.remove("d-none");
-        document.querySelectorAll("#menu a").forEach((a) => a.classList.remove("active"));
-        items[activa].querySelector("a").classList.add("active");
-      }
+    function mostrarPagina(activa) {
+      Object.values(paginas).forEach((p) => p.classList.add("d-none"));
+      paginas[activa].classList.remove("d-none");
+      document
+        .querySelectorAll("#menu a")
+        .forEach((a) => a.classList.remove("active"));
+      items[activa].querySelector("a").classList.add("active");
+    }
 
-      items.inicio.querySelector("a").addEventListener("click", (e) => {
-        e.preventDefault();
-        mostrarPagina("inicio");
-      });
-      items.portafolio.querySelector("a").addEventListener("click", (e) => {
-        e.preventDefault();
-        mostrarPagina("portafolio");
-      });
-      items.analisis.querySelector("a").addEventListener("click", (e) => {
-        e.preventDefault();
-        mostrarPagina("analisis");
-      });
-      items.billetera.querySelector("a").addEventListener("click", (e) => {
-        e.preventDefault();
-        mostrarPagina("billetera");
-      });
+    items.inicio.querySelector("a").addEventListener("click", (e) => {
+      e.preventDefault();
+      mostrarPagina("inicio");
+    });
+    items.portafolio.querySelector("a").addEventListener("click", (e) => {
+      e.preventDefault();
+      mostrarPagina("portafolio");
+    });
+    items.analisis.querySelector("a").addEventListener("click", (e) => {
+      e.preventDefault();
+      mostrarPagina("analisis");
+    });
+    items.billetera.querySelector("a").addEventListener("click", (e) => {
+      e.preventDefault();
+      mostrarPagina("billetera");
+    });
 
-      // === CALCULADORA DE COMISIONES ===
-      document.addEventListener('DOMContentLoaded', function() {
-        const montoInput = document.getElementById('monto');
-        const tasaInput = document.getElementById('tasa');
-        const calcularBtn = document.querySelector('#paginaBilletera .btn-primary');
+    // === CALCULADORA DE COMISIONES ===
+    document.addEventListener("DOMContentLoaded", function () {
+      const montoInput = document.getElementById("monto");
+      const tasaInput = document.getElementById("tasa");
+      const calcularBtn = document.querySelector(
+        "#paginaBilletera .btn-primary"
+      );
 
-        if (calcularBtn) {
-          calcularBtn.addEventListener('click', function() {
-            const monto = parseFloat(montoInput.value) || 0;
-            const tasa = parseFloat(tasaInput.value) || 0;
-            const comision = (monto * tasa) / 100;
-            const total = monto - comision;
+      if (calcularBtn) {
+        calcularBtn.addEventListener("click", function () {
+          const monto = parseFloat(montoInput.value) || 0;
+          const tasa = parseFloat(tasaInput.value) || 0;
+          const comision = (monto * tasa) / 100;
+          const total = monto - comision;
 
-            const alert = document.querySelector('#paginaBilletera .alert-info');
-            if (alert) {
-              alert.innerHTML = `
+          const alert = document.querySelector(
+            "#paginaBilletera .alert-info"
+          );
+          if (alert) {
+            alert.innerHTML = `
                 <div class="d-flex justify-content-between">
                   <span>Comisión estimada:</span>
                   <strong>$${comision.toFixed(2)}</strong>
@@ -640,10 +583,11 @@
                   <strong>$${total.toFixed(2)}</strong>
                 </div>
               `;
-            }
-          });
-        }
-      });
-    </script>
-  </body>
+          }
+        });
+      }
+    });
+  </script>
+</body>
+
 </html>
