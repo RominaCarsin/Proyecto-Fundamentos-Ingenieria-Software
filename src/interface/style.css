@@ -2,21 +2,25 @@
 body {
   margin: 0;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  display: flex;
-  height: 100vh;
   background: #eaf1fa;
-  overflow: hidden;
+  overflow-x: hidden; /* ✅ solo oculta scroll horizontal, no vertical */
 }
 
-.content {
-  flex: 1;
-  background: #f1f5f9;
-  padding: 20px;
+main,
+section.content {
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  overflow-y: auto;
+  padding: 20px;
   margin-left: 70px;
+  background: #f1f5f9;
   transition: margin-left 0.3s ease;
+}
+
+/* Cuando el menú se expande */
+.menuLateral:hover ~ main,
+.menuLateral:hover ~ section.content {
+  margin-left: 230px;
 }
 
 /* ======== BARRA LATERAL ======== */
@@ -114,6 +118,11 @@ body {
   justify-content: center;
 }
 
+
+.content {
+    margin-left: 70px;
+  }
+  
 /* Enlaces deshabilitados (Configuración, Centro de Aprendizaje) */
 .menu li.disabled-link a {
   pointer-events: none !important;
