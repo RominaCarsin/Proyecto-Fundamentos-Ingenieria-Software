@@ -20,7 +20,7 @@ body {
 }
 
 /* ======== BARRA LATERAL ======== */
-.barraLateral {
+.menuLateral {
   width: 70px;
   background: #5374a9;
   color: white;
@@ -33,25 +33,20 @@ body {
   z-index: 1000;
 }
 
-.barraLateral:hover {
+.menuLateral:hover {
   width: 230px;
 }
 
-.barraLateral:hover ~ .content {
+.menuLateral:hover ~ .content {
   margin-left: 230px;
 }
 
 .contenedorLogo {
   display: flex;
   align-items: center;
-  padding: 20px 15px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
-
 .logo {
-  width: 40px;
-  height: 40px;
-  min-width: 40px;
+  width: 60px;
 }
 
 .banda {
@@ -65,7 +60,7 @@ body {
   white-space: nowrap;
 }
 
-.barraLateral:hover .banda {
+.menuLateral:hover .banda {
   opacity: 1;
   visibility: visible;
 }
@@ -107,7 +102,7 @@ body {
   font-weight: 500;
 }
 
-.barraLateral:hover .text {
+.menuLateral:hover .text {
   opacity: 1;
   visibility: visible;
 }
@@ -403,7 +398,7 @@ h3, h4, h5 {
     padding: 15px;
   }
   
-  .barraLateral {
+  .menuLateral {
     width: 60px;
   }
   
@@ -487,5 +482,8 @@ h3, h4, h5 {
     min-height: 380px;
   }
 } */
+
+
+
 
 

@@ -22,7 +22,9 @@
 
   <body>
     <!-- Menu lateral -->
-    <aside id="barraLateral" class="barraLateral">
+
+
+    <aside id="menuLateral" class="menuLateral">
       <div id="contenedorLogo" class="contenedorLogo">
         <img id="logo" src="img/Logo.png" class="logo" alt="Logo de TradeUy" />
         <h1 id="banda" class="banda">TradeUy</h1>
@@ -179,14 +181,14 @@
             <div class="card p-3 h-100">
               <div class="d-flex justify-content-between align-items-center mb-3">
                 <nav class="d-flex gap-2" aria-label="Herramientas del gráfico">
-                  <button class="btn btn-light btn-sm" title="Ver alertas de mercado">
+                  <button id="btnAlertas" class="btn btn-light btn-sm" title="Ver alertas de mercado">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black" viewBox="0 0 24 24">
                       <path
                         d="M19 13.586V10c0-3.217-2.185-5.927-5.145-6.742C13.562 2.52 12.846 2 12 2s-1.562.52-1.855 1.258C7.185 4.074 5 6.783 5 10v3.586l-1.707 1.707A.996.996 0 0 0 3 16v2a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-2a.996.996 0 0 0-.293-.707L19 13.586z"
                       />
                     </svg>
                   </button>
-                  <button class="btn btn-light btn-sm" title="Análisis de gráfica">
+                  <button id="btnAnalisis" class="btn btn-light btn-sm" title="Análisis de gráfica">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="20"
@@ -201,10 +203,10 @@
                   </button>
                 </nav>
                 <nav class="d-flex gap-1" aria-label="Intervalos de tiempo del gráfico">
-                  <button class="btn btn-outline-secondary btn-sm">min</button>
-                  <button class="btn btn-outline-secondary btn-sm">h</button>
-                  <button class="btn btn-outline-secondary btn-sm">d</button>
-                  <button class="btn btn-outline-secondary btn-sm">m</button>
+                  <button id="btnIntervaloMin" class="btn btn-outline-secondary btn-sm">min</button>
+                  <button id="btnIntervaloHora" class="btn btn-outline-secondary btn-sm">h</button>
+                  <button id="btnIntervaloDia" class="btn btn-outline-secondary btn-sm">d</button>
+                  <button id="btnIntervaloMes" class="btn btn-outline-secondary btn-sm">m</button>
                 </nav>
               </div>
 
@@ -237,8 +239,8 @@
               <input id="dinero" type="number" class="form-control mb-3" placeholder="0.00" />
 
               <div class="d-flex gap-2 mt-auto">
-                <button type="button" class="btn btn-success flex-fill">Comprar</button>
-                <button type="button" class="btn btn-danger flex-fill">Vender</button>
+                <button id="btnComprar" type="button" class="btn btn-success flex-fill">Comprar</button>
+                <button id="btnVender" type="button" class="btn btn-danger flex-fill">Vender</button>
               </div>
             </div>
           </div>
@@ -249,9 +251,9 @@
           <!-- COTIZACIONES (Izquierda) -->
           <div class="col-lg-8">
             <div class="card p-3 h-100">
-              <h4 class="mb-3">
+              <h3 class="mb-3">
                 <i class="bi bi-currency-exchange me-2"></i>Cotizaciones
-              </h4>
+              </h3>
               <div class="d-flex justify-content-between gap-2">
                 <button class="btn btn-outline-secondary flex-fill mx-1 active">USD</button>
                 <button class="btn btn-outline-secondary flex-fill mx-1" disabled>EUR</button>
@@ -280,12 +282,13 @@
         <div class="buscador-container mb-4">
           <div class="input-group buscador-portafolio">
             <input
+              id="buscarPortafolio"
               type="text"
               class="form-control"
               placeholder="Buscar activo..."
               aria-label="Buscar activo"
             />
-            <button class="btn btn-outline-secondary" type="button" aria-label="Buscar">
+            <button id="btnBuscarPortafolio" class="btn btn-outline-secondary" type="button" aria-label="Buscar">
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
                 <path d="M21.707 20.293l-3.388-3.388A8.928 8.928 0 0 0 19 11a9 9 0 1 0-9 9 8.928 8.928 0 0 0 5.905-2.681l3.388 3.388a1 1 0 0 0 1.414-1.414zM11 18a7 7 0 1 1 7-7 7.008 7.008 0 0 1-7 7z" />
               </svg>
@@ -305,47 +308,11 @@
         <!-- Ejemplo de tarjeta -->
         <div class="col-sm-6 col-md-4 col-lg-3">
           <div class="card activo text-center p-3" data-tipo="Bonos">
-            <h3 class="fw-bold mb-1">Bono del Tesoro</h3>
-            <p class="text-muted small mb-2">Tipo: Bonos</p>
+            <h3 class="fw-bold mb-1"></h3>
+            <p class="text-muted small mb-2">Tipo:</p>
             <div class="d-flex justify-content-around align-items-center mb-2">
               <span class="badge bg-light text-dark px-3">Rendimiento fijo</span>
-              <span class="fw-bold text-success">$ 250</span>
-            </div>
-            <button class="btn btn-outline-primary btn-sm">Ir</button>
-          </div>
-        </div>
-
-        <div class="col-sm-6 col-md-4 col-lg-3">
-          <div class="card activo text-center p-3" data-tipo="Criptomonedas">
-            <h3 class="fw-bold mb-1">Bitcoin</h3>
-            <p class="text-muted small mb-2">Tipo: Criptomoneda</p>
-            <div class="d-flex justify-content-around align-items-center mb-2">
-              <span class="badge bg-light text-dark px-3">BTC</span>
-              <span class="fw-bold text-success">$ 42,000</span>
-            </div>
-            <button class="btn btn-outline-primary btn-sm">Ir</button>
-          </div>
-        </div>
-
-        <div class="col-sm-6 col-md-4 col-lg-3">
-          <div class="card activo text-center p-3" data-tipo="Forex">
-            <h3 class="fw-bold mb-1">EUR/USD</h3>
-            <p class="text-muted small mb-2">Tipo: Forex</p>
-            <div class="d-flex justify-content-around align-items-center mb-2">
-              <span class="badge bg-light text-dark px-3">Par de divisas</span>
-              <span class="fw-bold text-success">1.09</span>
-            </div>
-            <button class="btn btn-outline-primary btn-sm">Ir</button>
-          </div>
-        </div>
-
-        <div class="col-sm-6 col-md-4 col-lg-3">
-          <div class="card activo text-center p-3" data-tipo="Acciones">
-            <h3 class="fw-bold mb-1">Tesla</h3>
-            <p class="text-muted small mb-2">Tipo: Acción</p>
-            <div class="d-flex justify-content-around align-items-center mb-2">
-              <span class="badge bg-light text-dark px-3">NASDAQ</span>
-              <span class="fw-bold text-success">$ 200</span>
+              <span class="fw-bold text-success">$ </span>
             </div>
             <button class="btn btn-outline-primary btn-sm">Ir</button>
           </div>
@@ -366,12 +333,13 @@
         <div class="buscador-container mb-4">
           <div class="input-group buscador-analisis">
             <input
+              id="buscarAnalisis"
               type="text"
               class="form-control"
               placeholder="Buscar instrumento..."
               aria-label="Buscar instrumento"
             />
-            <button class="btn btn-outline-secondary" type="button" aria-label="Buscar">
+            <button id="btnBuscarAnalisis" class="btn btn-outline-secondary" type="button" aria-label="Buscar">
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
                 <path
                   d="M21.707 20.293l-3.388-3.388A8.928 8.928 0 0 0 19 11a9 9 0 1 0-9 9 8.928 8.928 0 0 0 5.905-2.681l3.388 3.388a1 1 0 0 0 1.414-1.414zM11 18a7 7 0 1 1 7-7 7.008 7.008 0 0 1-7 7z"
@@ -408,68 +376,13 @@
                   <td>
                     <div class="form-check">
                       <input id="checkBono" class="form-check-input" type="checkbox">
-                      <label for="checkBono" class="form-check-label">Bono del Tesoro</label>
+                      <label for="checkBono" class="form-check-label">Nombre de la accion</label>
                     </div>
                   </td>
                   <td class="text-center">
-                    <span class="text-danger me-2">-2.3%</span>
-                    <img src="img/grafico-rojo.png" alt="Gráfico" width="60" />
+                    <span class="text-danger me-2">porcentaje de ganancia o perdida (danger-rojo y success-verde)</span>
                   </td>
-                  <td class="text-center">$240</td>
-                  <td class="text-center">
-                    <button class="btn btn-danger btn-sm">V</button>
-                    <button class="btn btn-success btn-sm">C</button>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td>
-                    <div class="form-check">
-                      <input id="checkBitcoin" class="form-check-input" type="checkbox">
-                      <label for="checkBitcoin" class="form-check-label">Bitcoin</label>
-                    </div>
-                  </td>
-                  <td class="text-center">
-                    <span class="text-success me-2">+3.5%</span>
-                    <img src="img/grafico-verde.png" alt="Gráfico verde" width="60" />
-                  </td>
-                  <td class="text-center">$42,000</td>
-                  <td class="text-center">
-                    <button class="btn btn-danger btn-sm">V</button>
-                    <button class="btn btn-success btn-sm">C</button>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td>
-                    <div class="form-check">
-                      <input id="checkEurUsd" class="form-check-input" type="checkbox">
-                      <label for="checkEurUsd" class="form-check-label">EUR/USD</label>
-                    </div>
-                  </td>
-                  <td class="text-center">
-                    <span class="text-success me-2">+0.8%</span>
-                    <img src="img/grafico-verde.png" alt="G" width="60" />
-                  </td>
-                  <td class="text-center">1.09</td>
-                  <td class="text-center">
-                    <button class="btn btn-danger btn-sm">V</button>
-                    <button class="btn btn-success btn-sm">C</button>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td>
-                    <div class="form-check">
-                      <input id="checkTesla" class="form-check-input" type="checkbox">
-                      <label for="checkTesla" class="form-check-label">Tesla</label>
-                    </div>
-                  </td>
-                  <td class="text-center">
-                    <span class="text-danger me-2">-1.1%</span>
-                    <img src="img/grafico-rojo.png" alt="Gráfico a borrar" width="60" />
-                  </td>
-                  <td class="text-center">$200</td>
+                  <td class="text-center">$</td>
                   <td class="text-center">
                     <button class="btn btn-danger btn-sm">V</button>
                     <button class="btn btn-success btn-sm">C</button>
@@ -488,16 +401,16 @@
             </h3>
             <ul class="list-group small">
               <li class="list-group-item d-flex justify-content-between align-items-center">
-                Total seleccionados <span class="fw-bold">2</span>
+                Total seleccionados <span class="fw-bold"> cuantos elem seleccione</span>
               </li>
               <li class="list-group-item d-flex justify-content-between align-items-center">
-                Promedio rendimiento <span class="text-success fw-bold">+1.5%</span>
+                Promedio rendimiento <span class="text-success fw-bold"> cv</span>
               </li>
               <li class="list-group-item d-flex justify-content-between align-items-center">
-                Costo estimado <span class="fw-bold">$42,240</span>
+                Costo estimado <span class="fw-bold">$</span>
               </li>
               <li class="list-group-item d-flex justify-content-between align-items-center">
-                Última actualización <span class="text-muted">hace 5 min</span>
+                Última actualización <span class="text-muted">tiempo</span>
               </li>
             </ul>
           </div>
@@ -519,15 +432,15 @@
             <dl class="d-flex justify-content-around mb-3">
               <div>
                 <p class="text-muted small mb-1">Saldo total</p>
-                <p class="fw-bold">$ 2,450</p>
+                <p class="fw-bold">$ 0.0</p>
               </div>
               <div>
                 <p class="text-muted small mb-1">Disponible</p>
-                <p class="fw-bold">$ 2,000</p>
+                <p class="fw-bold">$ 0.0</p>
               </div>
               <div>
                 <p class="text-muted small mb-1">En garantía</p>
-                <p class="fw-bold">$ 450</p>
+                <p class="fw-bold">$ 0.0</p>
               </div>
             </dl>
             <nav class="d-flex justify-content-center gap-2" aria-label="Acciones de cuenta">
@@ -540,20 +453,20 @@
         <div class="col-md-6 col-lg-4">
           <div class="card text-center p-3 shadow-sm">
             <h3 class="fw-semibold mb-2">UYU - Peso Uruguayo</h3>
-            <div class="d-flex justify-content-around mb-3">
+            <dl class="d-flex justify-content-around mb-3">
               <div>
                 <p class="text-muted small mb-1">Saldo total</p>
-                <p class="fw-bold">$ 73,000</p>
+                <p class="fw-bold">$ 0.0</p>
               </div>
               <div>
                 <p class="text-muted small mb-1">Disponible</p>
-                <p class="fw-bold">$ 70,000</p>
+                <p class="fw-bold">$ 0.0</p>
               </div>
               <div>
                 <p class="text-muted small mb-1">En garantía</p>
-                <p class="fw-bold">$ 3,000</p>
+                <p class="fw-bold">$ 0.0</p>
               </div>
-            </div>
+            </dl>
             <nav class="d-flex justify-content-center gap-2" aria-label="Acciones de cuenta">
               <button class="btn btn-success px-4">↑ Depósito</button>
               <button class="btn btn-outline-danger px-4">↓ Retiro</button>
