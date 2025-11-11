@@ -1,13 +1,12 @@
-// clases/Activo.js
 export class Activo {
-  constructor(idActivo, nombre, tipo, precioActual) {
-    this.idActivo = idActivo;
-    this.nombre = nombre;
-    this.tipo = tipo;
-    this.precioActual = precioActual;
+  constructor(nombre, tipo, precio, tendencia) {
+    this.nombre = nombre;       
+    this.tipo = tipo;           //  "acción", "cripto"
+    this.precio = precio;       
+    this.tendencia = tendencia; // "up" o "down"
   }
 
   actualizarPrecio(nuevoPrecio) {
-    this.precioActual = nuevoPrecio;
+    this.precio = nuevoPrecio;
   }
 }

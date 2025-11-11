@@ -1,13 +1,21 @@
-// clases/Portafolio.js
-export class Portafolio {
-  constructor(idPortafolio, fechaCreacion) {
-    this.idPortafolio = idPortafolio;
-    this.fechaCreacion = fechaCreacion;
-    this.activos = [];
+import { Transaccion } from "./transaccion.js";
+
+export class Portfolio {
+  constructor() {
+    this.transacciones = [];
   }
 
-  calculoRendimiento() {}
-  generarGrafico() {}
-  obtenerMetricas() {}
-  generarHerramientas() {}
+  agregarTransaccion(transaccion) {
+    if (transaccion instanceof Transaccion) {
+      this.transacciones.push(transaccion);
+    }
+  }
+
+  obtenerTransacciones() {
+    return this.transacciones;
+  }
+
+  obtenerUltimas(n = 5) {
+    return this.transacciones.slice(-n).reverse();
+  }
 }

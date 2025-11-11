@@ -42,4 +42,3 @@ for (let i = 0; i < itemsMenu.length; i++) {
 // Mostrar página de Inicio por defecto
 mostrarPagina("paginaInicio");
 actualizarMenuActivo("itemInicio");
-

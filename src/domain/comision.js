@@ -1,13 +1,9 @@
-// clases/Comision.js
 export class Comision {
-  constructor(idComision, tipoComision, porcentaje, montoFijo) {
-    this.idComision = idComision;
-    this.tipoComision = tipoComision;
-    this.porcentaje = porcentaje;
-    this.montoFijo = montoFijo;
+  constructor(tasa = 1.3) {
+    this.tasa = tasa; // porcentaje por defecto
   }
 
-  calcularComision(monto) {
-    return monto * (this.porcentaje / 100) + this.montoFijo;
+  calcular(monto) {
+    return (monto * this.tasa) / 100;
   }
 }

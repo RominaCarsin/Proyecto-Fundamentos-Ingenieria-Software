@@ -171,6 +171,13 @@
         <article class="col-lg-4">
           <article id="cardOperaciones" class="card p-3 h-100">
             <h3 id="tituloOperaciones" class="fw-semibold mb-3">Operaciones</h3>
+            
+            <label for="selccionDeAccionInicio" class="form-label">Acción</label>
+            <select id="selccionDeAccionInicio" class="form-select">
+              <option>Opcion 1</option>
+            </select>
+
+
 
             <label for="tipoAccion" class="form-label">Tipo de Acción</label>
             <select id="tipoAccion" class="form-select mb-3">
@@ -270,7 +277,7 @@
             <span id="badgeActivo1" class="badge bg-light text-dark px-3">Rendimiento fijo</span>
             <span id="valorActivo1" class="fw-bold text-success">$ </span>
           </section>
-          <button id="btnActivo1" class="btn btn-outline-primary btn-sm">Ir</button>
+          <button id="btnActivo1" class="btn btn-primary btn-sm">Ir</button>
         </article>
       </article>
     </section>
@@ -335,8 +342,7 @@
                 </td>
                 <td class="text-center">$</td>
                 <td class="text-center">
-                  <button id="btnVenderInstrumento1" class="btn btn-danger btn-sm">V</button>
-                  <button id="btnComprarInstrumento1" class="btn btn-success btn-sm">C</button>
+                  <button id="btnOperar" class="btn btn-primary btn-sm">Operar</button>
                 </td>
               </tr>
             </tbody>

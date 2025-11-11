@@ -1,25 +1,19 @@
-// clases/Cuenta.js
 export class Cuenta {
-  constructor(idCuenta, tipo, saldo, moneda) {
-    this.idCuenta = idCuenta;
-    this.tipo = tipo;
-    this.saldo = saldo;
-    this.moneda = moneda;
+  constructor(saldosIniciales = { USD: 0, UYU: 0 }) {
+    this.saldos = saldosIniciales;
   }
 
-  fondearCuenta(monto) {
-    this.saldo += monto;
+  sumarSaldo(moneda, cantidad) {
+    if (!this.saldos[moneda]) this.saldos[moneda] = 0;
+    this.saldos[moneda] += cantidad;
   }
 
-  consultarSaldo() {
-    return this.saldo;
+  restarSaldo(moneda, cantidad) {
+    if (!this.saldos[moneda]) this.saldos[moneda] = 0;
+    this.saldos[moneda] -= cantidad;
   }
 
-  retirar(monto) {
-    if (monto <= this.saldo) {
-      this.saldo -= monto;
-    } else {
-      console.error("Saldo insuficiente");
-    }
+  obtenerSaldo(moneda) {
+    return this.saldos[moneda] || 0;
   }
 }

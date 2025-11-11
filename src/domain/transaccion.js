@@ -1,15 +1,12 @@
-// clases/Transaccion.js
 export class Transaccion {
-  constructor(idTransaccion, tipo, monto, fecha, comisiones, estado) {
-    this.idTransaccion = idTransaccion;
-    this.tipo = tipo;
-    this.monto = monto;
-    this.fecha = fecha;
-    this.comisiones = comisiones;
-    this.estado = estado;
+  constructor(tipo, activo, monto) {
+    this.tipo = tipo;       // "compra" o "venta"
+    this.activo = activo;   
+    this.monto = monto;    
+    this.fecha = new Date();
   }
 
-  ejecutar() {
-    console.log(`Transacción ${this.idTransaccion} ejecutada`);
+  resumen() {
+    return `${this.tipo.toUpperCase()} ${this.activo.nombre} por $${this.monto} (${this.fecha.toLocaleString()})`;
   }
 }
