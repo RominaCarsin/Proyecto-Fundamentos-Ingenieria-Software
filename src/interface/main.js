@@ -2,7 +2,8 @@ import { Usuario } from "../domain/usuario.js";
 import { Activo } from "../domain/activo.js";
 import { Transaccion } from "../domain/transaccion.js";
 
-// === Datos base simulados (modo demo) ===
+//Datos cargados
+
 const activosDemo = [
   new Activo(1, "Microsoft (MSFT)", "Acciones", 498.57, 2.1),
   new Activo(2, "Apple (AAPL)", "Acciones", 220.1, -1.2),
@@ -10,371 +11,314 @@ const activosDemo = [
   new Activo(4, "Bono UY", "Bonos", 100.0, 0.8),
 ];
 
-// === Estado general ===
 let usuario = new Usuario("Demo User", "demo@tradeuy.com");
 let monedaActual = "USD";
 const cotizaciones = { USD: 1, UYU: 40 };
-let activoSeleccionado = activosDemo[0];
+let activoSeleccionado = null;
+let modoDemo = true;
+let activosActuales = [...activosDemo];
+let operacionesAbiertas = [];
 
-// === Elementos del DOM ===
-const selectAccion = document.getElementById("selccionDeAccionInicio");
-const tipoAccion = document.getElementById("tipoAccion");
-const campoAccion = document.getElementById("accion");
-const campoDinero = document.getElementById("dinero");
-const btnComprar = document.getElementById("btnComprar");
-const btnVender = document.getElementById("btnVender");
-const textoPosiciones = document.getElementById("textoPosicionesAbiertas");
-
-const btnUSD = document.getElementById("btnUSD");
-const btnUYU = document.getElementById("btnUYU");
-const switchCuenta = document.getElementById("switchCheckDefault");
-
-// === Inicialización ===
-function inicializar() {
-  // Cargar lista de activos
-  activosDemo.forEach((a) => {
-    const opt = document.createElement("option");
-    opt.value = a.id;
-    opt.textContent = a.nombre;
-    selectAccion.appendChild(opt);
-  });
-  actualizarDatosActivo();
-}
-
-// === Actualiza tipo y valor de activo al cambiar selección ===
-selectAccion.addEventListener("change", () => {
-  const id = Number(selectAccion.value);
-  activoSeleccionado = activosDemo.find((a) => a.id === id);
-  actualizarDatosActivo();
-});
-
-function actualizarDatosActivo() {
-  tipoAccion.value = activoSeleccionado.tipo;
-  campoAccion.value = 0;
-  campoDinero.value = 0;
-}
-
-// === Vinculación bidireccional Acción <-> Dinero ===
-campoAccion.addEventListener("input", () => {
-  const cantidad = parseFloat(campoAccion.value) || 0;
-  campoDinero.value = (cantidad * activoSeleccionado.precio * cotizaciones[monedaActual]).toFixed(2);
-});
-
-campoDinero.addEventListener("input", () => {
-  const dinero = parseFloat(campoDinero.value) || 0;
-  campoAccion.value = (dinero / (activoSeleccionado.precio * cotizaciones[monedaActual])).toFixed(4);
-});
-
-// === Cambio de cotización (moneda activa) ===
-btnUSD.addEventListener("click", () => cambiarMoneda("USD"));
-btnUYU.addEventListener("click", () => cambiarMoneda("UYU"));
-
-function cambiarMoneda(nuevaMoneda) {
-  monedaActual = nuevaMoneda;
-  [btnUSD, btnUYU].forEach((b) => b.classList.remove("active"));
-  (nuevaMoneda === "USD" ? btnUSD : btnUYU).classList.add("active");
-
-  // Recalcular montos actuales
-  campoAccion.dispatchEvent(new Event("input"));
-}
-
-// === Operaciones (Comprar / Vender) ===
-btnComprar.addEventListener("click", () => operar("Compra"));
-btnVender.addEventListener("click", () => operar("Venta"));
-
-function operar(tipo) {
-  const cantidad = parseFloat(campoAccion.value);
-  const dinero = parseFloat(campoDinero.value);
-  if (cantidad <= 0 || dinero <= 0) {
-    alert("Ingrese valores válidos para operar.");
-    return;
-  }
-
-  const transaccion = new Transaccion(tipo, activoSeleccionado.nombre, cantidad, dinero);
-  usuario.registrarTransaccion(transaccion);
-  actualizarHistorial();
-  limpiarCampos();
-}
-
-// === Muestra operaciones recientes ===
-function actualizarHistorial() {
-  const transacciones = usuario.transacciones.slice(-3);
-  if (transacciones.length === 0) {
-    textoPosiciones.textContent = "Sin operaciones recientes.";
-  } else {
-    textoPosiciones.innerHTML = transacciones
-      .map((t) => `<div>${t.resumen()}</div>`)
-      .join("");
-  }
-}
-
-function limpiarCampos() {
-  campoAccion.value = "";
-  campoDinero.value = "";
-}
-
-// === Alternar cuenta Demo / Real ===
-switchCuenta.addEventListener("change", () => {
-  usuario.cuenta.alternarModo();
-  const label = document.querySelector("label[for='switchCheckDefault']");
-  label.textContent = usuario.cuenta.modo === "Demo" ? "Cuenta Demo" : "Cuenta Real";
-  textoPosiciones.textContent = "Sin operaciones recientes.";
-  usuario = new Usuario("Demo User", "demo@tradeuy.com"); // reinicia para simplicidad
-});
-
-// === Arranque ===
-inicializar();
-
-
-
-// FUNCIONAMIENTO DEL MENÚ
+//hago ref para no reepetir todo el tiempo codigo - luego cambiarlo
 let itemsMenu = document.querySelectorAll('[id^="item"]');
+let switchCuenta = document.getElementById("switchCheckDefault");
+let selectAccion = document.getElementById("selccionDeAccionInicio");
+let tipoAccion = document.getElementById("tipoAccion");
+let valorAccionTexto = document.getElementById("idValorDeAccion");
+let inputAccion = document.getElementById("accion");
+let inputDinero = document.getElementById("dinero");
+let btnUSD = document.getElementById("btnUSD");
+let btnUYU = document.getElementById("btnUYU");
+let textoPosiciones = document.getElementById("textoPosicionesAbiertas");
+let btnComprar = document.getElementById("btnComprar");
+let btnVender = document.getElementById("btnVender");
 
+//GESTION DE MENU
 function mostrarPagina(idPagina) {
-  let todasLasPaginas = document.querySelectorAll('[id^="pagina"]');
-  for (let i = 0; i < todasLasPaginas.length; i++) {
-    let pagina = todasLasPaginas[i];
-    if (pagina.id === idPagina) {
-      pagina.classList.remove("d-none");
-    } else {
-      pagina.classList.add("d-none");
-    }
+  let paginas = document.querySelectorAll('[id^="pagina"]');
+  for (let pagina of paginas) {
+    pagina.classList.toggle("d-none", pagina.id !== idPagina);
   }
 }
 
-// Actualiza el menú activo
 function actualizarMenuActivo(idItem) {
-  for (let i = 0; i < itemsMenu.length; i++) {
-    let item = itemsMenu[i];
+  for (let item of itemsMenu) {
     let link = item.querySelector("a");
-    if (link) {
-      if (item.id === idItem) {
-        link.classList.add("active");
-      } else {
-        link.classList.remove("active");
-      }
-    }
+    if (link) link.classList.toggle("active", item.id === idItem);
   }
 }
 
-//Asignar los eventos a cada ítem del menú
-for (let i = 0; i < itemsMenu.length; i++) {
-  (function (item) {
-    item.addEventListener("click", function () {
-      let nombre = item.id.replace("item", "pagina"); 
+function configurarMenu() {
+  for (let item of itemsMenu) {
+    item.addEventListener("click", function (e) {
+      if (item.classList.contains("disabled-link")) {
+        e.preventDefault();
+        return;
+      }
+      let nombre = item.id.replace("item", "pagina");
       mostrarPagina(nombre);
       actualizarMenuActivo(item.id);
     });
-  })(itemsMenu[i]);
+  }
+
+  mostrarPagina("paginaInicio");
+  actualizarMenuActivo("itemInicio");
 }
 
-// Mostrar página de Inicio por defecto
-mostrarPagina("paginaInicio");
-actualizarMenuActivo("itemInicio");
+//Cambio de modo
+function cambiarModoCuenta() {
+  modoDemo = switchCuenta.checked;
+  let etiqueta = document.querySelector('label[for="switchCheckDefault"]');
+  etiqueta.textContent = modoDemo ? "Cuenta Demo" : "Cuenta Real";
 
-// ===============================
-// FUNCIONALIDAD DE LA VENTANA INICIO
-// ===============================
-document.addEventListener("DOMContentLoaded", () => {
-  console.log("✅ Ventana de Inicio cargada");
+  if (modoDemo) {
+    activosActuales = [...activosDemo];
+  } else {
+    activosActuales = [
+      new Activo(5, "Ethereum (ETH)", "Criptomonedas", 3750.2, 1.1),
+      new Activo(6, "UYU/USD", "Forex", 0.025, 0.3),
+    ];
+  }
 
-  // --- ELEMENTOS CLAVE ---
-  const switchCuenta = document.getElementById("switchCheckDefault");
-  const selectAccion = document.getElementById("selccionDeAccionInicio");
-  const tipoAccion = document.getElementById("tipoAccion");
-  const inputAccion = document.getElementById("accion");
-  const inputDinero = document.getElementById("dinero");
-  const btnUSD = document.getElementById("btnUSD");
-  const btnUYU = document.getElementById("btnUYU");
-  const textoPosiciones = document.getElementById("textoPosicionesAbiertas");
-  const btnComprar = document.getElementById("btnComprar");
-  const btnVender = document.getElementById("btnVender");
+  cargarAcciones();
+  limpiarCampos();
+  actualizarPosiciones();
+}
 
-  // --- DATOS BASE (simulados) ---
-  const cotizaciones = { USD: 1, UYU: 40, EUR: 1.05 };
-  let monedaActiva = "USD";
-  let modoDemo = true;
+//INICIO
+function cargarAcciones(lista) {
+  if (!lista) lista = activosActuales;
+  selectAccion.innerHTML = "<option value=''>Seleccione una acción</option>";
 
-  // Activos simulados (se usarán en modo demo o real)
-  const activosDemo = [
-    { nombre: "Bitcoin", tipo: "Criptomoneda", valor: 69000.5 },
-    { nombre: "AAPL - Apple", tipo: "Acción", valor: 228.9 },
-    { nombre: "MSFT - Microsoft", tipo: "Acción", valor: 410.4 },
-    { nombre: "Bono Uruguay 2030", tipo: "Bono", valor: 98.4 },
-  ];
+  for (let a of lista) {
+    let opt = document.createElement("option");
+    opt.value = a.id;
+    opt.textContent = a.nombre;
+    selectAccion.appendChild(opt);
+  }
+}
 
-  const activosReales = [
-    { nombre: "Ethereum", tipo: "Criptomoneda", valor: 3750.2 },
-    { nombre: "UYU/USD", tipo: "Forex", valor: 0.025 },
-  ];
+function seleccionarAccion() {
+  let id = Number(selectAccion.value);
+  activoSeleccionado = activosActuales.find((a) => a.id === id);
 
-  let activosActuales = [...activosDemo];
-  let operacionesAbiertas = [];
+  if (!activoSeleccionado) {
+    tipoAccion.value = "";
+    valorAccionTexto.textContent = "Valor de Acción: -";
+    inputAccion.value = "";
+    inputDinero.value = "";
+    return;
+  }
 
-  // ===============================
-  // 1️⃣ MODO DEMO / REAL
-  // ===============================
-  switchCuenta.addEventListener("change", () => {
-    modoDemo = switchCuenta.checked; // true si es demo
-    activosActuales = modoDemo ? activosDemo : activosReales;
-    document.querySelector('label[for="switchCheckDefault"]').textContent =
-      modoDemo ? "Cuenta Demo" : "Cuenta Real";
+  tipoAccion.value = activoSeleccionado.tipo;
+  let precio = activoSeleccionado.precio * cotizaciones[monedaActual];
+  valorAccionTexto.textContent = "Valor de Acción: $" + precio.toFixed(2);
+  inputAccion.value = 1;
+  inputDinero.value = precio.toFixed(2);
+}
+
+function filtrarPorTipo() {
+  let tipoSeleccionado = tipoAccion.options[tipoAccion.selectedIndex].textContent.trim();
+
+  if (tipoSeleccionado === "" || tipoSeleccionado === "Seleccione tipo") {
     cargarAcciones();
-    limpiarCampos();
-    actualizarPosiciones();
-    console.log("🔁 Modo:", modoDemo ? "Demo" : "Real");
-  });
-
-  // ===============================
-  // 2️⃣ CARGAR ACCIONES DISPONIBLES
-  // ===============================
-  function cargarAcciones() {
-    selectAccion.innerHTML = "";
-    activosActuales.forEach((a) => {
-      const opt = document.createElement("option");
-      opt.value = a.nombre;
-      opt.textContent = a.nombre;
-      selectAccion.appendChild(opt);
-    });
-    cargarDatosAccion();
+    activoSeleccionado = null;
+    valorAccionTexto.textContent = "Valor de Acción: -";
+    inputAccion.value = "";
+    inputDinero.value = "";
+    return;
   }
 
-  // ===============================
-  // 3️⃣ SELECCIONAR UNA ACCIÓN
-  // ===============================
-  selectAccion.addEventListener("change", cargarDatosAccion);
+  let filtradas = activosActuales.filter((a) => a.tipo === tipoSeleccionado);
+  cargarAcciones(filtradas);
 
-  function cargarDatosAccion() {
-    const nombre = selectAccion.value;
-    const activo = activosActuales.find((a) => a.nombre === nombre);
-    if (activo) {
-      tipoAccion.value = activo.tipo;
-      inputAccion.value = 1;
-      inputDinero.value = convertirMoneda(activo.valor, "USD", monedaActiva);
-    }
-  }
-
-  // ===============================
-  // 4️⃣ VINCULACIÓN BIDIRECCIONAL ENTRE ACCIÓN Y DINERO
-  // ===============================
-  inputAccion.addEventListener("input", () => {
-    const nombre = selectAccion.value;
-    const activo = activosActuales.find((a) => a.nombre === nombre);
-    if (!activo) return;
-    const cantidad = parseFloat(inputAccion.value) || 0;
-    inputDinero.value = (convertirMoneda(activo.valor, "USD", monedaActiva) * cantidad).toFixed(2);
-  });
-
-  inputDinero.addEventListener("input", () => {
-    const nombre = selectAccion.value;
-    const activo = activosActuales.find((a) => a.nombre === nombre);
-    if (!activo) return;
-    const dinero = parseFloat(inputDinero.value) || 0;
-    inputAccion.value = (dinero / convertirMoneda(activo.valor, "USD", monedaActiva)).toFixed(4);
-  });
-
-  // ===============================
-  // 5️⃣ CAMBIO DE MONEDA (COTIZACIONES)
-  // ===============================
-  btnUSD.addEventListener("click", () => cambiarMoneda("USD"));
-  btnUYU.addEventListener("click", () => cambiarMoneda("UYU"));
-
-  function cambiarMoneda(moneda) {
-    monedaActiva = moneda;
-    btnUSD.classList.toggle("active", moneda === "USD");
-    btnUYU.classList.toggle("active", moneda === "UYU");
-    btnUSD.classList.toggle("btn-outline-secondary", moneda !== "USD");
-    btnUYU.classList.toggle("btn-outline-secondary", moneda !== "UYU");
-    btnUSD.classList.toggle("btn-secondary", moneda === "USD");
-    btnUYU.classList.toggle("btn-secondary", moneda === "UYU");
-    recargarValoresPorMoneda();
-  }
-
-  function recargarValoresPorMoneda() {
-    const nombre = selectAccion.value;
-    const activo = activosActuales.find((a) => a.nombre === nombre);
-    if (!activo) return;
-    const cantidad = parseFloat(inputAccion.value) || 0;
-    inputDinero.value = (convertirMoneda(activo.valor, "USD", monedaActiva) * cantidad).toFixed(2);
-  }
-
-  function convertirMoneda(valor, origen, destino) {
-    return valor * (cotizaciones[destino] / cotizaciones[origen]);
-  }
-
-  // ===============================
-  // 6️⃣ OPERAR (COMPRAR / VENDER)
-  // ===============================
-  btnComprar.addEventListener("click", () => operar("Compra"));
-  btnVender.addEventListener("click", () => operar("Venta"));
-
-  function operar(tipo) {
-    const nombre = selectAccion.value;
-    const activo = activosActuales.find((a) => a.nombre === nombre);
-    const cantidad = parseFloat(inputAccion.value);
-    const dinero = parseFloat(inputDinero.value);
-
-    if (!activo || !cantidad || !dinero) {
-      alert("⚠️ Complete los campos antes de operar.");
-      return;
-    }
-
-    // Si es modo demo, no se guarda realmente
-    if (modoDemo) {
-      alert(`🧪 Simulación de ${tipo} (${nombre}) por $${dinero} en modo Demo`);
-      return;
-    }
-
-    const operacion = {
-      fecha: new Date().toLocaleDateString(),
-      tipo,
-      activo: nombre,
-      cantidad,
-      monto: dinero,
-      estado: "Completada",
-    };
-
-    operacionesAbiertas.unshift(operacion);
-    actualizarPosiciones();
-    alert(`✅ ${tipo} realizada: ${nombre} por $${dinero.toFixed(2)}`);
-  }
-
-  // ===============================
-  // 7️⃣ POSICIONES ABIERTAS
-  // ===============================
-  function actualizarPosiciones() {
-    if (modoDemo) {
-      textoPosiciones.textContent = "Simulación activa (modo Demo).";
-      return;
-    }
-
-    if (operacionesAbiertas.length === 0) {
-      textoPosiciones.textContent = "Sin operaciones recientes.";
-      return;
-    }
-
-    textoPosiciones.innerHTML = operacionesAbiertas
-      .slice(0, 3)
-      .map(
-        (op) =>
-          `<strong>${op.fecha}</strong> - ${op.tipo} ${op.activo} (${op.cantidad}u) por <span class="text-success">$${op.monto.toFixed(
-            2
-          )}</span>`
-      )
-      .join("<br>");
-  }
-
-  // ===============================
-  // 8️⃣ LIMPIAR CAMPOS
-  // ===============================
-  function limpiarCampos() {
+  if (filtradas.length > 0) {
+    let primerActivo = filtradas[0];
+    selectAccion.value = primerActivo.id;
+    activoSeleccionado = primerActivo;
+    let precio = primerActivo.precio * cotizaciones[monedaActual];
+    valorAccionTexto.textContent = "Valor de Acción: $" + precio.toFixed(2);
+    inputAccion.value = 1;
+    inputDinero.value = precio.toFixed(2);
+  } else {
+    activoSeleccionado = null;
+    valorAccionTexto.textContent = "Valor de Acción: -";
     inputAccion.value = "";
     inputDinero.value = "";
   }
+}
 
-  // ===============================
-  // 🚀 INICIALIZAR TODO
-  // ===============================
+
+function cambiarMoneda(nuevaMoneda) {
+  monedaActual = nuevaMoneda;
+  btnUSD.classList.remove("active");
+  btnUYU.classList.remove("active");
+  if (nuevaMoneda === "USD") btnUSD.classList.add("active");
+  else btnUYU.classList.add("active");
+
+  if (activoSeleccionado) {
+    let precio = activoSeleccionado.precio * cotizaciones[monedaActual];
+    valorAccionTexto.textContent = "Valor de Acción: $" + precio.toFixed(2);
+    recalcularValores();
+  }
+}
+
+function recalcularValores() {
+  if (!activoSeleccionado) return;
+  let cantidad = parseFloat(inputAccion.value) || 0;
+  inputDinero.value = (cantidad * activoSeleccionado.precio * cotizaciones[monedaActual]).toFixed(2);
+}
+
+
+// OPERAR (COMPRAR / VENDER)
+
+function operar(tipo) {
+  let cantidad = parseFloat(inputAccion.value);
+  let dinero = parseFloat(inputDinero.value);
+
+  if (!activoSeleccionado) {
+    mostrarAlerta("Debe seleccionar una acción antes de operar.");
+    return;
+  }
+
+  if (isNaN(cantidad) || isNaN(dinero)) {
+    mostrarAlerta("Debe ingresar una cantidad válida.");
+    return;
+  }
+
+  if (cantidad <= 0 || dinero <= 0) {
+    mostrarAlerta("La cantidad y el monto deben ser mayores que cero.");
+    return;
+  }
+
+  try {
+    if (tipo === "Compra") {
+      activoSeleccionado.comprar(cantidad);
+    } else {
+      activoSeleccionado.vender(cantidad);
+    }
+
+    let transaccion = new Transaccion(
+      tipo,
+      activoSeleccionado.nombre,
+      cantidad,
+      dinero
+    );
+
+    usuario.registrarTransaccion(transaccion);
+    operacionesAbiertas.unshift(transaccion);
+
+    // Agrega la nueva transacción al panel sin borrar las anteriores
+    agregarTransaccionAlPanel(transaccion);
+
+    limpiarCampos();
+
+    mostrarAlerta(tipo + " realizada con éxito.");
+  } catch (error) {
+    mostrarAlerta(error.message);
+  }
+}
+
+
+//Mejora la pagina
+function mostrarAlerta(mensaje) {
+  // Crea la alerta
+  let alerta = document.createElement("div");
+  alerta.className = "alert alert-warning mt-2 py-2 px-3 text-center border border-warning";
+  alerta.textContent = mensaje;
+
+  // Inserta la alerta arriba sin borrar las operaciones
+  textoPosiciones.prepend(alerta);
+
+  // Elimina la alerta luego de 3.5 segundos
+  setTimeout(function () {
+    if (alerta && alerta.parentElement) {
+      alerta.remove();
+    }
+  }, 3500);
+}
+
+function actualizarPosiciones() {
+  if (usuario.transacciones.length === 0) {
+    textoPosiciones.textContent = "Sin operaciones recientes.";
+    return;
+  }
+
+  let recientes = usuario.transacciones.slice().reverse();
+  let html = "";
+
+  for (let t of recientes) {
+    html +=
+      "<div class='mb-1'><strong>" +
+      t.fecha.toLocaleDateString() +
+      "</strong> - " +
+      t.tipo +
+      " " +
+      t.activo +
+      " (" +
+      t.cantidad +
+      "u) por <span class='text-success'>$" +
+      t.monto.toFixed(2) +
+      "</span></div>";
+  }
+
+  textoPosiciones.innerHTML = html;
+}
+function agregarTransaccionAlPanel(transaccion) {
+  if (!transaccion) return;
+
+  //Agrega la nueva transacción en la parte superior del listado
+  let item = document.createElement("div");
+  item.className = "mb-1";
+  item.innerHTML =
+    "<strong>" +
+    transaccion.fecha.toLocaleDateString() +
+    "</strong> - " +
+    transaccion.tipo +
+    " " +
+    transaccion.activo +
+    " (" +
+    transaccion.cantidad +
+    "u) por <span class='text-success'>$" +
+    transaccion.monto.toFixed(2) +
+    "</span>";
+
+  //Si es la primera transacción, limpiamos el mensaje por defecto
+  if (textoPosiciones.textContent === "Sin operaciones recientes.") {
+    textoPosiciones.innerHTML = "";
+  }
+
+  //Insertamos la nueva transacción al inicio del panel
+  textoPosiciones.prepend(item);
+}
+
+function limpiarCampos() {
+  inputAccion.value = "";
+  inputDinero.value = "";
+}
+
+
+// EVENTOS PRINCIPALES, luego moverlo para arriba del todo
+
+document.addEventListener("DOMContentLoaded", function () {
+  configurarMenu();
   cargarAcciones();
   actualizarPosiciones();
+
+  switchCuenta.addEventListener("change", cambiarModoCuenta);
+  selectAccion.addEventListener("change", seleccionarAccion);
+  tipoAccion.addEventListener("change", filtrarPorTipo);
+  btnUSD.addEventListener("click", function () {
+    cambiarMoneda("USD");
+  });
+  btnUYU.addEventListener("click", function () {
+    cambiarMoneda("UYU");
+  });
+  inputAccion.addEventListener("input", recalcularValores);
+  btnComprar.addEventListener("click", function () {
+    operar("Compra");
+  });
+  btnVender.addEventListener("click", function () {
+    operar("Venta");
+  });
 });

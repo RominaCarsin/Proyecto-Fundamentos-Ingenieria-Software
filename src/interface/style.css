@@ -293,6 +293,13 @@ body:has(.menuLateral:hover) {
   }
 }
 
+
+#textoPosicionesAbiertas{
+  max-height: 100px;
+  overflow-y: auto;        /* 🔹 activa scroll vertical */
+  padding-right: 6px;  
+}
+
 @media (max-width: 768px) {
   .menuLateral {
     width: 100%;

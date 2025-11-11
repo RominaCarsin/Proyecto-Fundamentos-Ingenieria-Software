@@ -171,7 +171,7 @@
         <article class="col-lg-4">
           <article id="cardOperaciones" class="card p-3 h-100">
             <h3 id="tituloOperaciones" class="fw-semibold mb-3">Operaciones</h3>
-            
+
             <label for="selccionDeAccionInicio" class="form-label">Seleccionar acción</label>
             <select id="selccionDeAccionInicio" class="form-select">
               <option>Opcion 1</option>
@@ -187,13 +187,13 @@
               <option value="stop">Acciones</option>
             </select>
 
-            <p class="form-label fw-semibold">Valor de Acción:</p>
+            <p id="idValorDeAccion" class="form-label fw-semibold">Valor de Acción:</p>
 
             <label for="accion" class="form-label">Acción</label>
-            <input id="accion" type="number" class="form-control mb-3" placeholder="0.00" />
+            <input id="accion" type="number" class="form-control mb-3" placeholder="0.00" min="1" />
 
             <label for="dinero" class="form-label">Dinero</label>
-            <input id="dinero" type="number" class="form-control mb-3" placeholder="0.00" />
+            <input id="dinero" type="number" class="form-control mb-3" placeholder="0.00" min="1" />
 
             <nav class="d-flex gap-2 mt-auto">
               <button id="btnComprar" type="button" class="btn btn-success flex-fill">
@@ -235,11 +235,12 @@
             <h3 id="tituloPosicionesAbiertas">
               <i class="bi bi-clock-history me-2"></i>Posiciones Abiertas
             </h3>
-            <p id="textoPosicionesAbiertas" class="text-muted small mb-0">Sin operaciones recientes.</p>
+
+            <!-- 🔹 Scroll SOLO en el contenido -->
+            <div id="textoPosicionesAbiertas" class="text-muted small mb-0 overflow-auto border rounded p-2">
+              Sin operaciones recientes.
+            </div>
           </article>
-        </article>
-      </section>
-    </section>
   </main>
 
   <!-- ====== SECCIÓN PORTAFOLIO ====== -->

@@ -3,7 +3,8 @@ export class Activo {
   #nombre;
   #tipo;
   #precio;
-  #rendimiento; // porcentaje (+/-)
+  #rendimiento;
+  #cantidadPoseida;
 
   constructor(id, nombre, tipo, precio, rendimiento = 0) {
     this.#id = id;
@@ -11,23 +12,51 @@ export class Activo {
     this.#tipo = tipo;
     this.#precio = precio;
     this.#rendimiento = rendimiento;
+    this.#cantidadPoseida = 0;
   }
 
-  actualizarPrecio(nuevoPrecio) {
-    if (nuevoPrecio <= 0) throw new Error("Precio inválido");
-    const variacion = ((nuevoPrecio - this.#precio) / this.#precio) * 100;
-    this.#precio = nuevoPrecio;
-    this.#rendimiento = Number(variacion.toFixed(2));
-  }
-
+  // === Getters ===
   get id() { return this.#id; }
   get nombre() { return this.#nombre; }
   get tipo() { return this.#tipo; }
   get precio() { return this.#precio; }
   get rendimiento() { return this.#rendimiento; }
+  get cantidadPoseida() { return this.#cantidadPoseida; }
+
+  // === Métodos de instancia ===
+  actualizarPrecio(nuevoPrecio) {
+    this.#rendimiento = ((nuevoPrecio - this.#precio) / this.#precio) * 100;
+    this.#precio = nuevoPrecio;
+  }
+
+  comprar(cantidad) {
+    if (cantidad <= 0) throw new Error("Cantidad inválida para comprar.");
+    this.#cantidadPoseida += cantidad;
+  }
+
+  vender(cantidad) {
+    if (cantidad <= 0) throw new Error("Cantidad inválida para vender.");
+    if (cantidad > this.#cantidadPoseida) {
+      throw new Error(`No hay suficientes acciones de ${this.#nombre} para vender.`);
+    }
+    this.#cantidadPoseida -= cantidad;
+  }
+
+  obtenerCantidadPoseida() {
+    return this.#cantidadPoseida;
+  }
 
   toString() {
-    const color = this.#rendimiento >= 0 ? "+" : "";
-    return `${this.#nombre} (${this.#tipo}) - $${this.#precio} (${color}${this.#rendimiento}%)`;
+    return `${this.#nombre} (${this.#tipo}) - $${this.#precio.toFixed(2)} | Rend: ${this.#rendimiento.toFixed(2)}% | Poseídas: ${this.#cantidadPoseida}`;
+  }
+
+  // === Métodos estáticos ===
+  static obtenerTipoPorNombre(nombre, listaActivos) {
+    const encontrado = listaActivos.find(a => a.nombre === nombre);
+    return encontrado ? encontrado.tipo : null;
+  }
+
+  static filtrarPorTipo(tipo, listaActivos) {
+    return listaActivos.filter(a => a.tipo === tipo);
   }
 }
