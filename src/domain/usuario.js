@@ -1,10 +1,28 @@
+import { Cuenta } from "./cuenta.js";
+import { Portafolio } from "./portafolio.js";
+
 export class Usuario {
-  constructor(nombre, esDemo = true) {
-    this.nombre = nombre;
-    this.esDemo = esDemo;
+  #nombre;
+  #email;
+  #cuenta;
+  #portafolio;
+  #transacciones;
+
+  constructor(nombre, email) {
+    this.#nombre = nombre;
+    this.#email = email;
+    this.#cuenta = new Cuenta();
+    this.#portafolio = new Portafolio();
+    this.#transacciones = [];
   }
 
-  modoCuenta() {
-    return this.esDemo ? "Demo" : "Real";
+  registrarTransaccion(transaccion) {
+    this.#transacciones.push(transaccion);
   }
+
+  get nombre() { return this.#nombre; }
+  get email() { return this.#email; }
+  get cuenta() { return this.#cuenta; }
+  get portafolio() { return this.#portafolio; }
+  get transacciones() { return [...this.#transacciones]; }
 }

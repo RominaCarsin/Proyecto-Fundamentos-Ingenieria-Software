@@ -1,21 +1,27 @@
-import { Transaccion } from "./transaccion.js";
+import { Activo } from "./activo.js";
 
-export class Portfolio {
+export class Portafolio {
+  #activos;
+
   constructor() {
-    this.transacciones = [];
+    this.#activos = [];
   }
 
-  agregarTransaccion(transaccion) {
-    if (transaccion instanceof Transaccion) {
-      this.transacciones.push(transaccion);
-    }
+  agregar(activo) {
+    if (!(activo instanceof Activo)) throw new Error("Activo inválido");
+    const existe = this.#activos.some(a => a.id === activo.id);
+    if (!existe) this.#activos.push(activo);
   }
 
-  obtenerTransacciones() {
-    return this.transacciones;
+  buscar(nombre) {
+    return this.#activos.find(a => a.nombre.toLowerCase() === nombre.toLowerCase());
   }
 
-  obtenerUltimas(n = 5) {
-    return this.transacciones.slice(-n).reverse();
+  filtrarPorTipo(tipo) {
+    return this.#activos.filter(a => a.tipo === tipo);
+  }
+
+  get lista() {
+    return [...this.#activos];
   }
 }
