@@ -40,7 +40,7 @@ body {
 }
 
 /* ======== LOGO ======== */
-.contenedorLogo {
+/* .contenedorLogo {
   display: flex;
   align-items: center;
   padding: 1rem 0rem;
@@ -50,6 +50,18 @@ body {
 .logo {
   width: 60px;
   margin: 0 auto;
+} */
+
+.contenedorLogo {
+  display: flex;
+  align-items: center;
+  padding: 1rem 0rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logo {
+  width: 60px;
+  position: center;
 }
 
 .banda {
@@ -327,10 +339,7 @@ body:has(.menuLateral:hover) {
   }
 
   /* logo centrado */
-  .contenedorLogo {
-    justify-content: center;
-    padding: 1rem 0;
-  }
+  
 
   /* textos ocultos por defecto */
   .text,
