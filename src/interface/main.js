@@ -42,3 +42,210 @@ for (let i = 0; i < itemsMenu.length; i++) {
 // Mostrar página de Inicio por defecto
 mostrarPagina("paginaInicio");
 actualizarMenuActivo("itemInicio");
+
+// ===============================
+// FUNCIONALIDAD DE LA VENTANA INICIO
+// ===============================
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("✅ Ventana de Inicio cargada");
+
+  // --- ELEMENTOS CLAVE ---
+  const switchCuenta = document.getElementById("switchCheckDefault");
+  const selectAccion = document.getElementById("selccionDeAccionInicio");
+  const tipoAccion = document.getElementById("tipoAccion");
+  const inputAccion = document.getElementById("accion");
+  const inputDinero = document.getElementById("dinero");
+  const btnUSD = document.getElementById("btnUSD");
+  const btnUYU = document.getElementById("btnUYU");
+  const textoPosiciones = document.getElementById("textoPosicionesAbiertas");
+  const btnComprar = document.getElementById("btnComprar");
+  const btnVender = document.getElementById("btnVender");
+
+  // --- DATOS BASE (simulados) ---
+  const cotizaciones = { USD: 1, UYU: 40, EUR: 1.05 };
+  let monedaActiva = "USD";
+  let modoDemo = true;
+
+  // Activos simulados (se usarán en modo demo o real)
+  const activosDemo = [
+    { nombre: "Bitcoin", tipo: "Criptomoneda", valor: 69000.5 },
+    { nombre: "AAPL - Apple", tipo: "Acción", valor: 228.9 },
+    { nombre: "MSFT - Microsoft", tipo: "Acción", valor: 410.4 },
+    { nombre: "Bono Uruguay 2030", tipo: "Bono", valor: 98.4 },
+  ];
+
+  const activosReales = [
+    { nombre: "Ethereum", tipo: "Criptomoneda", valor: 3750.2 },
+    { nombre: "UYU/USD", tipo: "Forex", valor: 0.025 },
+  ];
+
+  let activosActuales = [...activosDemo];
+  let operacionesAbiertas = [];
+
+  // ===============================
+  // 1️⃣ MODO DEMO / REAL
+  // ===============================
+  switchCuenta.addEventListener("change", () => {
+    modoDemo = switchCuenta.checked; // true si es demo
+    activosActuales = modoDemo ? activosDemo : activosReales;
+    document.querySelector('label[for="switchCheckDefault"]').textContent =
+      modoDemo ? "Cuenta Demo" : "Cuenta Real";
+    cargarAcciones();
+    limpiarCampos();
+    actualizarPosiciones();
+    console.log("🔁 Modo:", modoDemo ? "Demo" : "Real");
+  });
+
+  // ===============================
+  // 2️⃣ CARGAR ACCIONES DISPONIBLES
+  // ===============================
+  function cargarAcciones() {
+    selectAccion.innerHTML = "";
+    activosActuales.forEach((a) => {
+      const opt = document.createElement("option");
+      opt.value = a.nombre;
+      opt.textContent = a.nombre;
+      selectAccion.appendChild(opt);
+    });
+    cargarDatosAccion();
+  }
+
+  // ===============================
+  // 3️⃣ SELECCIONAR UNA ACCIÓN
+  // ===============================
+  selectAccion.addEventListener("change", cargarDatosAccion);
+
+  function cargarDatosAccion() {
+    const nombre = selectAccion.value;
+    const activo = activosActuales.find((a) => a.nombre === nombre);
+    if (activo) {
+      tipoAccion.value = activo.tipo;
+      inputAccion.value = 1;
+      inputDinero.value = convertirMoneda(activo.valor, "USD", monedaActiva);
+    }
+  }
+
+  // ===============================
+  // 4️⃣ VINCULACIÓN BIDIRECCIONAL ENTRE ACCIÓN Y DINERO
+  // ===============================
+  inputAccion.addEventListener("input", () => {
+    const nombre = selectAccion.value;
+    const activo = activosActuales.find((a) => a.nombre === nombre);
+    if (!activo) return;
+    const cantidad = parseFloat(inputAccion.value) || 0;
+    inputDinero.value = (convertirMoneda(activo.valor, "USD", monedaActiva) * cantidad).toFixed(2);
+  });
+
+  inputDinero.addEventListener("input", () => {
+    const nombre = selectAccion.value;
+    const activo = activosActuales.find((a) => a.nombre === nombre);
+    if (!activo) return;
+    const dinero = parseFloat(inputDinero.value) || 0;
+    inputAccion.value = (dinero / convertirMoneda(activo.valor, "USD", monedaActiva)).toFixed(4);
+  });
+
+  // ===============================
+  // 5️⃣ CAMBIO DE MONEDA (COTIZACIONES)
+  // ===============================
+  btnUSD.addEventListener("click", () => cambiarMoneda("USD"));
+  btnUYU.addEventListener("click", () => cambiarMoneda("UYU"));
+
+  function cambiarMoneda(moneda) {
+    monedaActiva = moneda;
+    btnUSD.classList.toggle("active", moneda === "USD");
+    btnUYU.classList.toggle("active", moneda === "UYU");
+    btnUSD.classList.toggle("btn-outline-secondary", moneda !== "USD");
+    btnUYU.classList.toggle("btn-outline-secondary", moneda !== "UYU");
+    btnUSD.classList.toggle("btn-secondary", moneda === "USD");
+    btnUYU.classList.toggle("btn-secondary", moneda === "UYU");
+    recargarValoresPorMoneda();
+  }
+
+  function recargarValoresPorMoneda() {
+    const nombre = selectAccion.value;
+    const activo = activosActuales.find((a) => a.nombre === nombre);
+    if (!activo) return;
+    const cantidad = parseFloat(inputAccion.value) || 0;
+    inputDinero.value = (convertirMoneda(activo.valor, "USD", monedaActiva) * cantidad).toFixed(2);
+  }
+
+  function convertirMoneda(valor, origen, destino) {
+    return valor * (cotizaciones[destino] / cotizaciones[origen]);
+  }
+
+  // ===============================
+  // 6️⃣ OPERAR (COMPRAR / VENDER)
+  // ===============================
+  btnComprar.addEventListener("click", () => operar("Compra"));
+  btnVender.addEventListener("click", () => operar("Venta"));
+
+  function operar(tipo) {
+    const nombre = selectAccion.value;
+    const activo = activosActuales.find((a) => a.nombre === nombre);
+    const cantidad = parseFloat(inputAccion.value);
+    const dinero = parseFloat(inputDinero.value);
+
+    if (!activo || !cantidad || !dinero) {
+      alert("⚠️ Complete los campos antes de operar.");
+      return;
+    }
+
+    // Si es modo demo, no se guarda realmente
+    if (modoDemo) {
+      alert(`🧪 Simulación de ${tipo} (${nombre}) por $${dinero} en modo Demo`);
+      return;
+    }
+
+    const operacion = {
+      fecha: new Date().toLocaleDateString(),
+      tipo,
+      activo: nombre,
+      cantidad,
+      monto: dinero,
+      estado: "Completada",
+    };
+
+    operacionesAbiertas.unshift(operacion);
+    actualizarPosiciones();
+    alert(`✅ ${tipo} realizada: ${nombre} por $${dinero.toFixed(2)}`);
+  }
+
+  // ===============================
+  // 7️⃣ POSICIONES ABIERTAS
+  // ===============================
+  function actualizarPosiciones() {
+    if (modoDemo) {
+      textoPosiciones.textContent = "Simulación activa (modo Demo).";
+      return;
+    }
+
+    if (operacionesAbiertas.length === 0) {
+      textoPosiciones.textContent = "Sin operaciones recientes.";
+      return;
+    }
+
+    textoPosiciones.innerHTML = operacionesAbiertas
+      .slice(0, 3)
+      .map(
+        (op) =>
+          `<strong>${op.fecha}</strong> - ${op.tipo} ${op.activo} (${op.cantidad}u) por <span class="text-success">$${op.monto.toFixed(
+            2
+          )}</span>`
+      )
+      .join("<br>");
+  }
+
+  // ===============================
+  // 8️⃣ LIMPIAR CAMPOS
+  // ===============================
+  function limpiarCampos() {
+    inputAccion.value = "";
+    inputDinero.value = "";
+  }
+
+  // ===============================
+  // 🚀 INICIALIZAR TODO
+  // ===============================
+  cargarAcciones();
+  actualizarPosiciones();
+});
