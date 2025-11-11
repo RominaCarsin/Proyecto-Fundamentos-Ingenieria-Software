@@ -15,8 +15,8 @@
 
   <!-- CSS después (personalizaciones finales) -->
   <link rel="stylesheet" href="style.css" />
+  
 </head>
-
 <body>
   <!-- Menu lateral -->
   <aside id="menuLateral" class="menuLateral">
@@ -27,7 +27,7 @@
     <nav>
       <ul id="menu" class="menu">
         <li id="itemInicio">
-          <a href="#paginaInicio" class="active">
+          <a href="#" role="button" class="active">
             <span class="icon">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" style="fill: white">
                 <path
@@ -39,7 +39,7 @@
         </li>
 
         <li id="itemPortafolio">
-          <a href="#">
+          <a href="#" role="button" class="active">
             <span class="icon">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" style="fill: white">
                 <path
@@ -51,7 +51,7 @@
         </li>
 
         <li id="itemAnalisis">
-          <a href="#">
+          <a href="#" role="button" class="active">
             <span class="icon">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" style="fill: white">
                 <path d="M3 3v17a1 1 0 0 0 1 1h17v-2H5V3H3z" />
@@ -64,7 +64,7 @@
         </li>
 
         <li id="itemBilletera">
-          <a href="#">
+          <a href="#" role="button" class="active">
             <span class="icon">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" style="fill: white">
                 <path d="M16 12h2v4h-2z" />
@@ -512,71 +512,8 @@
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
 
-  <script>
-    // === NAVEGACIÓN ENTRE SECCIONES ===
-    const paginas = {
-      inicio: document.getElementById("paginaInicio"),
-      portafolio: document.getElementById("paginaPortafolio"),
-      analisis: document.getElementById("paginaAnalisis"),
-      billetera: document.getElementById("paginaBilletera"),
-    };
-    const items = {
-      inicio: document.getElementById("itemInicio"),
-      portafolio: document.getElementById("itemPortafolio"),
-      analisis: document.getElementById("itemAnalisis"),
-      billetera: document.getElementById("itemBilletera"),
-    };
-
-    function mostrarPagina(activa) {
-      Object.values(paginas).forEach((p) => p.classList.add("d-none"));
-      paginas[activa].classList.remove("d-none");
-      document
-        .querySelectorAll("#menu a")
-        .forEach((a) => a.classList.remove("active"));
-      items[activa].querySelector("a").classList.add("active");
-    }
-
-    items.inicio.querySelector("a").addEventListener("click", (e) => {
-      e.preventDefault();
-      mostrarPagina("inicio");
-    });
-    items.portafolio.querySelector("a").addEventListener("click", (e) => {
-      e.preventDefault();
-      mostrarPagina("portafolio");
-    });
-    items.analisis.querySelector("a").addEventListener("click", (e) => {
-      e.preventDefault();
-      mostrarPagina("analisis");
-    });
-    items.billetera.querySelector("a").addEventListener("click", (e) => {
-      e.preventDefault();
-      mostrarPagina("billetera");
-    });
-
-    // === CALCULADORA DE COMISIONES ===
-    document.addEventListener("DOMContentLoaded", function () {
-      const montoInput = document.getElementById("monto");
-      const tasaInput = document.getElementById("tasa");
-      const calcularBtn = document.getElementById("btnCalcularComision");
-
-      if (calcularBtn) {
-        calcularBtn.addEventListener("click", function () {
-          const monto = parseFloat(montoInput.value) || 0;
-          const tasa = parseFloat(tasaInput.value) || 0;
-          const comision = (monto * tasa) / 100;
-          const total = monto - comision;
-
-          const comisionEstimada = document.getElementById("comisionEstimada");
-          const totalRecibir = document.getElementById("totalRecibir");
-          
-          if (comisionEstimada && totalRecibir) {
-            comisionEstimada.textContent = `$${comision.toFixed(2)}`;
-            totalRecibir.textContent = `$${total.toFixed(2)}`;
-          }
-        });
-      }
-    });
-  </script>
+  <!-- SOLO UN SCRIPT MAIN -->
+  <script type="module" src="./main.js"></script>
 </body>
 
 </html>

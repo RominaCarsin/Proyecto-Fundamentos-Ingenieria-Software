@@ -1,30 +1,58 @@
-// main.js
-// ===== IMPORTACIÓN DE CLASES =====
-import { Usuario } from './usuario.js';
-import { Cuenta } from './cuenta.js';
-import { ConfiguracionUsuario } from './configuracion.js';
-import { Activo } from './activo.js';
-import { Portafolio } from './portafolio.js';
-import { Transaccion } from './transaccion.js';
-import { Comision } from './comision.js';
-
-;
+//FUNCIONAMIENTO DE MENU
+let itemInicio = document.getElementById("itemInicio");
+let itemPortafolio = document.getElementById("itemPortafolio");
+let itemAnalisis = document.getElementById("itemAnalisis");
+let itemBilletera = document.getElementById("itemBilletera");
 
 
-document.addEventListener("DOMContentLoaded", () => {
-  console.log("✅ Sistema TradeUy iniciado");
+let paginaInicio = document.getElementById("paginaInicio");
+let paginaPortafolio = document.getElementById("paginaPortafolio");
+let paginaAnalisis = document.getElementById("paginaAnalisis");
+let paginaBilletera = document.getElementById("paginaBilletera");
 
-  const usuario = new Usuario(1, "Guzmán", "guzman@mail.com", "4.123.456-7", "1234");
-  const config = new ConfiguracionUsuario("Español", "Tarjeta", true);
-  usuario.configuracion = config;
 
-  const cuenta = new Cuenta(100, "Inversión", 5000, "USD");
-  usuario.cuentas.push(cuenta);
+function mostrarPagina(paginaActiva) {
+  let secciones = [paginaInicio, paginaPortafolio, paginaAnalisis, paginaBilletera];
 
-  const activo = new Activo(1, "Acción X", "Acción", 120.5);
-  const portafolio = new Portafolio(1, "2025-11-10");
-  portafolio.activos.push(activo);
+  secciones.forEach((seccion) => {
+    if (seccion === paginaActiva) {
+      seccion.classList.remove("d-none");
+    } else {
+      seccion.classList.add("d-none");
+    }
+  });
+}
 
-  console.log(usuario);
-  console.log(portafolio);
+// aux para actualizar el menú activo
+function actualizarMenuActivo(itemActivo) {
+  let items = [itemInicio, itemPortafolio, itemAnalisis, itemBilletera];
+  items.forEach((item) => item.querySelector("a").classList.remove("active"));
+  itemActivo.querySelector("a").classList.add("active");
+}
+
+//Caundo aprieto cada boton que hago en cada parte
+itemInicio.addEventListener("click", () => {
+  mostrarPagina(paginaInicio);
+  actualizarMenuActivo(itemInicio);
 });
+
+itemPortafolio.addEventListener("click", () => {
+  mostrarPagina(paginaPortafolio);
+  actualizarMenuActivo(itemPortafolio);
+});
+
+itemAnalisis.addEventListener("click", () => {
+  mostrarPagina(paginaAnalisis);
+  actualizarMenuActivo(itemAnalisis);
+});
+
+itemBilletera.addEventListener("click", () => {
+  mostrarPagina(paginaBilletera);
+  actualizarMenuActivo(itemBilletera);
+});
+
+//Mostrar Inicio por defecto al cargar la página
+mostrarPagina(paginaInicio);
+actualizarMenuActivo(itemInicio);
+
+console.log("✅ Sistema de navegación cargado correctamente");
