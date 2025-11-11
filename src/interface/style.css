@@ -15,11 +15,11 @@ body {
   color: white;
   display: flex;
   flex-direction: column;
-  position: fixed;          /* ✅ Fijo, no se mueve al hacer scroll */
-  top: 0;                   /* ✅ pegado arriba */
-  left: 0;                  /* ✅ pegado a la izquierda */
-  height: 100vh;            /* ✅ ocupa toda la pantalla */
-  overflow-y: auto;         /* ✅ scroll interno si hay muchos ítems */
+  position: fixed;          
+  top: 0;                   
+  left: 0;                  
+  height: 100vh;            
+  overflow-y: auto;         
   overflow-x: hidden;
   transition: width 0.3s ease;
   z-index: 1000;
@@ -325,8 +325,8 @@ body:has(.menuLateral:hover) {
     position: fixed;
     top: 0;
     left: 0;
-    height: 100vh;           /* ✅ ocupa toda la pantalla */
-    width: 65px;             /* solo íconos */
+    height: 100vh;           
+    width: 65px;             
     background: #5374a9;
     transition: width 0.3s ease;
     z-index: 1000;
