@@ -30,7 +30,7 @@ body {
 .contenedorLogo {
   display: flex;
   align-items: center;
-  padding:1rem 0rem;
+  padding: 1rem 0rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -124,7 +124,8 @@ body {
 /* ======== CONTENIDO PRINCIPAL ======== */
 /* Contenedor principal que envuelve todo el contenido */
 body {
-  padding-left: 70px; /* Espacio para el menú colapsado */
+  padding-left: 70px;
+  /* Espacio para el menú colapsado */
   transition: padding-left 0.3s ease;
 }
 
@@ -254,16 +255,36 @@ body:has(.menuLateral:hover) {
   box-shadow: 0 0 0 0.1rem rgba(83, 116, 169, 0.25);
 }
 
+/* ======== BOTONES DE CATEGORIAS ======== */
+#categorias .btn-outline-primary,
+#categoriasAnalisis .btn-outline-primary {
+  border-radius: 25px;
+  padding: 6px 18px;
+  font-weight: 500;
+  color: #3c5a93;
+  border-color: #3c5a93;
+}
+
+#categorias .btn-outline-primary.active,
+#categoriasAnalisis .btn-outline-primary.active,
+#categorias .btn-outline-primary:hover,
+#categoriasAnalisis .btn-outline-primary:hover {
+  background-color: #5374a9;
+  color: #fff;
+  border-color: #5374a9;
+}
+
 /* ======== RESPONSIVE ======== */
 @media (max-width: 992px) {
   body {
     padding-left: 70px;
   }
-  
+
   body:has(.menuLateral:hover) {
-    padding-left: 70px; /* Mantiene el padding en tablet */
+    padding-left: 70px;
+    /* Mantiene el padding en tablet */
   }
-  
+
   #paginaInicio,
   #paginaPortafolio,
   #paginaAnalisis,
@@ -278,38 +299,38 @@ body:has(.menuLateral:hover) {
     height: auto;
     position: relative;
   }
-  
+
   body {
     padding-left: 0;
     flex-direction: column;
   }
-  
+
   body:has(.menuLateral:hover) {
     padding-left: 0;
   }
-  
+
   .menu {
     display: flex;
     overflow-x: auto;
     padding: 0.5rem;
   }
-  
+
   .menu li {
     margin-bottom: 0;
     flex-shrink: 0;
   }
-  
+
   .contenedorLogo {
     text-align: center;
     /* padding: 1rem; */
   }
-  
+
   .banda {
     display: block;
     opacity: 1;
     visibility: visible;
   }
-  
+
   .text {
     opacity: 1;
     visibility: visible;
