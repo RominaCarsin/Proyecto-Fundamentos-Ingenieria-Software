@@ -2,13 +2,22 @@
 
 ## Selección de Funcionalidades
 
-* Explicar **qué funcionalidades se priorizaron** para implementar en esta entrega.
-* Justificar la selección en base a:
-  * Los objetivos generales del proyecto.
-  * Las necesidades de los usuarios detectadas en la investigación.
-  * Los RF/RNF previamente definidos.
-* Mostrar un **mapa o lista priorizada** de funcionalidades.
-* Indicar qué funcionalidades quedaron fuera de esta entrega y por qué.
+En la entrega del sistema de Inversiones, nos enfocamos en implementar las funcionalidades que realmente permiten usar la aplicación desde el primer momento. Por eso, priorizamos todo lo relacionado con invertir: comprar y vender acciones, ver el portafolio y consultar un análisis básico del mercado para poder decidir dónde invertir. También consideramos necesario que el usuario pueda depositar y retirar dinero, y que el sistema calcule automáticamente las comisiones, para que la experiencia sea lo más realista y transparente posible.
+
+En términos de requerimientos, aplico los RF1, RF2, RF3, RF4, RF8 y RF11, junto con los RNF18 y RNF20, además de las historias de usuario US1 y US2, ya que son los que sostienen el funcionamiento básico y seguro del sistema. Aparte de esto definimos un nuevo US7 “Como usuario, quiero depositar y retirar dinero en distintas monedas para gestionar mis fondos.”
+
+Si el tiempo lo permite, podría sumar funcionalidades complementarias como un Centro de Aprendizaje con información sobre trading o un resumen más completo de cada acción dentro del análisis de mercado. Son cosas que aportan valor, pero no son críticas para que el usuario pueda empezar a invertir.
+
+Por último, dejamos fuera para actualizaciones algunas funciones como el área de configuración y los requerimientos RF5, RF9, RNF19, US3 y US5. No afectan al uso principal y se pueden agregar más adelante sin problemas.
+
+Lista priorizada de funcionalidades 
+Compra y venta de acciones
+Portafolio (ver inversiones realizadas)
+Análisis de Mercado (consultar empresas para invertir)
+Depósito y retiro de dinero
+Aplicación automática de comisiones
+Resumen detallado por acción dentro del análisis de mercado
+
 
 ---
 

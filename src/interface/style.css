@@ -1,15 +1,345 @@
-.navbar {
-  margin-bottom: 40px;
-  background-color: rgba(237, 237, 237, 0.95);
+/* ======== ESTILOS GENERALES ======== */
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: #eaf1fa;
+  display: flex;
+  min-height: 100vh;
 }
 
-#add-countries-image {
-  width: 100%;
-  height: 100%;
+/* ======== BARRA LATERAL ======== */
+.menuLateral {
+  width: 70px;
+  background: #5374a9;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  height: 100vh;
+  overflow: hidden;
+  transition: width 0.3s ease;
+  z-index: 1000;
+  left: 0;
+  top: 0;
 }
 
-.error-container {
-  position: absolute;
-  bottom: 0;
-  right: 20px;
+.menuLateral:hover {
+  width: 230px;
+}
+
+.contenedorLogo {
+  display: flex;
+  align-items: center;
+  padding: 1rem 0rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logo {
+  width: 60px;
+  position: center;
+}
+
+
+
+.banda {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s;
+  white-space: nowrap;
+}
+
+.menuLateral:hover .banda {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ======== MENÚ LATERAL ======== */
+.menu {
+  padding: 0;
+  margin: 20px 0;
+  list-style: none;
+}
+
+.menu li {
+  margin: 5px 0;
+}
+
+.menu li a {
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.9);
+  white-space: nowrap;
+  transition: all 0.2s ease;
+  border-left: 3px solid transparent;
+}
+
+.menu li a:hover,
+.menu li a.active {
+  background: rgba(124, 171, 225, 0.9);
+  color: #fff;
+  border-left-color: #fff;
+}
+
+.text {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s;
+  font-weight: 500;
+  margin-left: 12px;
+}
+
+.menuLateral:hover .text {
+  opacity: 1;
+  visibility: visible;
+}
+
+.icon {
+  font-size: 20px;
+  min-width: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Enlaces deshabilitados */
+.menu li.disabled-link a {
+  pointer-events: none;
+  cursor: not-allowed;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.menu li.disabled-link a:hover {
+  background: transparent;
+  border-left-color: transparent;
+}
+
+.menu li.disabled-link .icon svg {
+  fill: rgba(255, 255, 255, 0.5);
+}
+
+/* ======== CONTENIDO PRINCIPAL ======== */
+/* Contenedor principal que envuelve todo el contenido */
+body {
+  padding-left: 70px;
+  /* Espacio para el menú colapsado */
+  transition: padding-left 0.3s ease;
+}
+
+/* Cuando el menú se expande, ajustamos el padding del body */
+body:has(.menuLateral:hover) {
+  padding-left: 230px;
+}
+
+/* Todas las páginas de contenido ocupan el espacio disponible */
+#paginaInicio,
+#paginaPortafolio,
+#paginaAnalisis,
+#paginaBilletera {
+  flex: 1;
+  padding: 1.5rem;
+  background: #f1f5f9;
+  min-height: 100vh;
+}
+
+/* ======== ESTRUCTURA DE VENTANA1 ======== */
+#ventana1 {
+  display: flex;
+  flex-direction: column;
+ /*  gap: 0.1rem; */
+}
+
+#ventana1 .card {
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Gráfico más alto */
+#ventana1 .col-lg-8 .card {
+  min-height: 350px;
+}
+
+/* Contenedor del gráfico */
+#contenedorGrafico {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #f9fbfd;
+  border: 1px solid #e0e6ef;
+  border-radius: 10px;
+  padding: 30px;
+  text-align: center;
+}
+
+/* Operaciones - botones al final */
+#ventana1 .card .mt-auto {
+  margin-top: auto;
+}
+
+/* Asegurar que las cards tengan la misma altura */
+#ventana1 .row {
+  align-items: stretch;
+}
+
+#ventana1 .card.h-100 {
+  height: 100% !important;
+}
+
+/* Reducir altura de Cotizaciones y Posiciones Abiertas */
+#ventana1 .row.g-4:last-child .col-lg-8 .card,
+#ventana1 .row.g-4:last-child .col-lg-4 .card {
+  min-height: 125px;
+}
+
+/* ======== BOTONES ======== */
+.btn {
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.btn-outline-secondary {
+  color: #374151;
+  border-color: #374151;
+  background-color: #ffffff;
+}
+
+.btn-outline-secondary:hover,
+.btn-outline-secondary.active {
+  background-color: #495057;
+  color: #ffffff;
+  border-color: #495057;
+}
+
+.btn-success {
+  background-color: #218838;
+  border: none;
+  color: #ffffff;
+}
+
+.btn-success:hover {
+  background-color: #1e7e34;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  border: none;
+  color: #ffffff;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+}
+
+/* ======== INPUTS Y SELECTS ======== */
+.form-control,
+.form-select {
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  box-shadow: none;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #5374a9;
+  box-shadow: 0 0 0 0.1rem rgba(83, 116, 169, 0.25);
+}
+
+/* ======== BOTONES DE CATEGORIAS ======== */
+#categorias .btn-outline-primary,
+#categoriasAnalisis .btn-outline-primary {
+  border-radius: 25px;
+  padding: 6px 18px;
+  font-weight: 500;
+  color: #3c5a93;
+  border-color: #3c5a93;
+}
+
+#categorias .btn-outline-primary.active,
+#categoriasAnalisis .btn-outline-primary.active,
+#categorias .btn-outline-primary:hover,
+#categoriasAnalisis .btn-outline-primary:hover {
+  background-color: #5374a9;
+  color: #fff;
+  border-color: #5374a9;
+}
+
+/* ======== RESPONSIVE ======== */
+@media (max-width: 992px) {
+  body {
+    padding-left: 70px;
+  }
+
+  body:has(.menuLateral:hover) {
+    padding-left: 70px;
+    /* Mantiene el padding en tablet */
+  }
+
+  #paginaInicio,
+  #paginaPortafolio,
+  #paginaAnalisis,
+  #paginaBilletera {
+    padding: 1rem;
+  }
+}
+
+
+#textoPosicionesAbiertas{
+  max-height: 100px;
+  overflow-y: auto;        /* 🔹 activa scroll vertical */
+  padding-right: 6px;  
+}
+
+@media (max-width: 768px) {
+  .menuLateral {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+
+  body {
+    padding-left: 0;
+    flex-direction: column;
+  }
+
+  body:has(.menuLateral:hover) {
+    padding-left: 0;
+  }
+
+  .menu {
+    display: flex;
+    overflow-x: auto;
+    padding: 0.5rem;
+  }
+
+  .menu li {
+    margin-bottom: 0;
+    flex-shrink: 0;
+  }
+
+  .contenedorLogo {
+    text-align: center;
+    /* padding: 1rem; */
+  }
+
+  .banda {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .text {
+    opacity: 1;
+    visibility: visible;
+  }
 }
