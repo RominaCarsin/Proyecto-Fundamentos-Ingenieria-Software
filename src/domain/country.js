@@ -1,38 +1,552 @@
-export class Country {
-  #nombre;
-  #capital;
+/* ======== ESTILOS GENERALES ======== */
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: #eaf1fa;
+  overflow-x: hidden; /* solo oculta scroll horizontal, no vertical */
+}
 
-  constructor(aNombre) {
-    this.#nombre = aNombre;
+
+/* ======== CORRECCIÓN DE AJUSTE DE PANTALLA ======== */
+
+/* Asegura que no haya scroll horizontal en ningún momento */
+html, body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden !important;
+}
+
+/* Evita que el contenido se desborde del viewport */
+main, .content, section.content {
+  max-width: calc(100vw - 70px);
+  box-sizing: border-box;
+}
+
+/* Cuando el menú se expande, ajusta sin sobrepasar */
+.menuLateral:hover ~ main,
+.menuLateral:hover ~ section.content {
+  max-width: calc(100vw - 230px);
+}
+
+/* En pantallas grandes, forzamos ajuste */
+@media (min-width: 1200px) {
+  #ventana1 .row {
+    margin-right: 0 !important;
+    margin-left: 0 !important;
   }
 
-  getNombre() {
-    return this.#nombre;
-  }
-
-  setCapital(aCapital) {
-    this.#capital = aCapital;
-  }
-
-  toString() {
-    return `País: ${this.#nombre} - capital: ${this.#capital}`;
-  }
-
-  isValid() {
-    if (
-      this.#nombre === undefined ||
-      this.#nombre === null ||
-      this.#nombre === ""
-    ) {
-      throw new Error("El nombre del país no puede ser vacío");
-    }
-    if (
-      this.#capital === undefined ||
-      this.#capital === null ||
-      this.#capital === ""
-    ) {
-      throw new Error("La capital del país no puede ser vacía");
-    }
-    return true;
+  #ventana1 .col-lg-8,
+  #ventana1 .col-lg-4 {
+    padding-right: 10px !important;
+    padding-left: 10px !important;
   }
 }
+
+/* Previene que el card de operaciones se expanda demasiado */
+#ventana1 .card {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+
+
+
+
+main,
+section.content {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  margin-left: 70px;
+  background: #f1f5f9;
+  transition: margin-left 0.3s ease;
+}
+
+/* Cuando el menú se expande */
+.menuLateral:hover ~ main,
+.menuLateral:hover ~ section.content {
+  margin-left: 230px;
+}
+
+/* ======== BARRA LATERAL ======== */
+.menuLateral {
+  width: 70px;
+  background: #5374a9;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  height: 100vh;
+  overflow: hidden;
+  transition: width 0.3s ease;
+  z-index: 1000;
+}
+
+.menuLateral:hover {
+  width: 230px;
+}
+
+.menuLateral:hover ~ .content {
+  margin-left: 230px;
+}
+
+.contenedorLogo {
+  display: flex;
+  align-items: center;
+}
+.logo {
+  width: 60px;
+}
+
+.banda {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+  margin-left: 15px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s;
+  white-space: nowrap;
+}
+
+.menuLateral:hover .banda {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ======== MENÚ LATERAL ======== */
+.menu {
+  padding: 0;
+  margin: 20px 0;
+  list-style: none;
+}
+
+.menu li {
+  margin: 5px 0;
+}
+
+.menu li a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 15px;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.9);
+  white-space: nowrap;
+  transition: all 0.2s ease;
+  border-left: 3px solid transparent;
+}
+
+.menu li a:hover,
+.menu li a.active {
+  background: rgba(124, 171, 225, 0.9);
+  color: #fff;
+  border-left-color: #fff;
+}
+
+.text {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s;
+  font-weight: 500;
+}
+
+.menuLateral:hover .text {
+  opacity: 1;
+  visibility: visible;
+}
+
+.icon {
+  font-size: 20px;
+  min-width: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+
+.content {
+    
+    flex: 1;
+  background: #f1f5f9;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  margin-left: 70px;
+  transition: margin-left 0.3s ease;
+  }
+  
+/* Enlaces deshabilitados (Configuración, Centro de Aprendizaje) */
+.menu li.disabled-link a {
+  pointer-events: none !important;
+  cursor: not-allowed;
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.menu li.disabled-link a:hover {
+  background: transparent !important;
+  border-left-color: transparent !important;
+}
+
+.menu li.disabled-link .icon svg {
+  fill: rgba(255, 255, 255, 0.5) !important;
+}
+
+/* ======== ENCABEZADO PRINCIPAL ======== */
+#encabezadoInicio {
+  border-bottom: 1px solid #d5e0f0;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+#encabezadoInicio h2 {
+  color: #1a2b49;
+  font-weight: 700;
+}
+#estadoCuentaInicio {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ======== ESTRUCTURA DE VENTANA1 ======== */
+#ventana1 {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Asegurar altura consistente en todas las cards */
+#ventana1 .card {
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Gráfico más alto */
+#ventana1 .col-lg-8 .card {
+  min-height: 350px;
+}
+
+/* Contenedor del gráfico ocupa todo el espacio disponible */
+#contenedorGrafico {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #f9fbfd;
+  border: 1px solid #e0e6ef;
+  border-radius: 10px;
+  padding: 30px;
+  text-align: center;
+}
+
+#contenedorGrafico h3 {
+  color: #6b7a99;
+  font-weight: 500;
+}
+
+/* Operaciones - botones al final */
+#ventana1 .card .mt-auto {
+  margin-top: auto;
+}
+
+/* Asegurar que las cards tengan la misma altura en cada fila */
+#ventana1 .row {
+  align-items: stretch;
+}
+
+#ventana1 .card.h-100 {
+  height: 100% !important;
+}
+
+/* Reducir altura de Cotizaciones */
+#ventana1 .row.g-4:last-child .col-lg-8 .card {
+  min-height: 125px !important; /* Cambia este valor */
+}
+
+/* Reducir altura de Posiciones Abiertas */
+#ventana1 .row.g-4:last-child .col-lg-4 .card {
+  min-height: 125px !important; /* Cambia este valor */
+}
+/* ======== BOTONES ======== */
+.btn {
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+/* Botones grises */
+.btn-outline-secondary {
+  color: #374151 !important;
+  border-color: #374151 !important;
+  background-color: #ffffff;
+}
+.btn-outline-secondary:hover,
+.btn-outline-secondary.active {
+  background-color: #495057 !important;
+  color: #ffffff !important;
+  border-color: #495057 !important;
+}
+
+/* Botones verdes y rojos */
+.btn-success {
+  background-color: #218838;
+  border: none;
+  color: #ffffff;
+}
+.btn-success:hover {
+  background-color: #1e7e34;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  border: none;
+  color: #ffffff;
+}
+.btn-danger:hover {
+  background-color: #c82333;
+}
+
+/* ======== INPUTS Y SELECTS ======== */
+.form-control,
+.form-select {
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  box-shadow: none;
+}
+.form-control:focus,
+.form-select:focus {
+  border-color: #5374a9;
+  box-shadow: 0 0 0 0.1rem rgba(83, 116, 169, 0.25);
+}
+
+/* ======== TEXTOS ======== */
+h3, h4, h5 {
+  color: #1a2b49;
+  font-weight: 600;
+}
+
+.text-muted {
+  color: #6b7280 !important;
+}
+
+/* ======== PORTAFOLIO ======== */
+#paginaPortafolio,
+#paginaAnalisis {
+  background: #eaf1fa;
+}
+#encabezadoPortafolio h2,
+#encabezadoAnalisis h2 {
+  color: #1a2b49;
+  font-weight: 800;
+}
+
+/* ======== BUSCADORES ======== */
+.buscador-container {
+  display: flex;
+  justify-content: flex-start;
+}
+.buscador-portafolio,
+.buscador-analisis {
+  max-width: 400px;
+}
+.buscador-analisis {
+  max-width: 600px;
+}
+.buscador-portafolio input,
+.buscador-analisis input {
+  border-radius: 12px 0 0 12px;
+  border-color: #cbd5e1;
+  background-color: #fff;
+}
+.buscador-portafolio button,
+.buscador-analisis button {
+  border-radius: 0 12px 12px 0;
+  border-color: #cbd5e1;
+  background-color: #f8fafc;
+  transition: background-color 0.2s ease;
+}
+.buscador-portafolio button:hover,
+.buscador-analisis button:hover {
+  background-color: #e2e8f0;
+}
+.buscador-portafolio svg,
+.buscador-analisis svg {
+  vertical-align: middle;
+}
+
+/* ======== CATEGORÍAS ======== */
+#categorias .btn-outline-primary,
+#categoriasAnalisis .btn-outline-primary {
+  border-radius: 25px;
+  padding: 6px 18px;
+  font-weight: 500;
+  color: #3c5a93;
+  border-color: #3c5a93;
+}
+#categorias .btn-outline-primary.active,
+#categoriasAnalisis .btn-outline-primary.active,
+#categorias .btn-outline-primary:hover,
+#categoriasAnalisis .btn-outline-primary:hover {
+  background-color: #5374a9;
+  color: #fff;
+  border-color: #5374a9;
+}
+
+/* ======== TARJETAS DE ACTIVOS ======== */
+#grillaActivos .card.activo {
+  border: 1px solid #d8e3f0;
+  border-radius: 14px;
+  background: #fff;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  min-height: 200px;
+}
+#grillaActivos .card.activo:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+#grillaActivos .card.activo button {
+  border-radius: 25px;
+  font-weight: 500;
+}
+#grillaActivos .card.activo .badge {
+  border-radius: 15px;
+}
+
+/* ======== ANÁLISIS DE MERCADO ======== */
+#contenidoAnalisis table {
+  border-color: #dee2e6;
+}
+#contenidoAnalisis th {
+  color: #1a2b49;
+  font-weight: 600;
+}
+#contenidoAnalisis td {
+  vertical-align: middle;
+}
+#contenidoAnalisis .btn {
+  border-radius: 6px;
+  padding: 3px 10px;
+  font-weight: 600;
+}
+#contenidoAnalisis .form-check-label {
+  color: #334155;
+  font-weight: 500;
+}
+#contenidoAnalisis .list-group-item {
+  border: none;
+  border-bottom: 1px solid #e5e7eb;
+}
+#contenidoAnalisis .list-group-item:last-child {
+  border-bottom: none;
+}
+
+/* ======== RESPONSIVE ======== */
+@media (max-width: 992px) {
+  #ventana1 .card {
+    min-height: 250px;
+  }
+  
+  #ventana1 .col-lg-8 .card {
+    min-height: 300px;
+  }
+  
+  #contenedorGrafico {
+    padding: 15px;
+  }
+  
+  .menuLateral {
+    width: 60px;
+  }
+  
+  .banda {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  #ventana1 .card {
+    min-height: 200px;
+  }
+  
+  #ventana1 .col-lg-8 .card {
+    min-height: 250px;
+  }
+  
+  #contenedorGrafico {
+    padding: 10px;
+  }
+  
+  #contenedorGrafico h3 {
+    font-size: 1.2rem;
+  }
+}
+
+/* ======== MEJORAS PARA LA NUEVA ESTRUCTURA ======== */
+/* Asegurar que los botones de cotizaciones se vean bien */
+#ventana1 .btn-outline-secondary {
+  padding: 8px 12px;
+  font-size: 0.9rem;
+}
+
+/* Mejor espaciado en formularios de operaciones */
+#ventana1 .form-label {
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+#ventana1 .form-control, 
+#ventana1 .form-select {
+  margin-bottom: 16px;
+}
+
+/* Ajustes para posiciones abiertas */
+#ventana1 .card:has(h5:contains("Posiciones Abiertas")) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* Estados hover para mejor UX */
+#ventana1 .card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#ventana1 .card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Mejor contraste para textos importantes */
+.fw-semibold {
+  color: #1a2b49;
+}
+
+/* Ajustes específicos para el gráfico */
+#contenedorGrafico img {
+  max-height: 200px;
+  object-fit: contain;
+}
+
+/* Para pantallas muy grandes */
+ @media (min-width: 1400px) {
+  #ventana1 .card {
+    min-height: 320px;
+  }
+  
+  #ventana1 .col-lg-8 .card {
+    min-height: 380px;
+  }
+} 
+
+
+
+

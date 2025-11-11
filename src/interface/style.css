@@ -3,71 +3,8 @@ body {
   margin: 0;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background: #eaf1fa;
-  overflow-x: hidden; /* solo oculta scroll horizontal, no vertical */
-}
-
-
-/* ======== CORRECCIÓN DE AJUSTE DE PANTALLA ======== */
-
-/* Asegura que no haya scroll horizontal en ningún momento */
-html, body {
-  width: 100%;
-  max-width: 100%;
-  overflow-x: hidden !important;
-}
-
-/* Evita que el contenido se desborde del viewport */
-main, .content, section.content {
-  max-width: calc(100vw - 70px);
-  box-sizing: border-box;
-}
-
-/* Cuando el menú se expande, ajusta sin sobrepasar */
-.menuLateral:hover ~ main,
-.menuLateral:hover ~ section.content {
-  max-width: calc(100vw - 230px);
-}
-
-/* En pantallas grandes, forzamos ajuste */
-@media (min-width: 1200px) {
-  #ventana1 .row {
-    margin-right: 0 !important;
-    margin-left: 0 !important;
-  }
-
-  #ventana1 .col-lg-8,
-  #ventana1 .col-lg-4 {
-    padding-right: 10px !important;
-    padding-left: 10px !important;
-  }
-}
-
-/* Previene que el card de operaciones se expanda demasiado */
-#ventana1 .card {
-  width: 100%;
-  max-width: 100%;
-  overflow: hidden;
-}
-
-
-
-
-
-main,
-section.content {
-  min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  padding: 20px;
-  margin-left: 70px;
-  background: #f1f5f9;
-  transition: margin-left 0.3s ease;
-}
-
-/* Cuando el menú se expande */
-.menuLateral:hover ~ main,
-.menuLateral:hover ~ section.content {
-  margin-left: 230px;
+  min-height: 100vh;
 }
 
 /* ======== BARRA LATERAL ======== */
@@ -82,29 +19,32 @@ section.content {
   overflow: hidden;
   transition: width 0.3s ease;
   z-index: 1000;
+  left: 0;
+  top: 0;
 }
 
 .menuLateral:hover {
   width: 230px;
 }
 
-.menuLateral:hover ~ .content {
-  margin-left: 230px;
-}
-
 .contenedorLogo {
   display: flex;
   align-items: center;
-}
-.logo {
-  width: 60px;
+  padding:1rem 0rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+.logo {
+  width: 60px;
+  position: center;
+}
+
+
+
 .banda {
-  font-size: 24px;
-  font-weight: bold;
+  font-size: 1.5rem;
+  font-weight: 700;
   margin: 0;
-  margin-left: 15px;
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s;
@@ -130,7 +70,6 @@ section.content {
 .menu li a {
   display: flex;
   align-items: center;
-  gap: 12px;
   padding: 12px 15px;
   text-decoration: none;
   color: rgba(255, 255, 255, 0.9);
@@ -151,6 +90,7 @@ section.content {
   visibility: hidden;
   transition: opacity 0.3s;
   font-weight: 500;
+  margin-left: 12px;
 }
 
 .menuLateral:hover .text {
@@ -165,49 +105,43 @@ section.content {
   justify-content: center;
 }
 
-
-.content {
-    
-    flex: 1;
-  background: #f1f5f9;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  overflow-y: auto;
-  margin-left: 70px;
-  transition: margin-left 0.3s ease;
-  }
-  
-/* Enlaces deshabilitados (Configuración, Centro de Aprendizaje) */
+/* Enlaces deshabilitados */
 .menu li.disabled-link a {
-  pointer-events: none !important;
+  pointer-events: none;
   cursor: not-allowed;
-  color: rgba(255, 255, 255, 0.5) !important;
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .menu li.disabled-link a:hover {
-  background: transparent !important;
-  border-left-color: transparent !important;
+  background: transparent;
+  border-left-color: transparent;
 }
 
 .menu li.disabled-link .icon svg {
-  fill: rgba(255, 255, 255, 0.5) !important;
+  fill: rgba(255, 255, 255, 0.5);
 }
 
-/* ======== ENCABEZADO PRINCIPAL ======== */
-#encabezadoInicio {
-  border-bottom: 1px solid #d5e0f0;
-  padding-bottom: 10px;
-  margin-bottom: 20px;
+/* ======== CONTENIDO PRINCIPAL ======== */
+/* Contenedor principal que envuelve todo el contenido */
+body {
+  padding-left: 70px; /* Espacio para el menú colapsado */
+  transition: padding-left 0.3s ease;
 }
-#encabezadoInicio h2 {
-  color: #1a2b49;
-  font-weight: 700;
+
+/* Cuando el menú se expande, ajustamos el padding del body */
+body:has(.menuLateral:hover) {
+  padding-left: 230px;
 }
-#estadoCuentaInicio {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+
+/* Todas las páginas de contenido ocupan el espacio disponible */
+#paginaInicio,
+#paginaPortafolio,
+#paginaAnalisis,
+#paginaBilletera {
+  flex: 1;
+  padding: 1.5rem;
+  background: #f1f5f9;
+  min-height: 100vh;
 }
 
 /* ======== ESTRUCTURA DE VENTANA1 ======== */
@@ -217,7 +151,6 @@ section.content {
   gap: 1.5rem;
 }
 
-/* Asegurar altura consistente en todas las cards */
 #ventana1 .card {
   min-height: 300px;
   display: flex;
@@ -234,7 +167,7 @@ section.content {
   min-height: 350px;
 }
 
-/* Contenedor del gráfico ocupa todo el espacio disponible */
+/* Contenedor del gráfico */
 #contenedorGrafico {
   flex: 1;
   display: flex;
@@ -247,17 +180,12 @@ section.content {
   text-align: center;
 }
 
-#contenedorGrafico h3 {
-  color: #6b7a99;
-  font-weight: 500;
-}
-
 /* Operaciones - botones al final */
 #ventana1 .card .mt-auto {
   margin-top: auto;
 }
 
-/* Asegurar que las cards tengan la misma altura en cada fila */
+/* Asegurar que las cards tengan la misma altura */
 #ventana1 .row {
   align-items: stretch;
 }
@@ -266,15 +194,12 @@ section.content {
   height: 100% !important;
 }
 
-/* Reducir altura de Cotizaciones */
-#ventana1 .row.g-4:last-child .col-lg-8 .card {
-  min-height: 125px !important; /* Cambia este valor */
+/* Reducir altura de Cotizaciones y Posiciones Abiertas */
+#ventana1 .row.g-4:last-child .col-lg-8 .card,
+#ventana1 .row.g-4:last-child .col-lg-4 .card {
+  min-height: 125px;
 }
 
-/* Reducir altura de Posiciones Abiertas */
-#ventana1 .row.g-4:last-child .col-lg-4 .card {
-  min-height: 125px !important; /* Cambia este valor */
-}
 /* ======== BOTONES ======== */
 .btn {
   border-radius: 8px;
@@ -282,25 +207,25 @@ section.content {
   transition: all 0.2s ease;
 }
 
-/* Botones grises */
 .btn-outline-secondary {
-  color: #374151 !important;
-  border-color: #374151 !important;
+  color: #374151;
+  border-color: #374151;
   background-color: #ffffff;
 }
+
 .btn-outline-secondary:hover,
 .btn-outline-secondary.active {
-  background-color: #495057 !important;
-  color: #ffffff !important;
-  border-color: #495057 !important;
+  background-color: #495057;
+  color: #ffffff;
+  border-color: #495057;
 }
 
-/* Botones verdes y rojos */
 .btn-success {
   background-color: #218838;
   border: none;
   color: #ffffff;
 }
+
 .btn-success:hover {
   background-color: #1e7e34;
 }
@@ -310,6 +235,7 @@ section.content {
   border: none;
   color: #ffffff;
 }
+
 .btn-danger:hover {
   background-color: #c82333;
 }
@@ -321,233 +247,71 @@ section.content {
   border: 1px solid #cbd5e1;
   box-shadow: none;
 }
+
 .form-control:focus,
 .form-select:focus {
   border-color: #5374a9;
   box-shadow: 0 0 0 0.1rem rgba(83, 116, 169, 0.25);
 }
 
-/* ======== TEXTOS ======== */
-h3, h4, h5 {
-  color: #1a2b49;
-  font-weight: 600;
-}
-
-.text-muted {
-  color: #6b7280 !important;
-}
-
-/* ======== PORTAFOLIO ======== */
-#paginaPortafolio,
-#paginaAnalisis {
-  background: #eaf1fa;
-}
-#encabezadoPortafolio h2,
-#encabezadoAnalisis h2 {
-  color: #1a2b49;
-  font-weight: 800;
-}
-
-/* ======== BUSCADORES ======== */
-.buscador-container {
-  display: flex;
-  justify-content: flex-start;
-}
-.buscador-portafolio,
-.buscador-analisis {
-  max-width: 400px;
-}
-.buscador-analisis {
-  max-width: 600px;
-}
-.buscador-portafolio input,
-.buscador-analisis input {
-  border-radius: 12px 0 0 12px;
-  border-color: #cbd5e1;
-  background-color: #fff;
-}
-.buscador-portafolio button,
-.buscador-analisis button {
-  border-radius: 0 12px 12px 0;
-  border-color: #cbd5e1;
-  background-color: #f8fafc;
-  transition: background-color 0.2s ease;
-}
-.buscador-portafolio button:hover,
-.buscador-analisis button:hover {
-  background-color: #e2e8f0;
-}
-.buscador-portafolio svg,
-.buscador-analisis svg {
-  vertical-align: middle;
-}
-
-/* ======== CATEGORÍAS ======== */
-#categorias .btn-outline-primary,
-#categoriasAnalisis .btn-outline-primary {
-  border-radius: 25px;
-  padding: 6px 18px;
-  font-weight: 500;
-  color: #3c5a93;
-  border-color: #3c5a93;
-}
-#categorias .btn-outline-primary.active,
-#categoriasAnalisis .btn-outline-primary.active,
-#categorias .btn-outline-primary:hover,
-#categoriasAnalisis .btn-outline-primary:hover {
-  background-color: #5374a9;
-  color: #fff;
-  border-color: #5374a9;
-}
-
-/* ======== TARJETAS DE ACTIVOS ======== */
-#grillaActivos .card.activo {
-  border: 1px solid #d8e3f0;
-  border-radius: 14px;
-  background: #fff;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  min-height: 200px;
-}
-#grillaActivos .card.activo:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-}
-#grillaActivos .card.activo button {
-  border-radius: 25px;
-  font-weight: 500;
-}
-#grillaActivos .card.activo .badge {
-  border-radius: 15px;
-}
-
-/* ======== ANÁLISIS DE MERCADO ======== */
-#contenidoAnalisis table {
-  border-color: #dee2e6;
-}
-#contenidoAnalisis th {
-  color: #1a2b49;
-  font-weight: 600;
-}
-#contenidoAnalisis td {
-  vertical-align: middle;
-}
-#contenidoAnalisis .btn {
-  border-radius: 6px;
-  padding: 3px 10px;
-  font-weight: 600;
-}
-#contenidoAnalisis .form-check-label {
-  color: #334155;
-  font-weight: 500;
-}
-#contenidoAnalisis .list-group-item {
-  border: none;
-  border-bottom: 1px solid #e5e7eb;
-}
-#contenidoAnalisis .list-group-item:last-child {
-  border-bottom: none;
-}
-
 /* ======== RESPONSIVE ======== */
 @media (max-width: 992px) {
-  #ventana1 .card {
-    min-height: 250px;
+  body {
+    padding-left: 70px;
   }
   
-  #ventana1 .col-lg-8 .card {
-    min-height: 300px;
+  body:has(.menuLateral:hover) {
+    padding-left: 70px; /* Mantiene el padding en tablet */
   }
   
-  #contenedorGrafico {
-    padding: 15px;
-  }
-  
-  .menuLateral {
-    width: 60px;
-  }
-  
-  .banda {
-    display: none;
+  #paginaInicio,
+  #paginaPortafolio,
+  #paginaAnalisis,
+  #paginaBilletera {
+    padding: 1rem;
   }
 }
 
 @media (max-width: 768px) {
-  #ventana1 .card {
-    min-height: 200px;
+  .menuLateral {
+    width: 100%;
+    height: auto;
+    position: relative;
   }
   
-  #ventana1 .col-lg-8 .card {
-    min-height: 250px;
+  body {
+    padding-left: 0;
+    flex-direction: column;
   }
   
-  #contenedorGrafico {
-    padding: 10px;
+  body:has(.menuLateral:hover) {
+    padding-left: 0;
   }
   
-  #contenedorGrafico h3 {
-    font-size: 1.2rem;
-  }
-}
-
-/* ======== MEJORAS PARA LA NUEVA ESTRUCTURA ======== */
-/* Asegurar que los botones de cotizaciones se vean bien */
-#ventana1 .btn-outline-secondary {
-  padding: 8px 12px;
-  font-size: 0.9rem;
-}
-
-/* Mejor espaciado en formularios de operaciones */
-#ventana1 .form-label {
-  font-weight: 500;
-  margin-bottom: 8px;
-}
-
-#ventana1 .form-control, 
-#ventana1 .form-select {
-  margin-bottom: 16px;
-}
-
-/* Ajustes para posiciones abiertas */
-#ventana1 .card:has(h5:contains("Posiciones Abiertas")) {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-/* Estados hover para mejor UX */
-#ventana1 .card {
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-#ventana1 .card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-/* Mejor contraste para textos importantes */
-.fw-semibold {
-  color: #1a2b49;
-}
-
-/* Ajustes específicos para el gráfico */
-#contenedorGrafico img {
-  max-height: 200px;
-  object-fit: contain;
-}
-
-/* Para pantallas muy grandes */
- @media (min-width: 1400px) {
-  #ventana1 .card {
-    min-height: 320px;
+  .menu {
+    display: flex;
+    overflow-x: auto;
+    padding: 0.5rem;
   }
   
-  #ventana1 .col-lg-8 .card {
-    min-height: 380px;
+  .menu li {
+    margin-bottom: 0;
+    flex-shrink: 0;
   }
-} 
-
-
-
-
-
+  
+  .contenedorLogo {
+    text-align: center;
+    /* padding: 1rem; */
+  }
+  
+  .banda {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .text {
+    opacity: 1;
+    visibility: visible;
+  }
+}
