@@ -15,7 +15,7 @@ export class Activo {
     this.#cantidadPoseida = 0;
   }
 
-  // === Getters ===
+  
   get id() { return this.#id; }
   get nombre() { return this.#nombre; }
   get tipo() { return this.#tipo; }
@@ -23,12 +23,12 @@ export class Activo {
   get rendimiento() { return this.#rendimiento; }
   get cantidadPoseida() { return this.#cantidadPoseida; }
 
-  // === Métodos de instancia ===
   actualizarPrecio(nuevoPrecio) {
     this.#rendimiento = ((nuevoPrecio - this.#precio) / this.#precio) * 100;
     this.#precio = nuevoPrecio;
   }
 
+  //no esta funcionado bien
   comprar(cantidad) {
     if (cantidad <= 0) throw new Error("Cantidad inválida para comprar.");
     this.#cantidadPoseida += cantidad;
@@ -50,7 +50,6 @@ export class Activo {
     return `${this.#nombre} (${this.#tipo}) - $${this.#precio.toFixed(2)} | Rend: ${this.#rendimiento.toFixed(2)}% | Poseídas: ${this.#cantidadPoseida}`;
   }
 
-  // === Métodos estáticos ===
   static obtenerTipoPorNombre(nombre, listaActivos) {
     const encontrado = listaActivos.find(a => a.nombre === nombre);
     return encontrado ? encontrado.tipo : null;
