@@ -273,6 +273,13 @@ body:has(.menuLateral:hover) {
   color: #fff;
   border-color: #5374a9;
 }
+
+#textoPosicionesAbiertas {
+  max-height: 90px;  /* Aproximadamente 3 líneas */
+  overflow-y: auto;  /* Habilitar scroll vertical */
+  padding-right: 6px; /* para que no tape el scroll el texto */
+}
+
 @media (min-width: 769px) {
   #barraSuperiorMobile {
     display: none !important;
@@ -333,7 +340,7 @@ body:has(.menuLateral:hover) {
     z-index: 2999;
     overflow: hidden;
     transition: none !important;
-      flex-wrap: nowrap;
+    flex-wrap: nowrap;
   }
 
   /* --- Evita el hover del escritorio --- */
@@ -409,4 +416,25 @@ body:has(.menuLateral:hover) {
     padding: 1rem;
     min-height: auto; 
   }
+
+  
+  #alertaSistema {
+    position: fixed !important;
+    
+    left: 0;
+    right: 0;
+    top: auto !important;
+    
+    height: 70px;
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: stretch;
+    z-index: 2999;
+    overflow: hidden;
+    transition: none !important;
+    flex-wrap: nowrap;
+  }
 }
+
