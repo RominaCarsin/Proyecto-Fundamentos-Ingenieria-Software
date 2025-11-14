@@ -2,7 +2,7 @@ export default class HistorialOperaciones {
   #lista = [];
 
   registrar(operacion) {
-    this.#lista.push(operacion);
+    this.#lista.unshift(operacion);
   }
 
   obtenerUltimas(n = 5) {

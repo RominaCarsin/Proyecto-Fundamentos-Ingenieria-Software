@@ -50,4 +50,9 @@ export default class Portafolio {
       it.activo.tipo.toLowerCase() === t
     );
   }
+
+ getActivos() {
+  // devolver copia para no exponer array interno
+  return this.#items.map(it => ({ ...it }));
+}
 }

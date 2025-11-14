@@ -65,15 +65,18 @@ export default class Controller {
   // =======================================================
   //                   LISTA DE ACTIVOS
   // =======================================================
-  getListaActivos() {
-    const lista = this.listaActivos.getListaParaModo(this.modo.modo);
+ getListaActivos() {
+  const lista = this.listaActivos.getListaParaModo(this.modo.modo);
 
-    return lista.map(a => ({
-      id: a.id,
-      nombre: a.nombre
-    }));
-  }
-
+  return lista.map(a => ({
+    id: a.id,
+    nombre: a.nombre,
+    tipo: a.tipo,
+    precio: a.precio,
+    moneda: a.moneda,
+    rendimiento: a.rendimiento
+  }));
+}
  buscarActivosPorTipo(valorSelect) {
   // Caso especial: todas
   if (valorSelect === "todos") {
@@ -304,4 +307,26 @@ export default class Controller {
       )} — ${op.fecha.toLocaleString()}`
     }));
   }
+
+
+  //ACTIVOS DE PORTAFOLIO YA CONVINADOS 
+  getPortafolioParaVista() {
+  const port = this.getPortafolio().getActivos();
+  const lista = this.listaActivos.getListaParaModo(this.modo.modo);
+
+  return port.map(item => {
+    const activo = lista.find(a => a.id === item.id);
+    if (!activo) return null;
+
+    return {
+      id: activo.id,
+      nombre: activo.nombre,
+      tipo: activo.tipo,
+      precio: activo.precio,
+      rendimiento: activo.rendimiento,
+      moneda: activo.moneda,
+      cantidad: item.cantidad
+    };
+  }).filter(x => x !== null);
+}
 }
