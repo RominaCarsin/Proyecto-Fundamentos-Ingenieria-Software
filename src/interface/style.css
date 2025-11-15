@@ -303,6 +303,68 @@ body:has(.menuLateral:hover) {
   height: 24px;
 }
 
+
+
+#contenedorVideos .card {
+  border-radius: 10px;
+  overflow: hidden;
+  transition: 0.2s ease-in-out;
+}
+
+#contenedorVideos .card:hover {
+  transform: scale(1.03);
+}
+
+#contenedorVideos img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+
+
+#bloqueVideos {
+  overflow-x: auto;
+  padding-bottom: 50px;
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+/* #bloqueVideos .card {
+  
+  margin-right: 2rem;
+} */
+
+
+
+.card-video {
+  border-radius: 100px;
+  overflow: hidden;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  cursor: pointer;
+}
+
+
+.card-video:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+
+.card-video img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.video-item {
+  max-width: 350px;   /* controla dimensión del contenedor */
+}
+
+#bloqueVideos .card {
+  border-radius: 18px;
+}
+
+
 @media (min-width: 769px) {
   #barraSuperiorMobile {
     display: none !important;

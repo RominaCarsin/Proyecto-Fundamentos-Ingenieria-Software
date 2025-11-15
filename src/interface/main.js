@@ -13,30 +13,29 @@ let categoriaAnalisisActual = "Todas";
 let limiteTarjetas = 3;
 let seleccionadosAnalisis = [];
 
-// ===========================================
-// VARIABLES PARA EL MODAL DE MOVIMIENTOS
-// ===========================================
+// VARIABLES PARA MOVIMIENTOS
+
 let movimientoActual = {
   tipo: "", // 'deposito' o 'retiro'
   moneda: "" // 'USD' o 'UYU'
 };
 
-// ===========================================
-// ELEMENTOS DOM - NAVEGACIÓN
-// ===========================================
+// DOM - NAVEGACIÓN
+
 const itemInicio = document.getElementById("itemInicio");
 const itemPortafolio = document.getElementById("itemPortafolio");
 const itemAnalisis = document.getElementById("itemAnalisis");
 const itemBilletera = document.getElementById("itemBilletera");
+const itemCentroAprendizaje = document.getElementById("itemCentroAprendizaje");
 
 const paginaInicio = document.getElementById("paginaInicio");
 const paginaPortafolio = document.getElementById("paginaPortafolio");
 const paginaAnalisis = document.getElementById("paginaAnalisis");
 const paginaBilletera = document.getElementById("paginaBilletera");
+const paginaCentroAprendizaje = document.getElementById("paginaCentroAprendizaje");
 
-// ===========================================
-// ELEMENTOS DOM - INICIO/TRADING
-// ===========================================
+//DOM - INICIO/TRADING
+
 const selectActivo = document.getElementById("seleccionDeAccionInicio");
 const selectTipoAccion = document.getElementById("tipoAccion");
 const pValorAccion = document.getElementById("idValorDeAccion");
@@ -49,9 +48,7 @@ const btnUYU = document.getElementById("btnUYU");
 const divHistorial = document.getElementById("textoPosicionesAbiertas");
 const switchModo = document.getElementById("switchCheckDefault");
 
-// ===========================================
-// ELEMENTOS DOM - PORTAFOLIO
-// ===========================================
+// DOM - PORTAFOLIO
 const inputBuscarPortafolio = document.getElementById("buscarPortafolio");
 const btnCategoriaTodas = document.getElementById("btnCategoriaTodas");
 const btnCategoriaBonos = document.getElementById("btnCategoriaBonos");
@@ -61,9 +58,7 @@ const btnCategoriaAcciones = document.getElementById("btnCategoriaAcciones");
 const grillaActivos = document.getElementById("grillaActivos");
 const btnVerMasPortafolio = document.getElementById("btnVerMasPortafolio");
 
-// ===========================================
-// ELEMENTOS DOM - ANÁLISIS
-// ===========================================
+// DOM - ANÁLISIS
 const buscarAnalisis = document.getElementById("buscarAnalisis");
 const btnCategoriaAnalisisTodas = document.getElementById("btnCategoriaAnalisisTodas");
 const btnCategoriaAnalisisBonos = document.getElementById("btnCategoriaAnalisisBonos");
@@ -76,9 +71,7 @@ const promedioRendimiento = document.getElementById("promedioRendimiento");
 const costoEstimado = document.getElementById("costoEstimado");
 const ultimaActualizacion = document.getElementById("ultimaActualizacion");
 
-// ===========================================
-// ELEMENTOS DOM - BILLETERA
-// ===========================================
+// DOM - BILLETERA
 const saldoTotalUSD = document.getElementById("saldoTotalUSD");
 const disponibleUSD = document.getElementById("disponibleUSD");
 const garantiaUSD = document.getElementById("garantiaUSD");
@@ -90,9 +83,7 @@ const btnRetiroUSD = document.getElementById("btnRetiroUSD");
 const btnDepositoUYU = document.getElementById("btnDepositoUYU");
 const btnRetiroUYU = document.getElementById("btnRetiroUYU");
 
-// ===========================================
-// ELEMENTOS DOM - CALCULADORA DE COMISIONES
-// ===========================================
+//DOM - CALCULADORA DE COMISIONES
 const montoInput = document.getElementById("monto");
 const tipoOperacionInput = document.getElementById("tipoOperacion");
 const divisaInput = document.getElementById("divisa");
@@ -101,14 +92,14 @@ const btnCalcularComision = document.getElementById("btnCalcularComision");
 const comisionEstimada = document.getElementById("comisionEstimada");
 const totalRecibir = document.getElementById("totalRecibir");
 
-// ===========================================
+
 // FUNCIONES DE NAVEGACIÓN
-// ===========================================
 function ocultarTodasLasPaginas() {
   paginaInicio.classList.add("d-none");
   paginaPortafolio.classList.add("d-none");
   paginaAnalisis.classList.add("d-none");
   paginaBilletera.classList.add("d-none");
+  paginaCentroAprendizaje.classList.add("d-none"); 
 }
 
 function limpiarActivosMenu() {
@@ -122,9 +113,9 @@ function irA(pagina, itemMenu) {
   itemMenu.querySelector("a").classList.add("active");
 }
 
-// ===========================================
+
 // FUNCIONES DE UTILIDAD
-// ===========================================
+
 function mapearTipo(tipo) {
   const tipos = {
     "Bonos": "",
@@ -154,9 +145,9 @@ function mostrarMensaje(texto, tipo = "danger") {
   }, 3000);
 }
 
-// ===========================================
+
 // FUNCIONES DE INICIO/TRADING
-// ===========================================
+
 function cargarSelectActivos() {
   const lista = controller.getListaActivos();
   selectActivo.innerHTML = lista
@@ -236,9 +227,9 @@ function cargarActivoEnInicio(idActivo) {
   recalcularDesdeAccion();
 }
 
-// ===========================================
+
 // FUNCIONES DE PORTAFOLIO
-// ===========================================
+
 function crearTarjetaHTML(activo) {
   return `
   <article class="col-sm-6 col-md-4 col-lg-3">
@@ -294,9 +285,9 @@ function renderPortafolio() {
   );
 }
 
-// ===========================================
+
 // FUNCIONES DE ANÁLISIS
-// ===========================================
+
 function crearFilaAnalisis(activo) {
   const colorRend = activo.rendimiento >= 0 ? "text-success" : "text-danger";
   const checked = seleccionadosAnalisis.includes(activo.id) ? "checked" : "";
@@ -380,9 +371,9 @@ function renderAnalisis() {
   actualizarResumen();
 }
 
-// ===========================================
+
 // FUNCIONES DE BILLETERA
-// ===========================================
+
 function renderBilletera() {
   const saldos = controller.getSaldos();
 
@@ -397,9 +388,9 @@ function renderBilletera() {
   garantiaUYU.textContent = `$ ${saldos.UYU.garantia.toFixed(2)}`;
 }
 
-// ===========================================
+
 // FUNCIONES DE MOVIMIENTOS CON MODAL
-// ===========================================
+
 function abrirModalMovimiento(moneda, tipo) {
   // Guardar los datos de la operación actual
   movimientoActual.moneda = moneda;
@@ -495,9 +486,9 @@ function confirmarMovimiento() {
   }
 }
 
-// ===========================================
+
 // FUNCIONES DE CALCULADORA DE COMISIONES
-// ===========================================
+
 function actualizarTasaCalculadora() {
   const tipo = normalizarOperacion(tipoOperacionInput.value);
   const moneda = divisaInput.value;
@@ -521,9 +512,9 @@ function calcularComision() {
   totalRecibir.textContent = `${neto.toFixed(2)} ${moneda}`;
 }
 
-// ===========================================
+
 // EVENT LISTENERS - NAVEGACIÓN
-// ===========================================
+
 itemInicio.addEventListener("click", () => {
   irA(paginaInicio, itemInicio);
   actualizarDatosActivo(selectActivo.value);
@@ -547,9 +538,23 @@ itemBilletera.addEventListener("click", () => {
   actualizarTasaCalculadora();
 });
 
-// ===========================================
+/* itemCentroAprendizaje.addEventListener("click", () => {
+  irA(paginaCentroAprendizaje, itemCentroAprendizaje);
+}); */
+
+// ====== NAVEGACIÓN: CENTRO DE APRENDIZAJE ======
+itemCentroAprendizaje.addEventListener("click", () => {
+    paginaInicio.classList.add("d-none");
+    paginaPortafolio.classList.add("d-none");
+    paginaAnalisis.classList.add("d-none");
+    paginaBilletera.classList.add("d-none");
+
+    paginaCentroAprendizaje.classList.remove("d-none");
+});
+
+
 // EVENT LISTENERS - INICIO/TRADING
-// ===========================================
+
 selectActivo.addEventListener("change", () => {
   actualizarDatosActivo(selectActivo.value);
   inputAccion.value = 1;
@@ -591,9 +596,9 @@ switchModo.addEventListener("change", () => {
   pintarHistorial();
 });
 
-// ===========================================
+
 // EVENT LISTENERS - PORTAFOLIO
-// ===========================================
+
 btnCategoriaTodas.onclick = () => cambiarCategoria("Todas");
 btnCategoriaBonos.onclick = () => cambiarCategoria("Bonos");
 btnCategoriaCripto.onclick = () => cambiarCategoria("Criptomonedas");
@@ -606,9 +611,9 @@ btnVerMasPortafolio.onclick = () => {
   renderPortafolio();
 };
 
-// ===========================================
+
 // EVENT LISTENERS - ANÁLISIS
-// ===========================================
+
 btnCategoriaAnalisisTodas.onclick = () => cambiarCategoriaAnalisis("Todas");
 btnCategoriaAnalisisBonos.onclick = () => cambiarCategoriaAnalisis("Bonos");
 btnCategoriaAnalisisCripto.onclick = () => cambiarCategoriaAnalisis("Criptomonedas");
@@ -638,24 +643,24 @@ tablaInstrumentos.addEventListener("click", e => {
   }
 });
 
-// ===========================================
+
 // EVENT LISTENERS - BILLETERA (ACTUALIZADOS)
-// ===========================================
+
 btnDepositoUSD.addEventListener("click", () => abrirModalMovimiento("USD", "deposito"));
 btnRetiroUSD.addEventListener("click", () => abrirModalMovimiento("USD", "retiro"));
 btnDepositoUYU.addEventListener("click", () => abrirModalMovimiento("UYU", "deposito"));
 btnRetiroUYU.addEventListener("click", () => abrirModalMovimiento("UYU", "retiro"));
 
-// ===========================================
+
 // EVENT LISTENERS - CALCULADORA DE COMISIONES
-// ===========================================
+
 tipoOperacionInput.addEventListener("change", actualizarTasaCalculadora);
 divisaInput.addEventListener("change", actualizarTasaCalculadora);
 btnCalcularComision.addEventListener("click", calcularComision);
 
-// ===========================================
+
 // EVENT LISTENERS DEL MODAL DE MOVIMIENTOS
-// ===========================================
+
 document.getElementById('montoModal')?.addEventListener('input', actualizarResumenOperacion);
 document.getElementById('btnConfirmarMovimiento')?.addEventListener('click', confirmarMovimiento);
 document.getElementById('montoModal')?.addEventListener('keypress', function(e) {
@@ -665,16 +670,16 @@ document.getElementById('montoModal')?.addEventListener('keypress', function(e) 
   }
 });
 
-// ===========================================
+
 // INICIALIZACIÓN
-// ===========================================
+
 irA(paginaInicio, itemInicio);
 cargarSelectActivos();
 pintarHistorial();
 
-// ===========================================
+
 // FUNCIONES GLOBALES
-// ===========================================
+
 window.irAInicio = function(idActivo) {
   irA(paginaInicio, itemInicio);
   selectActivo.value = idActivo;
@@ -682,3 +687,109 @@ window.irAInicio = function(idActivo) {
   inputAccion.value = 1;
   recalcularDesdeAccion();
 };
+
+
+
+// ELEMENTOS DOM - CENTRO DE APRENDIZAJE
+
+
+const contenedorVideos = document.getElementById("contenedorVideos");
+const btnVerMasVideos = document.getElementById("btnVerMasVideos");
+const inputBuscarCentro = document.querySelector(
+  "#paginaCentroAprendizaje input[type='search']"
+);
+
+
+// FUNCIONES - CENTRO DE APRENDIZAJE
+
+
+// Inicialmente solo 4 videos visibles
+let videosVisibles = 4;
+
+function actualizarVisibilidadVideos() {
+  const videos = document.querySelectorAll("#contenedorVideos .video-item");
+
+  videos.forEach((v, i) => {
+    if (i < videosVisibles) {
+      v.classList.remove("d-none");
+    } else {
+      v.classList.add("d-none");
+    }
+  });
+
+  // Cambiar texto del botón
+  btnVerMasVideos.textContent =
+    videosVisibles >= videos.length ? "Ver menos" : "Ver más";
+}
+
+function toggleVerMasVideos() {
+  const videos = document.querySelectorAll("#contenedorVideos .video-item");
+
+  if (videosVisibles >= videos.length) {
+    // Contraer
+    videosVisibles = 4;
+  } else {
+    // Expandir todos los videos
+    videosVisibles = videos.length;
+  }
+
+  actualizarVisibilidadVideos();
+}
+
+function filtrarVideosCentro() {
+  const texto = inputBuscarCentro.value.toLowerCase().trim();
+  const videos = document.querySelectorAll("#contenedorVideos .video-item");
+
+  // Mostrar todos los videos antes de filtrar
+  videos.forEach(v => {
+    v.classList.remove("d-none"); 
+    v.style.display = ""; // reset
+  });
+
+  // Aplicar filtro
+  videos.forEach(v => {
+    const titulo = v.querySelector("small").textContent.toLowerCase();
+    const coincide = titulo.includes(texto);
+
+    // Si no coincide → ocultar
+    if (!coincide) {
+      v.style.display = "none";
+    }
+  });
+
+  // Si hay texto → ocultar el botón "ver más"
+  btnVerMasVideos.style.display = texto.length > 0 ? "none" : "";
+
+  // Si no hay texto → restaurar visibilidad normal
+  if (texto.length === 0) {
+    videosVisibles = 4;
+    actualizarVisibilidadVideos();
+  }
+}
+
+
+
+// EVENTOS - CENTRO DE APRENDIZAJE
+
+btnVerMasVideos?.addEventListener("click", toggleVerMasVideos);
+inputBuscarCentro?.addEventListener("input", filtrarVideosCentro);
+
+itemCentroAprendizaje.addEventListener("click", () => {
+  irA(paginaCentroAprendizaje, itemCentroAprendizaje);
+
+  // Reiniciar vista al entrar
+  videosVisibles = 4;
+  actualizarVisibilidadVideos();
+  filtrarVideosCentro();
+});
+
+
+
+// INICIALIZACIÓN
+
+irA(paginaInicio, itemInicio);
+cargarSelectActivos();
+pintarHistorial();
+
+// Centro aprendizaje: establecer visibilidad inicial
+actualizarVisibilidadVideos();
