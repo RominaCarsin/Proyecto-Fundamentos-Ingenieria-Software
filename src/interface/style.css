@@ -280,6 +280,29 @@ body:has(.menuLateral:hover) {
   padding-right: 6px; /* para que no tape el scroll el texto */
 }
 
+/* Para Billetera Deopito y Retiro Datos  */
+
+/* Agregar en tu archivo CSS */
+#resumenOperacion {
+  transition: all 0.3s ease;
+}
+
+.moneda-badge {
+  font-size: 0.8rem;
+  padding: 0.25rem 0.5rem;
+}
+
+.operacion-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.operacion-icon {
+  width: 24px;
+  height: 24px;
+}
+
 @media (min-width: 769px) {
   #barraSuperiorMobile {
     display: none !important;
