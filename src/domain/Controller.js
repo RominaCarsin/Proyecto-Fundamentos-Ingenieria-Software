@@ -13,7 +13,7 @@ import Operaciones from "./Operaciones.js";
 export default class Controller {
   constructor() {
     // ===============================
-    //      INSTANCIAS PRINCIPALES
+    // INSTANCIAS PRINCIPALES
     // ===============================
     this.modo = new Modo();
     this.listaActivos = new ListaActivos();
@@ -25,10 +25,14 @@ export default class Controller {
     this.cuentaReal = new CuentaReal();
 
     this.cotizaciones = new Cotizaciones();
-    this.historial = new HistorialOperaciones();
+
+    // ➜ Historiales separados
+    this.historialDemo = new HistorialOperaciones();
+    this.historialReal = new HistorialOperaciones();
+
     this.controlOperaciones = new ControlOperaciones(this.cotizaciones);
 
-    // Portafolio separado por modo
+    // ➜ Portafolios separados
     this.portafolioDemo = new Portafolio();
     this.portafolioReal = new Portafolio();
 
@@ -36,16 +40,22 @@ export default class Controller {
   }
 
   // =======================================================
-  //                   CUENTA SEGÚN MODO
+  // CUENTAS Y MODO
   // =======================================================
   getCuenta() {
-    return this.modo.modo === "demo" ? this.cuentaDemo : this.cuentaReal; //Si esta marcado demo utiliza cuenta demo sino utiliza (:) la real
+    return this.modo.modo === "demo" ? this.cuentaDemo : this.cuentaReal;
   }
 
   getPortafolio() {
     return this.modo.modo === "demo"
       ? this.portafolioDemo
       : this.portafolioReal;
+  }
+
+  getHistorial() {
+    return this.modo.modo === "demo"
+      ? this.historialDemo
+      : this.historialReal;
   }
 
   setModo(esDemo) {
@@ -63,66 +73,59 @@ export default class Controller {
   }
 
   // =======================================================
-  //                   LISTA DE ACTIVOS
+  // LISTA DE ACTIVOS
   // =======================================================
- getListaActivos() {
-  const lista = this.listaActivos.getListaParaModo(this.modo.modo);
+  getListaActivos() {
+    const lista = this.listaActivos.getListaParaModo(this.modo.modo);
 
-  return lista.map(a => ({
-    id: a.id,
-    nombre: a.nombre,
-    tipo: a.tipo,
-    precio: a.precio,
-    moneda: a.moneda,
-    rendimiento: a.rendimiento
-  }));
-}
- buscarActivosPorTipo(valorSelect) {
-  // Caso especial: todas
-  if (valorSelect === "todos") {
-    return this.getListaActivos(); // {id, nombre}
+    return lista.map(a => ({
+      id: a.id,
+      nombre: a.nombre,
+      tipo: a.tipo,
+      precio: a.precio,
+      moneda: a.moneda,
+      rendimiento: a.rendimiento
+    }));
   }
 
-  // Traducimos el value del <select> al tipo real que usan los activos
-  let tipoReal;
+  buscarActivosPorTipo(valorSelect) {
+    if (valorSelect === "todos") {
+      return this.getListaActivos();
+    }
 
-  switch (valorSelect) {
-    case "":          // si usás value="" para Bonos
-    case "Bonos":
-      tipoReal = "Bonos";
-      break;
+    let tipoReal;
 
-    case "limite":    // si usás value="limite" para Criptomonedas
-    case "Criptomonedas":
-      tipoReal = "Criptomonedas";
-      break;
+    switch (valorSelect) {
+      case "":
+      case "Bonos":
+        tipoReal = "Bonos";
+        break;
+      case "limite":
+      case "Criptomonedas":
+        tipoReal = "Criptomonedas";
+        break;
+      case "market":
+      case "Forex":
+        tipoReal = "Forex";
+        break;
+      case "stop":
+      case "Acciones":
+        tipoReal = "Acciones";
+        break;
+      default:
+        tipoReal = valorSelect;
+    }
 
-    case "market":    // si usás value="market" para Forex
-    case "Forex":
-      tipoReal = "Forex";
-      break;
+    const lista = this.listaActivos.buscarPorTipo(tipoReal, this.modo.modo);
 
-    case "stop":      // si usás value="stop" para Acciones
-    case "Acciones":
-      tipoReal = "Acciones";
-      break;
-
-    default:
-      // por si algún día agregás otro tipo y ya viene con el nombre correcto
-      tipoReal = valorSelect;
-      break;
+    return lista.map(a => ({
+      id: a.id,
+      nombre: a.nombre
+    }));
   }
 
-  const lista = this.listaActivos.buscarPorTipo(tipoReal, this.modo.modo);
-
-  return lista.map(a => ({
-    id: a.id,
-    nombre: a.nombre
-  }));
-}
-
   // =======================================================
-  //                 DATOS DE ACTIVO PARA UI
+  // DATOS DE ACTIVO
   // =======================================================
   getDatosActivo(id) {
     const activo = this.listaActivos.getPorId(id, this.modo.modo);
@@ -149,7 +152,7 @@ export default class Controller {
   }
 
   // =======================================================
-  //                     MONEDA
+  // MONEDA
   // =======================================================
   cambiarMoneda(moneda) {
     if (!this.monedasPermitidas.includes(moneda)) {
@@ -157,10 +160,7 @@ export default class Controller {
     }
 
     this.cotizaciones.cambiarMoneda(moneda);
-    return {
-      ok: true,
-      monedaActual: moneda
-    };
+    return { ok: true, monedaActual: moneda };
   }
 
   convertirMoneda(monto, desde, hacia) {
@@ -168,7 +168,7 @@ export default class Controller {
   }
 
   // =======================================================
-  //                  ACCIÓN ↔ DINERO
+  // ACCIÓN ↔ DINERO
   // =======================================================
   calcularDinero(idActivo, cantidad) {
     const activo = this.listaActivos.getPorId(idActivo, this.modo.modo);
@@ -207,11 +207,12 @@ export default class Controller {
   }
 
   // =======================================================
-  //                COMPRA / VENTA
+  // COMPRA / VENTA — AHORA REGISTRA EN EL HISTORIAL CORRECTO
   // =======================================================
   realizarCompra(idActivo, cantidad) {
     const cuenta = this.getCuenta();
     const portafolio = this.getPortafolio();
+    const historial = this.getHistorial();
 
     const activo = this.listaActivos.getPorId(idActivo, this.modo.modo);
     if (!activo) return { ok: false, mensaje: "Activo no encontrado" };
@@ -221,7 +222,6 @@ export default class Controller {
 
     const monedaActual = this.cotizaciones.monedaActual;
 
-    // precio ya convertido a la moneda actual (USD o UYU)
     const precio = this.convertirMoneda(
       activo.precio,
       activo.moneda,
@@ -230,29 +230,22 @@ export default class Controller {
 
     const costoTotal = precio * cantidad;
 
-    // decidir contra qué saldo comparar y debitar
-    let saldoDisponible;
     if (monedaActual === "UYU") {
-      saldoDisponible = cuenta.saldoUYU;
-      if (saldoDisponible < costoTotal) {
+      if (cuenta.saldoUYU < costoTotal) {
         return { ok: false, mensaje: "Fondos insuficientes en UYU" };
       }
       cuenta.saldoUYU -= costoTotal;
     } else {
-      // por defecto usamos USD
-      saldoDisponible = cuenta.saldoUSD;
-      if (saldoDisponible < costoTotal) {
+      if (cuenta.saldoUSD < costoTotal) {
         return { ok: false, mensaje: "Fondos insuficientes en USD" };
       }
       cuenta.saldoUSD -= costoTotal;
     }
 
-    // actualizar portafolio
     portafolio.agregar(activo, cantidad);
 
-    // registrar operación
     const op = new Operaciones("compra", activo, cantidad, precio);
-    this.historial.registrar(op);
+    historial.registrar(op);
 
     return { ok: true, mensaje: "Compra realizada", operacion: op };
   }
@@ -260,6 +253,7 @@ export default class Controller {
   realizarVenta(idActivo, cantidad) {
     const cuenta = this.getCuenta();
     const portafolio = this.getPortafolio();
+    const historial = this.getHistorial();
 
     const activo = this.listaActivos.getPorId(idActivo, this.modo.modo);
     if (!activo) return { ok: false, mensaje: "Activo no encontrado" };
@@ -267,6 +261,7 @@ export default class Controller {
     if (!portafolio.tiene(activo.id, cantidad)) {
       return { ok: false, mensaje: "No tenés esa cantidad para vender" };
     }
+
     if (cantidad <= 0) {
       return { ok: false, mensaje: "La cantidad debe ser mayor a cero." };
     }
@@ -281,7 +276,6 @@ export default class Controller {
 
     const ingreso = precio * cantidad;
 
-    // sumamos al saldo correcto
     if (monedaActual === "UYU") {
       cuenta.saldoUYU += ingreso;
     } else {
@@ -291,42 +285,100 @@ export default class Controller {
     portafolio.restar(activo.id, cantidad);
 
     const op = new Operaciones("venta", activo, cantidad, precio);
-    this.historial.registrar(op);
+    historial.registrar(op);
 
     return { ok: true, mensaje: "Venta realizada", operacion: op };
   }
 
   // =======================================================
-  //                 HISTORIAL PARA UI
+  // HISTORIAL PARA UI — SOLO EL DEL MODO ACTUAL
   // =======================================================
   getHistorialParaVista() {
-    return this.historial.obtenerUltimas(10).map(op => ({
+    const historial = this.getHistorial();
+
+    return historial.obtenerUltimas(10).map(op => ({
       tipo: op.tipo,
-      texto: `${op.tipo.toUpperCase()} — ${op.activo.nombre} — Cant: ${op.cantidad} — PU: ${op.precioUnitario.toFixed(
-        2
-      )} — ${op.fecha.toLocaleString()}`
+      texto: `${op.tipo.toUpperCase()} — ${op.activo.nombre} — Cant: ${
+        op.cantidad
+      } — PU: ${op.precioUnitario.toFixed(2)} — ${op.fecha.toLocaleString()}`
     }));
   }
 
-
-  //ACTIVOS DE PORTAFOLIO YA CONVINADOS 
+  // =======================================================
+  // PORTAFOLIO PARA UI
+  // =======================================================
   getPortafolioParaVista() {
-  const port = this.getPortafolio().getActivos();
-  const lista = this.listaActivos.getListaParaModo(this.modo.modo);
+    const port = this.getPortafolio().getActivos();
+    const lista = this.listaActivos.getListaParaModo(this.modo.modo);
 
-  return port.map(item => {
-    const activo = lista.find(a => a.id === item.id);
-    if (!activo) return null;
+    return port
+      .map(item => {
+        const activo = lista.find(a => a.id === item.id);
+        if (!activo) return null;
+
+        return {
+          id: activo.id,
+          nombre: activo.nombre,
+          tipo: activo.tipo,
+          precio: activo.precio,
+          rendimiento: activo.rendimiento,
+          moneda: activo.moneda,
+          cantidad: item.cantidad
+        };
+      })
+      .filter(x => x !== null);
+  }
+
+  // =======================================================
+  // BILLETERA
+  // =======================================================
+  getSaldos() {
+    const cuenta = this.getCuenta();
 
     return {
-      id: activo.id,
-      nombre: activo.nombre,
-      tipo: activo.tipo,
-      precio: activo.precio,
-      rendimiento: activo.rendimiento,
-      moneda: activo.moneda,
-      cantidad: item.cantidad
+      USD: {
+        total: cuenta.saldoUSD,
+        disponible: cuenta.saldoUSD,
+        garantia: 0
+      },
+      UYU: {
+        total: cuenta.saldoUYU,
+        disponible: cuenta.saldoUYU,
+        garantia: 0
+      }
     };
-  }).filter(x => x !== null);
-}
+  }
+
+  depositar(moneda, monto) {
+    const cuenta = this.getCuenta();
+
+    if (monto <= 0) {
+      return { ok: false, mensaje: "El monto debe ser mayor a 0." };
+    }
+
+    if (moneda === "USD") cuenta.saldoUSD += monto;
+    else cuenta.saldoUYU += monto;
+
+    return { ok: true, mensaje: "Depósito realizado." };
+  }
+
+  retirar(moneda, monto) {
+    const cuenta = this.getCuenta();
+
+    if (monto <= 0) {
+      return { ok: false, mensaje: "El monto debe ser mayor a 0." };
+    }
+
+    if (moneda === "USD") {
+      if (cuenta.saldoUSD < monto)
+        return { ok: false, mensaje: "Fondos insuficientes en USD." };
+      cuenta.saldoUSD -= monto;
+    } else {
+      if (cuenta.saldoUYU < monto)
+        return { ok: false, mensaje: "Fondos insuficientes en UYU." };
+      cuenta.saldoUYU -= monto;
+    }
+
+    return { ok: true, mensaje: "Retiro realizado." };
+  }
 }

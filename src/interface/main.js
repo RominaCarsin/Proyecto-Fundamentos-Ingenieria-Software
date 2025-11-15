@@ -1,21 +1,53 @@
-import Controller from "../domain/Controller.js";
-console.clear();
-const controller = new Controller();
+"use strict";
 
-// ===========================================
-//      MANEJO DE NAVEGACIÓN (NO TOCAR)
-// ===========================================
+import Controller from "../domain/Controller.js";
+import CalculadoraComisiones from "../domain/CalculadoraComisiones.js";
+
+console.clear();
+
+// INICIALIZACIÓN
+const controller = new Controller();
+const calc = new CalculadoraComisiones();
+
+// VARIABLES GLOBALES
+let categoriaActual = "Todas";
+let categoriaAnalisisActual = "Todas";
+let limiteTarjetas = 3;
+let seleccionadosAnalisis = [];
+
+// VARIABLES PARA MOVIMIENTOS
+let movimientoActual = {
+  tipo: "", // 'deposito' o 'retiro'
+  moneda: "" // 'USD' o 'UYU'
+};
+
+// DOM - NAVEGACIÓN
 const itemInicio = document.getElementById("itemInicio");
 const itemPortafolio = document.getElementById("itemPortafolio");
 const itemAnalisis = document.getElementById("itemAnalisis");
 const itemBilletera = document.getElementById("itemBilletera");
+const itemCentroAprendizaje = document.getElementById("itemCentroAprendizaje");
 
 const paginaInicio = document.getElementById("paginaInicio");
 const paginaPortafolio = document.getElementById("paginaPortafolio");
 const paginaAnalisis = document.getElementById("paginaAnalisis");
 const paginaBilletera = document.getElementById("paginaBilletera");
+const paginaCentroAprendizaje = document.getElementById("paginaCentroAprendizaje");
 
+// DOM - INICIO/TRADING
+const selectActivo = document.getElementById("seleccionDeAccionInicio");
+const selectTipoAccion = document.getElementById("tipoAccion");
+const pValorAccion = document.getElementById("idValorDeAccion");
+const inputAccion = document.getElementById("accion");
+const inputDinero = document.getElementById("dinero");
+const btnComprar = document.getElementById("btnComprar");
+const btnVender = document.getElementById("btnVender");
+const btnUSD = document.getElementById("btnUSD");
+const btnUYU = document.getElementById("btnUYU");
+const divHistorial = document.getElementById("textoPosicionesAbiertas");
+const switchModo = document.getElementById("switchCheckDefault");
 
+// DOM - PORTAFOLIO
 const inputBuscarPortafolio = document.getElementById("buscarPortafolio");
 const btnCategoriaTodas = document.getElementById("btnCategoriaTodas");
 const btnCategoriaBonos = document.getElementById("btnCategoriaBonos");
@@ -25,15 +57,52 @@ const btnCategoriaAcciones = document.getElementById("btnCategoriaAcciones");
 const grillaActivos = document.getElementById("grillaActivos");
 const btnVerMasPortafolio = document.getElementById("btnVerMasPortafolio");
 
-// Estado interno
-let categoriaActual = "Todas";
-let limiteTarjetas = 8; // cantidad inicial
+// DOM - ANÁLISIS
+const buscarAnalisis = document.getElementById("buscarAnalisis");
+const btnCategoriaAnalisisTodas = document.getElementById("btnCategoriaAnalisisTodas");
+const btnCategoriaAnalisisBonos = document.getElementById("btnCategoriaAnalisisBonos");
+const btnCategoriaAnalisisCripto = document.getElementById("btnCategoriaAnalisisCripto");
+const btnCategoriaAnalisisForex = document.getElementById("btnCategoriaAnalisisForex");
+const btnCategoriaAnalisisAcciones = document.getElementById("btnCategoriaAnalisisAcciones");
+const tablaInstrumentos = document.getElementById("tablaInstrumentos").querySelector("tbody");
+const totalSeleccionados = document.getElementById("totalSeleccionados");
+const promedioRendimiento = document.getElementById("promedioRendimiento");
+const costoEstimado = document.getElementById("costoEstimado");
+const ultimaActualizacion = document.getElementById("ultimaActualizacion");
 
+// DOM - BILLETERA
+const saldoTotalUSD = document.getElementById("saldoTotalUSD");
+const disponibleUSD = document.getElementById("disponibleUSD");
+const garantiaUSD = document.getElementById("garantiaUSD");
+const saldoTotalUYU = document.getElementById("saldoTotalUYU");
+const disponibleUYU = document.getElementById("disponibleUYU");
+const garantiaUYU = document.getElementById("garantiaUYU");
+const btnDepositoUSD = document.getElementById("btnDepositoUSD");
+const btnRetiroUSD = document.getElementById("btnRetiroUSD");
+const btnDepositoUYU = document.getElementById("btnDepositoUYU");
+const btnRetiroUYU = document.getElementById("btnRetiroUYU");
+
+// DOM - CALCULADORA DE COMISIONES
+const montoInput = document.getElementById("monto");
+const tipoOperacionInput = document.getElementById("tipoOperacion");
+const divisaInput = document.getElementById("divisa");
+const tasaInput = document.getElementById("tasa");
+const btnCalcularComision = document.getElementById("btnCalcularComision");
+const comisionEstimada = document.getElementById("comisionEstimada");
+const totalRecibir = document.getElementById("totalRecibir");
+
+// DOM - CENTRO DE APRENDIZAJE
+const contenedorVideos = document.getElementById("contenedorVideos");
+const btnVerMasVideos = document.getElementById("btnVerMasVideos");
+const inputBuscarCentro = document.querySelector("#paginaCentroAprendizaje input[type='search']");
+
+// FUNCIONES DE NAVEGACIÓN
 function ocultarTodasLasPaginas() {
   paginaInicio.classList.add("d-none");
   paginaPortafolio.classList.add("d-none");
   paginaAnalisis.classList.add("d-none");
   paginaBilletera.classList.add("d-none");
+  paginaCentroAprendizaje.classList.add("d-none");
 }
 
 function limpiarActivosMenu() {
@@ -47,55 +116,37 @@ function irA(pagina, itemMenu) {
   itemMenu.querySelector("a").classList.add("active");
 }
 
-itemInicio.addEventListener("click", () => {
-  irA(paginaInicio, itemInicio);
-  actualizarDatosActivo(selectActivo.value);
-  recalcularDesdeAccion();
-  pintarHistorial();
-});
-
-itemPortafolio.addEventListener("click", () => {
-  irA(paginaPortafolio, itemPortafolio);
-  renderPortafolio();
-});
-itemAnalisis.addEventListener("click", () => irA(paginaAnalisis, itemAnalisis));
-itemBilletera.addEventListener("click", () => irA(paginaBilletera, itemBilletera));
-
-irA(paginaInicio, itemInicio);
-
-// ===========================================
-// DOM
-// ===========================================
-const selectActivo = document.getElementById("seleccionDeAccionInicio");
-const selectTipoAccion = document.getElementById("tipoAccion");
-const pValorAccion = document.getElementById("idValorDeAccion");
-
-const inputAccion = document.getElementById("accion");
-const inputDinero = document.getElementById("dinero");
-
-const btnComprar = document.getElementById("btnComprar");
-const btnVender = document.getElementById("btnVender");
-
-const btnUSD = document.getElementById("btnUSD");
-const btnUYU = document.getElementById("btnUYU");
-
-const divHistorial = document.getElementById("textoPosicionesAbiertas");
-const switchModo = document.getElementById("switchCheckDefault");
-
-// ===========================================
-// MAPEO TIPOS
-// ===========================================
+// FUNCIONES DE UTILIDAD
 function mapearTipo(tipo) {
-  if (tipo === "Bonos") return "";
-  if (tipo === "Criptomonedas") return "limite";
-  if (tipo === "Forex") return "market";
-  if (tipo === "Acciones") return "stop";
-  return "";
+  const tipos = {
+    "Bonos": "",
+    "Criptomonedas": "limite",
+    "Forex": "market",
+    "Acciones": "stop"
+  };
+  return tipos[tipo] || "";
 }
 
-// ===========================================
-// ACTIVOS
-// ===========================================
+function normalizarOperacion(op) {
+  return op
+    .toLowerCase()
+    .replace("ó", "o")
+    .replace("é", "e")
+    .trim();
+}
+
+function mostrarMensaje(texto, tipo = "danger") {
+  const alerta = document.getElementById("alertaSistema");
+  alerta.className = `alert alert-${tipo} position-fixed top-0 start-50 translate-middle-x mt-3 shadow`;
+  alerta.textContent = texto;
+  alerta.classList.remove("d-none");
+
+  setTimeout(() => {
+    alerta.classList.add("d-none");
+  }, 3000);
+}
+
+// FUNCIONES DE INICIO/TRADING
 function cargarSelectActivos() {
   const lista = controller.getListaActivos();
   selectActivo.innerHTML = lista
@@ -115,13 +166,9 @@ function actualizarDatosActivo(id) {
   pValorAccion.textContent = `Valor de Acción: ${datos.precioTexto}`;
 }
 
-// ===========================================
-// ACCIÓN ↔ DINERO
-// ===========================================
 function recalcularDesdeAccion() {
   const id = parseInt(selectActivo.value);
   const cantidad = parseFloat(inputAccion.value) || 0;
-
   const res = controller.calcularDinero(id, cantidad);
   inputDinero.value = res.dineroNumerico.toFixed(2);
 }
@@ -129,14 +176,10 @@ function recalcularDesdeAccion() {
 function recalcularDesdeDinero() {
   const id = parseInt(selectActivo.value);
   const dinero = parseFloat(inputDinero.value) || 0;
-
   const res = controller.calcularCantidad(id, dinero);
   inputAccion.value = res.cantidadNumerica.toFixed(4);
 }
 
-// ===========================================
-// HISTORIAL
-// ===========================================
 function pintarHistorial() {
   const lista = controller.getHistorialParaVista();
 
@@ -150,174 +193,50 @@ function pintarHistorial() {
   ).join("");
 }
 
-// ===========================================
-// COMPRA / VENTA
-// ===========================================
-btnComprar.addEventListener("click", () => {
+function realizarOperacion(tipo) {
   const cantidad = parseFloat(inputAccion.value);
 
   if (cantidad <= 0 || isNaN(cantidad)) {
-    mostrarMensaje("La cantidad debe ser mayor a 0.", "warning");
+    mostrarMensaje(`La cantidad debe ser mayor a 0.`, "warning");
     return;
   }
-  const res = controller.realizarCompra(
-    parseInt(selectActivo.value),
-    cantidad
-  );
-  if (!res.ok) {
-    mostrarMensaje(res.mensaje, "danger");
-    return;
-  }
-  mostrarMensaje("Compra realizada correctamente", "success");
-  pintarHistorial();
-});
 
-btnVender.addEventListener("click", () => {
-  const cantidad = parseFloat(inputAccion.value);
-  if (cantidad <= 0 || isNaN(cantidad)) {
-    mostrarMensaje("La cantidad debe ser mayor a 0", "warning");
-    return;
-  }
-  const res = controller.realizarVenta(
-    parseInt(selectActivo.value),
-    cantidad
-  );
-  if (!res.ok) {
-    mostrarMensaje(res.mensaje, "danger");
-    return;
-  }
-  mostrarMensaje("Venta realizada correctamente", "success");
-  pintarHistorial();
-});
+  const res = tipo === "compra" 
+    ? controller.realizarCompra(parseInt(selectActivo.value), cantidad)
+    : controller.realizarVenta(parseInt(selectActivo.value), cantidad);
 
-// ===========================================
-// SELECT ACTIVO
-// ===========================================
-selectActivo.addEventListener("change", () => {
+  mostrarMensaje(res.mensaje, res.ok ? "success" : "danger");
+  
+  if (res.ok) pintarHistorial();
+}
+
+function cambiarMoneda(moneda) {
+  controller.cambiarMoneda(moneda);
+  btnUSD.classList.toggle("active", moneda === "USD");
+  btnUYU.classList.toggle("active", moneda === "UYU");
   actualizarDatosActivo(selectActivo.value);
+  recalcularDesdeAccion();
+}
+
+function cargarActivoEnInicio(idActivo) {
+  irA(paginaInicio, itemInicio);
+  selectActivo.value = idActivo;
+  selectActivo.dispatchEvent(new Event("change"));
   inputAccion.value = 1;
   recalcularDesdeAccion();
-});
-
-selectTipoAccion.addEventListener("change", () => {
-  const tipo = selectTipoAccion.value;
-  const lista = controller.buscarActivosPorTipo(tipo);
-
-  selectActivo.innerHTML = lista
-    .map(a => `<option value="${a.id}">${a.nombre}</option>`)
-    .join("");
-
-  if (lista.length > 0) {
-    actualizarDatosActivo(lista[0].id);
-    inputAccion.value = 1;
-    recalcularDesdeAccion();
-  } else {
-    pValorAccion.textContent = "Sin activos disponibles";
-    inputAccion.value = "";
-    inputDinero.value = "";
-  }
-});
-
-// ===========================================
-// INPUTS
-// ===========================================
-inputAccion.addEventListener("input", recalcularDesdeAccion);
-inputDinero.addEventListener("input", recalcularDesdeDinero);
-
-// ===========================================
-// MONEDA
-// ===========================================
-btnUSD.addEventListener("click", () => {
-  controller.cambiarMoneda("USD");
-  btnUSD.classList.add("active");
-  btnUYU.classList.remove("active");
-
-  actualizarDatosActivo(selectActivo.value);
-  recalcularDesdeAccion();
-});
-
-btnUYU.addEventListener("click", () => {
-  controller.cambiarMoneda("UYU");
-  btnUYU.classList.add("active");
-  btnUSD.classList.remove("active");
-
-  actualizarDatosActivo(selectActivo.value);
-  recalcularDesdeAccion();
-});
-
-// ===========================================
-// MODO DEMO / REAL
-// ===========================================
-switchModo.addEventListener("change", () => {
-  controller.setModo(switchModo.checked);
-
-  cargarSelectActivos();
-  actualizarDatosActivo(selectActivo.value);
-  pintarHistorial();
-});
-
-// ===========================================
-// INIT
-// ===========================================
-cargarSelectActivos();
-pintarHistorial();
-
-// NOTIFICACIONES
-function mostrarMensaje(texto, tipo = "danger") {
-  const alerta = document.getElementById("alertaSistema");
-
-  alerta.className = `alert alert-${tipo} position-fixed top-0 start-50 translate-middle-x mt-3 shadow`;
-  alerta.textContent = texto;
-
-  alerta.classList.remove("d-none");
-
-  // Oculta solo después de 3 segundos
-  setTimeout(() => {
-    alerta.classList.add("d-none");
-  }, 3000);
 }
 
-//FUNCIONES PARA IMPLEMENTAR PORTAFOLIO 
-function renderPortafolio() {
-  const todos = controller.getPortafolioParaVista();
-
-  // 1) Filtrar por categoría
-  const filtradosPorCategoria =
-  categoriaActual === "Todas"
-    ? todos
-    : todos.filter(a => a.tipo.toLowerCase() === categoriaActual.toLowerCase());
-
-  // 2) Filtrar por texto
-  const texto = inputBuscarPortafolio.value.trim().toLowerCase();
-  const filtrados = filtradosPorCategoria.filter(a =>
-    a.nombre.toLowerCase().includes(texto)
-  );
-
-  // 3) Limitar tarjetas mostradas
-  const visibles = filtrados.slice(0, limiteTarjetas);
-
-  // 4) Renderizar HTML
-  grillaActivos.innerHTML = visibles.map(a => crearTarjetaHTML(a)).join("");
-
-  // 5) Control de botón "Ver más"
-  btnVerMasPortafolio.classList.toggle(
-    "d-none",
-    filtrados.length <= limiteTarjetas
-  );
-}
-
+// FUNCIONES DE PORTAFOLIO
 function crearTarjetaHTML(activo) {
   return `
   <article class="col-sm-6 col-md-4 col-lg-3">
     <article class="card activo text-center p-3" data-tipo="${activo.tipo}">
       <h3 class="fw-bold mb-1">${activo.nombre}</h3>
       <p class="text-muted small mb-2">${activo.tipo}</p>
-
       <section class="d-flex justify-content-around align-items-center mb-2">
         <span class="badge bg-light text-dark px-3">${activo.rendimiento}%</span>
         <span class="fw-bold text-success">${activo.precio} ${activo.moneda}</span>
       </section>
-
       <button class="btn btn-primary btn-sm" onclick="irAInicio(${activo.id})">
         Ir
       </button>
@@ -326,128 +245,67 @@ function crearTarjetaHTML(activo) {
   `;
 }
 
-
-function irAInicio(idActivo) {
-
-  // Ir a la ventana inicio usando tu navegación
-  irA(paginaInicio, itemInicio);
-
-  // Seleccionar el activo correcto
-  const selector = document.getElementById("seleccionDeAccionInicio");
-  selector.value = idActivo;
-
-  // Forzar update
-  selector.dispatchEvent(new Event("change"));
-
-  // Reiniciar valores
-  inputAccion.value = 1;
-  recalcularDesdeAccion();
-}
-
-btnCategoriaTodas.onclick = () => cambiarCategoria("Todas");
-btnCategoriaBonos.onclick = () => cambiarCategoria("Bonos");
-btnCategoriaCripto.onclick = () => cambiarCategoria("Criptomonedas");
-btnCategoriaForex.onclick = () => cambiarCategoria("Forex");
-btnCategoriaAcciones.onclick = () => cambiarCategoria("Acciones");
-
-inputBuscarPortafolio.oninput = renderPortafolio;
-
-btnVerMasPortafolio.onclick = () => {
-  limiteTarjetas += 8;
-  renderPortafolio();
-};
-
 function cambiarCategoria(cat) {
   categoriaActual = cat;
-
   document.querySelectorAll("#categorias button").forEach(btn =>
     btn.classList.remove("active")
   );
-
-  document.querySelector(`#btnCategoria${cat}`)?.classList.add("active");
-
-  limiteTarjetas = 8;
+  const btnCategoria = document.getElementById(`btnCategoria${cat}`);
+  if (btnCategoria) btnCategoria.classList.add("active");
+  limiteTarjetas = 3;
   renderPortafolio();
 }
 
-window.irAInicio = function (idActivo) {
+function renderPortafolio() {
+  const todos = controller.getPortafolioParaVista();
 
-  // 1) Ir a la ventana inicio usando tu navegación existente
-  irA(paginaInicio, itemInicio);
+  // Filtrar por categoría
+  const filtradosPorCategoria = categoriaActual === "Todas"
+    ? todos
+    : todos.filter(a => a.tipo.toLowerCase() === categoriaActual.toLowerCase());
 
-  // 2) Seleccionar el activo
-  selectActivo.value = idActivo;
-
-  // 3) Forzar actualización
-  selectActivo.dispatchEvent(new Event("change"));
-
-  // 4) Reiniciar valores
-  inputAccion.value = 1;
-  recalcularDesdeAccion();
-};
-
-// ==============================
-// ANÁLISIS DE MERCADO - DOM
-// ==============================
-const buscarAnalisis = document.getElementById("buscarAnalisis");
-
-const btnCategoriaAnalisisTodas = document.getElementById("btnCategoriaAnalisisTodas");
-const btnCategoriaAnalisisBonos = document.getElementById("btnCategoriaAnalisisBonos");
-const btnCategoriaAnalisisCripto = document.getElementById("btnCategoriaAnalisisCripto");
-const btnCategoriaAnalisisForex = document.getElementById("btnCategoriaAnalisisForex");
-const btnCategoriaAnalisisAcciones = document.getElementById("btnCategoriaAnalisisAcciones");
-
-const tablaInstrumentos = document.getElementById("tablaInstrumentos").querySelector("tbody");
-
-const totalSeleccionados = document.getElementById("totalSeleccionados");
-const promedioRendimiento = document.getElementById("promedioRendimiento");
-const costoEstimado = document.getElementById("costoEstimado");
-const ultimaActualizacion = document.getElementById("ultimaActualizacion");
-
-let categoriaAnalisisActual = "Todas";
-let seleccionadosAnalisis = [];  // Guarda IDs seleccionados
-
-function renderAnalisis() {
-  const lista = controller.getListaActivos();
-
-  // 1) Filtrar por categoría
-  const filtradosCategoria =
-  categoriaAnalisisActual === "Todas"
-    ? lista
-    : lista.filter(a => a.tipo.toLowerCase() === categoriaAnalisisActual.toLowerCase());
-
-
-  // 2) Filtrar por texto
-  const texto = buscarAnalisis.value.trim().toLowerCase();
-  const filtrados = filtradosCategoria.filter(a =>
+  // Filtrar por texto
+  const texto = inputBuscarPortafolio.value.trim().toLowerCase();
+  const filtrados = filtradosPorCategoria.filter(a =>
     a.nombre.toLowerCase().includes(texto)
   );
 
-  // 3) Renderizar tabla
-  tablaInstrumentos.innerHTML = filtrados.map(a => crearFilaAnalisis(a)).join("");
+  // Limitar tarjetas mostradas
+  const visibles = filtrados.slice(0, limiteTarjetas);
 
-  // 4) Actualizar resumen
-  actualizarResumen();
+  // Renderizar HTML
+  grillaActivos.innerHTML = visibles.map(a => crearTarjetaHTML(a)).join("");
+
+  // Control de botón "Ver más"
+  if (btnVerMasPortafolio) {
+    btnVerMasPortafolio.classList.toggle(
+      "d-none",
+      filtrados.length <= limiteTarjetas
+    );
+  }
 }
 
-
+// FUNCIONES DE ANÁLISIS
 function crearFilaAnalisis(activo) {
   const colorRend = activo.rendimiento >= 0 ? "text-success" : "text-danger";
-
   const checked = seleccionadosAnalisis.includes(activo.id) ? "checked" : "";
+
+  // Crear ID único accesible
+  const checkboxId = `check-analisis-${activo.id}`;
 
   return `
     <tr>
       <td>
-        <figure class="form-check">
+        <div class="form-check">
           <input 
             type="checkbox" 
+            id="${checkboxId}"
             class="form-check-input check-analisis"
             data-id="${activo.id}"
             ${checked}
           />
-          <label class="form-check-label">${activo.nombre}</label>
-        </figure>
+          <label for="${checkboxId}" class="form-check-label">${activo.nombre}</label>
+        </div>
       </td>
 
       <td class="text-center">
@@ -457,14 +315,15 @@ function crearFilaAnalisis(activo) {
       <td class="text-center">${activo.precio} ${activo.moneda}</td>
 
       <td class="text-center">
-        <button class="btn btn-primary btn-sm btn-operar" data-id="${activo.id}">
+        <button 
+          class="btn btn-primary btn-sm btn-operar" 
+          data-id="${activo.id}">
           Operar
         </button>
       </td>
     </tr>
   `;
 }
-
 
 function actualizarResumen() {
   const lista = controller.getListaActivos();
@@ -490,58 +349,455 @@ function actualizarResumen() {
   ultimaActualizacion.textContent = new Date().toLocaleTimeString();
 }
 
-// Delegación para checkbox + botón operar dentro de la tabla
-tablaInstrumentos.addEventListener("click", e => {
-
-  // Checkbox
-  if (e.target.classList.contains("check-analisis")) {
-    const id = parseInt(e.target.dataset.id);
-
-    if (e.target.checked) {
-      if (!seleccionadosAnalisis.includes(id)) {
-        seleccionadosAnalisis.push(id);
-      }
-    } else {
-      seleccionadosAnalisis = seleccionadosAnalisis.filter(x => x !== id);
-    }
-
-    actualizarResumen();
-  }
-
-  // Botón Operar
-  if (e.target.classList.contains("btn-operar")) {
-    const id = parseInt(e.target.dataset.id);
-    cargarActivoEnInicio(id);
-  }
-});
-
-function cargarActivoEnInicio(idActivo) {
-  irA(paginaInicio, itemInicio);
-
-  selectActivo.value = idActivo;
-  selectActivo.dispatchEvent(new Event("change"));
-}
-
-btnCategoriaAnalisisTodas.onclick = () => cambiarCategoriaAnalisis("Todas");
-btnCategoriaAnalisisBonos.onclick = () => cambiarCategoriaAnalisis("Bonos");
-btnCategoriaAnalisisCripto.onclick = () => cambiarCategoriaAnalisis("Criptomonedas");
-btnCategoriaAnalisisForex.onclick = () => cambiarCategoriaAnalisis("Forex");
-btnCategoriaAnalisisAcciones.onclick = () => cambiarCategoriaAnalisis("Acciones");
-
-function cambiarCategoriaAnalisis(cat) {
-  categoriaAnalisisActual = cat;
-
+function cambiarCategoriaAnalisis(categoria) {
+  categoriaAnalisisActual = categoria;
   document.querySelectorAll("#categoriasAnalisis button")
     .forEach(btn => btn.classList.remove("active"));
-
-  document.querySelector(`#btnCategoriaAnalisis${cat}`)?.classList.add("active");
-
+  const btnCategoriaAnalisis = document.getElementById(`btnCategoriaAnalisis${categoria}`);
+  if (btnCategoriaAnalisis) btnCategoriaAnalisis.classList.add("active");
   renderAnalisis();
 }
 
-buscarAnalisis.oninput = renderAnalisis;
+function renderAnalisis() {
+  const lista = controller.getListaActivos();
 
-itemAnalisis.addEventListener("click", () => {
-  irA(paginaAnalisis, itemAnalisis);
-  renderAnalisis();
-});
+  // Filtrar por categoría
+  const filtradosCategoria = categoriaAnalisisActual === "Todas"
+    ? lista
+    : lista.filter(a => a.tipo.toLowerCase() === categoriaAnalisisActual.toLowerCase());
+
+  // Filtrar por texto
+  const texto = buscarAnalisis.value.trim().toLowerCase();
+  const filtrados = filtradosCategoria.filter(a =>
+    a.nombre.toLowerCase().includes(texto)
+  );
+
+  // Renderizar tabla
+  tablaInstrumentos.innerHTML = filtrados.map(a => crearFilaAnalisis(a)).join("");
+
+  // Actualizar resumen
+  actualizarResumen();
+}
+
+// FUNCIONES DE BILLETERA
+function renderBilletera() {
+  const saldos = controller.getSaldos();
+
+  // USD
+  if (saldoTotalUSD) saldoTotalUSD.textContent = `$ ${saldos.USD.total.toFixed(2)}`;
+  if (disponibleUSD) disponibleUSD.textContent = `$ ${saldos.USD.disponible.toFixed(2)}`;
+  if (garantiaUSD) garantiaUSD.textContent = `$ ${saldos.USD.garantia.toFixed(2)}`;
+
+  // UYU
+  if (saldoTotalUYU) saldoTotalUYU.textContent = `$ ${saldos.UYU.total.toFixed(2)}`;
+  if (disponibleUYU) disponibleUYU.textContent = `$ ${saldos.UYU.disponible.toFixed(2)}`;
+  if (garantiaUYU) garantiaUYU.textContent = `$ ${saldos.UYU.garantia.toFixed(2)}`;
+}
+
+// FUNCIONES DE MOVIMIENTOS CON MODAL
+function abrirModalMovimiento(moneda, tipo) {
+  // Guardar los datos de la operación actual
+  movimientoActual.moneda = moneda;
+  movimientoActual.tipo = tipo;
+  
+  // Configurar el modal según el tipo de operación
+  const modalLabel = document.getElementById('modalMovimientoLabel');
+  const tipoInput = document.getElementById('tipoOperacionModal');
+  const monedaInput = document.getElementById('monedaModal');
+  const montoInput = document.getElementById('montoModal');
+  const btnConfirmar = document.getElementById('btnConfirmarMovimiento');
+  
+  if (!modalLabel || !tipoInput || !monedaInput || !montoInput || !btnConfirmar) {
+    console.error("Elementos del modal no encontrados");
+    return;
+  }
+  
+  // Textos según el tipo de operación
+  const esDeposito = tipo === 'deposito';
+  const textoOperacion = esDeposito ? 'Depósito' : 'Retiro';
+  const textoBoton = esDeposito ? 'Depositar' : 'Retirar';
+  const claseBoton = esDeposito ? 'btn-success' : 'btn-warning';
+  
+  // Configurar elementos del modal
+  modalLabel.textContent = `${textoOperacion} - ${moneda}`;
+  tipoInput.value = textoOperacion;
+  monedaInput.value = moneda;
+  montoInput.value = '';
+  
+  // Configurar botón de confirmación
+  btnConfirmar.textContent = textoBoton;
+  btnConfirmar.className = `btn ${claseBoton}`;
+  
+  // Ocultar resumen inicialmente
+  const resumenOperacion = document.getElementById('resumenOperacion');
+  if (resumenOperacion) resumenOperacion.classList.add('d-none');
+  
+  // Mostrar modal
+  const modalElement = document.getElementById('modalMovimiento');
+  if (modalElement) {
+    const modal = new bootstrap.Modal(modalElement);
+    modal.show();
+  }
+}
+
+function actualizarResumenOperacion() {
+  const montoModal = document.getElementById('montoModal');
+  if (!montoModal) return;
+  
+  const montoBruto = parseFloat(montoModal.value);
+  
+  if (isNaN(montoBruto) || montoBruto <= 0) {
+    const resumenOperacion = document.getElementById('resumenOperacion');
+    if (resumenOperacion) resumenOperacion.classList.add('d-none');
+    return;
+  }
+  
+  const tipoNormalizado = normalizarOperacion(movimientoActual.tipo);
+  const { comision, neto, tasa } = calc.calcularPorOperacion(
+    montoBruto, 
+    tipoNormalizado, 
+    movimientoActual.moneda
+  );
+  
+  // Actualizar elementos del resumen
+  const resumenMonto = document.getElementById('resumenMonto');
+  const resumenTasa = document.getElementById('resumenTasa');
+  const resumenComision = document.getElementById('resumenComision');
+  const resumenNeto = document.getElementById('resumenNeto');
+  const resumenOperacion = document.getElementById('resumenOperacion');
+  
+  if (resumenMonto) resumenMonto.textContent = `${montoBruto.toFixed(2)} ${movimientoActual.moneda}`;
+  if (resumenTasa) resumenTasa.textContent = tasa;
+  if (resumenComision) resumenComision.textContent = `-${comision.toFixed(2)} ${movimientoActual.moneda}`;
+  if (resumenNeto) resumenNeto.textContent = `${neto.toFixed(2)} ${movimientoActual.moneda}`;
+  
+  // Mostrar resumen
+  if (resumenOperacion) resumenOperacion.classList.remove('d-none');
+}
+
+function confirmarMovimiento() {
+  const montoModal = document.getElementById('montoModal');
+  if (!montoModal) return;
+  
+  const montoBruto = parseFloat(montoModal.value);
+  
+  if (isNaN(montoBruto) || montoBruto <= 0) {
+    mostrarMensaje("Ingrese un monto válido.", "warning");
+    return;
+  }
+  
+  const tipoNormalizado = normalizarOperacion(movimientoActual.tipo);
+  const { comision, neto, tasa } = calc.calcularPorOperacion(
+    montoBruto, 
+    tipoNormalizado, 
+    movimientoActual.moneda
+  );
+  
+  // Realizar la operación
+  let res;
+  if (tipoNormalizado === "deposito") {
+    res = controller.depositar(movimientoActual.moneda, neto);
+  } else {
+    res = controller.retirar(movimientoActual.moneda, neto);
+  }
+  
+  // Mostrar resultado
+  mostrarMensaje(res.mensaje, res.ok ? "success" : "danger");
+  
+  if (res.ok) {
+    // Actualizar billetera y cerrar modal
+    renderBilletera();
+    const modalElement = document.getElementById('modalMovimiento');
+    if (modalElement) {
+      const modal = bootstrap.Modal.getInstance(modalElement);
+      if (modal) modal.hide();
+    }
+  }
+}
+
+// FUNCIONES DE CALCULADORA DE COMISIONES
+function actualizarTasaCalculadora() {
+  const tipo = normalizarOperacion(tipoOperacionInput.value);
+  const moneda = divisaInput.value;
+  tasaInput.value = calc.obtenerTasa(tipo, moneda);
+}
+
+function calcularComision() {
+  const monto = parseFloat(montoInput.value);
+  const tipo = normalizarOperacion(tipoOperacionInput.value);
+  const moneda = divisaInput.value;
+
+  if (isNaN(monto) || monto <= 0) {
+    mostrarMensaje("Ingrese un monto válido.", "warning");
+    return;
+  }
+
+  const { comision, neto, tasa } = calc.calcularPorOperacion(monto, tipo, moneda);
+
+  tasaInput.value = tasa;
+  if (comisionEstimada) comisionEstimada.textContent = `${comision.toFixed(2)} ${moneda}`;
+  if (totalRecibir) totalRecibir.textContent = `${neto.toFixed(2)} ${moneda}`;
+}
+
+// FUNCIONES - CENTRO DE APRENDIZAJE
+let videosVisibles = 4;
+
+function actualizarVisibilidadVideos() {
+  const videos = document.querySelectorAll("#contenedorVideos .video-item");
+
+  videos.forEach((v, i) => {
+    if (i < videosVisibles) {
+      v.classList.remove("d-none");
+    } else {
+      v.classList.add("d-none");
+    }
+  });
+
+  // Cambiar texto del botón
+  if (btnVerMasVideos) {
+    btnVerMasVideos.textContent =
+      videosVisibles >= videos.length ? "Ver menos" : "Ver más";
+  }
+}
+
+function toggleVerMasVideos() {
+  const videos = document.querySelectorAll("#contenedorVideos .video-item");
+
+  if (videosVisibles >= videos.length) {
+    // Contraer
+    videosVisibles = 4;
+  } else {
+    // Expandir todos los videos
+    videosVisibles = videos.length;
+  }
+
+  actualizarVisibilidadVideos();
+}
+
+function filtrarVideosCentro() {
+  const texto = inputBuscarCentro ? inputBuscarCentro.value.toLowerCase().trim() : "";
+  const videos = document.querySelectorAll("#contenedorVideos .video-item");
+
+  // Mostrar todos los videos antes de filtrar
+  videos.forEach(v => {
+    v.classList.remove("d-none"); 
+    v.style.display = ""; // reset
+  });
+
+  // Aplicar filtro
+  videos.forEach(v => {
+    const titulo = v.querySelector("small").textContent.toLowerCase();
+    const coincide = titulo.includes(texto);
+
+    // Si no coincide → ocultar
+    if (!coincide) {
+      v.style.display = "none";
+    }
+  });
+
+  // Si hay texto → ocultar el botón "ver más"
+  if (btnVerMasVideos) {
+    btnVerMasVideos.style.display = texto.length > 0 ? "none" : "";
+  }
+
+  // Si no hay texto → restaurar visibilidad normal
+  if (texto.length === 0) {
+    videosVisibles = 4;
+    actualizarVisibilidadVideos();
+  }
+}
+
+// EVENT LISTENERS - NAVEGACIÓN
+if (itemInicio) {
+  itemInicio.addEventListener("click", () => {
+    irA(paginaInicio, itemInicio);
+    actualizarDatosActivo(selectActivo.value);
+    recalcularDesdeAccion();
+    pintarHistorial();
+  });
+}
+
+if (itemPortafolio) {
+  itemPortafolio.addEventListener("click", () => {
+    irA(paginaPortafolio, itemPortafolio);
+    renderPortafolio();
+  });
+}
+
+if (itemAnalisis) {
+  itemAnalisis.addEventListener("click", () => {
+    irA(paginaAnalisis, itemAnalisis);
+    renderAnalisis();
+  });
+}
+
+if (itemBilletera) {
+  itemBilletera.addEventListener("click", () => {
+    irA(paginaBilletera, itemBilletera);
+    renderBilletera();
+    actualizarTasaCalculadora();
+  });
+}
+
+if (itemCentroAprendizaje) {
+  itemCentroAprendizaje.addEventListener("click", () => {
+    irA(paginaCentroAprendizaje, itemCentroAprendizaje);
+    // Reiniciar vista al entrar
+    videosVisibles = 4;
+    actualizarVisibilidadVideos();
+    filtrarVideosCentro();
+  });
+}
+
+// EVENT LISTENERS - INICIO/TRADING
+if (selectActivo) {
+  selectActivo.addEventListener("change", () => {
+    actualizarDatosActivo(selectActivo.value);
+    inputAccion.value = 1;
+    recalcularDesdeAccion();
+  });
+}
+
+if (selectTipoAccion) {
+  selectTipoAccion.addEventListener("change", () => {
+    const tipo = selectTipoAccion.value;
+    const lista = controller.buscarActivosPorTipo(tipo);
+
+    selectActivo.innerHTML = lista
+      .map(a => `<option value="${a.id}">${a.nombre}</option>`)
+      .join("");
+
+    if (lista.length > 0) {
+      actualizarDatosActivo(lista[0].id);
+      inputAccion.value = 1;
+      recalcularDesdeAccion();
+    } else {
+      pValorAccion.textContent = "Sin activos disponibles";
+      inputAccion.value = "";
+      inputDinero.value = "";
+    }
+  });
+}
+
+if (inputAccion) inputAccion.addEventListener("input", recalcularDesdeAccion);
+if (inputDinero) inputDinero.addEventListener("input", recalcularDesdeDinero);
+
+if (btnComprar) btnComprar.addEventListener("click", () => realizarOperacion("compra"));
+if (btnVender) btnVender.addEventListener("click", () => realizarOperacion("venta"));
+
+if (btnUSD) btnUSD.addEventListener("click", () => cambiarMoneda("USD"));
+if (btnUYU) btnUYU.addEventListener("click", () => cambiarMoneda("UYU"));
+
+if (switchModo) {
+  switchModo.addEventListener("change", () => {
+    controller.setModo(switchModo.checked);
+    cargarSelectActivos();
+    actualizarDatosActivo(selectActivo.value);
+    pintarHistorial();
+  });
+}
+
+// EVENT LISTENERS - PORTAFOLIO
+if (btnCategoriaTodas) btnCategoriaTodas.onclick = () => cambiarCategoria("Todas");
+if (btnCategoriaBonos) btnCategoriaBonos.onclick = () => cambiarCategoria("Bonos");
+if (btnCategoriaCripto) btnCategoriaCripto.onclick = () => cambiarCategoria("Criptomonedas");
+if (btnCategoriaForex) btnCategoriaForex.onclick = () => cambiarCategoria("Forex");
+if (btnCategoriaAcciones) btnCategoriaAcciones.onclick = () => cambiarCategoria("Acciones");
+
+if (inputBuscarPortafolio) inputBuscarPortafolio.oninput = renderPortafolio;
+if (btnVerMasPortafolio) btnVerMasPortafolio.onclick = () => {
+  limiteTarjetas += 3;
+  renderPortafolio();
+};
+
+// EVENT LISTENERS - ANÁLISIS
+if (btnCategoriaAnalisisTodas) btnCategoriaAnalisisTodas.onclick = () => cambiarCategoriaAnalisis("Todas");
+if (btnCategoriaAnalisisBonos) btnCategoriaAnalisisBonos.onclick = () => cambiarCategoriaAnalisis("Bonos");
+if (btnCategoriaAnalisisCripto) btnCategoriaAnalisisCripto.onclick = () => cambiarCategoriaAnalisis("Criptomonedas");
+if (btnCategoriaAnalisisForex) btnCategoriaAnalisisForex.onclick = () => cambiarCategoriaAnalisis("Forex");
+if (btnCategoriaAnalisisAcciones) btnCategoriaAnalisisAcciones.onclick = () => cambiarCategoriaAnalisis("Acciones");
+
+if (buscarAnalisis) buscarAnalisis.oninput = renderAnalisis;
+
+if (tablaInstrumentos) {
+  tablaInstrumentos.addEventListener("click", e => {
+    // Checkbox
+    if (e.target.classList.contains("check-analisis")) {
+      const id = parseInt(e.target.dataset.id);
+      if (e.target.checked) {
+        if (!seleccionadosAnalisis.includes(id)) {
+          seleccionadosAnalisis.push(id);
+        }
+      } else {
+        seleccionadosAnalisis = seleccionadosAnalisis.filter(x => x !== id);
+      }
+      actualizarResumen();
+    }
+
+    // Botón Operar
+    if (e.target.classList.contains("btn-operar")) {
+      const id = parseInt(e.target.dataset.id);
+      cargarActivoEnInicio(id);
+    }
+  });
+}
+
+// EVENT LISTENERS - BILLETERA
+if (btnDepositoUSD) btnDepositoUSD.addEventListener("click", () => abrirModalMovimiento("USD", "deposito"));
+if (btnRetiroUSD) btnRetiroUSD.addEventListener("click", () => abrirModalMovimiento("USD", "retiro"));
+if (btnDepositoUYU) btnDepositoUYU.addEventListener("click", () => abrirModalMovimiento("UYU", "deposito"));
+if (btnRetiroUYU) btnRetiroUYU.addEventListener("click", () => abrirModalMovimiento("UYU", "retiro"));
+
+// EVENT LISTENERS - CALCULADORA DE COMISIONES
+if (tipoOperacionInput) tipoOperacionInput.addEventListener("change", actualizarTasaCalculadora);
+if (divisaInput) divisaInput.addEventListener("change", actualizarTasaCalculadora);
+if (btnCalcularComision) btnCalcularComision.addEventListener("click", calcularComision);
+
+// EVENT LISTENERS DEL MODAL DE MOVIMIENTOS
+const montoModalElement = document.getElementById('montoModal');
+if (montoModalElement) {
+  montoModalElement.addEventListener('input', actualizarResumenOperacion);
+  montoModalElement.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      confirmarMovimiento();
+    }
+  });
+}
+
+const btnConfirmarMovimientoElement = document.getElementById('btnConfirmarMovimiento');
+if (btnConfirmarMovimientoElement) {
+  btnConfirmarMovimientoElement.addEventListener('click', confirmarMovimiento);
+}
+
+// EVENTOS - CENTRO DE APRENDIZAJE
+if (btnVerMasVideos) {
+  btnVerMasVideos.addEventListener("click", toggleVerMasVideos);
+}
+
+if (inputBuscarCentro) {
+  inputBuscarCentro.addEventListener("input", filtrarVideosCentro);
+}
+
+// INICIALIZACIÓN
+if (paginaInicio && itemInicio) {
+  irA(paginaInicio, itemInicio);
+}
+cargarSelectActivos();
+pintarHistorial();
+
+// Centro aprendizaje: establecer visibilidad inicial
+actualizarVisibilidadVideos();
+
+// FUNCIONES GLOBALES
+window.irAInicio = function(idActivo) {
+  irA(paginaInicio, itemInicio);
+  if (selectActivo) {
+    selectActivo.value = idActivo;
+    selectActivo.dispatchEvent(new Event("change"));
+  }
+  if (inputAccion) {
+    inputAccion.value = 1;
+    recalcularDesdeAccion();
+  }
+};

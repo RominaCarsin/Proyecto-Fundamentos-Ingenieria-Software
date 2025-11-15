@@ -6,7 +6,7 @@ export default class HistorialOperaciones {
   }
 
   obtenerUltimas(n = 5) {
-    return this.#lista.slice(-n);
+    return this.#lista.slice(0,n);
   }
 
   obtenerPorActivo(id) {
