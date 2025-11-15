@@ -16,14 +16,12 @@ let limiteTarjetas = 3;
 let seleccionadosAnalisis = [];
 
 // VARIABLES PARA MOVIMIENTOS
-
 let movimientoActual = {
   tipo: "", // 'deposito' o 'retiro'
   moneda: "" // 'USD' o 'UYU'
 };
 
 // DOM - NAVEGACIÓN
-
 const itemInicio = document.getElementById("itemInicio");
 const itemPortafolio = document.getElementById("itemPortafolio");
 const itemAnalisis = document.getElementById("itemAnalisis");
@@ -36,8 +34,7 @@ const paginaAnalisis = document.getElementById("paginaAnalisis");
 const paginaBilletera = document.getElementById("paginaBilletera");
 const paginaCentroAprendizaje = document.getElementById("paginaCentroAprendizaje");
 
-//DOM - INICIO/TRADING
-
+// DOM - INICIO/TRADING
 const selectActivo = document.getElementById("seleccionDeAccionInicio");
 const selectTipoAccion = document.getElementById("tipoAccion");
 const pValorAccion = document.getElementById("idValorDeAccion");
@@ -85,7 +82,7 @@ const btnRetiroUSD = document.getElementById("btnRetiroUSD");
 const btnDepositoUYU = document.getElementById("btnDepositoUYU");
 const btnRetiroUYU = document.getElementById("btnRetiroUYU");
 
-//DOM - CALCULADORA DE COMISIONES
+// DOM - CALCULADORA DE COMISIONES
 const montoInput = document.getElementById("monto");
 const tipoOperacionInput = document.getElementById("tipoOperacion");
 const divisaInput = document.getElementById("divisa");
@@ -94,6 +91,10 @@ const btnCalcularComision = document.getElementById("btnCalcularComision");
 const comisionEstimada = document.getElementById("comisionEstimada");
 const totalRecibir = document.getElementById("totalRecibir");
 
+// DOM - CENTRO DE APRENDIZAJE
+const contenedorVideos = document.getElementById("contenedorVideos");
+const btnVerMasVideos = document.getElementById("btnVerMasVideos");
+const inputBuscarCentro = document.querySelector("#paginaCentroAprendizaje input[type='search']");
 
 // FUNCIONES DE NAVEGACIÓN
 function ocultarTodasLasPaginas() {
@@ -101,7 +102,7 @@ function ocultarTodasLasPaginas() {
   paginaPortafolio.classList.add("d-none");
   paginaAnalisis.classList.add("d-none");
   paginaBilletera.classList.add("d-none");
-  paginaCentroAprendizaje.classList.add("d-none"); 
+  paginaCentroAprendizaje.classList.add("d-none");
 }
 
 function limpiarActivosMenu() {
@@ -115,9 +116,7 @@ function irA(pagina, itemMenu) {
   itemMenu.querySelector("a").classList.add("active");
 }
 
-
 // FUNCIONES DE UTILIDAD
-
 function mapearTipo(tipo) {
   const tipos = {
     "Bonos": "",
@@ -147,9 +146,7 @@ function mostrarMensaje(texto, tipo = "danger") {
   }, 3000);
 }
 
-
 // FUNCIONES DE INICIO/TRADING
-
 function cargarSelectActivos() {
   const lista = controller.getListaActivos();
   selectActivo.innerHTML = lista
@@ -229,9 +226,7 @@ function cargarActivoEnInicio(idActivo) {
   recalcularDesdeAccion();
 }
 
-
 // FUNCIONES DE PORTAFOLIO
-
 function crearTarjetaHTML(activo) {
   return `
   <article class="col-sm-6 col-md-4 col-lg-3">
@@ -255,7 +250,8 @@ function cambiarCategoria(cat) {
   document.querySelectorAll("#categorias button").forEach(btn =>
     btn.classList.remove("active")
   );
-  document.querySelector(`#btnCategoria${cat}`)?.classList.add("active");
+  const btnCategoria = document.getElementById(`btnCategoria${cat}`);
+  if (btnCategoria) btnCategoria.classList.add("active");
   limiteTarjetas = 3;
   renderPortafolio();
 }
@@ -281,15 +277,15 @@ function renderPortafolio() {
   grillaActivos.innerHTML = visibles.map(a => crearTarjetaHTML(a)).join("");
 
   // Control de botón "Ver más"
-  btnVerMasPortafolio.classList.toggle(
-    "d-none",
-    filtrados.length <= limiteTarjetas
-  );
+  if (btnVerMasPortafolio) {
+    btnVerMasPortafolio.classList.toggle(
+      "d-none",
+      filtrados.length <= limiteTarjetas
+    );
+  }
 }
 
-
 // FUNCIONES DE ANÁLISIS
-
 function crearFilaAnalisis(activo) {
   const colorRend = activo.rendimiento >= 0 ? "text-success" : "text-danger";
   const checked = seleccionadosAnalisis.includes(activo.id) ? "checked" : "";
@@ -311,10 +307,13 @@ function crearFilaAnalisis(activo) {
           <label for="${checkboxId}" class="form-check-label">${activo.nombre}</label>
         </div>
       </td>
+
       <td class="text-center">
         <span class="${colorRend}">${activo.rendimiento}%</span>
       </td>
+
       <td class="text-center">${activo.precio} ${activo.moneda}</td>
+
       <td class="text-center">
         <button 
           class="btn btn-primary btn-sm btn-operar" 
@@ -350,11 +349,12 @@ function actualizarResumen() {
   ultimaActualizacion.textContent = new Date().toLocaleTimeString();
 }
 
-function cambiarCategoriaAnalisis(cat) {
-  categoriaAnalisisActual = cat;
+function cambiarCategoriaAnalisis(categoria) {
+  categoriaAnalisisActual = categoria;
   document.querySelectorAll("#categoriasAnalisis button")
     .forEach(btn => btn.classList.remove("active"));
-  document.querySelector(`#btnCategoriaAnalisis${cat}`)?.classList.add("active");
+  const btnCategoriaAnalisis = document.getElementById(`btnCategoriaAnalisis${categoria}`);
+  if (btnCategoriaAnalisis) btnCategoriaAnalisis.classList.add("active");
   renderAnalisis();
 }
 
@@ -379,26 +379,22 @@ function renderAnalisis() {
   actualizarResumen();
 }
 
-
 // FUNCIONES DE BILLETERA
-
 function renderBilletera() {
   const saldos = controller.getSaldos();
 
   // USD
-  saldoTotalUSD.textContent = `$ ${saldos.USD.total.toFixed(2)}`;
-  disponibleUSD.textContent = `$ ${saldos.USD.disponible.toFixed(2)}`;
-  garantiaUSD.textContent = `$ ${saldos.USD.garantia.toFixed(2)}`;
+  if (saldoTotalUSD) saldoTotalUSD.textContent = `$ ${saldos.USD.total.toFixed(2)}`;
+  if (disponibleUSD) disponibleUSD.textContent = `$ ${saldos.USD.disponible.toFixed(2)}`;
+  if (garantiaUSD) garantiaUSD.textContent = `$ ${saldos.USD.garantia.toFixed(2)}`;
 
   // UYU
-  saldoTotalUYU.textContent = `$ ${saldos.UYU.total.toFixed(2)}`;
-  disponibleUYU.textContent = `$ ${saldos.UYU.disponible.toFixed(2)}`;
-  garantiaUYU.textContent = `$ ${saldos.UYU.garantia.toFixed(2)}`;
+  if (saldoTotalUYU) saldoTotalUYU.textContent = `$ ${saldos.UYU.total.toFixed(2)}`;
+  if (disponibleUYU) disponibleUYU.textContent = `$ ${saldos.UYU.disponible.toFixed(2)}`;
+  if (garantiaUYU) garantiaUYU.textContent = `$ ${saldos.UYU.garantia.toFixed(2)}`;
 }
 
-
 // FUNCIONES DE MOVIMIENTOS CON MODAL
-
 function abrirModalMovimiento(moneda, tipo) {
   // Guardar los datos de la operación actual
   movimientoActual.moneda = moneda;
@@ -410,6 +406,11 @@ function abrirModalMovimiento(moneda, tipo) {
   const monedaInput = document.getElementById('monedaModal');
   const montoInput = document.getElementById('montoModal');
   const btnConfirmar = document.getElementById('btnConfirmarMovimiento');
+  
+  if (!modalLabel || !tipoInput || !monedaInput || !montoInput || !btnConfirmar) {
+    console.error("Elementos del modal no encontrados");
+    return;
+  }
   
   // Textos según el tipo de operación
   const esDeposito = tipo === 'deposito';
@@ -428,18 +429,26 @@ function abrirModalMovimiento(moneda, tipo) {
   btnConfirmar.className = `btn ${claseBoton}`;
   
   // Ocultar resumen inicialmente
-  document.getElementById('resumenOperacion').classList.add('d-none');
+  const resumenOperacion = document.getElementById('resumenOperacion');
+  if (resumenOperacion) resumenOperacion.classList.add('d-none');
   
   // Mostrar modal
-  const modal = new bootstrap.Modal(document.getElementById('modalMovimiento'));
-  modal.show();
+  const modalElement = document.getElementById('modalMovimiento');
+  if (modalElement) {
+    const modal = new bootstrap.Modal(modalElement);
+    modal.show();
+  }
 }
 
 function actualizarResumenOperacion() {
-  const montoBruto = parseFloat(document.getElementById('montoModal').value);
+  const montoModal = document.getElementById('montoModal');
+  if (!montoModal) return;
+  
+  const montoBruto = parseFloat(montoModal.value);
   
   if (isNaN(montoBruto) || montoBruto <= 0) {
-    document.getElementById('resumenOperacion').classList.add('d-none');
+    const resumenOperacion = document.getElementById('resumenOperacion');
+    if (resumenOperacion) resumenOperacion.classList.add('d-none');
     return;
   }
   
@@ -451,17 +460,26 @@ function actualizarResumenOperacion() {
   );
   
   // Actualizar elementos del resumen
-  document.getElementById('resumenMonto').textContent = `${montoBruto.toFixed(2)} ${movimientoActual.moneda}`;
-  document.getElementById('resumenTasa').textContent = tasa;
-  document.getElementById('resumenComision').textContent = `-${comision.toFixed(2)} ${movimientoActual.moneda}`;
-  document.getElementById('resumenNeto').textContent = `${neto.toFixed(2)} ${movimientoActual.moneda}`;
+  const resumenMonto = document.getElementById('resumenMonto');
+  const resumenTasa = document.getElementById('resumenTasa');
+  const resumenComision = document.getElementById('resumenComision');
+  const resumenNeto = document.getElementById('resumenNeto');
+  const resumenOperacion = document.getElementById('resumenOperacion');
+  
+  if (resumenMonto) resumenMonto.textContent = `${montoBruto.toFixed(2)} ${movimientoActual.moneda}`;
+  if (resumenTasa) resumenTasa.textContent = tasa;
+  if (resumenComision) resumenComision.textContent = `-${comision.toFixed(2)} ${movimientoActual.moneda}`;
+  if (resumenNeto) resumenNeto.textContent = `${neto.toFixed(2)} ${movimientoActual.moneda}`;
   
   // Mostrar resumen
-  document.getElementById('resumenOperacion').classList.remove('d-none');
+  if (resumenOperacion) resumenOperacion.classList.remove('d-none');
 }
 
 function confirmarMovimiento() {
-  const montoBruto = parseFloat(document.getElementById('montoModal').value);
+  const montoModal = document.getElementById('montoModal');
+  if (!montoModal) return;
+  
+  const montoBruto = parseFloat(montoModal.value);
   
   if (isNaN(montoBruto) || montoBruto <= 0) {
     mostrarMensaje("Ingrese un monto válido.", "warning");
@@ -489,14 +507,15 @@ function confirmarMovimiento() {
   if (res.ok) {
     // Actualizar billetera y cerrar modal
     renderBilletera();
-    const modal = bootstrap.Modal.getInstance(document.getElementById('modalMovimiento'));
-    modal.hide();
+    const modalElement = document.getElementById('modalMovimiento');
+    if (modalElement) {
+      const modal = bootstrap.Modal.getInstance(modalElement);
+      if (modal) modal.hide();
+    }
   }
 }
 
-
 // FUNCIONES DE CALCULADORA DE COMISIONES
-
 function actualizarTasaCalculadora() {
   const tipo = normalizarOperacion(tipoOperacionInput.value);
   const moneda = divisaInput.value;
@@ -516,202 +535,11 @@ function calcularComision() {
   const { comision, neto, tasa } = calc.calcularPorOperacion(monto, tipo, moneda);
 
   tasaInput.value = tasa;
-  comisionEstimada.textContent = `${comision.toFixed(2)} ${moneda}`;
-  totalRecibir.textContent = `${neto.toFixed(2)} ${moneda}`;
+  if (comisionEstimada) comisionEstimada.textContent = `${comision.toFixed(2)} ${moneda}`;
+  if (totalRecibir) totalRecibir.textContent = `${neto.toFixed(2)} ${moneda}`;
 }
 
-
-// EVENT LISTENERS - NAVEGACIÓN
-
-itemInicio.addEventListener("click", () => {
-  irA(paginaInicio, itemInicio);
-  actualizarDatosActivo(selectActivo.value);
-  recalcularDesdeAccion();
-  pintarHistorial();
-});
-
-itemPortafolio.addEventListener("click", () => {
-  irA(paginaPortafolio, itemPortafolio);
-  renderPortafolio();
-});
-
-itemAnalisis.addEventListener("click", () => {
-  irA(paginaAnalisis, itemAnalisis);
-  renderAnalisis();
-});
-
-itemBilletera.addEventListener("click", () => {
-  irA(paginaBilletera, itemBilletera);
-  renderBilletera();
-  actualizarTasaCalculadora();
-});
-
-/* itemCentroAprendizaje.addEventListener("click", () => {
-  irA(paginaCentroAprendizaje, itemCentroAprendizaje);
-}); */
-
-// ====== NAVEGACIÓN: CENTRO DE APRENDIZAJE ======
-itemCentroAprendizaje.addEventListener("click", () => {
-    paginaInicio.classList.add("d-none");
-    paginaPortafolio.classList.add("d-none");
-    paginaAnalisis.classList.add("d-none");
-    paginaBilletera.classList.add("d-none");
-
-    paginaCentroAprendizaje.classList.remove("d-none");
-});
-
-
-// EVENT LISTENERS - INICIO/TRADING
-
-selectActivo.addEventListener("change", () => {
-  actualizarDatosActivo(selectActivo.value);
-  inputAccion.value = 1;
-  recalcularDesdeAccion();
-});
-
-selectTipoAccion.addEventListener("change", () => {
-  const tipo = selectTipoAccion.value;
-  const lista = controller.buscarActivosPorTipo(tipo);
-
-  selectActivo.innerHTML = lista
-    .map(a => `<option value="${a.id}">${a.nombre}</option>`)
-    .join("");
-
-  if (lista.length > 0) {
-    actualizarDatosActivo(lista[0].id);
-    inputAccion.value = 1;
-    recalcularDesdeAccion();
-  } else {
-    pValorAccion.textContent = "Sin activos disponibles";
-    inputAccion.value = "";
-    inputDinero.value = "";
-  }
-});
-
-inputAccion.addEventListener("input", recalcularDesdeAccion);
-inputDinero.addEventListener("input", recalcularDesdeDinero);
-
-btnComprar.addEventListener("click", () => realizarOperacion("compra"));
-btnVender.addEventListener("click", () => realizarOperacion("venta"));
-
-btnUSD.addEventListener("click", () => cambiarMoneda("USD"));
-btnUYU.addEventListener("click", () => cambiarMoneda("UYU"));
-
-switchModo.addEventListener("change", () => {
-  controller.setModo(switchModo.checked);
-  cargarSelectActivos();
-  actualizarDatosActivo(selectActivo.value);
-  pintarHistorial();
-});
-
-
-// EVENT LISTENERS - PORTAFOLIO
-
-btnCategoriaTodas.onclick = () => cambiarCategoria("Todas");
-btnCategoriaBonos.onclick = () => cambiarCategoria("Bonos");
-btnCategoriaCripto.onclick = () => cambiarCategoria("Criptomonedas");
-btnCategoriaForex.onclick = () => cambiarCategoria("Forex");
-btnCategoriaAcciones.onclick = () => cambiarCategoria("Acciones");
-
-inputBuscarPortafolio.oninput = renderPortafolio;
-btnVerMasPortafolio.onclick = () => {
-  limiteTarjetas += 3;
-  renderPortafolio();
-};
-
-
-// EVENT LISTENERS - ANÁLISIS
-
-btnCategoriaAnalisisTodas.onclick = () => cambiarCategoriaAnalisis("Todas");
-btnCategoriaAnalisisBonos.onclick = () => cambiarCategoriaAnalisis("Bonos");
-btnCategoriaAnalisisCripto.onclick = () => cambiarCategoriaAnalisis("Criptomonedas");
-btnCategoriaAnalisisForex.onclick = () => cambiarCategoriaAnalisis("Forex");
-btnCategoriaAnalisisAcciones.onclick = () => cambiarCategoriaAnalisis("Acciones");
-
-buscarAnalisis.oninput = renderAnalisis;
-
-tablaInstrumentos.addEventListener("click", e => {
-  // Checkbox
-  if (e.target.classList.contains("check-analisis")) {
-    const id = parseInt(e.target.dataset.id);
-    if (e.target.checked) {
-      if (!seleccionadosAnalisis.includes(id)) {
-        seleccionadosAnalisis.push(id);
-      }
-    } else {
-      seleccionadosAnalisis = seleccionadosAnalisis.filter(x => x !== id);
-    }
-    actualizarResumen();
-  }
-
-  // Botón Operar
-  if (e.target.classList.contains("btn-operar")) {
-    const id = parseInt(e.target.dataset.id);
-    cargarActivoEnInicio(id);
-  }
-});
-
-
-// EVENT LISTENERS - BILLETERA (ACTUALIZADOS)
-
-btnDepositoUSD.addEventListener("click", () => abrirModalMovimiento("USD", "deposito"));
-btnRetiroUSD.addEventListener("click", () => abrirModalMovimiento("USD", "retiro"));
-btnDepositoUYU.addEventListener("click", () => abrirModalMovimiento("UYU", "deposito"));
-btnRetiroUYU.addEventListener("click", () => abrirModalMovimiento("UYU", "retiro"));
-
-
-// EVENT LISTENERS - CALCULADORA DE COMISIONES
-
-tipoOperacionInput.addEventListener("change", actualizarTasaCalculadora);
-divisaInput.addEventListener("change", actualizarTasaCalculadora);
-btnCalcularComision.addEventListener("click", calcularComision);
-
-
-// EVENT LISTENERS DEL MODAL DE MOVIMIENTOS
-
-document.getElementById('montoModal')?.addEventListener('input', actualizarResumenOperacion);
-document.getElementById('btnConfirmarMovimiento')?.addEventListener('click', confirmarMovimiento);
-document.getElementById('montoModal')?.addEventListener('keypress', function(e) {
-  if (e.key === 'Enter') {
-    e.preventDefault();
-    confirmarMovimiento();
-  }
-});
-
-
-// INICIALIZACIÓN
-
-irA(paginaInicio, itemInicio);
-cargarSelectActivos();
-pintarHistorial();
-
-
-// FUNCIONES GLOBALES
-
-window.irAInicio = function(idActivo) {
-  irA(paginaInicio, itemInicio);
-  selectActivo.value = idActivo;
-  selectActivo.dispatchEvent(new Event("change"));
-  inputAccion.value = 1;
-  recalcularDesdeAccion();
-};
-
-
-
-// ELEMENTOS DOM - CENTRO DE APRENDIZAJE
-
-
-const contenedorVideos = document.getElementById("contenedorVideos");
-const btnVerMasVideos = document.getElementById("btnVerMasVideos");
-const inputBuscarCentro = document.querySelector(
-  "#paginaCentroAprendizaje input[type='search']"
-);
-
-
 // FUNCIONES - CENTRO DE APRENDIZAJE
-
-
-// Inicialmente solo 4 videos visibles
 let videosVisibles = 4;
 
 function actualizarVisibilidadVideos() {
@@ -726,8 +554,10 @@ function actualizarVisibilidadVideos() {
   });
 
   // Cambiar texto del botón
-  btnVerMasVideos.textContent =
-    videosVisibles >= videos.length ? "Ver menos" : "Ver más";
+  if (btnVerMasVideos) {
+    btnVerMasVideos.textContent =
+      videosVisibles >= videos.length ? "Ver menos" : "Ver más";
+  }
 }
 
 function toggleVerMasVideos() {
@@ -745,7 +575,7 @@ function toggleVerMasVideos() {
 }
 
 function filtrarVideosCentro() {
-  const texto = inputBuscarCentro.value.toLowerCase().trim();
+  const texto = inputBuscarCentro ? inputBuscarCentro.value.toLowerCase().trim() : "";
   const videos = document.querySelectorAll("#contenedorVideos .video-item");
 
   // Mostrar todos los videos antes de filtrar
@@ -766,7 +596,9 @@ function filtrarVideosCentro() {
   });
 
   // Si hay texto → ocultar el botón "ver más"
-  btnVerMasVideos.style.display = texto.length > 0 ? "none" : "";
+  if (btnVerMasVideos) {
+    btnVerMasVideos.style.display = texto.length > 0 ? "none" : "";
+  }
 
   // Si no hay texto → restaurar visibilidad normal
   if (texto.length === 0) {
@@ -775,29 +607,197 @@ function filtrarVideosCentro() {
   }
 }
 
+// EVENT LISTENERS - NAVEGACIÓN
+if (itemInicio) {
+  itemInicio.addEventListener("click", () => {
+    irA(paginaInicio, itemInicio);
+    actualizarDatosActivo(selectActivo.value);
+    recalcularDesdeAccion();
+    pintarHistorial();
+  });
+}
 
+if (itemPortafolio) {
+  itemPortafolio.addEventListener("click", () => {
+    irA(paginaPortafolio, itemPortafolio);
+    renderPortafolio();
+  });
+}
+
+if (itemAnalisis) {
+  itemAnalisis.addEventListener("click", () => {
+    irA(paginaAnalisis, itemAnalisis);
+    renderAnalisis();
+  });
+}
+
+if (itemBilletera) {
+  itemBilletera.addEventListener("click", () => {
+    irA(paginaBilletera, itemBilletera);
+    renderBilletera();
+    actualizarTasaCalculadora();
+  });
+}
+
+if (itemCentroAprendizaje) {
+  itemCentroAprendizaje.addEventListener("click", () => {
+    irA(paginaCentroAprendizaje, itemCentroAprendizaje);
+    // Reiniciar vista al entrar
+    videosVisibles = 4;
+    actualizarVisibilidadVideos();
+    filtrarVideosCentro();
+  });
+}
+
+// EVENT LISTENERS - INICIO/TRADING
+if (selectActivo) {
+  selectActivo.addEventListener("change", () => {
+    actualizarDatosActivo(selectActivo.value);
+    inputAccion.value = 1;
+    recalcularDesdeAccion();
+  });
+}
+
+if (selectTipoAccion) {
+  selectTipoAccion.addEventListener("change", () => {
+    const tipo = selectTipoAccion.value;
+    const lista = controller.buscarActivosPorTipo(tipo);
+
+    selectActivo.innerHTML = lista
+      .map(a => `<option value="${a.id}">${a.nombre}</option>`)
+      .join("");
+
+    if (lista.length > 0) {
+      actualizarDatosActivo(lista[0].id);
+      inputAccion.value = 1;
+      recalcularDesdeAccion();
+    } else {
+      pValorAccion.textContent = "Sin activos disponibles";
+      inputAccion.value = "";
+      inputDinero.value = "";
+    }
+  });
+}
+
+if (inputAccion) inputAccion.addEventListener("input", recalcularDesdeAccion);
+if (inputDinero) inputDinero.addEventListener("input", recalcularDesdeDinero);
+
+if (btnComprar) btnComprar.addEventListener("click", () => realizarOperacion("compra"));
+if (btnVender) btnVender.addEventListener("click", () => realizarOperacion("venta"));
+
+if (btnUSD) btnUSD.addEventListener("click", () => cambiarMoneda("USD"));
+if (btnUYU) btnUYU.addEventListener("click", () => cambiarMoneda("UYU"));
+
+if (switchModo) {
+  switchModo.addEventListener("change", () => {
+    controller.setModo(switchModo.checked);
+    cargarSelectActivos();
+    actualizarDatosActivo(selectActivo.value);
+    pintarHistorial();
+  });
+}
+
+// EVENT LISTENERS - PORTAFOLIO
+if (btnCategoriaTodas) btnCategoriaTodas.onclick = () => cambiarCategoria("Todas");
+if (btnCategoriaBonos) btnCategoriaBonos.onclick = () => cambiarCategoria("Bonos");
+if (btnCategoriaCripto) btnCategoriaCripto.onclick = () => cambiarCategoria("Criptomonedas");
+if (btnCategoriaForex) btnCategoriaForex.onclick = () => cambiarCategoria("Forex");
+if (btnCategoriaAcciones) btnCategoriaAcciones.onclick = () => cambiarCategoria("Acciones");
+
+if (inputBuscarPortafolio) inputBuscarPortafolio.oninput = renderPortafolio;
+if (btnVerMasPortafolio) btnVerMasPortafolio.onclick = () => {
+  limiteTarjetas += 3;
+  renderPortafolio();
+};
+
+// EVENT LISTENERS - ANÁLISIS
+if (btnCategoriaAnalisisTodas) btnCategoriaAnalisisTodas.onclick = () => cambiarCategoriaAnalisis("Todas");
+if (btnCategoriaAnalisisBonos) btnCategoriaAnalisisBonos.onclick = () => cambiarCategoriaAnalisis("Bonos");
+if (btnCategoriaAnalisisCripto) btnCategoriaAnalisisCripto.onclick = () => cambiarCategoriaAnalisis("Criptomonedas");
+if (btnCategoriaAnalisisForex) btnCategoriaAnalisisForex.onclick = () => cambiarCategoriaAnalisis("Forex");
+if (btnCategoriaAnalisisAcciones) btnCategoriaAnalisisAcciones.onclick = () => cambiarCategoriaAnalisis("Acciones");
+
+if (buscarAnalisis) buscarAnalisis.oninput = renderAnalisis;
+
+if (tablaInstrumentos) {
+  tablaInstrumentos.addEventListener("click", e => {
+    // Checkbox
+    if (e.target.classList.contains("check-analisis")) {
+      const id = parseInt(e.target.dataset.id);
+      if (e.target.checked) {
+        if (!seleccionadosAnalisis.includes(id)) {
+          seleccionadosAnalisis.push(id);
+        }
+      } else {
+        seleccionadosAnalisis = seleccionadosAnalisis.filter(x => x !== id);
+      }
+      actualizarResumen();
+    }
+
+    // Botón Operar
+    if (e.target.classList.contains("btn-operar")) {
+      const id = parseInt(e.target.dataset.id);
+      cargarActivoEnInicio(id);
+    }
+  });
+}
+
+// EVENT LISTENERS - BILLETERA
+if (btnDepositoUSD) btnDepositoUSD.addEventListener("click", () => abrirModalMovimiento("USD", "deposito"));
+if (btnRetiroUSD) btnRetiroUSD.addEventListener("click", () => abrirModalMovimiento("USD", "retiro"));
+if (btnDepositoUYU) btnDepositoUYU.addEventListener("click", () => abrirModalMovimiento("UYU", "deposito"));
+if (btnRetiroUYU) btnRetiroUYU.addEventListener("click", () => abrirModalMovimiento("UYU", "retiro"));
+
+// EVENT LISTENERS - CALCULADORA DE COMISIONES
+if (tipoOperacionInput) tipoOperacionInput.addEventListener("change", actualizarTasaCalculadora);
+if (divisaInput) divisaInput.addEventListener("change", actualizarTasaCalculadora);
+if (btnCalcularComision) btnCalcularComision.addEventListener("click", calcularComision);
+
+// EVENT LISTENERS DEL MODAL DE MOVIMIENTOS
+const montoModalElement = document.getElementById('montoModal');
+if (montoModalElement) {
+  montoModalElement.addEventListener('input', actualizarResumenOperacion);
+  montoModalElement.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      confirmarMovimiento();
+    }
+  });
+}
+
+const btnConfirmarMovimientoElement = document.getElementById('btnConfirmarMovimiento');
+if (btnConfirmarMovimientoElement) {
+  btnConfirmarMovimientoElement.addEventListener('click', confirmarMovimiento);
+}
 
 // EVENTOS - CENTRO DE APRENDIZAJE
+if (btnVerMasVideos) {
+  btnVerMasVideos.addEventListener("click", toggleVerMasVideos);
+}
 
-btnVerMasVideos?.addEventListener("click", toggleVerMasVideos);
-inputBuscarCentro?.addEventListener("input", filtrarVideosCentro);
-
-itemCentroAprendizaje.addEventListener("click", () => {
-  irA(paginaCentroAprendizaje, itemCentroAprendizaje);
-
-  // Reiniciar vista al entrar
-  videosVisibles = 4;
-  actualizarVisibilidadVideos();
-  filtrarVideosCentro();
-});
-
-
+if (inputBuscarCentro) {
+  inputBuscarCentro.addEventListener("input", filtrarVideosCentro);
+}
 
 // INICIALIZACIÓN
-
-irA(paginaInicio, itemInicio);
+if (paginaInicio && itemInicio) {
+  irA(paginaInicio, itemInicio);
+}
 cargarSelectActivos();
 pintarHistorial();
 
 // Centro aprendizaje: establecer visibilidad inicial
 actualizarVisibilidadVideos();
+
+// FUNCIONES GLOBALES
+window.irAInicio = function(idActivo) {
+  irA(paginaInicio, itemInicio);
+  if (selectActivo) {
+    selectActivo.value = idActivo;
+    selectActivo.dispatchEvent(new Event("change"));
+  }
+  if (inputAccion) {
+    inputAccion.value = 1;
+    recalcularDesdeAccion();
+  }
+};

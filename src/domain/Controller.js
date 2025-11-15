@@ -316,125 +316,69 @@ export default class Controller {
         const activo = lista.find(a => a.id === item.id);
         if (!activo) return null;
 
+        return {
+          id: activo.id,
+          nombre: activo.nombre,
+          tipo: activo.tipo,
+          precio: activo.precio,
+          rendimiento: activo.rendimiento,
+          moneda: activo.moneda,
+          cantidad: item.cantidad
+        };
+      })
+      .filter(x => x !== null);
+  }
+
+  // =======================================================
+  // BILLETERA
+  // =======================================================
+  getSaldos() {
+    const cuenta = this.getCuenta();
+
     return {
-      id: activo.id,
-      nombre: activo.nombre,
-      tipo: activo.tipo,
-      precio: activo.precio,
-      rendimiento: activo.rendimiento,
-      moneda: activo.moneda,
-      cantidad: item.cantidad
+      USD: {
+        total: cuenta.saldoUSD,
+        disponible: cuenta.saldoUSD,
+        garantia: 0
+      },
+      UYU: {
+        total: cuenta.saldoUYU,
+        disponible: cuenta.saldoUYU,
+        garantia: 0
+      }
     };
-  }).filter(x => x !== null);
-}
+  }
 
-// =======================================================
-//                   BILLETERA
-// =======================================================
-getSaldos() {
-  const cuenta = this.getCuenta();
+  depositar(moneda, monto) {
+    const cuenta = this.getCuenta();
 
-  return {
-    USD: {
-      total: cuenta.saldoUSD,
-      disponible: cuenta.saldoUSD,   // si luego agregamos "en garantía", se calcula aquí
-      garantia: 0
-    },
-    UYU: {
-      total: cuenta.saldoUYU,
-      disponible: cuenta.saldoUYU,
-      garantia: 0
+    if (monto <= 0) {
+      return { ok: false, mensaje: "El monto debe ser mayor a 0." };
     }
-  };
-}
 
-depositar(moneda, monto) {
-  const cuenta = this.getCuenta();
+    if (moneda === "USD") cuenta.saldoUSD += monto;
+    else cuenta.saldoUYU += monto;
 
-  if (monto <= 0) {
-    return { ok: false, mensaje: "El monto debe ser mayor a 0." };
+    return { ok: true, mensaje: "Depósito realizado." };
   }
 
-  if (moneda === "USD") cuenta.saldoUSD += monto;
-  else if (moneda === "UYU") cuenta.saldoUYU += monto;
+  retirar(moneda, monto) {
+    const cuenta = this.getCuenta();
 
-  return { ok: true, mensaje: "Depósito realizado." };
-}
-
-retirar(moneda, monto) {
-  const cuenta = this.getCuenta();
-
-  if (monto <= 0) {
-    return { ok: false, mensaje: "El monto debe ser mayor a 0." };
-  }
-
-  if (moneda === "USD") {
-    if (cuenta.saldoUSD < monto)
-      return { ok: false, mensaje: "Fondos insuficientes en USD." };
-
-    cuenta.saldoUSD -= monto;
-
-  } else if (moneda === "UYU") {
-    if (cuenta.saldoUYU < monto)
-      return { ok: false, mensaje: "Fondos insuficientes en UYU." };
-
-    cuenta.saldoUYU -= monto;
-  }
-
-  return { ok: true, mensaje: "Retiro realizado." };
-}// =======================================================
-//                   BILLETERA
-// =======================================================
-getSaldos() {
-  const cuenta = this.getCuenta();
-
-  return {
-    USD: {
-      total: cuenta.saldoUSD,
-      disponible: cuenta.saldoUSD,   // si luego agregamos "en garantía", se calcula aquí
-      garantia: 0
-    },
-    UYU: {
-      total: cuenta.saldoUYU,
-      disponible: cuenta.saldoUYU,
-      garantia: 0
+    if (monto <= 0) {
+      return { ok: false, mensaje: "El monto debe ser mayor a 0." };
     }
-  };
-}
 
-depositar(moneda, monto) {
-  const cuenta = this.getCuenta();
+    if (moneda === "USD") {
+      if (cuenta.saldoUSD < monto)
+        return { ok: false, mensaje: "Fondos insuficientes en USD." };
+      cuenta.saldoUSD -= monto;
+    } else {
+      if (cuenta.saldoUYU < monto)
+        return { ok: false, mensaje: "Fondos insuficientes en UYU." };
+      cuenta.saldoUYU -= monto;
+    }
 
-  if (monto <= 0) {
-    return { ok: false, mensaje: "El monto debe ser mayor a 0." };
+    return { ok: true, mensaje: "Retiro realizado." };
   }
-
-  if (moneda === "USD") cuenta.saldoUSD += monto;
-  else if (moneda === "UYU") cuenta.saldoUYU += monto;
-
-  return { ok: true, mensaje: "Depósito realizado." };
-}
-
-retirar(moneda, monto) {
-  const cuenta = this.getCuenta();
-
-  if (monto <= 0) {
-    return { ok: false, mensaje: "El monto debe ser mayor a 0." };
-  }
-
-  if (moneda === "USD") {
-    if (cuenta.saldoUSD < monto)
-      return { ok: false, mensaje: "Fondos insuficientes en USD." };
-
-    cuenta.saldoUSD -= monto;
-
-  } else if (moneda === "UYU") {
-    if (cuenta.saldoUYU < monto)
-      return { ok: false, mensaje: "Fondos insuficientes en UYU." };
-
-    cuenta.saldoUYU -= monto;
-  }
-
-  return { ok: true, mensaje: "Retiro realizado." };
-}
 }
