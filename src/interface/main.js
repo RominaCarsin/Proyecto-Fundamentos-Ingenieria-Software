@@ -3,19 +3,23 @@ import CalculadoraComisiones from "../domain/CalculadoraComisiones.js";
 
 console.clear();
 
-
 // INICIALIZACIÓN
-
 const controller = new Controller();
 const calc = new CalculadoraComisiones();
 
-
 // VARIABLES GLOBALES
-
 let categoriaActual = "Todas";
 let categoriaAnalisisActual = "Todas";
 let limiteTarjetas = 3;
 let seleccionadosAnalisis = [];
+
+// ===========================================
+// VARIABLES PARA EL MODAL DE MOVIMIENTOS
+// ===========================================
+let movimientoActual = {
+  tipo: "", // 'deposito' o 'retiro'
+  moneda: "" // 'USD' o 'UYU'
+};
 
 // ===========================================
 // ELEMENTOS DOM - NAVEGACIÓN
@@ -393,31 +397,102 @@ function renderBilletera() {
   garantiaUYU.textContent = `$ ${saldos.UYU.garantia.toFixed(2)}`;
 }
 
-function realizarMovimiento(moneda, tipo) {
-  const montoBruto = parseFloat(prompt(`Ingrese monto para ${tipo} en ${moneda}:`));
+// ===========================================
+// FUNCIONES DE MOVIMIENTOS CON MODAL
+// ===========================================
+function abrirModalMovimiento(moneda, tipo) {
+  // Guardar los datos de la operación actual
+  movimientoActual.moneda = moneda;
+  movimientoActual.tipo = tipo;
+  
+  // Configurar el modal según el tipo de operación
+  const modalLabel = document.getElementById('modalMovimientoLabel');
+  const tipoInput = document.getElementById('tipoOperacionModal');
+  const monedaInput = document.getElementById('monedaModal');
+  const montoInput = document.getElementById('montoModal');
+  const btnConfirmar = document.getElementById('btnConfirmarMovimiento');
+  
+  // Textos según el tipo de operación
+  const esDeposito = tipo === 'deposito';
+  const textoOperacion = esDeposito ? 'Depósito' : 'Retiro';
+  const textoBoton = esDeposito ? 'Depositar' : 'Retirar';
+  const claseBoton = esDeposito ? 'btn-success' : 'btn-warning';
+  
+  // Configurar elementos del modal
+  modalLabel.textContent = `${textoOperacion} - ${moneda}`;
+  tipoInput.value = textoOperacion;
+  monedaInput.value = moneda;
+  montoInput.value = '';
+  
+  // Configurar botón de confirmación
+  btnConfirmar.textContent = textoBoton;
+  btnConfirmar.className = `btn ${claseBoton}`;
+  
+  // Ocultar resumen inicialmente
+  document.getElementById('resumenOperacion').classList.add('d-none');
+  
+  // Mostrar modal
+  const modal = new bootstrap.Modal(document.getElementById('modalMovimiento'));
+  modal.show();
+}
 
+function actualizarResumenOperacion() {
+  const montoBruto = parseFloat(document.getElementById('montoModal').value);
+  
   if (isNaN(montoBruto) || montoBruto <= 0) {
-    mostrarMensaje("Monto inválido.", "warning");
+    document.getElementById('resumenOperacion').classList.add('d-none');
     return;
   }
+  
+  const tipoNormalizado = normalizarOperacion(movimientoActual.tipo);
+  const { comision, neto, tasa } = calc.calcularPorOperacion(
+    montoBruto, 
+    tipoNormalizado, 
+    movimientoActual.moneda
+  );
+  
+  // Actualizar elementos del resumen
+  document.getElementById('resumenMonto').textContent = `${montoBruto.toFixed(2)} ${movimientoActual.moneda}`;
+  document.getElementById('resumenTasa').textContent = tasa;
+  document.getElementById('resumenComision').textContent = `-${comision.toFixed(2)} ${movimientoActual.moneda}`;
+  document.getElementById('resumenNeto').textContent = `${neto.toFixed(2)} ${movimientoActual.moneda}`;
+  
+  // Mostrar resumen
+  document.getElementById('resumenOperacion').classList.remove('d-none');
+}
 
-  const tipoNormalizado = normalizarOperacion(tipo);
-  const { comision, neto, tasa } = calc.calcularPorOperacion(montoBruto, tipoNormalizado, moneda);
-
-  if (!confirm(
-    `Monto ingresado: ${montoBruto} ${moneda}\n` +
-    `Comisión (${tasa}%): -${comision.toFixed(2)} ${moneda}\n\n` +
-    `Monto final acreditado/retirado: ${neto.toFixed(2)} ${moneda}\n\n¿Confirmar operación?`
-  )) return;
-
+function confirmarMovimiento() {
+  const montoBruto = parseFloat(document.getElementById('montoModal').value);
+  
+  if (isNaN(montoBruto) || montoBruto <= 0) {
+    mostrarMensaje("Ingrese un monto válido.", "warning");
+    return;
+  }
+  
+  const tipoNormalizado = normalizarOperacion(movimientoActual.tipo);
+  const { comision, neto, tasa } = calc.calcularPorOperacion(
+    montoBruto, 
+    tipoNormalizado, 
+    movimientoActual.moneda
+  );
+  
+  // Realizar la operación
   let res;
-  if (tipoNormalizado === "deposito")
-    res = controller.depositar(moneda, neto);
-  else
-    res = controller.retirar(moneda, neto);
-
+  if (tipoNormalizado === "deposito") {
+    res = controller.depositar(movimientoActual.moneda, neto);
+  } else {
+    res = controller.retirar(movimientoActual.moneda, neto);
+  }
+  
+  // Mostrar resultado
   mostrarMensaje(res.mensaje, res.ok ? "success" : "danger");
-  if (res.ok) renderBilletera();
+  
+  if (res.ok) {
+    // Actualizar billetera y cerrar modal
+    renderBilletera();
+    const modal = bootstrap.Modal.getInstance(document.getElementById('modalMovimiento'));
+    modal.hide();
+  }
 }
 
 // ===========================================
@@ -564,12 +639,12 @@ tablaInstrumentos.addEventListener("click", e => {
 });
 
 // ===========================================
-// EVENT LISTENERS - BILLETERA
+// EVENT LISTENERS - BILLETERA (ACTUALIZADOS)
 // ===========================================
-btnDepositoUSD.addEventListener("click", () => realizarMovimiento("USD", "deposito"));
-btnRetiroUSD.addEventListener("click", () => realizarMovimiento("USD", "retiro"));
-btnDepositoUYU.addEventListener("click", () => realizarMovimiento("UYU", "deposito"));
-btnRetiroUYU.addEventListener("click", () => realizarMovimiento("UYU", "retiro"));
+btnDepositoUSD.addEventListener("click", () => abrirModalMovimiento("USD", "deposito"));
+btnRetiroUSD.addEventListener("click", () => abrirModalMovimiento("USD", "retiro"));
+btnDepositoUYU.addEventListener("click", () => abrirModalMovimiento("UYU", "deposito"));
+btnRetiroUYU.addEventListener("click", () => abrirModalMovimiento("UYU", "retiro"));
 
 // ===========================================
 // EVENT LISTENERS - CALCULADORA DE COMISIONES
@@ -577,6 +652,18 @@ btnRetiroUYU.addEventListener("click", () => realizarMovimiento("UYU", "retiro")
 tipoOperacionInput.addEventListener("change", actualizarTasaCalculadora);
 divisaInput.addEventListener("change", actualizarTasaCalculadora);
 btnCalcularComision.addEventListener("click", calcularComision);
+
+// ===========================================
+// EVENT LISTENERS DEL MODAL DE MOVIMIENTOS
+// ===========================================
+document.getElementById('montoModal')?.addEventListener('input', actualizarResumenOperacion);
+document.getElementById('btnConfirmarMovimiento')?.addEventListener('click', confirmarMovimiento);
+document.getElementById('montoModal')?.addEventListener('keypress', function(e) {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    confirmarMovimiento();
+  }
+});
 
 // ===========================================
 // INICIALIZACIÓN

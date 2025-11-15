@@ -415,7 +415,60 @@
       </article>
     </section>
 
-    
+    <!-- Modal para Depósitos/Retiros -->
+<div class="modal fade" id="modalMovimiento" tabindex="-1" aria-labelledby="modalMovimientoLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalMovimientoLabel">Operación</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="formMovimiento">
+          <div class="mb-3">
+            <label for="tipoOperacionModal" class="form-label">Tipo de Operación</label>
+            <input type="text" class="form-control" id="tipoOperacionModal" readonly>
+          </div>
+          <div class="mb-3">
+            <label for="monedaModal" class="form-label">Moneda</label>
+            <input type="text" class="form-control" id="monedaModal" readonly>
+          </div>
+          <div class="mb-3">
+            <label for="montoModal" class="form-label">Monto</label>
+            <input type="number" class="form-control" id="montoModal" min="0.01" step="0.01" required>
+            <div class="form-text">Ingrese el monto para la operación</div>
+          </div>
+          
+          <!-- Resumen de la operación -->
+          <div id="resumenOperacion" class="alert alert-info d-none">
+            <h6 class="alert-heading">Resumen de la Operación</h6>
+            <div class="row">
+              <div class="col-6">
+                <small>Monto ingresado:</small>
+                <p id="resumenMonto" class="mb-1 fw-bold">-</p>
+              </div>
+              <div class="col-6">
+                <small>Comisión (<span id="resumenTasa">0</span>%):</small>
+                <p id="resumenComision" class="mb-1 fw-bold text-danger">-</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-12">
+                <small>Monto final:</small>
+                <p id="resumenNeto" class="mb-0 fw-bold text-success">-</p>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" id="btnConfirmarMovimiento">Confirmar</button>
+      </div>
+    </div>
+  </div>
+</div>
 
     <!-- === Calculadora de comisiones === -->
     <section id="seccionCalculadora" class="mt-5">
