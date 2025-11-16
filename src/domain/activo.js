@@ -1,27 +1,44 @@
+// domain/Activo.js
 export default class Activo {
-  #id;
-  #nombre;
-  #tipo;
-  #precio;
-  #rendimiento;
-  #moneda;
+  constructor(id, nombre, tipo, precioInicial, moneda, volatilidad = 0.04) {
+    this.id = id;
+    this.nombre = nombre;
+    this.tipo = tipo;
+    this.precio = precioInicial;
+    this.moneda = moneda;
 
-  constructor(id, nombre, tipo, precio, rendimiento, moneda = "USD") {
-    this.#id = id;
-    this.#nombre = nombre;
-    this.#tipo = tipo;
-    this.#precio = precio;
-    this.#rendimiento = rendimiento;
-    this.#moneda = moneda;
+    // PRECIO BASE — se usa para calcular rendimiento
+    this.precioBase = precioInicial;
+
+    // RENDIMIENTO dinámico (%)
+    this.rendimiento = 0;
+
+    // Factor de variación por tick
+    this.volatilidad = volatilidad;
+
+    // Historial de precios para la gráfica
+    this.historial = [precioInicial];
   }
+  getHistorial() {
+    return this.historial;
+  }
+  generarVariacion() {
+    // variación aleatoria proporcional a la volatilidad
+    const delta = (Math.random() * 2 - 1) * this.volatilidad * this.precio;
 
-  get id() { return this.#id; }
-  get nombre() { return this.#nombre; }
-  get tipo() { return this.#tipo; }
-  get precio() { return this.#precio; }
-  get rendimiento() { return this.#rendimiento; }
-  get moneda() { return this.#moneda; }
+    this.precio += delta;
 
-  set precio(v) { this.#precio = v; }
-  set rendimiento(v) { this.#rendimiento = v; }
+    if (this.precio < 0) this.precio = 0;
+
+    // recalcular rendimiento
+    this.rendimiento = ((this.precio - this.precioBase) / this.precioBase) * 100;
+
+    // guardar historial
+    this.historial.push(this.precio);
+    if (this.historial.length > 300) {
+      this.historial.shift();
+    }
+  }
 }
+
+

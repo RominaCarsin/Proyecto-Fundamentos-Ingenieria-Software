@@ -3,6 +3,10 @@
 import Controller from "../domain/Controller.js";
 import CalculadoraComisiones from "../domain/CalculadoraComisiones.js";
 
+
+function paginaVisible(idPagina) {
+    return !document.getElementById(idPagina).classList.contains("d-none");
+}
 console.clear();
 
 // INICIALIZACIÓN
@@ -20,6 +24,17 @@ let movimientoActual = {
   tipo: "", // 'deposito' o 'retiro'
   moneda: "" // 'USD' o 'UYU'
 };
+
+// VARIABLES GRÁFICA
+let ctx, canvas;
+let idActivoActual = null;
+
+let intervaloActual = "min";        // min, h, d, m
+// toggle con botón
+let puntosGrafica = [];             // últimos puntos procesados para tooltip
+let ultimoTooltip = null;           // para mostrar valor al hacer click
+
+let usuarioEditando = false;
 
 // DOM - NAVEGACIÓN
 const itemInicio = document.getElementById("itemInicio");
@@ -46,6 +61,7 @@ const btnUSD = document.getElementById("btnUSD");
 const btnUYU = document.getElementById("btnUYU");
 const divHistorial = document.getElementById("textoPosicionesAbiertas");
 const switchModo = document.getElementById("switchCheckDefault");
+const contenedorGrafico = document.getElementById("contenedorGrafico");
 
 // DOM - PORTAFOLIO
 const inputBuscarPortafolio = document.getElementById("buscarPortafolio");
@@ -95,6 +111,178 @@ const totalRecibir = document.getElementById("totalRecibir");
 const contenedorVideos = document.getElementById("contenedorVideos");
 const btnVerMasVideos = document.getElementById("btnVerMasVideos");
 const inputBuscarCentro = document.querySelector("#paginaCentroAprendizaje input[type='search']");
+
+
+
+// ===============================
+//   GRÁFICA DINÁMICA
+// ===============================
+function iniciarGrafica() {
+  if (!contenedorGrafico) {
+    console.error("Contenedor gráfico no encontrado");
+    return;
+  }
+
+  canvas = document.createElement("canvas");
+  canvas.id = "canvasGrafica";
+
+  // Limpiar contenedor
+  contenedorGrafico.innerHTML = "";
+  contenedorGrafico.appendChild(canvas);
+
+  ctx = canvas.getContext("2d");
+
+  // Redimensionar después de agregar al DOM
+  setTimeout(() => {
+    canvas.width = contenedorGrafico.clientWidth;
+    canvas.height = contenedorGrafico.clientHeight || 350;
+    dibujarGrafica();
+  }, 100);
+  setTimeout(() => dibujarGrafica(), 300);
+
+  if (canvas) {
+    canvas.addEventListener("click", e => {
+      const rect = canvas.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      const clickY = e.clientY - rect.top;
+
+      // buscar punto cercano
+      let mejor = null;
+      puntosGrafica.forEach(p => {
+        const d = Math.hypot(p.x - clickX, p.y - clickY);
+        if (!mejor || d < mejor.dist) {
+          mejor = { ...p, dist: d };
+        }
+      });
+
+      if (mejor && mejor.dist < 20) {
+        ultimoTooltip = mejor;
+        dibujarGrafica();
+
+        // Dibujar tooltip
+        ctx.fillStyle = "#000";
+        ctx.font = "12px Arial";
+        ctx.fillText(
+          `$${mejor.valor.toFixed(2)}`,
+          mejor.x + 10,
+          mejor.y - 10
+        );
+      }
+    });
+  }
+}
+
+
+
+
+function aplicarIntervalo(datos) {
+  switch (intervaloActual) {
+    case "min": return datos.slice(-20);
+    case "h": return datos.slice(-40);
+    case "d": return datos.slice(-60);
+    case "m": return datos.slice(-100);
+    default: return datos;
+  }
+}
+
+
+
+
+
+
+function dibujarGrafica() {
+  if (!idActivoActual || !ctx || !canvas) return;
+
+  const activo = controller.listaActivos.getPorId(idActivoActual, controller.getModo());
+
+  if (!activo || typeof activo.getHistorial !== "function") return;
+
+  let datos = activo.getHistorial();
+  datos = aplicarIntervalo(datos);
+  puntosGrafica = []; // limpia puntos previos para tooltip
+
+  if (datos.length < 2) {
+    // Dibujar mensaje si no hay suficientes datos
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.font = "14px Arial";
+    ctx.fillStyle = "#666";
+    ctx.textAlign = "center";
+    ctx.fillText("Esperando datos...", canvas.width / 2, canvas.height / 2);
+    return;
+  }
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // Configuración del gráfico
+  const padding = 40;
+  const width = canvas.width - padding * 2;
+  const height = canvas.height - padding * 2;
+
+  // Calcular min y max con márgenes
+  const max = Math.max(...datos) * 1.02;
+  const min = Math.min(...datos) * 0.98;
+  const range = max - min;
+
+  if (range === 0) return;
+
+  // Dibujar ejes
+  ctx.strokeStyle = "#ccc";
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.moveTo(padding, padding);
+  ctx.lineTo(padding, padding + height);
+  ctx.lineTo(padding + width, padding + height);
+  ctx.stroke();
+
+  // Dibujar línea de precios
+  ctx.beginPath();
+  ctx.lineWidth = 2;
+
+  const color = datos[datos.length - 1] >= datos[0] ? "#28a745" : "#dc3545";
+  ctx.strokeStyle = color;
+
+  const stepX = width / (datos.length - 1);
+
+  datos.forEach((valor, i) => {
+    const x = padding + i * stepX;
+    const y = padding + height - ((valor - min) / range) * height;
+    puntosGrafica.push({ x, y, valor });
+
+    if (i === 0) {
+      ctx.moveTo(x, y);
+    } else {
+      ctx.lineTo(x, y);
+    }
+  });
+
+  ctx.stroke();
+
+   
+
+  // Dibujar puntos en los extremos
+  if (datos.length > 0) {
+    // Punto inicial
+    ctx.fillStyle = "#666";
+    ctx.beginPath();
+    ctx.arc(padding, padding + height - ((datos[0] - min) / range) * height, 3, 0, 2 * Math.PI);
+    ctx.fill();
+
+    // Punto final
+    ctx.fillStyle = color;
+    ctx.beginPath();
+    ctx.arc(padding + width, padding + height - ((datos[datos.length - 1] - min) / range) * height, 4, 0, 2 * Math.PI);
+    ctx.fill();
+
+    // Etiqueta precio actual
+    ctx.fillStyle = color;
+    ctx.font = "12px Arial";
+    ctx.fillText(
+      `$${datos[datos.length - 1].toFixed(2)}`,
+      padding + width - 40,
+      padding + height - ((datos[datos.length - 1] - min) / range) * height - 10
+    );
+  }
+}
 
 // FUNCIONES DE NAVEGACIÓN
 function ocultarTodasLasPaginas() {
@@ -162,20 +350,50 @@ function actualizarDatosActivo(id) {
   const datos = controller.getDatosActivo(parseInt(id));
   if (!datos) return;
 
+  // Si el precio no existe o es cero → no mostrar 0.0000
+  if (!datos.precioNumerico || datos.precioNumerico === 0) {
+    pValorAccion.textContent = "Valor de Acción: —";
+    return;
+  }
+
+  // Solo si hay precio real, actualizo completo
   selectTipoAccion.value = mapearTipo(datos.tipo);
   pValorAccion.textContent = `Valor de Acción: ${datos.precioTexto}`;
 }
 
 function recalcularDesdeAccion() {
   const id = parseInt(selectActivo.value);
-  const cantidad = parseFloat(inputAccion.value) || 0;
+
+  // ⚠ si el input está vacío → no tocar nada
+  if (inputAccion.value.trim() === "") {
+    inputDinero.value = "";
+    return;
+  }
+
+  const cantidad = parseFloat(inputAccion.value);
+  if (isNaN(cantidad) || cantidad <= 0) {
+    inputDinero.value = "";
+    return;
+  }
+
   const res = controller.calcularDinero(id, cantidad);
   inputDinero.value = res.dineroNumerico.toFixed(2);
 }
 
 function recalcularDesdeDinero() {
   const id = parseInt(selectActivo.value);
-  const dinero = parseFloat(inputDinero.value) || 0;
+
+  if (inputDinero.value.trim() === "") {
+    inputAccion.value = "";
+    return;
+  }
+
+  const dinero = parseFloat(inputDinero.value);
+  if (isNaN(dinero) || dinero <= 0) {
+    inputAccion.value = "";
+    return;
+  }
+
   const res = controller.calcularCantidad(id, dinero);
   inputAccion.value = res.cantidadNumerica.toFixed(4);
 }
@@ -201,12 +419,12 @@ function realizarOperacion(tipo) {
     return;
   }
 
-  const res = tipo === "compra" 
+  const res = tipo === "compra"
     ? controller.realizarCompra(parseInt(selectActivo.value), cantidad)
     : controller.realizarVenta(parseInt(selectActivo.value), cantidad);
 
   mostrarMensaje(res.mensaje, res.ok ? "success" : "danger");
-  
+
   if (res.ok) pintarHistorial();
 }
 
@@ -234,8 +452,8 @@ function crearTarjetaHTML(activo) {
       <h3 class="fw-bold mb-1">${activo.nombre}</h3>
       <p class="text-muted small mb-2">${activo.tipo}</p>
       <section class="d-flex justify-content-around align-items-center mb-2">
-        <span class="badge bg-light text-dark px-3">${activo.rendimiento}%</span>
-        <span class="fw-bold text-success">${activo.precio} ${activo.moneda}</span>
+        <span class="badge bg-light text-dark px-3">${activo.rendimiento.toFixed(2)}%</span>
+        <span class="fw-bold text-success">${activo.precio.toFixed(2)} ${activo.moneda}</span>
       </section>
       <button class="btn btn-primary btn-sm" onclick="irAInicio(${activo.id})">
         Ir
@@ -309,10 +527,10 @@ function crearFilaAnalisis(activo) {
       </td>
 
       <td class="text-center">
-        <span class="${colorRend}">${activo.rendimiento}%</span>
+        <span class="${colorRend}">${activo.rendimiento.toFixed(2)}%</span>
       </td>
 
-      <td class="text-center">${activo.precio} ${activo.moneda}</td>
+      <td class="text-center">${activo.precio.toFixed(2)} ${activo.moneda}</td>
 
       <td class="text-center">
         <button 
@@ -399,39 +617,39 @@ function abrirModalMovimiento(moneda, tipo) {
   // Guardar los datos de la operación actual
   movimientoActual.moneda = moneda;
   movimientoActual.tipo = tipo;
-  
+
   // Configurar el modal según el tipo de operación
   const modalLabel = document.getElementById('modalMovimientoLabel');
   const tipoInput = document.getElementById('tipoOperacionModal');
   const monedaInput = document.getElementById('monedaModal');
   const montoInput = document.getElementById('montoModal');
   const btnConfirmar = document.getElementById('btnConfirmarMovimiento');
-  
+
   if (!modalLabel || !tipoInput || !monedaInput || !montoInput || !btnConfirmar) {
     console.error("Elementos del modal no encontrados");
     return;
   }
-  
+
   // Textos según el tipo de operación
   const esDeposito = tipo === 'deposito';
   const textoOperacion = esDeposito ? 'Depósito' : 'Retiro';
   const textoBoton = esDeposito ? 'Depositar' : 'Retirar';
   const claseBoton = esDeposito ? 'btn-success' : 'btn-warning';
-  
+
   // Configurar elementos del modal
   modalLabel.textContent = `${textoOperacion} - ${moneda}`;
   tipoInput.value = textoOperacion;
   monedaInput.value = moneda;
   montoInput.value = '';
-  
+
   // Configurar botón de confirmación
   btnConfirmar.textContent = textoBoton;
   btnConfirmar.className = `btn ${claseBoton}`;
-  
+
   // Ocultar resumen inicialmente
   const resumenOperacion = document.getElementById('resumenOperacion');
   if (resumenOperacion) resumenOperacion.classList.add('d-none');
-  
+
   // Mostrar modal
   const modalElement = document.getElementById('modalMovimiento');
   if (modalElement) {
@@ -443,34 +661,34 @@ function abrirModalMovimiento(moneda, tipo) {
 function actualizarResumenOperacion() {
   const montoModal = document.getElementById('montoModal');
   if (!montoModal) return;
-  
+
   const montoBruto = parseFloat(montoModal.value);
-  
+
   if (isNaN(montoBruto) || montoBruto <= 0) {
     const resumenOperacion = document.getElementById('resumenOperacion');
     if (resumenOperacion) resumenOperacion.classList.add('d-none');
     return;
   }
-  
+
   const tipoNormalizado = normalizarOperacion(movimientoActual.tipo);
   const { comision, neto, tasa } = calc.calcularPorOperacion(
-    montoBruto, 
-    tipoNormalizado, 
+    montoBruto,
+    tipoNormalizado,
     movimientoActual.moneda
   );
-  
+
   // Actualizar elementos del resumen
   const resumenMonto = document.getElementById('resumenMonto');
   const resumenTasa = document.getElementById('resumenTasa');
   const resumenComision = document.getElementById('resumenComision');
   const resumenNeto = document.getElementById('resumenNeto');
   const resumenOperacion = document.getElementById('resumenOperacion');
-  
+
   if (resumenMonto) resumenMonto.textContent = `${montoBruto.toFixed(2)} ${movimientoActual.moneda}`;
   if (resumenTasa) resumenTasa.textContent = tasa;
   if (resumenComision) resumenComision.textContent = `-${comision.toFixed(2)} ${movimientoActual.moneda}`;
   if (resumenNeto) resumenNeto.textContent = `${neto.toFixed(2)} ${movimientoActual.moneda}`;
-  
+
   // Mostrar resumen
   if (resumenOperacion) resumenOperacion.classList.remove('d-none');
 }
@@ -478,21 +696,21 @@ function actualizarResumenOperacion() {
 function confirmarMovimiento() {
   const montoModal = document.getElementById('montoModal');
   if (!montoModal) return;
-  
+
   const montoBruto = parseFloat(montoModal.value);
-  
+
   if (isNaN(montoBruto) || montoBruto <= 0) {
     mostrarMensaje("Ingrese un monto válido.", "warning");
     return;
   }
-  
+
   const tipoNormalizado = normalizarOperacion(movimientoActual.tipo);
   const { comision, neto, tasa } = calc.calcularPorOperacion(
-    montoBruto, 
-    tipoNormalizado, 
+    montoBruto,
+    tipoNormalizado,
     movimientoActual.moneda
   );
-  
+
   // Realizar la operación
   let res;
   if (tipoNormalizado === "deposito") {
@@ -500,10 +718,10 @@ function confirmarMovimiento() {
   } else {
     res = controller.retirar(movimientoActual.moneda, neto);
   }
-  
+
   // Mostrar resultado
   mostrarMensaje(res.mensaje, res.ok ? "success" : "danger");
-  
+
   if (res.ok) {
     // Actualizar billetera y cerrar modal
     renderBilletera();
@@ -580,7 +798,7 @@ function filtrarVideosCentro() {
 
   // Mostrar todos los videos antes de filtrar
   videos.forEach(v => {
-    v.classList.remove("d-none"); 
+    v.classList.remove("d-none");
     v.style.display = ""; // reset
   });
 
@@ -652,9 +870,12 @@ if (itemCentroAprendizaje) {
 // EVENT LISTENERS - INICIO/TRADING
 if (selectActivo) {
   selectActivo.addEventListener("change", () => {
+    idActivoActual = parseInt(selectActivo.value);
+    console.log("Activo cambiado a:", idActivoActual);
     actualizarDatosActivo(selectActivo.value);
     inputAccion.value = 1;
     recalcularDesdeAccion();
+    iniciarGrafica();
   });
 }
 
@@ -668,9 +889,11 @@ if (selectTipoAccion) {
       .join("");
 
     if (lista.length > 0) {
+      idActivoActual = parseInt(lista[0].id);
       actualizarDatosActivo(lista[0].id);
       inputAccion.value = 1;
       recalcularDesdeAccion();
+      iniciarGrafica();
     } else {
       pValorAccion.textContent = "Sin activos disponibles";
       inputAccion.value = "";
@@ -679,8 +902,27 @@ if (selectTipoAccion) {
   });
 }
 
-if (inputAccion) inputAccion.addEventListener("input", recalcularDesdeAccion);
-if (inputDinero) inputDinero.addEventListener("input", recalcularDesdeDinero);
+if (inputAccion) {
+  inputAccion.addEventListener("input", () => {
+    usuarioEditando = true;
+    recalcularDesdeAccion();
+  });
+
+  inputAccion.addEventListener("blur", () => {
+    usuarioEditando = false;
+  });
+}
+
+if (inputDinero) {
+  inputDinero.addEventListener("input", () => {
+    usuarioEditando = true;
+    recalcularDesdeDinero();
+  });
+
+  inputDinero.addEventListener("blur", () => {
+    usuarioEditando = false;
+  });
+}
 
 if (btnComprar) btnComprar.addEventListener("click", () => realizarOperacion("compra"));
 if (btnVender) btnVender.addEventListener("click", () => realizarOperacion("venta"));
@@ -692,7 +934,7 @@ if (switchModo) {
   switchModo.addEventListener("change", () => {
     controller.setModo(switchModo.checked);
     cargarSelectActivos();
-    actualizarDatosActivo(selectActivo.value);
+    selectActivo.dispatchEvent(new Event("change"));
     pintarHistorial();
   });
 }
@@ -757,7 +999,7 @@ if (btnCalcularComision) btnCalcularComision.addEventListener("click", calcularC
 const montoModalElement = document.getElementById('montoModal');
 if (montoModalElement) {
   montoModalElement.addEventListener('input', actualizarResumenOperacion);
-  montoModalElement.addEventListener('keypress', function(e) {
+  montoModalElement.addEventListener('keypress', function (e) {
     if (e.key === 'Enter') {
       e.preventDefault();
       confirmarMovimiento();
@@ -779,18 +1021,78 @@ if (inputBuscarCentro) {
   inputBuscarCentro.addEventListener("input", filtrarVideosCentro);
 }
 
-// INICIALIZACIÓN
-if (paginaInicio && itemInicio) {
-  irA(paginaInicio, itemInicio);
-}
-cargarSelectActivos();
-pintarHistorial();
+// INICIALIZACIÓN COMPLETA
+document.addEventListener('DOMContentLoaded', function () {
+  if (paginaInicio && itemInicio) {
+    irA(paginaInicio, itemInicio);
+  }
 
-// Centro aprendizaje: establecer visibilidad inicial
-actualizarVisibilidadVideos();
+  cargarSelectActivos();
+  pintarHistorial();
+
+  // INICIALIZAR GRÁFICA Y SIMULACIÓN
+  setTimeout(() => {
+    if (selectActivo && selectActivo.value) {
+      idActivoActual = parseInt(selectActivo.value);
+      console.log("Inicializando gráfica con activo:", idActivoActual);
+      iniciarGrafica();
+      controller.iniciarSimulacionMercado();
+    }
+  }, 1000);
+
+  // Centro aprendizaje: establecer visibilidad inicial
+  actualizarVisibilidadVideos();
+});
+
+// Actualizar gráfica cada segundo
+setInterval(() => {
+  if (idActivoActual) {
+    dibujarGrafica();
+  }
+}, 1000);
+
+setInterval(() => {
+
+    // Si estoy en Inicio → NO hacemos nada extra (ya se actualiza)
+    
+    // Si estoy en Portafolio → volver a renderizar
+    if (paginaVisible("paginaPortafolio")) {
+        renderPortafolio();
+    }
+
+    // Si estoy en Análisis de Mercado → volver a renderizar
+    if (paginaVisible("paginaAnalisis")) {
+        renderAnalisis();
+    }
+
+}, 1000);
+
+// Actualizar datos del activo cada segundo
+setInterval(() => {
+  if (!idActivoActual) return;
+
+  // no interrumpir al usuario mientras escribe
+  if (usuarioEditando) {
+    actualizarDatosActivo(idActivoActual);
+    return;
+  }
+
+  actualizarDatosActivo(idActivoActual);
+
+  // si ambos inputs están vacíos, no autocalcular
+  if (inputAccion.value.trim() === "" && inputDinero.value.trim() === "") return;
+
+  // recalcular según el dato ingresado
+  if (inputAccion.value.trim() !== "") {
+    recalcularDesdeAccion();
+  } else if (inputDinero.value.trim() !== "") {
+    recalcularDesdeDinero();
+  }
+
+}, 1000);
 
 // FUNCIONES GLOBALES
-window.irAInicio = function(idActivo) {
+window.irAInicio = function (idActivo) {
   irA(paginaInicio, itemInicio);
   if (selectActivo) {
     selectActivo.value = idActivo;
@@ -801,3 +1103,23 @@ window.irAInicio = function(idActivo) {
     recalcularDesdeAccion();
   }
 };
+
+// ================================
+// INTERVALOS DE TIEMPO
+// ================================
+const btnIntervaloMin = document.getElementById("btnIntervaloMin");
+const btnIntervaloHora = document.getElementById("btnIntervaloHora");
+const btnIntervaloDia = document.getElementById("btnIntervaloDia");
+const btnIntervaloMes = document.getElementById("btnIntervaloMes");
+
+function cambiarIntervalo(nuevo) {
+  intervaloActual = nuevo;
+  dibujarGrafica();
+}
+
+if (btnIntervaloMin) btnIntervaloMin.onclick = () => cambiarIntervalo("min");
+if (btnIntervaloHora) btnIntervaloHora.onclick = () => cambiarIntervalo("h");
+if (btnIntervaloDia) btnIntervaloDia.onclick = () => cambiarIntervalo("d");
+if (btnIntervaloMes) btnIntervaloMes.onclick = () => cambiarIntervalo("m");
+
+

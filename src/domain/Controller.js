@@ -59,14 +59,19 @@ export default class Controller {
   }
 
   setModo(esDemo) {
-    this.modo.modo = esDemo ? "demo" : "real";
+  this.modo.modo = esDemo ? "demo" : "real";
 
-    return {
-      ok: true,
-      modo: this.modo.modo,
-      mensaje: `Modo cambiado a ${this.modo.modo.toUpperCase()}`
-    };
-  }
+  // 🔥 OPCIONAL PERO MUY BUENO:
+  // al cambiar de modo, los activos recalculan su precio base
+  const lista = this.listaActivos.getListaParaModo(this.modo.modo);
+  lista.forEach(a => a.precioBase = a.precio);
+
+  return {
+    ok: true,
+    modo: this.modo.modo,
+    mensaje: `Modo cambiado a ${this.modo.modo.toUpperCase()}`
+  };
+}
 
   getModo() {
     return this.modo.modo;
@@ -381,4 +386,19 @@ export default class Controller {
 
     return { ok: true, mensaje: "Retiro realizado." };
   }
+
+
+  // Dentro de Controller
+iniciarSimulacionMercado() {
+  if (this.intervaloSimulacion) clearInterval(this.intervaloSimulacion);
+
+  this.intervaloSimulacion = setInterval(() => {
+    const lista = this.listaActivos.getListaParaModo(this.getModo());
+    lista.forEach(activo => activo.generarVariacion());
+  }, 1000); // cada 1 segundo
+}
+
+detenerSimulacionMercado() {
+  if (this.intervaloSimulacion) clearInterval(this.intervaloSimulacion);
+}
 }
