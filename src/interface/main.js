@@ -3,10 +3,11 @@
 import Controller from "../domain/Controller.js";
 import CalculadoraComisiones from "../domain/CalculadoraComisiones.js";
 
-
 function paginaVisible(idPagina) {
-    return !document.getElementById(idPagina).classList.contains("d-none");
+  const elemento = document.getElementById(idPagina);
+  return elemento && !elemento.classList.contains("d-none");
 }
+
 console.clear();
 
 // INICIALIZACIÓN
@@ -20,19 +21,19 @@ let limiteTarjetas = 3;
 let seleccionadosAnalisis = [];
 
 // VARIABLES PARA MOVIMIENTOS
-let movimientoActual = {
+const movimientoActual = {
   tipo: "", // 'deposito' o 'retiro'
-  moneda: "" // 'USD' o 'UYU'
+  moneda: "", // 'USD' o 'UYU'
 };
 
 // VARIABLES GRÁFICA
-let ctx, canvas;
+let ctx = null;
+let canvas = null;
 let idActivoActual = null;
 
-let intervaloActual = "min";        // min, h, d, m
-// toggle con botón
-let puntosGrafica = [];             // últimos puntos procesados para tooltip
-let ultimoTooltip = null;           // para mostrar valor al hacer click
+let intervaloActual = "min"; // min, h, d, m
+let puntosGrafica = []; // últimos puntos procesados para tooltip
+//let ultimoTooltip = null; // para mostrar valor al hacer click
 
 let usuarioEditando = false;
 
@@ -47,7 +48,9 @@ const paginaInicio = document.getElementById("paginaInicio");
 const paginaPortafolio = document.getElementById("paginaPortafolio");
 const paginaAnalisis = document.getElementById("paginaAnalisis");
 const paginaBilletera = document.getElementById("paginaBilletera");
-const paginaCentroAprendizaje = document.getElementById("paginaCentroAprendizaje");
+const paginaCentroAprendizaje = document.getElementById(
+  "paginaCentroAprendizaje"
+);
 
 // DOM - INICIO/TRADING
 const selectActivo = document.getElementById("seleccionDeAccionInicio");
@@ -75,12 +78,25 @@ const btnVerMasPortafolio = document.getElementById("btnVerMasPortafolio");
 
 // DOM - ANÁLISIS
 const buscarAnalisis = document.getElementById("buscarAnalisis");
-const btnCategoriaAnalisisTodas = document.getElementById("btnCategoriaAnalisisTodas");
-const btnCategoriaAnalisisBonos = document.getElementById("btnCategoriaAnalisisBonos");
-const btnCategoriaAnalisisCripto = document.getElementById("btnCategoriaAnalisisCripto");
-const btnCategoriaAnalisisForex = document.getElementById("btnCategoriaAnalisisForex");
-const btnCategoriaAnalisisAcciones = document.getElementById("btnCategoriaAnalisisAcciones");
-const tablaInstrumentos = document.getElementById("tablaInstrumentos").querySelector("tbody");
+const btnCategoriaAnalisisTodas = document.getElementById(
+  "btnCategoriaAnalisisTodas"
+);
+const btnCategoriaAnalisisBonos = document.getElementById(
+  "btnCategoriaAnalisisBonos"
+);
+const btnCategoriaAnalisisCripto = document.getElementById(
+  "btnCategoriaAnalisisCripto"
+);
+const btnCategoriaAnalisisForex = document.getElementById(
+  "btnCategoriaAnalisisForex"
+);
+const btnCategoriaAnalisisAcciones = document.getElementById(
+  "btnCategoriaAnalisisAcciones"
+);
+const tablaInstrumentosElement = document.getElementById("tablaInstrumentos");
+const tablaInstrumentos = tablaInstrumentosElement
+  ? tablaInstrumentosElement.querySelector("tbody")
+  : null;
 const totalSeleccionados = document.getElementById("totalSeleccionados");
 const promedioRendimiento = document.getElementById("promedioRendimiento");
 const costoEstimado = document.getElementById("costoEstimado");
@@ -108,11 +124,11 @@ const comisionEstimada = document.getElementById("comisionEstimada");
 const totalRecibir = document.getElementById("totalRecibir");
 
 // DOM - CENTRO DE APRENDIZAJE
-const contenedorVideos = document.getElementById("contenedorVideos");
+//const contenedorVideos = document.getElementById("contenedorVideos");
 const btnVerMasVideos = document.getElementById("btnVerMasVideos");
-const inputBuscarCentro = document.querySelector("#paginaCentroAprendizaje input[type='search']");
-
-
+const inputBuscarCentro = document.querySelector(
+  "#paginaCentroAprendizaje input[type='search']"
+);
 
 // ===============================
 //   GRÁFICA DINÁMICA
@@ -141,14 +157,14 @@ function iniciarGrafica() {
   setTimeout(() => dibujarGrafica(), 300);
 
   if (canvas) {
-    canvas.addEventListener("click", e => {
+    canvas.addEventListener("click", (e) => {
       const rect = canvas.getBoundingClientRect();
       const clickX = e.clientX - rect.left;
       const clickY = e.clientY - rect.top;
 
       // buscar punto cercano
       let mejor = null;
-      puntosGrafica.forEach(p => {
+      puntosGrafica.forEach((p) => {
         const d = Math.hypot(p.x - clickX, p.y - clickY);
         if (!mejor || d < mejor.dist) {
           mejor = { ...p, dist: d };
@@ -156,76 +172,72 @@ function iniciarGrafica() {
       });
 
       if (mejor && mejor.dist < 20) {
-        ultimoTooltip = mejor;
+        //ultimoTooltip = mejor;
         dibujarGrafica();
 
         // Dibujar tooltip
         ctx.fillStyle = "#000";
         ctx.font = "12px Arial";
-        ctx.fillText(
-          `$${mejor.valor.toFixed(2)}`,
-          mejor.x + 10,
-          mejor.y - 10
-        );
+        ctx.fillText(`$${mejor.valor.toFixed(2)}`, mejor.x + 10, mejor.y - 10);
       }
     });
   }
 }
 
-
-
-
 function aplicarIntervalo(datos) {
   switch (intervaloActual) {
-    case "min": return datos.slice(-20);
-    case "h": return datos.slice(-40);
-    case "d": return datos.slice(-60);
-    case "m": return datos.slice(-100);
-    default: return datos;
+    case "min":
+      return datos.slice(-20);
+    case "h":
+      return datos.slice(-40);
+    case "d":
+      return datos.slice(-60);
+    case "m":
+      return datos.slice(-100);
+    default:
+      return datos;
   }
 }
 
-
-
-
-
-
 function dibujarGrafica() {
   if (!idActivoActual || !ctx || !canvas) return;
-
-  const activo = controller.listaActivos.getPorId(idActivoActual, controller.getModo());
-
+  const activo = controller.listaActivos.getPorId(
+    idActivoActual,
+    controller.getModo()
+  );
   if (!activo || typeof activo.getHistorial !== "function") return;
-
-  let datos = activo.getHistorial();
-  datos = aplicarIntervalo(datos);
-  puntosGrafica = []; // limpia puntos previos para tooltip
-
-  if (datos.length < 2) {
-    // Dibujar mensaje si no hay suficientes datos
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.font = "14px Arial";
-    ctx.fillStyle = "#666";
-    ctx.textAlign = "center";
-    ctx.fillText("Esperando datos...", canvas.width / 2, canvas.height / 2);
-    return;
-  }
-
+  let datos = aplicarIntervalo(activo.getHistorial());
+  puntosGrafica = [];
+  if (datos.length < 2) return dibujarMensajeEsperando();
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+  const { padding, width, height, min, range, color } =
+    obtenerConfigGrafica(datos);
+  if (range === 0) return;
+  dibujarEjes(ctx, padding, width, height);
+  dibujarLineaPrecios(ctx, datos, padding, width, height, min, range, color);
+  dibujarPuntosExtremos(ctx, datos, padding, width, height, min, range, color);
+}
 
-  // Configuración del gráfico
+function dibujarMensajeEsperando() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.font = "14px Arial";
+  ctx.fillStyle = "#666";
+  ctx.textAlign = "center";
+  ctx.fillText("Esperando datos...", canvas.width / 2, canvas.height / 2);
+}
+
+function obtenerConfigGrafica(datos) {
   const padding = 40;
   const width = canvas.width - padding * 2;
   const height = canvas.height - padding * 2;
-
-  // Calcular min y max con márgenes
   const max = Math.max(...datos) * 1.02;
   const min = Math.min(...datos) * 0.98;
   const range = max - min;
+  const color = datos[datos.length - 1] >= datos[0] ? "#28a745" : "#dc3545";
+  return { padding, width, height, min, max, range, color };
+}
 
-  if (range === 0) return;
-
-  // Dibujar ejes
+function dibujarEjes(ctx, padding, width, height) {
   ctx.strokeStyle = "#ccc";
   ctx.lineWidth = 1;
   ctx.beginPath();
@@ -233,47 +245,63 @@ function dibujarGrafica() {
   ctx.lineTo(padding, padding + height);
   ctx.lineTo(padding + width, padding + height);
   ctx.stroke();
+}
 
-  // Dibujar línea de precios
+function dibujarLineaPrecios(
+  ctx,
+  datos,
+  padding,
+  width,
+  height,
+  min,
+  range,
+  color
+) {
   ctx.beginPath();
   ctx.lineWidth = 2;
-
-  const color = datos[datos.length - 1] >= datos[0] ? "#28a745" : "#dc3545";
   ctx.strokeStyle = color;
-
   const stepX = width / (datos.length - 1);
-
   datos.forEach((valor, i) => {
     const x = padding + i * stepX;
     const y = padding + height - ((valor - min) / range) * height;
     puntosGrafica.push({ x, y, valor });
-
-    if (i === 0) {
-      ctx.moveTo(x, y);
-    } else {
-      ctx.lineTo(x, y);
-    }
+    if (i === 0) ctx.moveTo(x, y);
+    else ctx.lineTo(x, y);
   });
-
   ctx.stroke();
+}
 
-   
-
-  // Dibujar puntos en los extremos
+function dibujarPuntosExtremos(
+  ctx,
+  datos,
+  padding,
+  width,
+  height,
+  min,
+  range,
+  color
+) {
   if (datos.length > 0) {
-    // Punto inicial
     ctx.fillStyle = "#666";
     ctx.beginPath();
-    ctx.arc(padding, padding + height - ((datos[0] - min) / range) * height, 3, 0, 2 * Math.PI);
+    ctx.arc(
+      padding,
+      padding + height - ((datos[0] - min) / range) * height,
+      3,
+      0,
+      2 * Math.PI
+    );
     ctx.fill();
-
-    // Punto final
     ctx.fillStyle = color;
     ctx.beginPath();
-    ctx.arc(padding + width, padding + height - ((datos[datos.length - 1] - min) / range) * height, 4, 0, 2 * Math.PI);
+    ctx.arc(
+      padding + width,
+      padding + height - ((datos[datos.length - 1] - min) / range) * height,
+      4,
+      0,
+      2 * Math.PI
+    );
     ctx.fill();
-
-    // Etiqueta precio actual
     ctx.fillStyle = color;
     ctx.font = "12px Arial";
     ctx.fillText(
@@ -286,45 +314,62 @@ function dibujarGrafica() {
 
 // FUNCIONES DE NAVEGACIÓN
 function ocultarTodasLasPaginas() {
-  paginaInicio.classList.add("d-none");
-  paginaPortafolio.classList.add("d-none");
-  paginaAnalisis.classList.add("d-none");
-  paginaBilletera.classList.add("d-none");
-  paginaCentroAprendizaje.classList.add("d-none");
+  const paginas = [
+    paginaInicio,
+    paginaPortafolio,
+    paginaAnalisis,
+    paginaBilletera,
+    paginaCentroAprendizaje,
+  ];
+
+  paginas.forEach((pagina) => {
+    if (pagina) {
+      pagina.classList.add("d-none");
+    }
+  });
 }
 
 function limpiarActivosMenu() {
-  document.querySelectorAll("#menu a").forEach(a => a.classList.remove("active"));
+  document
+    .querySelectorAll("#menu a")
+    .forEach((a) => a.classList.remove("active"));
 }
 
 function irA(pagina, itemMenu) {
   ocultarTodasLasPaginas();
   limpiarActivosMenu();
-  pagina.classList.remove("d-none");
-  itemMenu.querySelector("a").classList.add("active");
+  if (pagina) {
+    pagina.classList.remove("d-none");
+  }
+  if (itemMenu) {
+    const link = itemMenu.querySelector("a");
+    if (link) {
+      link.classList.add("active");
+    }
+  }
 }
 
 // FUNCIONES DE UTILIDAD
 function mapearTipo(tipo) {
   const tipos = {
-    "Bonos": "",
-    "Criptomonedas": "limite",
-    "Forex": "market",
-    "Acciones": "stop"
+    Bonos: "",
+    Criptomonedas: "limite",
+    Forex: "market",
+    Acciones: "stop",
   };
   return tipos[tipo] || "";
 }
 
 function normalizarOperacion(op) {
-  return op
-    .toLowerCase()
-    .replace("ó", "o")
-    .replace("é", "e")
-    .trim();
+  return op.toLowerCase().replace("ó", "o").replace("é", "e").trim();
 }
 
 function mostrarMensaje(texto, tipo = "danger") {
   const alerta = document.getElementById("alertaSistema");
+  if (!alerta) {
+    return;
+  }
+
   alerta.className = `alert alert-${tipo} position-fixed top-0 start-50 translate-middle-x mt-3 shadow`;
   alerta.textContent = texto;
   alerta.classList.remove("d-none");
@@ -336,9 +381,13 @@ function mostrarMensaje(texto, tipo = "danger") {
 
 // FUNCIONES DE INICIO/TRADING
 function cargarSelectActivos() {
+  if (!selectActivo) {
+    return;
+  }
+
   const lista = controller.getListaActivos();
   selectActivo.innerHTML = lista
-    .map(a => `<option value="${a.id}">${a.nombre}</option>`)
+    .map((a) => `<option value="${a.id}">${a.nombre}</option>`)
     .join("");
 
   if (lista.length > 0) {
@@ -347,8 +396,14 @@ function cargarSelectActivos() {
 }
 
 function actualizarDatosActivo(id) {
-  const datos = controller.getDatosActivo(parseInt(id));
-  if (!datos) return;
+  if (!pValorAccion) {
+    return;
+  }
+
+  const datos = controller.getDatosActivo(parseInt(id, 10));
+  if (!datos) {
+    return;
+  }
 
   // Si el precio no existe o es cero → no mostrar 0.0000
   if (!datos.precioNumerico || datos.precioNumerico === 0) {
@@ -357,48 +412,66 @@ function actualizarDatosActivo(id) {
   }
 
   // Solo si hay precio real, actualizo completo
-  selectTipoAccion.value = mapearTipo(datos.tipo);
+  if (selectTipoAccion) {
+    selectTipoAccion.value = mapearTipo(datos.tipo);
+  }
   pValorAccion.textContent = `Valor de Acción: ${datos.precioTexto}`;
 }
 
 function recalcularDesdeAccion() {
-  const id = parseInt(selectActivo.value);
+  const id = parseInt(selectActivo.value, 10);
 
   // ⚠ si el input está vacío → no tocar nada
-  if (inputAccion.value.trim() === "") {
-    inputDinero.value = "";
+  if (!inputAccion || inputAccion.value.trim() === "") {
+    if (inputDinero) {
+      inputDinero.value = "";
+    }
     return;
   }
 
   const cantidad = parseFloat(inputAccion.value);
-  if (isNaN(cantidad) || cantidad <= 0) {
-    inputDinero.value = "";
+  if (Number.isNaN(cantidad) || cantidad <= 0) {
+    if (inputDinero) {
+      inputDinero.value = "";
+    }
     return;
   }
 
   const res = controller.calcularDinero(id, cantidad);
-  inputDinero.value = res.dineroNumerico.toFixed(2);
+  if (inputDinero && res.dineroNumerico) {
+    inputDinero.value = res.dineroNumerico.toFixed(2);
+  }
 }
 
 function recalcularDesdeDinero() {
-  const id = parseInt(selectActivo.value);
+  const id = parseInt(selectActivo.value, 10);
 
-  if (inputDinero.value.trim() === "") {
-    inputAccion.value = "";
+  if (!inputDinero || inputDinero.value.trim() === "") {
+    if (inputAccion) {
+      inputAccion.value = "";
+    }
     return;
   }
 
   const dinero = parseFloat(inputDinero.value);
-  if (isNaN(dinero) || dinero <= 0) {
-    inputAccion.value = "";
+  if (Number.isNaN(dinero) || dinero <= 0) {
+    if (inputAccion) {
+      inputAccion.value = "";
+    }
     return;
   }
 
   const res = controller.calcularCantidad(id, dinero);
-  inputAccion.value = res.cantidadNumerica.toFixed(4);
+  if (inputAccion && res.cantidadNumerica) {
+    inputAccion.value = res.cantidadNumerica.toFixed(4);
+  }
 }
 
 function pintarHistorial() {
+  if (!divHistorial) {
+    return;
+  }
+
   const lista = controller.getHistorialParaVista();
 
   if (!lista.length) {
@@ -406,42 +479,58 @@ function pintarHistorial() {
     return;
   }
 
-  divHistorial.innerHTML = lista.map(op =>
-    `<p class="mb-1">${op.texto}</p>`
-  ).join("");
+  divHistorial.innerHTML = lista
+    .map((op) => `<p class="mb-1">${op.texto}</p>`)
+    .join("");
 }
 
 function realizarOperacion(tipo) {
-  const cantidad = parseFloat(inputAccion.value);
-
-  if (cantidad <= 0 || isNaN(cantidad)) {
-    mostrarMensaje(`La cantidad debe ser mayor a 0.`, "warning");
+  if (!inputAccion) {
     return;
   }
 
-  const res = tipo === "compra"
-    ? controller.realizarCompra(parseInt(selectActivo.value), cantidad)
-    : controller.realizarVenta(parseInt(selectActivo.value), cantidad);
+  const cantidad = parseFloat(inputAccion.value);
+
+  if (cantidad <= 0 || Number.isNaN(cantidad)) {
+    mostrarMensaje("La cantidad debe ser mayor a 0.", "warning");
+    return;
+  }
+
+  const id = parseInt(selectActivo.value, 10);
+  const res =
+    tipo === "compra"
+      ? controller.realizarCompra(id, cantidad)
+      : controller.realizarVenta(id, cantidad);
 
   mostrarMensaje(res.mensaje, res.ok ? "success" : "danger");
 
-  if (res.ok) pintarHistorial();
+  if (res.ok) {
+    pintarHistorial();
+  }
 }
 
 function cambiarMoneda(moneda) {
   controller.cambiarMoneda(moneda);
-  btnUSD.classList.toggle("active", moneda === "USD");
-  btnUYU.classList.toggle("active", moneda === "UYU");
+  if (btnUSD) {
+    btnUSD.classList.toggle("active", moneda === "USD");
+  }
+  if (btnUYU) {
+    btnUYU.classList.toggle("active", moneda === "UYU");
+  }
   actualizarDatosActivo(selectActivo.value);
   recalcularDesdeAccion();
 }
 
 function cargarActivoEnInicio(idActivo) {
   irA(paginaInicio, itemInicio);
-  selectActivo.value = idActivo;
-  selectActivo.dispatchEvent(new Event("change"));
-  inputAccion.value = 1;
-  recalcularDesdeAccion();
+  if (selectActivo) {
+    selectActivo.value = idActivo;
+    selectActivo.dispatchEvent(new Event("change"));
+  }
+  if (inputAccion) {
+    inputAccion.value = "1";
+    recalcularDesdeAccion();
+  }
 }
 
 // FUNCIONES DE PORTAFOLIO
@@ -465,26 +554,37 @@ function crearTarjetaHTML(activo) {
 
 function cambiarCategoria(cat) {
   categoriaActual = cat;
-  document.querySelectorAll("#categorias button").forEach(btn =>
-    btn.classList.remove("active")
-  );
+  document
+    .querySelectorAll("#categorias button")
+    .forEach((btn) => btn.classList.remove("active"));
   const btnCategoria = document.getElementById(`btnCategoria${cat}`);
-  if (btnCategoria) btnCategoria.classList.add("active");
+  if (btnCategoria) {
+    btnCategoria.classList.add("active");
+  }
   limiteTarjetas = 3;
   renderPortafolio();
 }
 
 function renderPortafolio() {
+  if (!grillaActivos) {
+    return;
+  }
+
   const todos = controller.getPortafolioParaVista();
 
   // Filtrar por categoría
-  const filtradosPorCategoria = categoriaActual === "Todas"
-    ? todos
-    : todos.filter(a => a.tipo.toLowerCase() === categoriaActual.toLowerCase());
+  const filtradosPorCategoria =
+    categoriaActual === "Todas"
+      ? todos
+      : todos.filter(
+          (a) => a.tipo.toLowerCase() === categoriaActual.toLowerCase()
+        );
 
   // Filtrar por texto
-  const texto = inputBuscarPortafolio.value.trim().toLowerCase();
-  const filtrados = filtradosPorCategoria.filter(a =>
+  const texto = inputBuscarPortafolio
+    ? inputBuscarPortafolio.value.trim().toLowerCase()
+    : "";
+  const filtrados = filtradosPorCategoria.filter((a) =>
     a.nombre.toLowerCase().includes(texto)
   );
 
@@ -492,7 +592,7 @@ function renderPortafolio() {
   const visibles = filtrados.slice(0, limiteTarjetas);
 
   // Renderizar HTML
-  grillaActivos.innerHTML = visibles.map(a => crearTarjetaHTML(a)).join("");
+  grillaActivos.innerHTML = visibles.map((a) => crearTarjetaHTML(a)).join("");
 
   // Control de botón "Ver más"
   if (btnVerMasPortafolio) {
@@ -543,55 +643,110 @@ function crearFilaAnalisis(activo) {
   `;
 }
 
-function actualizarResumen() {
-  const lista = controller.getListaActivos();
-  const seleccionados = lista.filter(a => seleccionadosAnalisis.includes(a.id));
+const lista = controller.getListaActivos();
+const seleccionados = lista.filter((a) => seleccionadosAnalisis.includes(a.id));
 
+if (totalSeleccionados) {
   totalSeleccionados.textContent = seleccionados.length;
+}
 
-  // Rendimiento promedio
+// Rendimiento promedio
+if (promedioRendimiento) {
   if (seleccionados.length > 0) {
-    const promedio = seleccionados.reduce((sum, a) => sum + a.rendimiento, 0) / seleccionados.length;
-    promedioRendimiento.textContent = promedio.toFixed(2) + "%";
+    const promedio =
+      seleccionados.reduce((sum, a) => sum + a.rendimiento, 0) /
+      seleccionados.length;
+    promedioRendimiento.textContent = `${promedio.toFixed(2)}%`;
     promedioRendimiento.classList.toggle("text-success", promedio >= 0);
     promedioRendimiento.classList.toggle("text-danger", promedio < 0);
   } else {
     promedioRendimiento.textContent = "-";
   }
+}
 
-  // Costo estimado
-  const costo = seleccionados.reduce((sum, a) => sum + a.precio, 0);
-  costoEstimado.textContent = costo + " USD";
+// Costo estimado
+// ...existing code...
+function actualizarResumen() {
+  const lista = controller.getListaActivos();
+  const seleccionados = lista.filter((a) =>
+    seleccionadosAnalisis.includes(a.id)
+  );
+  actualizarResumenSeleccionados(seleccionados);
+  actualizarResumenRendimiento(seleccionados);
+  actualizarResumenCosto(seleccionados);
+  actualizarResumenUltimaActualizacion();
+}
 
-  // Última actualización
-  ultimaActualizacion.textContent = new Date().toLocaleTimeString();
+function actualizarResumenSeleccionados(seleccionados) {
+  if (totalSeleccionados) totalSeleccionados.textContent = seleccionados.length;
+}
+
+function actualizarResumenRendimiento(seleccionados) {
+  if (!promedioRendimiento) return;
+  if (seleccionados.length > 0) {
+    const promedio =
+      seleccionados.reduce((sum, a) => sum + a.rendimiento, 0) /
+      seleccionados.length;
+    promedioRendimiento.textContent = `${promedio.toFixed(2)}%`;
+    promedioRendimiento.classList.toggle("text-success", promedio >= 0);
+    promedioRendimiento.classList.toggle("text-danger", promedio < 0);
+  } else {
+    promedioRendimiento.textContent = "-";
+  }
+}
+
+function actualizarResumenCosto(seleccionados) {
+  if (costoEstimado) {
+    const costo = seleccionados.reduce((sum, a) => sum + a.precio, 0);
+    costoEstimado.textContent = `${costo} USD`;
+  }
+}
+
+function actualizarResumenUltimaActualizacion() {
+  if (ultimaActualizacion) {
+    ultimaActualizacion.textContent = new Date().toLocaleTimeString();
+  }
 }
 
 function cambiarCategoriaAnalisis(categoria) {
   categoriaAnalisisActual = categoria;
-  document.querySelectorAll("#categoriasAnalisis button")
-    .forEach(btn => btn.classList.remove("active"));
-  const btnCategoriaAnalisis = document.getElementById(`btnCategoriaAnalisis${categoria}`);
-  if (btnCategoriaAnalisis) btnCategoriaAnalisis.classList.add("active");
+  document
+    .querySelectorAll("#categoriasAnalisis button")
+    .forEach((btn) => btn.classList.remove("active"));
+  const btnCategoriaAnalisis = document.getElementById(
+    `btnCategoriaAnalisis${categoria}`
+  );
+  if (btnCategoriaAnalisis) {
+    btnCategoriaAnalisis.classList.add("active");
+  }
   renderAnalisis();
 }
 
 function renderAnalisis() {
+  if (!tablaInstrumentos) {
+    return;
+  }
+
   const lista = controller.getListaActivos();
 
   // Filtrar por categoría
-  const filtradosCategoria = categoriaAnalisisActual === "Todas"
-    ? lista
-    : lista.filter(a => a.tipo.toLowerCase() === categoriaAnalisisActual.toLowerCase());
+  const filtradosCategoria =
+    categoriaAnalisisActual === "Todas"
+      ? lista
+      : lista.filter(
+          (a) => a.tipo.toLowerCase() === categoriaAnalisisActual.toLowerCase()
+        );
 
   // Filtrar por texto
-  const texto = buscarAnalisis.value.trim().toLowerCase();
-  const filtrados = filtradosCategoria.filter(a =>
+  const texto = buscarAnalisis ? buscarAnalisis.value.trim().toLowerCase() : "";
+  const filtrados = filtradosCategoria.filter((a) =>
     a.nombre.toLowerCase().includes(texto)
   );
 
   // Renderizar tabla
-  tablaInstrumentos.innerHTML = filtrados.map(a => crearFilaAnalisis(a)).join("");
+  tablaInstrumentos.innerHTML = filtrados
+    .map((a) => crearFilaAnalisis(a))
+    .join("");
 
   // Actualizar resumen
   actualizarResumen();
@@ -602,159 +757,195 @@ function renderBilletera() {
   const saldos = controller.getSaldos();
 
   // USD
-  if (saldoTotalUSD) saldoTotalUSD.textContent = `$ ${saldos.USD.total.toFixed(2)}`;
-  if (disponibleUSD) disponibleUSD.textContent = `$ ${saldos.USD.disponible.toFixed(2)}`;
-  if (garantiaUSD) garantiaUSD.textContent = `$ ${saldos.USD.garantia.toFixed(2)}`;
+  if (saldoTotalUSD) {
+    saldoTotalUSD.textContent = `$ ${saldos.USD.total.toFixed(2)}`;
+  }
+  if (disponibleUSD) {
+    disponibleUSD.textContent = `$ ${saldos.USD.disponible.toFixed(2)}`;
+  }
+  if (garantiaUSD) {
+    garantiaUSD.textContent = `$ ${saldos.USD.garantia.toFixed(2)}`;
+  }
 
   // UYU
-  if (saldoTotalUYU) saldoTotalUYU.textContent = `$ ${saldos.UYU.total.toFixed(2)}`;
-  if (disponibleUYU) disponibleUYU.textContent = `$ ${saldos.UYU.disponible.toFixed(2)}`;
-  if (garantiaUYU) garantiaUYU.textContent = `$ ${saldos.UYU.garantia.toFixed(2)}`;
+  if (saldoTotalUYU) {
+    saldoTotalUYU.textContent = `$ ${saldos.UYU.total.toFixed(2)}`;
+  }
+  if (disponibleUYU) {
+    disponibleUYU.textContent = `$ ${saldos.UYU.disponible.toFixed(2)}`;
+  }
+  if (garantiaUYU) {
+    garantiaUYU.textContent = `$ ${saldos.UYU.garantia.toFixed(2)}`;
+  }
 }
 
 // FUNCIONES DE MOVIMIENTOS CON MODAL
 function abrirModalMovimiento(moneda, tipo) {
-  // Guardar los datos de la operación actual
   movimientoActual.moneda = moneda;
   movimientoActual.tipo = tipo;
+  const elementos = obtenerElementosModalMovimiento();
+  if (!elementos) return;
+  configurarElementosModal(elementos, moneda, tipo);
+  ocultarResumenOperacion();
+  mostrarModalMovimiento();
+}
 
-  // Configurar el modal según el tipo de operación
-  const modalLabel = document.getElementById('modalMovimientoLabel');
-  const tipoInput = document.getElementById('tipoOperacionModal');
-  const monedaInput = document.getElementById('monedaModal');
-  const montoInput = document.getElementById('montoModal');
-  const btnConfirmar = document.getElementById('btnConfirmarMovimiento');
-
-  if (!modalLabel || !tipoInput || !monedaInput || !montoInput || !btnConfirmar) {
+function obtenerElementosModalMovimiento() {
+  const modalLabel = document.getElementById("modalMovimientoLabel");
+  const tipoInput = document.getElementById("tipoOperacionModal");
+  const monedaInput = document.getElementById("monedaModal");
+  const montoInputModal = document.getElementById("montoModal");
+  const btnConfirmar = document.getElementById("btnConfirmarMovimiento");
+  if (
+    !modalLabel ||
+    !tipoInput ||
+    !monedaInput ||
+    !montoInputModal ||
+    !btnConfirmar
+  ) {
     console.error("Elementos del modal no encontrados");
-    return;
+    return null;
   }
+  return { modalLabel, tipoInput, monedaInput, montoInputModal, btnConfirmar };
+}
 
-  // Textos según el tipo de operación
-  const esDeposito = tipo === 'deposito';
-  const textoOperacion = esDeposito ? 'Depósito' : 'Retiro';
-  const textoBoton = esDeposito ? 'Depositar' : 'Retirar';
-  const claseBoton = esDeposito ? 'btn-success' : 'btn-warning';
-
-  // Configurar elementos del modal
+function configurarElementosModal(
+  { modalLabel, tipoInput, monedaInput, montoInputModal, btnConfirmar },
+  moneda,
+  tipo
+) {
+  const esDeposito = tipo === "deposito";
+  const textoOperacion = esDeposito ? "Depósito" : "Retiro";
+  const textoBoton = esDeposito ? "Depositar" : "Retirar";
+  const claseBoton = esDeposito ? "btn-success" : "btn-warning";
   modalLabel.textContent = `${textoOperacion} - ${moneda}`;
   tipoInput.value = textoOperacion;
   monedaInput.value = moneda;
-  montoInput.value = '';
-
-  // Configurar botón de confirmación
+  montoInputModal.value = "";
   btnConfirmar.textContent = textoBoton;
   btnConfirmar.className = `btn ${claseBoton}`;
+}
 
-  // Ocultar resumen inicialmente
-  const resumenOperacion = document.getElementById('resumenOperacion');
-  if (resumenOperacion) resumenOperacion.classList.add('d-none');
+function ocultarResumenOperacion() {
+  const resumenOperacion = document.getElementById("resumenOperacion");
+  if (resumenOperacion) resumenOperacion.classList.add("d-none");
+}
 
-  // Mostrar modal
-  const modalElement = document.getElementById('modalMovimiento');
-  if (modalElement) {
-    const modal = new bootstrap.Modal(modalElement);
+function mostrarModalMovimiento() {
+  const modalElement = document.getElementById("modalMovimiento");
+  if (modalElement && window.bootstrap) {
+    const modal = new window.bootstrap.Modal(modalElement);
     modal.show();
   }
 }
 
 function actualizarResumenOperacion() {
-  const montoModal = document.getElementById('montoModal');
+  const montoModal = document.getElementById("montoModal");
   if (!montoModal) return;
-
   const montoBruto = parseFloat(montoModal.value);
-
-  if (isNaN(montoBruto) || montoBruto <= 0) {
-    const resumenOperacion = document.getElementById('resumenOperacion');
-    if (resumenOperacion) resumenOperacion.classList.add('d-none');
-    return;
-  }
-
+  if (Number.isNaN(montoBruto) || montoBruto <= 0)
+    return ocultarResumenOperacion();
   const tipoNormalizado = normalizarOperacion(movimientoActual.tipo);
   const { comision, neto, tasa } = calc.calcularPorOperacion(
     montoBruto,
     tipoNormalizado,
     movimientoActual.moneda
   );
+  actualizarElementosResumen(montoBruto, comision, neto, tasa);
+  mostrarResumenOperacion();
+}
 
-  // Actualizar elementos del resumen
-  const resumenMonto = document.getElementById('resumenMonto');
-  const resumenTasa = document.getElementById('resumenTasa');
-  const resumenComision = document.getElementById('resumenComision');
-  const resumenNeto = document.getElementById('resumenNeto');
-  const resumenOperacion = document.getElementById('resumenOperacion');
-
-  if (resumenMonto) resumenMonto.textContent = `${montoBruto.toFixed(2)} ${movimientoActual.moneda}`;
+function actualizarElementosResumen(montoBruto, comision, neto, tasa) {
+  const resumenMonto = document.getElementById("resumenMonto");
+  const resumenTasa = document.getElementById("resumenTasa");
+  const resumenComision = document.getElementById("resumenComision");
+  const resumenNeto = document.getElementById("resumenNeto");
+  if (resumenMonto)
+    resumenMonto.textContent = `${montoBruto.toFixed(2)} ${movimientoActual.moneda}`;
   if (resumenTasa) resumenTasa.textContent = tasa;
-  if (resumenComision) resumenComision.textContent = `-${comision.toFixed(2)} ${movimientoActual.moneda}`;
-  if (resumenNeto) resumenNeto.textContent = `${neto.toFixed(2)} ${movimientoActual.moneda}`;
+  if (resumenComision)
+    resumenComision.textContent = `-${comision.toFixed(2)} ${movimientoActual.moneda}`;
+  if (resumenNeto)
+    resumenNeto.textContent = `${neto.toFixed(2)} ${movimientoActual.moneda}`;
+}
 
-  // Mostrar resumen
-  if (resumenOperacion) resumenOperacion.classList.remove('d-none');
+function mostrarResumenOperacion() {
+  const resumenOperacion = document.getElementById("resumenOperacion");
+  if (resumenOperacion) resumenOperacion.classList.remove("d-none");
 }
 
 function confirmarMovimiento() {
-  const montoModal = document.getElementById('montoModal');
+  const montoModal = document.getElementById("montoModal");
   if (!montoModal) return;
-
   const montoBruto = parseFloat(montoModal.value);
-
-  if (isNaN(montoBruto) || montoBruto <= 0) {
-    mostrarMensaje("Ingrese un monto válido.", "warning");
-    return;
-  }
-
+  if (Number.isNaN(montoBruto) || montoBruto <= 0)
+    return mostrarMensaje("Ingrese un monto válido.", "warning");
   const tipoNormalizado = normalizarOperacion(movimientoActual.tipo);
-  const { comision, neto, tasa } = calc.calcularPorOperacion(
+  const { neto } = calc.calcularPorOperacion(
     montoBruto,
     tipoNormalizado,
     movimientoActual.moneda
   );
-
-  // Realizar la operación
-  let res;
-  if (tipoNormalizado === "deposito") {
-    res = controller.depositar(movimientoActual.moneda, neto);
-  } else {
-    res = controller.retirar(movimientoActual.moneda, neto);
-  }
-
-  // Mostrar resultado
+  const res = realizarOperacionMovimiento(tipoNormalizado, neto);
   mostrarMensaje(res.mensaje, res.ok ? "success" : "danger");
+  if (res.ok) actualizarBilleteraYModal();
+}
 
-  if (res.ok) {
-    // Actualizar billetera y cerrar modal
-    renderBilletera();
-    const modalElement = document.getElementById('modalMovimiento');
-    if (modalElement) {
-      const modal = bootstrap.Modal.getInstance(modalElement);
-      if (modal) modal.hide();
-    }
+function realizarOperacionMovimiento(tipoNormalizado, neto) {
+  if (tipoNormalizado === "deposito") {
+    return controller.depositar(movimientoActual.moneda, neto);
+  } else {
+    return controller.retirar(movimientoActual.moneda, neto);
+  }
+}
+
+function actualizarBilleteraYModal() {
+  renderBilletera();
+  const modalElement = document.getElementById("modalMovimiento");
+  if (modalElement && window.bootstrap) {
+    const modal = window.bootstrap.Modal.getInstance(modalElement);
+    if (modal) modal.hide();
   }
 }
 
 // FUNCIONES DE CALCULADORA DE COMISIONES
 function actualizarTasaCalculadora() {
+  if (!tipoOperacionInput || !divisaInput || !tasaInput) {
+    return;
+  }
+
   const tipo = normalizarOperacion(tipoOperacionInput.value);
   const moneda = divisaInput.value;
   tasaInput.value = calc.obtenerTasa(tipo, moneda);
 }
 
 function calcularComision() {
+  if (!montoInput || !tipoOperacionInput || !divisaInput || !tasaInput) {
+    return;
+  }
+
   const monto = parseFloat(montoInput.value);
   const tipo = normalizarOperacion(tipoOperacionInput.value);
   const moneda = divisaInput.value;
 
-  if (isNaN(monto) || monto <= 0) {
+  if (Number.isNaN(monto) || monto <= 0) {
     mostrarMensaje("Ingrese un monto válido.", "warning");
     return;
   }
 
-  const { comision, neto, tasa } = calc.calcularPorOperacion(monto, tipo, moneda);
+  const { comision, neto, tasa } = calc.calcularPorOperacion(
+    monto,
+    tipo,
+    moneda
+  );
 
   tasaInput.value = tasa;
-  if (comisionEstimada) comisionEstimada.textContent = `${comision.toFixed(2)} ${moneda}`;
-  if (totalRecibir) totalRecibir.textContent = `${neto.toFixed(2)} ${moneda}`;
+  if (comisionEstimada) {
+    comisionEstimada.textContent = `${comision.toFixed(2)} ${moneda}`;
+  }
+  if (totalRecibir) {
+    totalRecibir.textContent = `${neto.toFixed(2)} ${moneda}`;
+  }
 }
 
 // FUNCIONES - CENTRO DE APRENDIZAJE
@@ -793,17 +984,19 @@ function toggleVerMasVideos() {
 }
 
 function filtrarVideosCentro() {
-  const texto = inputBuscarCentro ? inputBuscarCentro.value.toLowerCase().trim() : "";
+  const texto = inputBuscarCentro
+    ? inputBuscarCentro.value.toLowerCase().trim()
+    : "";
   const videos = document.querySelectorAll("#contenedorVideos .video-item");
 
   // Mostrar todos los videos antes de filtrar
-  videos.forEach(v => {
+  videos.forEach((v) => {
     v.classList.remove("d-none");
     v.style.display = ""; // reset
   });
 
   // Aplicar filtro
-  videos.forEach(v => {
+  videos.forEach((v) => {
     const titulo = v.querySelector("small").textContent.toLowerCase();
     const coincide = titulo.includes(texto);
 
@@ -870,10 +1063,12 @@ if (itemCentroAprendizaje) {
 // EVENT LISTENERS - INICIO/TRADING
 if (selectActivo) {
   selectActivo.addEventListener("change", () => {
-    idActivoActual = parseInt(selectActivo.value);
+    idActivoActual = parseInt(selectActivo.value, 10);
     console.log("Activo cambiado a:", idActivoActual);
     actualizarDatosActivo(selectActivo.value);
-    inputAccion.value = 1;
+    if (inputAccion) {
+      inputAccion.value = "1";
+    }
     recalcularDesdeAccion();
     iniciarGrafica();
   });
@@ -883,23 +1078,35 @@ if (selectTipoAccion) {
   selectTipoAccion.addEventListener("change", () => {
     const tipo = selectTipoAccion.value;
     const lista = controller.buscarActivosPorTipo(tipo);
-
-    selectActivo.innerHTML = lista
-      .map(a => `<option value="${a.id}">${a.nombre}</option>`)
-      .join("");
-
-    if (lista.length > 0) {
-      idActivoActual = parseInt(lista[0].id);
-      actualizarDatosActivo(lista[0].id);
-      inputAccion.value = 1;
-      recalcularDesdeAccion();
-      iniciarGrafica();
-    } else {
-      pValorAccion.textContent = "Sin activos disponibles";
-      inputAccion.value = "";
-      inputDinero.value = "";
+    if (selectActivo) {
+      actualizarOpcionesSelectActivo(lista);
+      if (lista.length > 0) {
+        manejarActivoDisponible(lista);
+      } else {
+        manejarSinActivos();
+      }
     }
   });
+
+  function actualizarOpcionesSelectActivo(lista) {
+    selectActivo.innerHTML = lista
+      .map((a) => `<option value="${a.id}">${a.nombre}</option>`)
+      .join("");
+  }
+
+  function manejarActivoDisponible(lista) {
+    idActivoActual = parseInt(lista[0].id, 10);
+    actualizarDatosActivo(lista[0].id);
+    if (inputAccion) inputAccion.value = "1";
+    recalcularDesdeAccion();
+    iniciarGrafica();
+  }
+
+  function manejarSinActivos() {
+    if (pValorAccion) pValorAccion.textContent = "Sin activos disponibles";
+    if (inputAccion) inputAccion.value = "";
+    if (inputDinero) inputDinero.value = "";
+  }
 }
 
 if (inputAccion) {
@@ -924,92 +1131,154 @@ if (inputDinero) {
   });
 }
 
-if (btnComprar) btnComprar.addEventListener("click", () => realizarOperacion("compra"));
-if (btnVender) btnVender.addEventListener("click", () => realizarOperacion("venta"));
+if (btnComprar) {
+  btnComprar.addEventListener("click", () => realizarOperacion("compra"));
+}
+if (btnVender) {
+  btnVender.addEventListener("click", () => realizarOperacion("venta"));
+}
 
-if (btnUSD) btnUSD.addEventListener("click", () => cambiarMoneda("USD"));
-if (btnUYU) btnUYU.addEventListener("click", () => cambiarMoneda("UYU"));
+if (btnUSD) {
+  btnUSD.addEventListener("click", () => cambiarMoneda("USD"));
+}
+if (btnUYU) {
+  btnUYU.addEventListener("click", () => cambiarMoneda("UYU"));
+}
 
 if (switchModo) {
   switchModo.addEventListener("change", () => {
     controller.setModo(switchModo.checked);
     cargarSelectActivos();
-    selectActivo.dispatchEvent(new Event("change"));
+    if (selectActivo) {
+      selectActivo.dispatchEvent(new Event("change"));
+    }
     pintarHistorial();
   });
 }
 
 // EVENT LISTENERS - PORTAFOLIO
-if (btnCategoriaTodas) btnCategoriaTodas.onclick = () => cambiarCategoria("Todas");
-if (btnCategoriaBonos) btnCategoriaBonos.onclick = () => cambiarCategoria("Bonos");
-if (btnCategoriaCripto) btnCategoriaCripto.onclick = () => cambiarCategoria("Criptomonedas");
-if (btnCategoriaForex) btnCategoriaForex.onclick = () => cambiarCategoria("Forex");
-if (btnCategoriaAcciones) btnCategoriaAcciones.onclick = () => cambiarCategoria("Acciones");
+if (btnCategoriaTodas) {
+  btnCategoriaTodas.onclick = () => cambiarCategoria("Todas");
+}
+if (btnCategoriaBonos) {
+  btnCategoriaBonos.onclick = () => cambiarCategoria("Bonos");
+}
+if (btnCategoriaCripto) {
+  btnCategoriaCripto.onclick = () => cambiarCategoria("Criptomonedas");
+}
+if (btnCategoriaForex) {
+  btnCategoriaForex.onclick = () => cambiarCategoria("Forex");
+}
+if (btnCategoriaAcciones) {
+  btnCategoriaAcciones.onclick = () => cambiarCategoria("Acciones");
+}
 
-if (inputBuscarPortafolio) inputBuscarPortafolio.oninput = renderPortafolio;
-if (btnVerMasPortafolio) btnVerMasPortafolio.onclick = () => {
-  limiteTarjetas += 3;
-  renderPortafolio();
-};
+if (inputBuscarPortafolio) {
+  inputBuscarPortafolio.oninput = renderPortafolio;
+}
+if (btnVerMasPortafolio) {
+  btnVerMasPortafolio.onclick = () => {
+    limiteTarjetas += 3;
+    renderPortafolio();
+  };
+}
 
 // EVENT LISTENERS - ANÁLISIS
-if (btnCategoriaAnalisisTodas) btnCategoriaAnalisisTodas.onclick = () => cambiarCategoriaAnalisis("Todas");
-if (btnCategoriaAnalisisBonos) btnCategoriaAnalisisBonos.onclick = () => cambiarCategoriaAnalisis("Bonos");
-if (btnCategoriaAnalisisCripto) btnCategoriaAnalisisCripto.onclick = () => cambiarCategoriaAnalisis("Criptomonedas");
-if (btnCategoriaAnalisisForex) btnCategoriaAnalisisForex.onclick = () => cambiarCategoriaAnalisis("Forex");
-if (btnCategoriaAnalisisAcciones) btnCategoriaAnalisisAcciones.onclick = () => cambiarCategoriaAnalisis("Acciones");
+if (btnCategoriaAnalisisTodas) {
+  btnCategoriaAnalisisTodas.onclick = () => cambiarCategoriaAnalisis("Todas");
+}
+if (btnCategoriaAnalisisBonos) {
+  btnCategoriaAnalisisBonos.onclick = () => cambiarCategoriaAnalisis("Bonos");
+}
+if (btnCategoriaAnalisisCripto) {
+  btnCategoriaAnalisisCripto.onclick = () =>
+    cambiarCategoriaAnalisis("Criptomonedas");
+}
+if (btnCategoriaAnalisisForex) {
+  btnCategoriaAnalisisForex.onclick = () => cambiarCategoriaAnalisis("Forex");
+}
+if (btnCategoriaAnalisisAcciones) {
+  btnCategoriaAnalisisAcciones.onclick = () =>
+    cambiarCategoriaAnalisis("Acciones");
+}
 
-if (buscarAnalisis) buscarAnalisis.oninput = renderAnalisis;
+if (buscarAnalisis) {
+  buscarAnalisis.oninput = renderAnalisis;
+}
 
 if (tablaInstrumentos) {
-  tablaInstrumentos.addEventListener("click", e => {
+  tablaInstrumentos.addEventListener("click", (e) => {
     // Checkbox
     if (e.target.classList.contains("check-analisis")) {
-      const id = parseInt(e.target.dataset.id);
+      const id = parseInt(e.target.dataset.id, 10);
       if (e.target.checked) {
         if (!seleccionadosAnalisis.includes(id)) {
           seleccionadosAnalisis.push(id);
         }
       } else {
-        seleccionadosAnalisis = seleccionadosAnalisis.filter(x => x !== id);
+        seleccionadosAnalisis = seleccionadosAnalisis.filter((x) => x !== id);
       }
       actualizarResumen();
     }
 
     // Botón Operar
     if (e.target.classList.contains("btn-operar")) {
-      const id = parseInt(e.target.dataset.id);
+      const id = parseInt(e.target.dataset.id, 10);
       cargarActivoEnInicio(id);
     }
   });
 }
 
 // EVENT LISTENERS - BILLETERA
-if (btnDepositoUSD) btnDepositoUSD.addEventListener("click", () => abrirModalMovimiento("USD", "deposito"));
-if (btnRetiroUSD) btnRetiroUSD.addEventListener("click", () => abrirModalMovimiento("USD", "retiro"));
-if (btnDepositoUYU) btnDepositoUYU.addEventListener("click", () => abrirModalMovimiento("UYU", "deposito"));
-if (btnRetiroUYU) btnRetiroUYU.addEventListener("click", () => abrirModalMovimiento("UYU", "retiro"));
+if (btnDepositoUSD) {
+  btnDepositoUSD.addEventListener("click", () =>
+    abrirModalMovimiento("USD", "deposito")
+  );
+}
+if (btnRetiroUSD) {
+  btnRetiroUSD.addEventListener("click", () =>
+    abrirModalMovimiento("USD", "retiro")
+  );
+}
+if (btnDepositoUYU) {
+  btnDepositoUYU.addEventListener("click", () =>
+    abrirModalMovimiento("UYU", "deposito")
+  );
+}
+if (btnRetiroUYU) {
+  btnRetiroUYU.addEventListener("click", () =>
+    abrirModalMovimiento("UYU", "retiro")
+  );
+}
 
 // EVENT LISTENERS - CALCULADORA DE COMISIONES
-if (tipoOperacionInput) tipoOperacionInput.addEventListener("change", actualizarTasaCalculadora);
-if (divisaInput) divisaInput.addEventListener("change", actualizarTasaCalculadora);
-if (btnCalcularComision) btnCalcularComision.addEventListener("click", calcularComision);
+if (tipoOperacionInput) {
+  tipoOperacionInput.addEventListener("change", actualizarTasaCalculadora);
+}
+if (divisaInput) {
+  divisaInput.addEventListener("change", actualizarTasaCalculadora);
+}
+if (btnCalcularComision) {
+  btnCalcularComision.addEventListener("click", calcularComision);
+}
 
 // EVENT LISTENERS DEL MODAL DE MOVIMIENTOS
-const montoModalElement = document.getElementById('montoModal');
+const montoModalElement = document.getElementById("montoModal");
 if (montoModalElement) {
-  montoModalElement.addEventListener('input', actualizarResumenOperacion);
-  montoModalElement.addEventListener('keypress', function (e) {
-    if (e.key === 'Enter') {
+  montoModalElement.addEventListener("input", actualizarResumenOperacion);
+  montoModalElement.addEventListener("keypress", function (e) {
+    if (e.key === "Enter") {
       e.preventDefault();
       confirmarMovimiento();
     }
   });
 }
 
-const btnConfirmarMovimientoElement = document.getElementById('btnConfirmarMovimiento');
+const btnConfirmarMovimientoElement = document.getElementById(
+  "btnConfirmarMovimiento"
+);
 if (btnConfirmarMovimientoElement) {
-  btnConfirmarMovimientoElement.addEventListener('click', confirmarMovimiento);
+  btnConfirmarMovimientoElement.addEventListener("click", confirmarMovimiento);
 }
 
 // EVENTOS - CENTRO DE APRENDIZAJE
@@ -1022,7 +1291,7 @@ if (inputBuscarCentro) {
 }
 
 // INICIALIZACIÓN COMPLETA
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener("DOMContentLoaded", function () {
   if (paginaInicio && itemInicio) {
     irA(paginaInicio, itemInicio);
   }
@@ -1033,7 +1302,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // INICIALIZAR GRÁFICA Y SIMULACIÓN
   setTimeout(() => {
     if (selectActivo && selectActivo.value) {
-      idActivoActual = parseInt(selectActivo.value);
+      idActivoActual = parseInt(selectActivo.value, 10);
       console.log("Inicializando gráfica con activo:", idActivoActual);
       iniciarGrafica();
       controller.iniciarSimulacionMercado();
@@ -1052,24 +1321,24 @@ setInterval(() => {
 }, 1000);
 
 setInterval(() => {
+  // Si estoy en Inicio → NO hacemos nada extra (ya se actualiza)
 
-    // Si estoy en Inicio → NO hacemos nada extra (ya se actualiza)
-    
-    // Si estoy en Portafolio → volver a renderizar
-    if (paginaVisible("paginaPortafolio")) {
-        renderPortafolio();
-    }
+  // Si estoy en Portafolio → volver a renderizar
+  if (paginaVisible("paginaPortafolio")) {
+    renderPortafolio();
+  }
 
-    // Si estoy en Análisis de Mercado → volver a renderizar
-    if (paginaVisible("paginaAnalisis")) {
-        renderAnalisis();
-    }
-
+  // Si estoy en Análisis de Mercado → volver a renderizar
+  if (paginaVisible("paginaAnalisis")) {
+    renderAnalisis();
+  }
 }, 1000);
 
 // Actualizar datos del activo cada segundo
 setInterval(() => {
-  if (!idActivoActual) return;
+  if (!idActivoActual) {
+    return;
+  }
 
   // no interrumpir al usuario mientras escribe
   if (usuarioEditando) {
@@ -1080,29 +1349,20 @@ setInterval(() => {
   actualizarDatosActivo(idActivoActual);
 
   // si ambos inputs están vacíos, no autocalcular
-  if (inputAccion.value.trim() === "" && inputDinero.value.trim() === "") return;
+  const accionVacio = !inputAccion || inputAccion.value.trim() === "";
+  const dineroVacio = !inputDinero || inputDinero.value.trim() === "";
+
+  if (accionVacio && dineroVacio) {
+    return;
+  }
 
   // recalcular según el dato ingresado
-  if (inputAccion.value.trim() !== "") {
+  if (!accionVacio) {
     recalcularDesdeAccion();
-  } else if (inputDinero.value.trim() !== "") {
+  } else if (!dineroVacio) {
     recalcularDesdeDinero();
   }
-
 }, 1000);
-
-// FUNCIONES GLOBALES
-window.irAInicio = function (idActivo) {
-  irA(paginaInicio, itemInicio);
-  if (selectActivo) {
-    selectActivo.value = idActivo;
-    selectActivo.dispatchEvent(new Event("change"));
-  }
-  if (inputAccion) {
-    inputAccion.value = 1;
-    recalcularDesdeAccion();
-  }
-};
 
 // ================================
 // INTERVALOS DE TIEMPO
@@ -1112,14 +1372,49 @@ const btnIntervaloHora = document.getElementById("btnIntervaloHora");
 const btnIntervaloDia = document.getElementById("btnIntervaloDia");
 const btnIntervaloMes = document.getElementById("btnIntervaloMes");
 
-function cambiarIntervalo(nuevo) {
+function cambiarIntervalo(nuevo, botonClickeado) {
   intervaloActual = nuevo;
+
+  // Remover clase active de todos los botones
+  [btnIntervaloMin, btnIntervaloHora, btnIntervaloDia, btnIntervaloMes].forEach(
+    (boton) => {
+      if (boton) {
+        boton.classList.remove("active");
+      }
+    }
+  );
+
+  // Agregar clase active al botón clickeado
+  if (botonClickeado) {
+    botonClickeado.classList.add("active");
+  }
+
   dibujarGrafica();
 }
 
-if (btnIntervaloMin) btnIntervaloMin.onclick = () => cambiarIntervalo("min");
-if (btnIntervaloHora) btnIntervaloHora.onclick = () => cambiarIntervalo("h");
-if (btnIntervaloDia) btnIntervaloDia.onclick = () => cambiarIntervalo("d");
-if (btnIntervaloMes) btnIntervaloMes.onclick = () => cambiarIntervalo("m");
+// Event listeners actualizados
+if (btnIntervaloMin) {
+  btnIntervaloMin.onclick = () => cambiarIntervalo("min", btnIntervaloMin);
+}
+if (btnIntervaloHora) {
+  btnIntervaloHora.onclick = () => cambiarIntervalo("h", btnIntervaloHora);
+}
+if (btnIntervaloDia) {
+  btnIntervaloDia.onclick = () => cambiarIntervalo("d", btnIntervaloDia);
+}
+if (btnIntervaloMes) {
+  btnIntervaloMes.onclick = () => cambiarIntervalo("m", btnIntervaloMes);
+}
 
-
+// FUNCIONES GLOBALES
+window.irAInicio = function (idActivo) {
+  irA(paginaInicio, itemInicio);
+  if (selectActivo) {
+    selectActivo.value = idActivo;
+    selectActivo.dispatchEvent(new Event("change"));
+  }
+  if (inputAccion) {
+    inputAccion.value = "1";
+    recalcularDesdeAccion();
+  }
+};

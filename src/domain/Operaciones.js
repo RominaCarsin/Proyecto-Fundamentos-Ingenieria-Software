@@ -17,9 +17,19 @@ export default class Operacion {
     return this.#cantidad * this.#precioUnitario;
   }
 
-  get tipo() { return this.#tipo; }
-  get activo() { return this.#activo; }
-  get cantidad() { return this.#cantidad; }
-  get precioUnitario() { return this.#precioUnitario; }
-  get fecha() { return this.#fecha; }
+  get tipo() { 
+    return this.#tipo; 
+  }
+  get activo() { 
+    return this.#activo; 
+  }
+  get cantidad() { 
+    return this.#cantidad; 
+  }
+  get precioUnitario() { 
+    return this.#precioUnitario; 
+  }
+  get fecha() { 
+    return this.#fecha; 
+  }
 }

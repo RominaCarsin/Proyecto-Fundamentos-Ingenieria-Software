@@ -1,4 +1,3 @@
-
 body {
   margin: 0;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -25,10 +24,11 @@ body {
   z-index: 1000;
 }
 
-/* Scrollbar del menú */
+
 .menuLateral::-webkit-scrollbar {
   width: 6px;
 }
+
 .menuLateral::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.3);
   border-radius: 3px;
@@ -116,19 +116,6 @@ body {
   justify-content: center;
 }
 
-/* Enlaces deshabilitados */
-.menu li.disabled-link a {
-  pointer-events: none;
-  cursor: not-allowed;
-  color: rgba(255, 255, 255, 0.5);
-}
-.menu li.disabled-link a:hover {
-  background: transparent;
-  border-left-color: transparent;
-}
-.menu li.disabled-link .icon svg {
-  fill: rgba(255, 255, 255, 0.5);
-}
 
 /* Contenido Principal*/
 body {
@@ -230,6 +217,7 @@ body:has(.menuLateral:hover) {
   border: none;
   color: #ffffff;
 }
+
 .btn-success:hover {
   background-color: #1e7e34;
 }
@@ -239,6 +227,7 @@ body:has(.menuLateral:hover) {
   border: none;
   color: #ffffff;
 }
+
 .btn-danger:hover {
   background-color: #c82333;
 }
@@ -250,6 +239,7 @@ body:has(.menuLateral:hover) {
   border: 1px solid #cbd5e1;
   box-shadow: none;
 }
+
 .form-control:focus,
 .form-select:focus {
   border-color: #5374a9;
@@ -265,6 +255,7 @@ body:has(.menuLateral:hover) {
   color: #3c5a93;
   border-color: #3c5a93;
 }
+
 #categorias .btn-outline-primary.active,
 #categoriasAnalisis .btn-outline-primary.active,
 #categorias .btn-outline-primary:hover,
@@ -275,14 +266,17 @@ body:has(.menuLateral:hover) {
 }
 
 #textoPosicionesAbiertas {
-  max-height: 90px;  /* Aproximadamente 3 líneas */
-  overflow-y: auto;  /* Habilitar scroll vertical */
-  padding-right: 6px; /* para que no tape el scroll el texto */
+  max-height: 90px;
+  /* Aproximadamente 3 líneas */
+  overflow-y: auto;
+  /* Habilitar scroll vertical */
+  padding-right: 6px;
+  /* para que no tape el scroll el texto */
 }
 
-/* Para Billetera Deopito y Retiro Datos  */
+/* BILLETERA DEPOSITO Y RETIRO  */
 
-/* Agregar en tu archivo CSS */
+
 #resumenOperacion {
   transition: all 0.3s ease;
 }
@@ -304,12 +298,13 @@ body:has(.menuLateral:hover) {
 }
 
 
-
+/* APRENDIZAJE */
 #contenedorVideos .card {
   border-radius: 10px;
   overflow: hidden;
   transition: 0.2s ease-in-out;
 }
+
 
 #contenedorVideos .card:hover {
   transform: scale(1.03);
@@ -320,7 +315,6 @@ body:has(.menuLateral:hover) {
   width: 100%;
   height: 100%;
 }
-
 
 
 #bloqueVideos {
@@ -335,8 +329,6 @@ body:has(.menuLateral:hover) {
   margin-right: 2rem;
 } */
 
-
-
 .card-video {
   border-radius: 100px;
   overflow: hidden;
@@ -344,10 +336,9 @@ body:has(.menuLateral:hover) {
   cursor: pointer;
 }
 
-
 .card-video:hover {
   transform: translateY(-3px);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
 }
 
 .card-video img {
@@ -357,7 +348,7 @@ body:has(.menuLateral:hover) {
 }
 
 .video-item {
-  max-width: 350px;   /* controla dimensión del contenedor */
+  max-width: 350px;
 }
 
 #bloqueVideos .card {
@@ -375,19 +366,22 @@ body:has(.menuLateral:hover) {
 @media (max-width: 768px) {
 
   /* --- Estructura general --- */
-  html, body {
-    height: 100dvh;                 /* usa viewport dinámico, evita salto del scroll móvil */
+  html,
+  body {
+    height: 100dvh;
+    /* usa viewport dinámico, evita salto del scroll móvil */
     overflow-x: hidden;
-    overflow-y: auto;               /* permite scroll solo en contenido */
+    overflow-y: auto;
+    /* permite scroll solo en contenido */
     background: #eaf1fa;
     scroll-behavior: smooth;
   }
 
   body {
-    display: block !important;      
+    display: block !important;
     padding-left: 0 !important;
-    padding-top: 55px;              
-    padding-bottom: 70px;           
+    padding-top: 55px;
+    padding-bottom: 70px;
   }
 
   #barraSuperiorMobile {
@@ -499,19 +493,19 @@ body:has(.menuLateral:hover) {
   #paginaAnalisis,
   #paginaBilletera {
     padding: 1rem;
-    min-height: auto; 
+    min-height: auto;
   }
 
-  
+
   #alertaSistema {
     position: fixed !important;
-    
+
     left: 0;
     right: 0;
     top: auto !important;
-    
+
     height: 70px;
-    
+
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -521,5 +515,32 @@ body:has(.menuLateral:hover) {
     transition: none !important;
     flex-wrap: nowrap;
   }
-}
 
+  /* Tabla de Analisis de Mercado */
+  #cardTablaAnalisis {
+    margin: 0 -1rem;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+  }
+
+  #cardTablaAnalisis .table-responsive {
+    margin: -0.75rem;
+    /* Ajusta para el padding reducido en móviles */
+    width: calc(100% + 1.5rem);
+  }
+
+  #tablaInstrumentos {
+    font-size: 0.875rem;
+  }
+
+  #tablaInstrumentos .btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+
+  #tablaInstrumentos .form-check-label {
+    font-size: 0.875rem;
+  }
+}

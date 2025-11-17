@@ -4,7 +4,6 @@ export default class Cotizaciones {
   #tasas = {
     USD: 1,
     UYU: 40,
-    EUR: 0.9
   };
 
   get monedaActual() {

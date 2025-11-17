@@ -6,6 +6,7 @@ export default class ListaActivos {
     this.activosReales = [];
   }
 
+  //ACCION: id, nombre, tipo, precioInicial, moneda, volatilidad
   cargarActivosDemo() {
     this.activosDemo = [
       new Activo(1, "Microsoft (MSFT)", "Acciones", 500, "USD", 0.03),
@@ -16,13 +17,13 @@ export default class ListaActivos {
     ];
   }
 
-  cargarActivosReales() {
+   cargarActivosReales() {
     this.activosReales = [
-      new Activo(101, "Microsoft (MSFT)", "Acciones", 500, "USD", 0.02),
-      new Activo(102, "Bitcoin (BTC)", "Criptomonedas", 85000, "USD", 0.05),
-      new Activo(103, "Bono UYU BCU", "Bonos", 1350, "UYU", 0.01),
-      new Activo(104, "EUR/USD", "Forex", 1.55, "USD", 0.002),
-      new Activo(105, "Coca-Cola (KO)", "Acciones", 50, "USD", 0.02)
+      new Activo(101, "Tesla (TSLA)", "Acciones", 600, "USD", 0.04),
+      new Activo(102, "Ethereum (ETH)", "Criptomonedas", 3100, "USD", 0.07),
+      new Activo(103, "Bono USD EE.UU.", "Bonos", 1000, "USD", 0.02),
+      new Activo(104, "GBP/USD", "Forex", 1.30, "USD", 0.003),
+      new Activo(105, "PepsiCo (PEP)", "Acciones", 180, "USD", 0.015)
     ];
   }
 

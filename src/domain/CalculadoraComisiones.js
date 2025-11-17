@@ -1,6 +1,4 @@
 export default class CalculadoraComisiones {
-  
-  // Tabla de comisiones definidas por moneda y tipo
   COMISIONES = {
     USD: {
       deposito: 1.1,
@@ -16,7 +14,6 @@ export default class CalculadoraComisiones {
     }
   };
 
-  // Obtener la tasa según operación y divisa
   obtenerTasa(tipoOperacion, moneda) {
     if (!this.COMISIONES[moneda]) return 0;
     return this.COMISIONES[moneda][tipoOperacion] ?? 0;

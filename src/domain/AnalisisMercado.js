@@ -1,6 +1,5 @@
 export default class AnalisisMercado {
   #listaActivos;
-
   constructor(listaActivos) {
     this.#listaActivos = listaActivos;
   }
