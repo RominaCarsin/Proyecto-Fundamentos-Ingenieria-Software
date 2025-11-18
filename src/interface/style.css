@@ -24,7 +24,6 @@ body {
   z-index: 1000;
 }
 
-
 .menuLateral::-webkit-scrollbar {
   width: 6px;
 }
@@ -114,17 +113,6 @@ body {
   min-width: 20px;
   display: flex;
   justify-content: center;
-}
-
-
-/* Contenido Principal*/
-body {
-  padding-left: 70px;
-  transition: padding-left 0.3s ease;
-}
-
-body:has(.menuLateral:hover) {
-  padding-left: 230px;
 }
 
 #paginaInicio,
@@ -276,7 +264,6 @@ body:has(.menuLateral:hover) {
 
 /* BILLETERA DEPOSITO Y RETIRO  */
 
-
 #resumenOperacion {
   transition: all 0.3s ease;
 }
@@ -297,14 +284,12 @@ body:has(.menuLateral:hover) {
   height: 24px;
 }
 
-
 /* APRENDIZAJE */
 #contenedorVideos .card {
   border-radius: 10px;
   overflow: hidden;
   transition: 0.2s ease-in-out;
 }
-
 
 #contenedorVideos .card:hover {
   transform: scale(1.03);
@@ -315,7 +300,6 @@ body:has(.menuLateral:hover) {
   width: 100%;
   height: 100%;
 }
-
 
 #bloqueVideos {
   overflow-x: auto;
@@ -332,7 +316,9 @@ body:has(.menuLateral:hover) {
 .card-video {
   border-radius: 100px;
   overflow: hidden;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
   cursor: pointer;
 }
 
@@ -355,16 +341,13 @@ body:has(.menuLateral:hover) {
   border-radius: 18px;
 }
 
-
 @media (min-width: 769px) {
   #barraSuperiorMobile {
     display: none !important;
   }
 }
 
-
 @media (max-width: 768px) {
-
   /* --- Estructura general --- */
   html,
   body {
@@ -496,7 +479,6 @@ body:has(.menuLateral:hover) {
     min-height: auto;
   }
 
-
   #alertaSistema {
     position: fixed !important;
 
@@ -543,4 +525,21 @@ body:has(.menuLateral:hover) {
   #tablaInstrumentos .form-check-label {
     font-size: 0.875rem;
   }
+}
+
+/* MAIN ajustado para que no empuje todo el diseño */
+main#contenedorPaginas {
+  flex: 1;
+  padding-left: 70px;
+  transition: padding-left 0.3s ease;
+}
+
+body:has(.menuLateral:hover) main#contenedorPaginas {
+  padding-left: 230px;
+}
+
+main#contenedorPaginas {
+  flex: 1;
+  padding-left: 70px; /* menú cerrado */
+  transition: padding-left 0.3s ease;
 }

@@ -49,7 +49,7 @@ const paginaPortafolio = document.getElementById("paginaPortafolio");
 const paginaAnalisis = document.getElementById("paginaAnalisis");
 const paginaBilletera = document.getElementById("paginaBilletera");
 const paginaCentroAprendizaje = document.getElementById(
-  "paginaCentroAprendizaje"
+  "paginaCentroAprendizaje",
 );
 
 // DOM - INICIO/TRADING
@@ -79,19 +79,19 @@ const btnVerMasPortafolio = document.getElementById("btnVerMasPortafolio");
 // DOM - ANÁLISIS
 const buscarAnalisis = document.getElementById("buscarAnalisis");
 const btnCategoriaAnalisisTodas = document.getElementById(
-  "btnCategoriaAnalisisTodas"
+  "btnCategoriaAnalisisTodas",
 );
 const btnCategoriaAnalisisBonos = document.getElementById(
-  "btnCategoriaAnalisisBonos"
+  "btnCategoriaAnalisisBonos",
 );
 const btnCategoriaAnalisisCripto = document.getElementById(
-  "btnCategoriaAnalisisCripto"
+  "btnCategoriaAnalisisCripto",
 );
 const btnCategoriaAnalisisForex = document.getElementById(
-  "btnCategoriaAnalisisForex"
+  "btnCategoriaAnalisisForex",
 );
 const btnCategoriaAnalisisAcciones = document.getElementById(
-  "btnCategoriaAnalisisAcciones"
+  "btnCategoriaAnalisisAcciones",
 );
 const tablaInstrumentosElement = document.getElementById("tablaInstrumentos");
 const tablaInstrumentos = tablaInstrumentosElement
@@ -127,7 +127,7 @@ const totalRecibir = document.getElementById("totalRecibir");
 //const contenedorVideos = document.getElementById("contenedorVideos");
 const btnVerMasVideos = document.getElementById("btnVerMasVideos");
 const inputBuscarCentro = document.querySelector(
-  "#paginaCentroAprendizaje input[type='search']"
+  "#paginaCentroAprendizaje input[type='search']",
 );
 
 // ===============================
@@ -187,13 +187,13 @@ function iniciarGrafica() {
 function aplicarIntervalo(datos) {
   switch (intervaloActual) {
     case "min":
-      return datos.slice(-20);
+      return datos.slice(-20); // 20 puntos
     case "h":
-      return datos.slice(-40);
+      return datos.slice(-40); // 40 puntos
     case "d":
-      return datos.slice(-60);
+      return datos.slice(-60); // 60 puntos
     case "m":
-      return datos.slice(-100);
+      return datos.slice(-100); // 100 puntos
     default:
       return datos;
   }
@@ -203,7 +203,7 @@ function dibujarGrafica() {
   if (!idActivoActual || !ctx || !canvas) return;
   const activo = controller.listaActivos.getPorId(
     idActivoActual,
-    controller.getModo()
+    controller.getModo(),
   );
   if (!activo || typeof activo.getHistorial !== "function") return;
   let datos = aplicarIntervalo(activo.getHistorial());
@@ -255,7 +255,7 @@ function dibujarLineaPrecios(
   height,
   min,
   range,
-  color
+  color,
 ) {
   ctx.beginPath();
   ctx.lineWidth = 2;
@@ -279,7 +279,7 @@ function dibujarPuntosExtremos(
   height,
   min,
   range,
-  color
+  color,
 ) {
   if (datos.length > 0) {
     ctx.fillStyle = "#666";
@@ -289,7 +289,7 @@ function dibujarPuntosExtremos(
       padding + height - ((datos[0] - min) / range) * height,
       3,
       0,
-      2 * Math.PI
+      2 * Math.PI,
     );
     ctx.fill();
     ctx.fillStyle = color;
@@ -299,7 +299,7 @@ function dibujarPuntosExtremos(
       padding + height - ((datos[datos.length - 1] - min) / range) * height,
       4,
       0,
-      2 * Math.PI
+      2 * Math.PI,
     );
     ctx.fill();
     ctx.fillStyle = color;
@@ -307,7 +307,10 @@ function dibujarPuntosExtremos(
     ctx.fillText(
       `$${datos[datos.length - 1].toFixed(2)}`,
       padding + width - 40,
-      padding + height - ((datos[datos.length - 1] - min) / range) * height - 10
+      padding +
+        height -
+        ((datos[datos.length - 1] - min) / range) * height -
+        10,
     );
   }
 }
@@ -577,7 +580,7 @@ function renderPortafolio() {
     categoriaActual === "Todas"
       ? todos
       : todos.filter(
-          (a) => a.tipo.toLowerCase() === categoriaActual.toLowerCase()
+          (a) => a.tipo.toLowerCase() === categoriaActual.toLowerCase(),
         );
 
   // Filtrar por texto
@@ -585,7 +588,7 @@ function renderPortafolio() {
     ? inputBuscarPortafolio.value.trim().toLowerCase()
     : "";
   const filtrados = filtradosPorCategoria.filter((a) =>
-    a.nombre.toLowerCase().includes(texto)
+    a.nombre.toLowerCase().includes(texto),
   );
 
   // Limitar tarjetas mostradas
@@ -598,7 +601,7 @@ function renderPortafolio() {
   if (btnVerMasPortafolio) {
     btnVerMasPortafolio.classList.toggle(
       "d-none",
-      filtrados.length <= limiteTarjetas
+      filtrados.length <= limiteTarjetas,
     );
   }
 }
@@ -669,7 +672,7 @@ if (promedioRendimiento) {
 function actualizarResumen() {
   const lista = controller.getListaActivos();
   const seleccionados = lista.filter((a) =>
-    seleccionadosAnalisis.includes(a.id)
+    seleccionadosAnalisis.includes(a.id),
   );
   actualizarResumenSeleccionados(seleccionados);
   actualizarResumenRendimiento(seleccionados);
@@ -714,7 +717,7 @@ function cambiarCategoriaAnalisis(categoria) {
     .querySelectorAll("#categoriasAnalisis button")
     .forEach((btn) => btn.classList.remove("active"));
   const btnCategoriaAnalisis = document.getElementById(
-    `btnCategoriaAnalisis${categoria}`
+    `btnCategoriaAnalisis${categoria}`,
   );
   if (btnCategoriaAnalisis) {
     btnCategoriaAnalisis.classList.add("active");
@@ -734,13 +737,13 @@ function renderAnalisis() {
     categoriaAnalisisActual === "Todas"
       ? lista
       : lista.filter(
-          (a) => a.tipo.toLowerCase() === categoriaAnalisisActual.toLowerCase()
+          (a) => a.tipo.toLowerCase() === categoriaAnalisisActual.toLowerCase(),
         );
 
   // Filtrar por texto
   const texto = buscarAnalisis ? buscarAnalisis.value.trim().toLowerCase() : "";
   const filtrados = filtradosCategoria.filter((a) =>
-    a.nombre.toLowerCase().includes(texto)
+    a.nombre.toLowerCase().includes(texto),
   );
 
   // Renderizar tabla
@@ -812,7 +815,7 @@ function obtenerElementosModalMovimiento() {
 function configurarElementosModal(
   { modalLabel, tipoInput, monedaInput, montoInputModal, btnConfirmar },
   moneda,
-  tipo
+  tipo,
 ) {
   const esDeposito = tipo === "deposito";
   const textoOperacion = esDeposito ? "Depósito" : "Retiro";
@@ -849,7 +852,7 @@ function actualizarResumenOperacion() {
   const { comision, neto, tasa } = calc.calcularPorOperacion(
     montoBruto,
     tipoNormalizado,
-    movimientoActual.moneda
+    movimientoActual.moneda,
   );
   actualizarElementosResumen(montoBruto, comision, neto, tasa);
   mostrarResumenOperacion();
@@ -884,7 +887,7 @@ function confirmarMovimiento() {
   const { neto } = calc.calcularPorOperacion(
     montoBruto,
     tipoNormalizado,
-    movimientoActual.moneda
+    movimientoActual.moneda,
   );
   const res = realizarOperacionMovimiento(tipoNormalizado, neto);
   mostrarMensaje(res.mensaje, res.ok ? "success" : "danger");
@@ -936,7 +939,7 @@ function calcularComision() {
   const { comision, neto, tasa } = calc.calcularPorOperacion(
     monto,
     tipo,
-    moneda
+    moneda,
   );
 
   tasaInput.value = tasa;
@@ -1232,22 +1235,22 @@ if (tablaInstrumentos) {
 // EVENT LISTENERS - BILLETERA
 if (btnDepositoUSD) {
   btnDepositoUSD.addEventListener("click", () =>
-    abrirModalMovimiento("USD", "deposito")
+    abrirModalMovimiento("USD", "deposito"),
   );
 }
 if (btnRetiroUSD) {
   btnRetiroUSD.addEventListener("click", () =>
-    abrirModalMovimiento("USD", "retiro")
+    abrirModalMovimiento("USD", "retiro"),
   );
 }
 if (btnDepositoUYU) {
   btnDepositoUYU.addEventListener("click", () =>
-    abrirModalMovimiento("UYU", "deposito")
+    abrirModalMovimiento("UYU", "deposito"),
   );
 }
 if (btnRetiroUYU) {
   btnRetiroUYU.addEventListener("click", () =>
-    abrirModalMovimiento("UYU", "retiro")
+    abrirModalMovimiento("UYU", "retiro"),
   );
 }
 
@@ -1275,7 +1278,7 @@ if (montoModalElement) {
 }
 
 const btnConfirmarMovimientoElement = document.getElementById(
-  "btnConfirmarMovimiento"
+  "btnConfirmarMovimiento",
 );
 if (btnConfirmarMovimientoElement) {
   btnConfirmarMovimientoElement.addEventListener("click", confirmarMovimiento);
@@ -1381,7 +1384,7 @@ function cambiarIntervalo(nuevo, botonClickeado) {
       if (boton) {
         boton.classList.remove("active");
       }
-    }
+    },
   );
 
   // Agregar clase active al botón clickeado

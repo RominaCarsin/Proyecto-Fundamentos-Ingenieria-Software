@@ -21,7 +21,6 @@ export default class Controller {
 
     this.cotizaciones = new Cotizaciones();
 
-    
     this.historialDemo = new HistorialOperaciones();
     this.historialReal = new HistorialOperaciones();
 
@@ -116,7 +115,7 @@ export default class Controller {
     const precioConvertido = this.convertirMoneda(
       activo.precio,
       activo.moneda,
-      monedaActual
+      monedaActual,
     );
     return {
       id: activo.id,
@@ -149,7 +148,7 @@ export default class Controller {
     const precio = this.convertirMoneda(
       activo.precio,
       activo.moneda,
-      this.cotizaciones.monedaActual
+      this.cotizaciones.monedaActual,
     );
     const dinero = this.controlOperaciones.calcularDinero(cantidad, precio);
     return {
@@ -164,7 +163,7 @@ export default class Controller {
     const precio = this.convertirMoneda(
       activo.precio,
       activo.moneda,
-      this.cotizaciones.monedaActual
+      this.cotizaciones.monedaActual,
     );
     const cantidad = this.controlOperaciones.calcularCantidad(dinero, precio);
     return {
@@ -185,13 +184,19 @@ export default class Controller {
     const precio = this.convertirMoneda(
       activo.precio,
       activo.moneda,
-      monedaActual
+      monedaActual,
     );
     const costoTotal = precio * cantidad;
     if (!this._compraFondosSuficientes(cuenta, monedaActual, costoTotal))
       return this._compraMensajeFondos(monedaActual);
     this._compraDescontarFondos(cuenta, monedaActual, costoTotal);
-    return this._compraRegistrar(portafolio, historial, activo, cantidad, precio);
+    return this._compraRegistrar(
+      portafolio,
+      historial,
+      activo,
+      cantidad,
+      precio,
+    );
   }
 
   _compraFondosSuficientes(cuenta, monedaActual, costoTotal) {
@@ -260,7 +265,7 @@ export default class Controller {
     const precio = this.convertirMoneda(
       activo.precio,
       activo.moneda,
-      monedaActual
+      monedaActual,
     );
     const ingreso = precio * cantidad;
     this._ventaSumarFondos(cuenta, monedaActual, ingreso);
@@ -290,7 +295,6 @@ export default class Controller {
     return { ok: true, mensaje: "Venta realizada", operacion: op };
   }
 
- 
   getHistorialParaVista() {
     const historial = this.getHistorial();
 

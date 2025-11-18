@@ -1,5 +1,4 @@
 export default class ControlOperaciones {
-
   calcularDinero(cantidad, precio) {
     return cantidad * precio;
   }

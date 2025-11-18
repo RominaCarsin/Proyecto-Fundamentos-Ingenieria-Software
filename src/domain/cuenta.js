@@ -1,7 +1,7 @@
 export default class Cuenta {
   #saldos = {
     USD: { total: 10000, disponible: 10000, garantia: 0 },
-    UYU: { total: 0, disponible: 0, garantia: 0 }
+    UYU: { total: 0, disponible: 0, garantia: 0 },
   };
 
   getSaldo(divisa) {

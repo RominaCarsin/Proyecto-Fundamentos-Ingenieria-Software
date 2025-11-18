@@ -6,10 +6,10 @@ export default class HistorialOperaciones {
   }
 
   obtenerUltimas(n = 5) {
-    return this.#lista.slice(0,n);
+    return this.#lista.slice(0, n);
   }
 
   obtenerPorActivo(id) {
-    return this.#lista.filter(op => op.activo.id === id);
+    return this.#lista.filter((op) => op.activo.id === id);
   }
 }

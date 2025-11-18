@@ -4,14 +4,14 @@ export default class CalculadoraComisiones {
       deposito: 1.1,
       retiro: 1.3,
       compra: 0.8,
-      venta: 0.9
+      venta: 0.9,
     },
     UYU: {
       deposito: 1.5,
       retiro: 1.6,
       compra: 1.0,
-      venta: 1.2
-    }
+      venta: 1.2,
+    },
   };
 
   obtenerTasa(tipoOperacion, moneda) {
@@ -34,7 +34,7 @@ export default class CalculadoraComisiones {
     return {
       comision,
       neto,
-      tasa
+      tasa,
     };
   }
 }

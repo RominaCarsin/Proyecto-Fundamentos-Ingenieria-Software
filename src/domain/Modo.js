@@ -1,5 +1,5 @@
 export default class Modo {
-  #modo = "demo";   // valores permitidos: "demo" | "real"
+  #modo = "demo"; // valores permitidos: "demo" | "real"
 
   get modo() {
     return this.#modo;
@@ -7,7 +7,7 @@ export default class Modo {
 
   set modo(v) {
     if (v !== "demo" && v !== "real") {
-      throw new Error("Modo inválido. Debe ser 'demo' o 'real'.");// control de daños
+      throw new Error("Modo inválido. Debe ser 'demo' o 'real'."); // control de daños
     }
     this.#modo = v;
   }
