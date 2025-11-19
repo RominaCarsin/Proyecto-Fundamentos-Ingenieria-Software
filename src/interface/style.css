@@ -66,15 +66,16 @@ body {
   visibility: visible;
 }
 
-/*Menu Lateral*/
+
 .menu {
   padding: 0;
   margin: 20px 0;
-  list-style: none;
+  list-style: none !important;;
 }
 
 .menu li {
-  margin: 5px 0;
+  margin: 5px 0; 
+    list-style: none !important;
 }
 
 .menu li a {
@@ -234,7 +235,7 @@ body {
   box-shadow: 0 0 0 0.1rem rgba(83, 116, 169, 0.25);
 }
 
-/*Botones de Categorias*/
+/Botones de Categorias/
 #categorias .btn-outline-primary,
 #categoriasAnalisis .btn-outline-primary {
   border-radius: 25px;
@@ -420,6 +421,7 @@ body {
   .menu {
     display: flex;
     flex-direction: row;
+    list-style: none !important;
     justify-content: space-between;
     align-items: stretch;
     width: 100%;
@@ -428,11 +430,22 @@ body {
     padding: 0;
   }
 
-  .menu li {
-    flex: 1 1 25%;
-    height: 100%;
-    list-style: none;
+  .menu li a .text {
+    font-size: 0.65rem !important;
+    line-height: 1.1;
+    text-align: center;
+    display: block;
+    white-space: normal;
   }
+
+  /* Evita que se corte, permite dos renglones si hace falta */
+  .menu li a {
+    padding: 4px 2px !important;
+  }
+.menu li {
+    list-style: none !important;
+}
+
 
   .menu li a {
     display: flex;
@@ -474,7 +487,8 @@ body {
   #paginaInicio,
   #paginaPortafolio,
   #paginaAnalisis,
-  #paginaBilletera {
+  #paginaBilletera,
+  #paginaCentroAprendizaje {
     padding: 1rem;
     min-height: auto;
   }
@@ -525,6 +539,15 @@ body {
   #tablaInstrumentos .form-check-label {
     font-size: 0.875rem;
   }
+   /* Anula el padding-left del escritorio */
+  main#contenedorPaginas {
+    padding-left: 0 !important;
+    transition: none !important;
+  }
+
+  body:has(.menuLateral:hover) main#contenedorPaginas {
+    padding-left: 0 !important;
+  }
 }
 
 /* MAIN ajustado para que no empuje todo el diseño */
@@ -541,5 +564,5 @@ body:has(.menuLateral:hover) main#contenedorPaginas {
 main#contenedorPaginas {
   flex: 1;
   padding-left: 70px; /* menú cerrado */
-  transition: padding-left 0.3s ease;
+  transition: padding-left 0.3s ease;
 }
