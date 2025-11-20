@@ -66,16 +66,15 @@ body {
   visibility: visible;
 }
 
-
 .menu {
   padding: 0;
   margin: 20px 0;
-  list-style: none !important;;
+  list-style: none !important;
 }
 
 .menu li {
-  margin: 5px 0; 
-    list-style: none !important;
+  margin: 5px 0;
+  list-style: none !important;
 }
 
 .menu li a {
@@ -235,8 +234,7 @@ body {
   box-shadow: 0 0 0 0.1rem rgba(83, 116, 169, 0.25);
 }
 
-/Botones de Categorias/
-#categorias .btn-outline-primary,
+/Botones de Categorias/ #categorias .btn-outline-primary,
 #categoriasAnalisis .btn-outline-primary {
   border-radius: 25px;
   padding: 6px 18px;
@@ -442,10 +440,9 @@ body {
   .menu li a {
     padding: 4px 2px !important;
   }
-.menu li {
+  .menu li {
     list-style: none !important;
-}
-
+  }
 
   .menu li a {
     display: flex;
@@ -539,15 +536,15 @@ body {
   #tablaInstrumentos .form-check-label {
     font-size: 0.875rem;
   }
-   /* Anula el padding-left del escritorio */
+  /* Anula el padding-left del escritorio */
   main#contenedorPaginas {
     padding-left: 0 !important;
     transition: none !important;
   }
 
-  body:has(.menuLateral:hover) main#contenedorPaginas {
+  /* body:has(.menuLateral:hover) main#contenedorPaginas {
     padding-left: 0 !important;
-  }
+  } */
 }
 
 /* MAIN ajustado para que no empuje todo el diseño */

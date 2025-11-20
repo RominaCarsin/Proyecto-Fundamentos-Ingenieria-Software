@@ -22,17 +22,18 @@ Además, es una plataforma con instrumentos de alto riesgo. Si no tenés experie
 
 Y algo que me molestó bastante es que no siempre son claros con las tarifas. Por ejemplo, hay costos por inactividad, spreads, comisiones y no todo está tan visible. A veces te enterás de los cobros cuando ya pasaron.
 
-Considerando que la interfaz es  fluida y con buen contraste (estética). Los botones importantes (como abrir operaciones o cambiar de cuenta demo a real) están bien ubicados y es difícil confundirse.
+Considerando que la interfaz es fluida y con buen contraste (estética). Los botones importantes (como abrir operaciones o cambiar de cuenta demo a real) están bien ubicados y es difícil confundirse.
 
 Los gráficos se ven bien, se pueden mover, hacer zoom, cambiar colores, poner indicadores técnicos como RSI, MACD o medias móviles. También te deja abrir varias ventanas de gráficos al mismo tiempo, lo que me pareció genial si querés comparar con otros activos.
 
 Lo que sí noté es que tiene demasiadas opciones, es abrumador para alguien que recién empieza.. Hay tantos indicadores, configuraciones y tipos de órdenes que te perdés un poco al principio.
 
-Otro detalle: la versión web me pareció más lenta cuando abrís varios gráficos, mientras que la versión descargable (la app de escritorio o móvil) anda mejor. 
+Otro detalle: la versión web me pareció más lenta cuando abrís varios gráficos, mientras que la versión descargable (la app de escritorio o móvil) anda mejor.
 
 Aparte aunque en general es intuitiva, hay cosas que están medio escondidas, como los tiempos de expiración o los detalles de apalancamiento. Tenés que buscarlas o leer bastante para encontrarlas, y eso puede llevar a errores si estás apurada.
 
 ## Anexo
+
 <img src="image-2.png" alt="alt text" width="250"/>
 <img src="image-8.png" alt="alt text" width="250"/>
 <img src="image-9.png" alt="alt text" width="250"/>
