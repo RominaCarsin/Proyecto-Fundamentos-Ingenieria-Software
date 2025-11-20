@@ -1,6 +1,6 @@
 export default class Portafolio {
   #items = [];
-  // Cada item: { id, activo, cantidad }
+  // Cada item: id, activo, cantidad
 
   agregar(activo, cantidad) {
     const existente = this.#items.find((item) => item.id === activo.id);
@@ -33,7 +33,7 @@ export default class Portafolio {
   }
 
   obtener() {
-    // copia superficial para no exponer el array interno
+    // copia superficial para no exponer el array interno (evito errores)
     return this.#items.map((it) => ({ ...it }));
   }
 

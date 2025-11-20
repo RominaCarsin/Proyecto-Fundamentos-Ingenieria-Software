@@ -234,7 +234,8 @@ body {
   box-shadow: 0 0 0 0.1rem rgba(83, 116, 169, 0.25);
 }
 
-/Botones de Categorias/ #categorias .btn-outline-primary,
+/* /Botones de Categorias/ */
+#categorias .btn-outline-primary,
 #categoriasAnalisis .btn-outline-primary {
   border-radius: 25px;
   padding: 6px 18px;

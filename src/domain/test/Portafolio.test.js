@@ -13,7 +13,6 @@ describe("Portafolio", () => {
     activoB = { id: 2, nombre: "Bitcoin", tipo: "Criptomonedas" };
   });
 
-  // -----------------------------------------------------
   describe("agregar()", () => {
     test("agrega un activo si no existía", () => {
       portafolio.agregar(activoA, 10);
@@ -33,7 +32,6 @@ describe("Portafolio", () => {
     });
   });
 
-  // -----------------------------------------------------
   describe("tiene()", () => {
     test("devuelve false si el activo no existe", () => {
       expect(portafolio.tiene(99, 1)).toBe(false);
@@ -50,7 +48,6 @@ describe("Portafolio", () => {
     });
   });
 
-  // -----------------------------------------------------
   describe("restar()", () => {
     test("resta cantidad cuando existe", () => {
       portafolio.agregar(activoA, 10);
@@ -74,7 +71,6 @@ describe("Portafolio", () => {
     });
   });
 
-  // -----------------------------------------------------
   describe("obtener()", () => {
     test("devuelve copia del array interno", () => {
       portafolio.agregar(activoA, 10);
@@ -87,7 +83,6 @@ describe("Portafolio", () => {
     });
   });
 
-  // -----------------------------------------------------
   describe("filtrar()", () => {
     test("filtra correctamente por nombre", () => {
       portafolio.agregar(activoA, 10);
@@ -104,7 +99,6 @@ describe("Portafolio", () => {
     });
   });
 
-  // -----------------------------------------------------
   describe("filtrarCategoria()", () => {
     test("filtra por tipo correctamente", () => {
       portafolio.agregar(activoA, 5);
@@ -121,7 +115,6 @@ describe("Portafolio", () => {
     });
   });
 
-  // -----------------------------------------------------
   describe("getActivos()", () => {
     test("devuelve copia del array interno", () => {
       portafolio.agregar(activoA, 10);

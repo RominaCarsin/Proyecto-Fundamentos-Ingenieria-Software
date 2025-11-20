@@ -7,7 +7,7 @@ export default class Modo {
 
   set modo(v) {
     if (v !== "demo" && v !== "real") {
-      throw new Error("Modo inválido. Debe ser 'demo' o 'real'."); // control de daños
+      throw new Error("Modo inválido. Debe ser 'demo' o 'real'."); // control de daños (es inecesario pero no esta de más)
     }
     this.#modo = v;
   }

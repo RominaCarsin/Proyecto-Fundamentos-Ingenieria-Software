@@ -130,9 +130,8 @@ const inputBuscarCentro = document.querySelector(
   "#paginaCentroAprendizaje input[type='search']",
 );
 
-// ===============================
-//   GRÁFICA DINÁMICA
-// ===============================
+//   GRÁFICA DINÁMICA (con puntos)
+
 function iniciarGrafica() {
   if (!contenedorGrafico) {
     console.error("Contenedor gráfico no encontrado");
@@ -408,7 +407,7 @@ function actualizarDatosActivo(id) {
     return;
   }
 
-  // Si el precio no existe o es cero → no mostrar 0.0000
+  // Si el precio no existe o es cero -> no mostrar 0.0000
   if (!datos.precioNumerico || datos.precioNumerico === 0) {
     pValorAccion.textContent = "Valor de Acción: —";
     return;
@@ -424,7 +423,7 @@ function actualizarDatosActivo(id) {
 function recalcularDesdeAccion() {
   const id = parseInt(selectActivo.value, 10);
 
-  // ⚠ si el input está vacío → no tocar nada
+  // ALERTA  si el input está vacío -> no tocar nada
   if (!inputAccion || inputAccion.value.trim() === "") {
     if (inputDinero) {
       inputDinero.value = "";
@@ -1003,18 +1002,18 @@ function filtrarVideosCentro() {
     const titulo = v.querySelector("small").textContent.toLowerCase();
     const coincide = titulo.includes(texto);
 
-    // Si no coincide → ocultar
+    // Si no coincide -> ocultar
     if (!coincide) {
       v.style.display = "none";
     }
   });
 
-  // Si hay texto → ocultar el botón "ver más"
+  // Si hay texto -> ocultar el botón "ver más"
   if (btnVerMasVideos) {
     btnVerMasVideos.style.display = texto.length > 0 ? "none" : "";
   }
 
-  // Si no hay texto → restaurar visibilidad normal
+  // Si no hay texto -> restaurar visibilidad normal
   if (texto.length === 0) {
     videosVisibles = 4;
     actualizarVisibilidadVideos();
@@ -1324,14 +1323,14 @@ setInterval(() => {
 }, 1000);
 
 setInterval(() => {
-  // Si estoy en Inicio → NO hacemos nada extra (ya se actualiza)
+  // Si estoy en Inicio -> NO hacemos nada extra (ya se actualiza)
 
-  // Si estoy en Portafolio → volver a renderizar
+  // Si estoy en Portafolio -> volver a renderizar
   if (paginaVisible("paginaPortafolio")) {
     renderPortafolio();
   }
 
-  // Si estoy en Análisis de Mercado → volver a renderizar
+  // Si estoy en Análisis de Mercado -> volver a renderizar
   if (paginaVisible("paginaAnalisis")) {
     renderAnalisis();
   }
@@ -1367,9 +1366,7 @@ setInterval(() => {
   }
 }, 1000);
 
-// ================================
 // INTERVALOS DE TIEMPO
-// ================================
 const btnIntervaloMin = document.getElementById("btnIntervaloMin");
 const btnIntervaloHora = document.getElementById("btnIntervaloHora");
 const btnIntervaloDia = document.getElementById("btnIntervaloDia");

@@ -57,9 +57,7 @@ describe("Controller", () => {
     };
   });
 
-  // ----------------------------------------------------------------------
   // GETTERS
-  // ----------------------------------------------------------------------
 
   test("getModo", () => {
     expect(controller.getModo()).toBe("demo");
@@ -83,15 +81,11 @@ describe("Controller", () => {
     expect(controller.getHistorial()).toBe(controller.historialReal);
   });
 
-  // ----------------------------------------------------------------------
   // setModo
-  // ----------------------------------------------------------------------
-
   test("setModo cambia correctamente", () => {
     controller.listaActivos.getListaParaModo.mockReturnValue([]);
     const r1 = controller.setModo(false);
     expect(r1.modo).toBe("real");
-
     const r2 = controller.setModo(true);
     expect(r2.modo).toBe("demo");
   });
@@ -103,10 +97,7 @@ describe("Controller", () => {
     expect(activo.precioBase).toBe(123);
   });
 
-  // ----------------------------------------------------------------------
-  // getListaActivos
-  // ----------------------------------------------------------------------
-
+  // getListaActivos}
   test("getListaActivos mapea correctamente", () => {
     controller.listaActivos.getListaParaModo.mockReturnValue([
       {
@@ -131,15 +122,11 @@ describe("Controller", () => {
     ]);
   });
 
-  // ----------------------------------------------------------------------
   // buscarActivosPorTipo
-  // ----------------------------------------------------------------------
-
   test("buscarActivosPorTipo → todos", () => {
     jest
       .spyOn(controller, "getListaActivos")
       .mockReturnValue([{ id: 10, nombre: "A" }]);
-
     expect(controller.buscarActivosPorTipo("todos")).toEqual([
       { id: 10, nombre: "A" },
     ]);
@@ -149,7 +136,6 @@ describe("Controller", () => {
     controller.listaActivos.buscarPorTipo.mockReturnValue([
       { id: 1, nombre: "BTC" },
     ]);
-
     expect(controller.buscarActivosPorTipo("Criptomonedas")).toEqual([
       { id: 1, nombre: "BTC" },
     ]);
@@ -167,16 +153,12 @@ describe("Controller", () => {
     controller.listaActivos.buscarPorTipo.mockReturnValue([
       { id: 99, nombre: "X" },
     ]);
-
     expect(controller.buscarActivosPorTipo("MetalesRaros")).toEqual([
       { id: 99, nombre: "X" },
     ]);
   });
 
-  // ----------------------------------------------------------------------
   // getDatosActivo
-  // ----------------------------------------------------------------------
-
   test("getDatosActivo → null si no existe", () => {
     controller.listaActivos.getPorId.mockReturnValue(null);
     expect(controller.getDatosActivo(123)).toBeNull();
@@ -190,7 +172,6 @@ describe("Controller", () => {
       precio: 50,
       moneda: "USD",
     });
-
     const r = controller.getDatosActivo(1);
     expect(r.precioNumerico).toBe(50);
     expect(r.precioTexto).toBe("50.00 USD");
@@ -204,12 +185,9 @@ describe("Controller", () => {
       precio: 100,
       moneda: "USD",
     });
-
     controller.cotizaciones.monedaActual = "UYU";
     controller.cotizaciones.convertir.mockReturnValue(3800);
-
     const r = controller.getDatosActivo(1);
-
     expect(r.precioNumerico).toBe(3800);
     expect(r.precioTexto).toBe("3800.00 UYU");
   });
@@ -222,19 +200,14 @@ describe("Controller", () => {
       precio: 2000,
       moneda: "UYU",
     });
-
     controller.cotizaciones.monedaActual = "USD";
     controller.cotizaciones.convertir.mockReturnValue(50);
-
     const r = controller.getDatosActivo(1);
-
     expect(r.precioNumerico).toBe(50);
     expect(r.precioTexto).toBe("50.00 USD");
   });
 
-  // ----------------------------------------------------------------------
   // cambiarMoneda
-  // ----------------------------------------------------------------------
 
   test("cambiarMoneda rechaza moneda inválida", () => {
     expect(controller.cambiarMoneda("ARS").ok).toBe(false);
@@ -244,9 +217,7 @@ describe("Controller", () => {
     expect(controller.cambiarMoneda("UYU").ok).toBe(true);
   });
 
-  // ----------------------------------------------------------------------
   // calcularDinero
-  // ----------------------------------------------------------------------
 
   test("calcularDinero → activo no existe", () => {
     controller.listaActivos.getPorId.mockReturnValue(null);
@@ -272,10 +243,7 @@ describe("Controller", () => {
     expect(spy).toHaveBeenCalledWith(100, "USD", "UYU");
   });
 
-  // ----------------------------------------------------------------------
   // calcularCantidad
-  // ----------------------------------------------------------------------
-
   test("calcularCantidad → activo no existe", () => {
     controller.listaActivos.getPorId.mockReturnValue(null);
     expect(controller.calcularCantidad(1, 200)).toEqual({
@@ -292,9 +260,7 @@ describe("Controller", () => {
     expect(controller.calcularCantidad(1, 100).cantidadNumerica).toBe(2);
   });
 
-  // ----------------------------------------------------------------------
   // realizarCompra
-  // ----------------------------------------------------------------------
 
   describe("realizarCompra", () => {
     test("activo no existe", () => {
@@ -326,7 +292,6 @@ describe("Controller", () => {
         precio: 10,
         moneda: "USD",
       });
-
       const r = controller.realizarCompra(1, 1);
       expect(r.ok).toBe(true);
       expect(controller.portafolioDemo.agregar).toHaveBeenCalled();
@@ -334,10 +299,7 @@ describe("Controller", () => {
     });
   });
 
-  // ----------------------------------------------------------------------
   // realizarVenta
-  // ----------------------------------------------------------------------
-
   describe("realizarVenta", () => {
     test("activo no existe", () => {
       controller.listaActivos.getPorId.mockReturnValue(null);
@@ -369,7 +331,6 @@ describe("Controller", () => {
         precio: 10,
         moneda: "USD",
       });
-
       const r = controller.realizarVenta(1, 1);
       expect(r.ok).toBe(true);
       expect(controller.portafolioDemo.restar).toHaveBeenCalled();
@@ -377,10 +338,7 @@ describe("Controller", () => {
     });
   });
 
-  // ----------------------------------------------------------------------
   // getHistorialParaVista
-  // ----------------------------------------------------------------------
-
   test("getHistorialParaVista formatea resultados", () => {
     controller.historialDemo.obtenerUltimas.mockReturnValue([
       {
@@ -391,7 +349,6 @@ describe("Controller", () => {
         fecha: new Date("2023-01-01T00:00:00"),
       },
     ]);
-
     const r = controller.getHistorialParaVista();
     expect(r[0].tipo).toBe("compra");
     expect(r[0].texto.includes("COMPRA")).toBe(true);
@@ -402,15 +359,11 @@ describe("Controller", () => {
     expect(controller.getHistorialParaVista()).toEqual([]);
   });
 
-  // ----------------------------------------------------------------------
   // getPortafolioParaVista
-  // ----------------------------------------------------------------------
-
   test("getPortafolioParaVista mapea activos válidos", () => {
     controller.portafolioDemo.getActivos.mockReturnValue([
       { id: 1, cantidad: 10 },
     ]);
-
     controller.listaActivos.getListaParaModo.mockReturnValue([
       {
         id: 1,
@@ -421,9 +374,7 @@ describe("Controller", () => {
         rendimiento: 3,
       },
     ]);
-
     const r = controller.getPortafolioParaVista();
-
     expect(r[0].nombre).toBe("MSFT");
     expect(r[0].cantidad).toBe(10);
   });
@@ -432,11 +383,9 @@ describe("Controller", () => {
     controller.portafolioDemo.getActivos.mockReturnValue([
       { id: 1, cantidad: 5 },
     ]);
-
     controller.listaActivos.getListaParaModo.mockReturnValue([
       { id: 2, nombre: "Otro" },
     ]);
-
     expect(controller.getPortafolioParaVista()).toEqual([]);
   });
 
@@ -444,7 +393,6 @@ describe("Controller", () => {
     controller.portafolioDemo.getActivos.mockReturnValue([
       { id: 1, cantidad: 0 },
     ]);
-
     controller.listaActivos.getListaParaModo.mockReturnValue([
       {
         id: 1,
@@ -455,7 +403,6 @@ describe("Controller", () => {
         rendimiento: 2,
       },
     ]);
-
     const r = controller.getPortafolioParaVista();
     expect(r[0]).toEqual({
       id: 1,
@@ -473,7 +420,6 @@ describe("Controller", () => {
       { id: 1, cantidad: 3 },
       { id: 2, cantidad: 4 },
     ]);
-
     controller.listaActivos.getListaParaModo.mockReturnValue([
       {
         id: 1,
@@ -484,9 +430,7 @@ describe("Controller", () => {
         rendimiento: 7,
       },
     ]);
-
     const r = controller.getPortafolioParaVista();
-
     expect(r.length).toBe(1);
     expect(r[0].id).toBe(1);
   });
@@ -495,7 +439,6 @@ describe("Controller", () => {
     controller.portafolioDemo.getActivos.mockReturnValue([
       { id: 5, cantidad: 12 },
     ]);
-
     controller.listaActivos.getListaParaModo.mockReturnValue([
       {
         id: 5,
@@ -506,9 +449,7 @@ describe("Controller", () => {
         rendimiento: 10,
       },
     ]);
-
     const r = controller.getPortafolioParaVista();
-
     expect(r[0]).toEqual({
       id: 5,
       nombre: "NVDA",
@@ -520,9 +461,7 @@ describe("Controller", () => {
     });
   });
 
-  // ----------------------------------------------------------------------
   // getSaldos
-  // ----------------------------------------------------------------------
 
   test("getSaldos funciona", () => {
     const r = controller.getSaldos();
@@ -530,10 +469,7 @@ describe("Controller", () => {
     expect(r.UYU.total).toBe(50000);
   });
 
-  // ----------------------------------------------------------------------
   // depositar / retirar
-  // ----------------------------------------------------------------------
-
   test("depositar suma", () => {
     controller.depositar("USD", 100);
     expect(controller.cuentaDemo.saldoUSD).toBe(1100);
@@ -573,8 +509,6 @@ describe("Controller", () => {
     expect(r.mensaje).toBe("Fondos insuficientes en USD.");
   });
 
-  // ⭐⭐⭐ TESTS NUEVOS PARA 100% COBERTURA ⭐⭐⭐
-
   test("retirar USD → monto <= 0", () => {
     expect(controller.retirar("USD", 0).ok).toBe(false);
     expect(controller.retirar("USD", -5).ok).toBe(false);
@@ -591,14 +525,10 @@ describe("Controller", () => {
     expect(r.mensaje).toBe("Retiro realizado.");
   });
 
-  // ----------------------------------------------------------------------
   // Simulación de mercado
-  // ----------------------------------------------------------------------
-
   test("iniciarSimulacionMercado crea intervalo", () => {
     jest.useFakeTimers();
     const spySet = jest.spyOn(global, "setInterval");
-
     controller.iniciarSimulacionMercado();
     expect(spySet).toHaveBeenCalledTimes(1);
   });
@@ -606,57 +536,43 @@ describe("Controller", () => {
   test("detenerSimulacionMercado limpia intervalo", () => {
     jest.useFakeTimers();
     const spyClear = jest.spyOn(global, "clearInterval");
-
     controller.iniciarSimulacionMercado();
     controller.detenerSimulacionMercado();
-
     expect(spyClear).toHaveBeenCalledTimes(1);
   });
 
   test("simulación ejecuta generarVariacion", () => {
     jest.useFakeTimers();
-
     const fn = jest.fn();
     controller.listaActivos.getListaParaModo.mockReturnValue([
       { generarVariacion: fn },
     ]);
-
     controller.iniciarSimulacionMercado();
     jest.advanceTimersByTime(1000);
-
     expect(fn).toHaveBeenCalled();
   });
 
   test("iniciarSimulacionMercado limpia intervalo previo", () => {
     jest.useFakeTimers();
     const spyClear = jest.spyOn(global, "clearInterval");
-
     controller.intervaloSimulacion = 123;
     controller.iniciarSimulacionMercado();
-
     expect(spyClear).toHaveBeenCalledTimes(1);
   });
 
   test("detenerSimulacionMercado sin intervalo no llama clearInterval", () => {
     jest.useFakeTimers();
     const spyClear = jest.spyOn(global, "clearInterval");
-
     controller.intervaloSimulacion = null;
     controller.detenerSimulacionMercado();
-
     expect(spyClear).not.toHaveBeenCalled();
   });
 
-  // ----------------------------------------------------------------------
   // Métodos privados
-  // ----------------------------------------------------------------------
-
   test("_compraFondosSuficientes", () => {
     const c = { saldoUSD: 100, saldoUYU: 200 };
-
     expect(controller._compraFondosSuficientes(c, "USD", 50)).toBe(true);
     expect(controller._compraFondosSuficientes(c, "USD", 150)).toBe(false);
-
     expect(controller._compraFondosSuficientes(c, "UYU", 50)).toBe(true);
     expect(controller._compraFondosSuficientes(c, "UYU", 250)).toBe(false);
   });
@@ -714,10 +630,8 @@ describe("Controller", () => {
 
   test("_ventaSumarFondos", () => {
     const c = { saldoUSD: 50, saldoUYU: 20 };
-
     controller._ventaSumarFondos(c, "USD", 30);
     expect(c.saldoUSD).toBe(80);
-
     controller._ventaSumarFondos(c, "UYU", 10);
     expect(c.saldoUYU).toBe(30);
   });
@@ -725,12 +639,9 @@ describe("Controller", () => {
   test("_ventaRegistrar crea operación completa", () => {
     const hist = { registrar: jest.fn() };
     const activo = { id: 7, nombre: "ORO" };
-
     const r = controller._ventaRegistrar(hist, activo, 3, 150);
-
     expect(r.ok).toBe(true);
     expect(hist.registrar).toHaveBeenCalled();
-
     const op = hist.registrar.mock.calls[0][0];
     expect(op.tipo).toBe("venta");
     expect(op.activo).toBe(activo);
@@ -740,20 +651,16 @@ describe("Controller", () => {
 
   test("_verificarFondos", () => {
     const c = { saldoUSD: 100, saldoUYU: 200 };
-
     expect(controller._verificarFondos(c, "USD", 50).ok).toBe(true);
     expect(controller._verificarFondos(c, "USD", 150).ok).toBe(false);
-
     expect(controller._verificarFondos(c, "UYU", 150).ok).toBe(true);
     expect(controller._verificarFondos(c, "UYU", 250).ok).toBe(false);
   });
 
   test("_descontarFondos", () => {
     const c = { saldoUSD: 100, saldoUYU: 200 };
-
     controller._descontarFondos(c, "USD", 40);
     expect(c.saldoUSD).toBe(60);
-
     controller._descontarFondos(c, "UYU", 50);
     expect(c.saldoUYU).toBe(150);
   });

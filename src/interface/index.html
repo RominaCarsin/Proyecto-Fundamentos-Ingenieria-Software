@@ -19,7 +19,7 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
     />
 
-    <!-- CSS después (personalizaciones finales) -->
+    <!-- CSS -->
     <link rel="stylesheet" href="style.css" />
   </head>
 
@@ -167,9 +167,8 @@
         </header>
 
         <section id="ventana1" class="container-fluid">
-          <!-- ====== FILA 1 ====== -->
           <section class="row g-4 mb-4">
-            <!-- GRÁFICO (Izquierda) -->
+            <!-- Grafico (Izquierda) -->
             <article class="col-lg-8">
               <article id="cardGrafico" class="card p-3 h-100">
                 <header
@@ -210,7 +209,7 @@
               </article>
             </article>
 
-            <!-- OPERACIONES (Derecha) -->
+            <!-- Operaciones (Derecha) -->
             <article class="col-lg-4">
               <article id="cardOperaciones" class="card p-3 h-100">
                 <h3 id="tituloOperaciones" class="fw-semibold mb-3">
@@ -277,9 +276,9 @@
             </article>
           </section>
         </section>
-        <!-- ====== FILA 2 ====== -->
+        <!-- ---- FILA 2 ---- -->
         <section class="row g-4">
-          <!-- COTIZACIONES (Izquierda) -->
+          <!-- Cotizaciones (Izquierda) -->
           <article class="col-lg-8">
             <article id="cardCotizaciones" class="card p-3 h-100">
               <h3 id="tituloCotizaciones" class="mb-3">
@@ -306,14 +305,14 @@
             </article>
           </article>
 
-          <!-- POSICIONES ABIERTAS (Derecha) -->
+          <!-- Posiciones Abiertas (Derecha) -->
           <article class="col-lg-4">
             <article id="cardPosicionesAbiertas" class="card p-3 h-100">
               <h3 id="tituloPosicionesAbiertas">
                 <i class="bi bi-clock-history me-2"></i>Posiciones Abiertas
               </h3>
 
-              <!-- 🔹 Scroll SOLO en el contenido -->
+              <!-- Scroll SOLO en el contenido -->
               <div
                 id="textoPosicionesAbiertas"
                 class="text-muted small mb-0 overflow-auto border rounded p-2"
@@ -325,7 +324,7 @@
         </section>
       </section>
 
-      <!-- ====== SECCIÓN PORTAFOLIO ====== -->
+      <!-- ---- SECCIÓN PORTAFOLIO ---- -->
       <section
         id="paginaPortafolio"
         class="content container-fluid py-4 d-none"
@@ -391,7 +390,7 @@
         </header>
 
         <section id="grillaActivos" class="row g-4">
-          <!-- Ejemplo de tarjeta -->
+          <!-- Tarjeta Base -->
           <article class="col-sm-6 col-md-4 col-lg-3">
             <article
               id="cardActivo1"
@@ -424,7 +423,7 @@
         </footer>
       </section>
 
-      <!-- ====== SECCIÓN ANÁLISIS DE MERCADO ====== -->
+      <!-- ---- SECCIÓN ANÁLISIS DE MERCADO ---- -->
       <section id="paginaAnalisis" class="content container-fluid py-4 d-none">
         <header id="encabezadoAnalisis" class="mb-3">
           <h2 id="tituloAnalisis" class="fw-bold mb-3">Análisis de Mercado</h2>
@@ -498,7 +497,7 @@
         </header>
 
         <section id="contenidoAnalisis" class="row g-4">
-          <!-- TABLA DE INSTRUMENTOS -->
+          <!-- Tabla de Instrumentos-->
           <article class="col-lg-8">
             <article id="cardTablaAnalisis" class="card p-3">
               <table id="tablaInstrumentos" class="table align-middle">
@@ -544,7 +543,7 @@
             </article>
           </article>
 
-          <!-- PANEL RESUMEN -->
+          <!-- Panel Resumen -->
           <aside class="col-lg-4">
             <article id="cardResumenAnalisis" class="card p-3">
               <h3 id="tituloResumenAnalisis" class="fw-semibold mb-3">
@@ -587,14 +586,14 @@
         </section>
       </section>
 
-      <!-- ====== SECCIÓN BILLETERA ====== -->
+      <!-- ---- SECCIÓN BILLETERA ---- -->
       <section id="paginaBilletera" class="content container-fluid py-4 d-none">
         <header id="encabezadoBilletera" class="mb-4">
           <h2 id="tituloBilletera" class="fw-bold mb-3">Billetera</h2>
         </header>
 
         <section id="billetera" class="row g-4">
-          <!-- === Tarjetas de divisas === -->
+          <!--  Tarjetas de divisas  -->
           <article class="col-md-6 col-lg-4">
             <article id="cardUSD" class="card text-center p-3 shadow-sm">
               <h3 id="tituloUSD" class="fw-semibold mb-2">
@@ -770,7 +769,7 @@
           </div>
         </div>
 
-        <!-- === Calculadora de comisiones === -->
+        <!--  Calculadora de comisiones  -->
         <section id="seccionCalculadora" class="mt-5">
           <article id="cardCalculadora" class="card p-4">
             <h3 id="tituloCalculadora" class="fw-semibold mb-3">
@@ -872,14 +871,16 @@
           </article>
         </section>
       </section>
-      <!--  ====== SECCIÓN CENTRO DE APRENDIZAJE ======  -->
+      <!--  ---- SECCIÓN CENTRO DE APRENDIZAJE ----  -->
       <section
         id="paginaCentroAprendizaje"
         class="content container-fluid py-4 d-none"
       >
         <!-- Título -->
-        <header class="text-center mb-4">
-          <h2 class="fw-bold">Centro de Aprendizaje</h2>
+        <header class="content container-fluid mb-4">
+          <h2 id="tituloCentroAprendizaje" class="fw-bold">
+            Centro de Aprendizaje
+          </h2>
         </header>
 
         <!-- Buscador grande -->
@@ -909,9 +910,7 @@
 
           <div class="card p-4 shadow-sm">
             <div id="contenedorVideos" class="row g-4 justify-content-center">
-              <!-- ========================= -->
-              <!--       VIDEO 1            -->
-              <!-- ========================= -->
+              <!-- Video 1 -->
               <article class="col-12 col-sm-6 col-md-4 col-lg-3 video-item">
                 <div class="card card-video h-100 position-relative">
                   <figure class="ratio ratio-16x9 mb-0">
@@ -938,9 +937,7 @@
                 </div>
               </article>
 
-              <!-- ========================= -->
-              <!--       VIDEO 2            -->
-              <!-- ========================= -->
+              <!-- Video 2 -->
               <article class="col-12 col-sm-6 col-md-4 col-lg-3 video-item">
                 <div class="card card-video h-100 position-relative">
                   <figure class="ratio ratio-16x9 mb-0">
@@ -967,9 +964,7 @@
                 </div>
               </article>
 
-              <!-- ========================= -->
-              <!--       VIDEO 3            -->
-              <!-- ========================= -->
+              <!-- Video 3 -->
               <article class="col-12 col-sm-6 col-md-4 col-lg-3 video-item">
                 <div class="card card-video h-100 position-relative">
                   <figure class="ratio ratio-16x9 mb-0">
@@ -996,9 +991,7 @@
                 </div>
               </article>
 
-              <!-- ========================= -->
-              <!--       VIDEO 4            -->
-              <!-- ========================= -->
+              <!-- Video 4 -->
               <article class="col-12 col-sm-6 col-md-4 col-lg-3 video-item">
                 <div class="card card-video h-100 position-relative">
                   <figure class="ratio ratio-16x9 mb-0">
@@ -1025,9 +1018,7 @@
                 </div>
               </article>
 
-              <!-- ========================= -->
-              <!-- Videos extra ocultos      -->
-              <!-- ========================= -->
+              <!-- Videos ocultos -->
 
               <article
                 class="col-12 col-sm-6 col-md-4 col-lg-3 video-item d-none extra-video"
