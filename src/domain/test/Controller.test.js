@@ -123,7 +123,7 @@ describe("Controller", () => {
   });
 
   // buscarActivosPorTipo
-  test("buscarActivosPorTipo → todos", () => {
+  test("buscarActivosPorTipo -> todos", () => {
     jest
       .spyOn(controller, "getListaActivos")
       .mockReturnValue([{ id: 10, nombre: "A" }]);
@@ -132,7 +132,7 @@ describe("Controller", () => {
     ]);
   });
 
-  test("buscarActivosPorTipo → traducir Criptomonedas", () => {
+  test("buscarActivosPorTipo -> traducir Criptomonedas", () => {
     controller.listaActivos.buscarPorTipo.mockReturnValue([
       { id: 1, nombre: "BTC" },
     ]);
@@ -143,13 +143,13 @@ describe("Controller", () => {
 
   const tipos = ["", "Bonos", "limite", "market", "Forex", "stop", "Acciones"];
   tipos.forEach((t) => {
-    test(`buscarActivosPorTipo → ${t}`, () => {
+    test(`buscarActivosPorTipo -> ${t}`, () => {
       controller.listaActivos.buscarPorTipo.mockReturnValue([{ id: 1 }]);
       expect(controller.buscarActivosPorTipo(t)).toEqual([{ id: 1 }]);
     });
   });
 
-  test("buscarActivosPorTipo → default", () => {
+  test("buscarActivosPorTipo -> default", () => {
     controller.listaActivos.buscarPorTipo.mockReturnValue([
       { id: 99, nombre: "X" },
     ]);
@@ -159,7 +159,7 @@ describe("Controller", () => {
   });
 
   // getDatosActivo
-  test("getDatosActivo → null si no existe", () => {
+  test("getDatosActivo -> null si no existe", () => {
     controller.listaActivos.getPorId.mockReturnValue(null);
     expect(controller.getDatosActivo(123)).toBeNull();
   });
@@ -219,7 +219,7 @@ describe("Controller", () => {
 
   // calcularDinero
 
-  test("calcularDinero → activo no existe", () => {
+  test("calcularDinero -> activo no existe", () => {
     controller.listaActivos.getPorId.mockReturnValue(null);
     expect(controller.calcularDinero(99, 10)).toEqual({
       dineroNumerico: 0,
@@ -244,7 +244,7 @@ describe("Controller", () => {
   });
 
   // calcularCantidad
-  test("calcularCantidad → activo no existe", () => {
+  test("calcularCantidad -> activo no existe", () => {
     controller.listaActivos.getPorId.mockReturnValue(null);
     expect(controller.calcularCantidad(1, 200)).toEqual({
       cantidadNumerica: 0,
@@ -509,12 +509,12 @@ describe("Controller", () => {
     expect(r.mensaje).toBe("Fondos insuficientes en USD.");
   });
 
-  test("retirar USD → monto <= 0", () => {
+  test("retirar USD -> monto <= 0", () => {
     expect(controller.retirar("USD", 0).ok).toBe(false);
     expect(controller.retirar("USD", -5).ok).toBe(false);
   });
 
-  test("retirar UYU → monto <= 0", () => {
+  test("retirar UYU -> monto <= 0", () => {
     expect(controller.retirar("UYU", 0).ok).toBe(false);
     expect(controller.retirar("UYU", -10).ok).toBe(false);
   });
@@ -616,7 +616,7 @@ describe("Controller", () => {
     expect(controller._ventaTieneCantidad(port, 1, 5)).toBe(true);
   });
 
-  test("_ventaTieneCantidad → false", () => {
+  test("_ventaTieneCantidad -> false", () => {
     const port = { tiene: jest.fn().mockReturnValue(false) };
     expect(controller._ventaTieneCantidad(port, 1, 5)).toBe(false);
   });
