@@ -2,73 +2,113 @@
 
 ## Selección de Funcionalidades
 
-En la entrega del sistema de Inversiones, nos enfocamos en implementar las funcionalidades que realmente permiten usar la aplicación desde el primer momento. Por eso, priorizamos todo lo relacionado con invertir: comprar y vender acciones, ver el portafolio y consultar un análisis básico del mercado para poder decidir dónde invertir. También consideramos necesario que el usuario pueda depositar y retirar dinero, y que el sistema calcule automáticamente las comisiones, para que la experiencia sea lo más realista y transparente posible.
+En esta etapa del proyecto de la aplicación de inversiones **TradeUy**, el equipo (Romina Carsin y Guzmán Costa) decidió implementar primero las funcionalidades esenciales que permiten al usuario **invertir desde el primer momento**, siguiendo la lógica de un MVP (Producto Mínimo Viable).
 
-En términos de requerimientos, aplico los RF1, RF2, RF3, RF4, RF8 y RF11, junto con los RNF18 y RNF20, además de las historias de usuario US1 y US2, ya que son los que sostienen el funcionamiento básico y seguro del sistema. Aparte de esto definimos un nuevo US7 “Como usuario, quiero depositar y retirar dinero en distintas monedas para gestionar mis fondos.”
+Las funcionalidades implementadas corresponden principalmente a:
 
-Si el tiempo lo permite, podría sumar funcionalidades complementarias como un Centro de Aprendizaje con información sobre trading o un resumen más completo de cada acción dentro del análisis de mercado. Son cosas que aportan valor, pero no son críticas para que el usuario pueda empezar a invertir.
+- **RF1** – Visualización de instrumentos financieros  
+- **RF2** – Compra y venta de activos  
+- **RF3** – Cuenta demo  
+- **RF4** – Historial de operaciones  
+- **RF8** – Cumplimiento básico de seguridad  
+- **RF11** – Mostrar comisiones  
+- **RNF18** – Mostrar comisiones antes de ejecutar  
+- **RNF20** – Uso de colores semánticos (verde/rojo)  
+- **US1** – Ver portafolio con variaciones  
+- **US2** – Comprar y vender activos  
 
-Por último, dejamos fuera para actualizaciones algunas funciones como el área de configuración y los requerimientos RF5, RF9, RNF19, US3 y US5. No afectan al uso principal y se pueden agregar más adelante sin problemas.
+Además, definimos una **nueva User Story (US7):**  
+> *Como usuario, quiero depositar y retirar dinero en distintas monedas para gestionar mis fondos.*
 
-Lista priorizada de funcionalidades
-Compra y venta de acciones
-Portafolio (ver inversiones realizadas)
-Análisis de Mercado (consultar empresas para invertir)
-Depósito y retiro de dinero
-Aplicación automática de comisiones
-Resumen detallado por acción dentro del análisis de mercado
+### Funcionalidades priorizadas (MoSCoW)
+
+| Prioridad | Funcionalidad |
+|----------|---------------|
+| **Must** | Compra y venta de activos |
+| **Must** | Portafolio |
+| **Must** | Depósito y retiro de dinero |
+| **Should** | Análisis de mercado |
+| **Should** | Aplicación transparente de comisiones |
+| **Could** | Resumen para cada acción |
+| **Won’t (por ahora)** | Configuración, alertas avanzadas, reportes descargables |
 
 ---
 
 ## Usabilidad y Accesibilidad
 
-- Describir cómo se diseñó la **interfaz de usuario (UI)** y la **experiencia de usuario (UX)**.
-- Mostrar capturas de pantallas, wireframes o prototipos.
-- Explicar cómo se aplicaron principios de **usabilidad** (ej: Heurísticas de Nielsen).
-- Indicar cómo se contemplaron **criterios de accesibilidad** (ej: WCAG).
+### Diseño UI/UX aplicado
+
+El diseño de la interfaz se basó en:
+
+- Jerarquía visual clara  
+- Consistencia en colores azul/verde/rojo  
+- Iconografía de Bootstrap Icons  
+- Layout responsivo móvil/escritorio  
+- Menú lateral expandible al pasar el mouse  
+
+### Capturas del prototipo UI
+
+> Pantalla de inicio  
+![Pantalla Inicio](/mnt/data/af6e64cb-c2a6-400c-9f05-f73dd8bb6e2e.png)
+
+> Pantalla Portafolio  
+![Portafolio](/mnt/data/2107425a-2c0b-41aa-a10a-bee1b97c4565.png)
+
+> Pantalla Análisis  
+![Análisis](/mnt/data/fd4b2cd3-b0a6-4f39-ab49-17a53839e3e7.png)
+
+> Pantalla Billetera  
+![Billetera](/mnt/data/1e60eb8f-5535-42f2-959d-51a59ac19b5b.png)
 
 ---
 
-## Calidad de código
+### Principios de Usabilidad Aplicados (Nielsen)
 
-- Describir estándares de calidad seguidos (ej: ESLint).
-- Explicar cómo se estructuró el código (Interfaz independiente de lógica de negocio).
-- Indicar herramientas utilizadas para análisis estático, formateo o linting.
+| Heurística | Aplicación en TradeUy |
+|------------|-----------------------|
+| Visibilidad del estado | Botones activos en el menú, cambios de página inmediatos |
+| Control y libertad | Botones claros de comprar/vender, navegación simple |
+| Consistencia | Misma estructura para portafolio, análisis y billetera |
+| Prevención de errores | Validaciones al comprar/vender y al depositar |
+| Reconocer antes que recordar | Menú con iconos y texto, categorías visibles |
 
----
+### Criterios WCAG aplicados
 
-## Pruebas Unitarias
-
-- Describir el **alcance de las pruebas unitarias** implementadas.
-- Indicar las librerías usadas (ej: Jest).
-- Presentar la **cobertura de pruebas** (% general y en clases críticas, idealmente 100% en clases de dominio).
-- Asegurarse de incluir **casos de borde y errores**.
-- Resultados de ejecución (captura con cobertura).
-
----
-
-## Descripción del Trabajo Individual
-
-- Detallar el aporte de cada integrante en esta entrega:
-  - Funcionalidades implementadas.
-  - Tests realizados.
-  - Diseño de UI/UX.
-  - Validaciones con usuarios.
-
-- Incluir fechas, tareas, horas y responsables.
-- Presentar una tabla resumen con el total de horas y actividades clave por persona.
+- Contrastes adecuados entre texto y fondo  
+- Botones grandes con etiquetas claras  
+- Navegabilidad por teclado (Tab)  
+- Evitamos animaciones rápidas  
 
 ---
 
-## Reflexión
+## Calidad de Código
 
-- Analizar cómo funcionó el equipo en esta etapa:
-  - Organización y comunicación.
-  - Cómo resolvieron problemas surgidos durante la implementación.
-  - Desafíos técnicos y de coordinación.
-  - Aprendizajes respecto a la entrega anterior.
+Para esta entrega se definió una estructura modular clara:
 
-- Ser críticos y específicos, no sólo describir.
-- Señalar qué mejorarían para próximas etapas del proyecto.
+src/
+├── domain/
+│ ├── Activo.js
+│ ├── Portafolio.js
+│ ├── Billetera.js
+│ ├── Controller.js
+│
+├── interface/
+│ ├── inicio.js
+│ ├── portafolio.js
+│ ├── analisis.js
+│ ├── billetera.js
+│
+├── main.js
 
----
+
+###  Estándares aplicados
+
+- **ESLint** para estilo del código  
+- Modulación estricta (UI separada de lógica de negocio)  
+- Evitamos usar lógica en HTML  
+- Nombres de variables consistentes  
+- Comentarios y documentación interna  
+
+
+
+
