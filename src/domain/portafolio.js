@@ -1,27 +1,56 @@
-import { Activo } from "./activo.js";
+export default class Portafolio {
+  #items = [];
+  // Cada item: id, activo, cantidad
 
-export class Portafolio {
-  #activos;
+  agregar(activo, cantidad) {
+    const existente = this.#items.find((item) => item.id === activo.id);
 
-  constructor() {
-    this.#activos = [];
+    if (existente) {
+      existente.cantidad += cantidad;
+    } else {
+      this.#items.push({
+        id: activo.id,
+        activo,
+        cantidad,
+      });
+    }
   }
 
-  agregar(activo) {
-    if (!(activo instanceof Activo)) throw new Error("Activo inválido");
-    const existe = this.#activos.some(a => a.id === activo.id);
-    if (!existe) this.#activos.push(activo);
+  tiene(idActivo, cantidadNecesaria) {
+    const item = this.#items.find((it) => it.id === idActivo);
+    if (!item) return false;
+    return item.cantidad >= cantidadNecesaria;
   }
 
-  buscar(nombre) {
-    return this.#activos.find(a => a.nombre.toLowerCase() === nombre.toLowerCase());
+  restar(idActivo, cantidad) {
+    const item = this.#items.find((it) => it.id === idActivo);
+    if (!item) return;
+
+    item.cantidad -= cantidad;
+    if (item.cantidad <= 0) {
+      this.#items = this.#items.filter((it) => it.id !== idActivo);
+    }
   }
 
-  filtrarPorTipo(tipo) {
-    return this.#activos.filter(a => a.tipo === tipo);
+  obtener() {
+    // copia superficial para no exponer el array interno (evito errores)
+    return this.#items.map((it) => ({ ...it }));
   }
 
-  get lista() {
-    return [...this.#activos];
+  filtrar(texto) {
+    const t = texto.toLowerCase();
+    return this.#items.filter((it) =>
+      it.activo.nombre.toLowerCase().includes(t),
+    );
+  }
+
+  filtrarCategoria(tipo) {
+    const t = tipo.toLowerCase();
+    return this.#items.filter((it) => it.activo.tipo.toLowerCase() === t);
+  }
+
+  getActivos() {
+    // devolver copia para no exponer array interno
+    return this.#items.map((it) => ({ ...it }));
   }
 }

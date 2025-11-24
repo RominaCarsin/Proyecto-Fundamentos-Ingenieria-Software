@@ -1,62 +1,36 @@
-export class Activo {
-  #id;
-  #nombre;
-  #tipo;
-  #precio;
-  #rendimiento;
-  #cantidadPoseida;
-
-  constructor(id, nombre, tipo, precio, rendimiento = 0) {
-    this.#id = id;
-    this.#nombre = nombre;
-    this.#tipo = tipo;
-    this.#precio = precio;
-    this.#rendimiento = rendimiento;
-    this.#cantidadPoseida = 0;
+// domain/Activo.js
+export default class Activo {
+  constructor(id, nombre, tipo, precioInicial, moneda, volatilidad = 0.04) {
+    this.id = id;
+    this.nombre = nombre;
+    this.tipo = tipo;
+    this.precio = precioInicial;
+    this.moneda = moneda;
+    this.precioBase = precioInicial;
+    this.rendimiento = 0;
+    this.volatilidad = volatilidad;
+    this.historial = [precioInicial]; // Historial de precios para la gráfica
   }
-
-  // === Getters ===
-  get id() { return this.#id; }
-  get nombre() { return this.#nombre; }
-  get tipo() { return this.#tipo; }
-  get precio() { return this.#precio; }
-  get rendimiento() { return this.#rendimiento; }
-  get cantidadPoseida() { return this.#cantidadPoseida; }
-
-  // === Métodos de instancia ===
-  actualizarPrecio(nuevoPrecio) {
-    this.#rendimiento = ((nuevoPrecio - this.#precio) / this.#precio) * 100;
-    this.#precio = nuevoPrecio;
+  getHistorial() {
+    return this.historial;
   }
+  generarVariacion() {
+    const delta = (Math.random() * 2 - 1) * this.volatilidad * this.precio;
+    const nuevoPrecio = this.precio + delta;
 
-  comprar(cantidad) {
-    if (cantidad <= 0) throw new Error("Cantidad inválida para comprar.");
-    this.#cantidadPoseida += cantidad;
-  }
-
-  vender(cantidad) {
-    if (cantidad <= 0) throw new Error("Cantidad inválida para vender.");
-    if (cantidad > this.#cantidadPoseida) {
-      throw new Error(`No hay suficientes acciones de ${this.#nombre} para vender.`);
+    if (nuevoPrecio < 0) {
+      this.precio = 0;
+    } else {
+      this.precio = nuevoPrecio;
     }
-    this.#cantidadPoseida -= cantidad;
-  }
 
-  obtenerCantidadPoseida() {
-    return this.#cantidadPoseida;
-  }
+    this.rendimiento =
+      ((this.precio - this.precioBase) / this.precioBase) * 100;
 
-  toString() {
-    return `${this.#nombre} (${this.#tipo}) - $${this.#precio.toFixed(2)} | Rend: ${this.#rendimiento.toFixed(2)}% | Poseídas: ${this.#cantidadPoseida}`;
-  }
+    this.historial.push(this.precio);
 
-  // === Métodos estáticos ===
-  static obtenerTipoPorNombre(nombre, listaActivos) {
-    const encontrado = listaActivos.find(a => a.nombre === nombre);
-    return encontrado ? encontrado.tipo : null;
-  }
-
-  static filtrarPorTipo(tipo, listaActivos) {
-    return listaActivos.filter(a => a.tipo === tipo);
+    if (this.historial.length > 300) {
+      this.historial.shift();
+    }
   }
 }

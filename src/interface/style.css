@@ -1,4 +1,3 @@
-/* ======== ESTILOS GENERALES ======== */
 body {
   margin: 0;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -8,27 +7,35 @@ body {
   overflow-x: hidden;
 }
 
-/* ======== BARRA LATERAL ======== */
+/* Barra Lateral */
 .menuLateral {
   width: 70px;
   background: #5374a9;
   color: white;
   display: flex;
   flex-direction: column;
+<<<<<<< HEAD
   position: fixed;          
   top: 0;                   
   left: 0;                  
   height: 100vh;            
   overflow-y: auto;         
+=======
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  overflow-y: auto;
+>>>>>>> develop
   overflow-x: hidden;
   transition: width 0.3s ease;
   z-index: 1000;
 }
 
-/* Scrollbar del menú (más fino) */
 .menuLateral::-webkit-scrollbar {
   width: 6px;
 }
+
 .menuLateral::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.3);
   border-radius: 3px;
@@ -39,8 +46,13 @@ body {
   width: 230px;
 }
 
+<<<<<<< HEAD
 /* ======== LOGO ======== */
 /* .contenedorLogo {
+=======
+/* Logo */
+.contenedorLogo {
+>>>>>>> develop
   display: flex;
   align-items: center;
   padding: 1rem 0rem;
@@ -49,6 +61,7 @@ body {
 
 .logo {
   width: 60px;
+<<<<<<< HEAD
   margin: 0 auto;
 } */
 
@@ -61,6 +74,8 @@ body {
 
 .logo {
   width: 60px;
+=======
+>>>>>>> develop
   position: center;
 }
 
@@ -79,15 +94,15 @@ body {
   visibility: visible;
 }
 
-/* ======== MENÚ LATERAL ======== */
 .menu {
   padding: 0;
   margin: 20px 0;
-  list-style: none;
+  list-style: none !important;
 }
 
 .menu li {
   margin: 5px 0;
+  list-style: none !important;
 }
 
 .menu li a {
@@ -128,33 +143,6 @@ body {
   justify-content: center;
 }
 
-/* Enlaces deshabilitados */
-.menu li.disabled-link a {
-  pointer-events: none;
-  cursor: not-allowed;
-  color: rgba(255, 255, 255, 0.5);
-}
-
-.menu li.disabled-link a:hover {
-  background: transparent;
-  border-left-color: transparent;
-}
-
-.menu li.disabled-link .icon svg {
-  fill: rgba(255, 255, 255, 0.5);
-}
-
-/* ======== CONTENIDO PRINCIPAL ======== */
-body {
-  padding-left: 70px;
-  transition: padding-left 0.3s ease;
-}
-
-/* Cuando el menú se expande */
-body:has(.menuLateral:hover) {
-  padding-left: 230px;
-}
-
 #paginaInicio,
 #paginaPortafolio,
 #paginaAnalisis,
@@ -165,7 +153,7 @@ body:has(.menuLateral:hover) {
   min-height: 100vh;
 }
 
-/* ======== ESTRUCTURA DE VENTANA1 ======== */
+/* Estructura de Ventana1 */
 #ventana1 {
   display: flex;
   flex-direction: column;
@@ -220,7 +208,7 @@ body:has(.menuLateral:hover) {
   min-height: 125px;
 }
 
-/* ======== BOTONES ======== */
+/* Botones*/
 .btn {
   border-radius: 8px;
   font-weight: 500;
@@ -260,7 +248,7 @@ body:has(.menuLateral:hover) {
   background-color: #c82333;
 }
 
-/* ======== INPUTS Y SELECTS ======== */
+/* Inputs y selects */
 .form-control,
 .form-select {
   border-radius: 8px;
@@ -274,7 +262,7 @@ body:has(.menuLateral:hover) {
   box-shadow: 0 0 0 0.1rem rgba(83, 116, 169, 0.25);
 }
 
-/* ======== BOTONES DE CATEGORIAS ======== */
+/* /Botones de Categorias/ */
 #categorias .btn-outline-primary,
 #categoriasAnalisis .btn-outline-primary {
   border-radius: 25px;
@@ -293,115 +281,327 @@ body:has(.menuLateral:hover) {
   border-color: #5374a9;
 }
 
-/* ======== RESPONSIVE ======== */
-@media (max-width: 992px) {
+#textoPosicionesAbiertas {
+  max-height: 90px;
+  /* Aproximadamente 3 líneas */
+  overflow-y: auto;
+  /* Habilitar scroll vertical */
+  padding-right: 6px;
+  /* para que no tape el scroll el texto */
+}
+
+/* BILLETERA DEPOSITO Y RETIRO  */
+
+#resumenOperacion {
+  transition: all 0.3s ease;
+}
+
+.moneda-badge {
+  font-size: 0.8rem;
+  padding: 0.25rem 0.5rem;
+}
+
+.operacion-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.operacion-icon {
+  width: 24px;
+  height: 24px;
+}
+
+/* APRENDIZAJE */
+#contenedorVideos .card {
+  border-radius: 10px;
+  overflow: hidden;
+  transition: 0.2s ease-in-out;
+}
+
+#contenedorVideos .card:hover {
+  transform: scale(1.03);
+}
+
+#contenedorVideos img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+#bloqueVideos {
+  overflow-x: auto;
+  padding-bottom: 50px;
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+/* #bloqueVideos .card {
+  
+  margin-right: 2rem;
+} */
+
+.card-video {
+  border-radius: 100px;
+  overflow: hidden;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+  cursor: pointer;
+}
+
+.card-video:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
+
+.card-video img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.video-item {
+  max-width: 350px;
+}
+
+#bloqueVideos .card {
+  border-radius: 18px;
+}
+
+@media (min-width: 769px) {
+  #barraSuperiorMobile {
+    display: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  /* --- Estructura general --- */
+  html,
   body {
-    padding-left: 70px;
+    height: 100dvh;
+    /* usa viewport dinámico, evita salto del scroll móvil */
+    overflow-x: hidden;
+    overflow-y: auto;
+    /* permite scroll solo en contenido */
+    background: #eaf1fa;
+    scroll-behavior: smooth;
   }
 
-  body:has(.menuLateral:hover) {
-    padding-left: 70px;
+  body {
+    display: block !important;
+    padding-left: 0 !important;
+    padding-top: 55px;
+    padding-bottom: 70px;
   }
 
+  #barraSuperiorMobile {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 55px;
+    background: #5374a9;
+    color: white;
+    font-weight: 700;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  }
+
+  /* --- Menú inferior fijo --- */
+  .menuLateral {
+    position: fixed !important;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: auto !important;
+    width: 100% !important;
+    height: 70px;
+    background: #5374a9;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: stretch;
+    z-index: 2999;
+    overflow: hidden;
+    transition: none !important;
+    flex-wrap: nowrap;
+  }
+
+  /* --- Evita el hover del escritorio --- */
+  .menuLateral:hover {
+    width: 100% !important;
+  }
+
+  /* --- Oculta logo y texto lateral --- */
+  .contenedorLogo,
+  .banda {
+    display: none !important;
+  }
+
+  /* --- Menú inferior con botones iguales --- */
+  .menu {
+    display: flex;
+    flex-direction: row;
+    list-style: none !important;
+    justify-content: space-between;
+    align-items: stretch;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .menu li a .text {
+    font-size: 0.65rem !important;
+    line-height: 1.1;
+    text-align: center;
+    display: block;
+    white-space: normal;
+  }
+
+  /* Evita que se corte, permite dos renglones si hace falta */
+  .menu li a {
+    padding: 4px 2px !important;
+  }
+  .menu li {
+    list-style: none !important;
+  }
+
+  .menu li a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    color: white;
+    text-decoration: none;
+    font-size: 0.8rem;
+    border: none !important;
+    transition: background 0.2s ease;
+  }
+
+  .menu li a.active {
+    background: rgba(255, 255, 255, 0.25);
+  }
+
+  .menu li a:hover {
+    background: rgba(255, 255, 255, 0.15);
+  }
+
+  .icon svg {
+    width: 22px;
+    height: 22px;
+    margin-bottom: 3px;
+    fill: white;
+  }
+
+  .text {
+    opacity: 1 !important;
+    visibility: visible !important;
+    font-size: 0.75rem;
+    display: block;
+  }
+
+  /* --- Corrige el contenido principal para no tapar nada --- */
   #paginaInicio,
   #paginaPortafolio,
   #paginaAnalisis,
-  #paginaBilletera {
+  #paginaBilletera,
+  #paginaCentroAprendizaje {
     padding: 1rem;
+    min-height: auto;
   }
-}
 
-/* ======== SCROLL EN POSICIONES ABIERTAS ======== */
-#textoPosicionesAbiertas {
-  max-height: 100px;
-  overflow-y: auto;
-  padding-right: 6px;
-}
+  #alertaSistema {
+    position: fixed !important;
 
-/* ======== MÓVIL ======== */
-@media (max-width: 768px) {
-  /* --- Menú lateral compacto --- */
-  .menuLateral {
-    position: fixed;
-    top: 0;
     left: 0;
+<<<<<<< HEAD
     height: 100vh;           
     width: 65px;             
     background: #5374a9;
     transition: width 0.3s ease;
     z-index: 1000;
+=======
+    right: 0;
+    top: auto !important;
+
+    height: 70px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: stretch;
+    z-index: 2999;
+>>>>>>> develop
     overflow: hidden;
+    transition: none !important;
+    flex-wrap: nowrap;
   }
 
-  /* cuando se abre */
-  .menuLateral.abierto {
-    width: 230px;
+  /* Tabla de Analisis de Mercado */
+  #cardTablaAnalisis {
+    margin: 0 -1rem;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
   }
 
+<<<<<<< HEAD
   /* logo centrado */
   
+=======
+  #cardTablaAnalisis .table-responsive {
+    margin: -0.75rem;
+    /* Ajusta para el padding reducido en móviles */
+    width: calc(100% + 1.5rem);
+  }
+>>>>>>> develop
 
-  /* textos ocultos por defecto */
-  .text,
-  .banda {
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s;
+  #tablaInstrumentos {
+    font-size: 0.875rem;
   }
 
-  /* cuando el menú está abierto, mostrar textos */
-  .menuLateral.abierto .text,
-  .menuLateral.abierto .banda {
-    opacity: 1;
-    visibility: visible;
+  #tablaInstrumentos .btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.8rem;
+    white-space: nowrap;
   }
 
-  /* contenido principal sin padding lateral */
-  body {
-    padding-left: 65px;
-    flex-direction: column;
+  #tablaInstrumentos .form-check-label {
+    font-size: 0.875rem;
+  }
+  /* Anula el padding-left del escritorio */
+  main#contenedorPaginas {
+    padding-left: 0 !important;
+    transition: none !important;
   }
 
-  /* botón hamburguesa */
-  .btnMenu {
-    position: fixed;
-    top: 12px;
-    left: 12px;
-    background: #5374a9;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    padding: 8px 10px;
-    font-size: 22px;
-    cursor: pointer;
-    z-index: 1100;
-  }
+  /* body:has(.menuLateral:hover) main#contenedorPaginas {
+    padding-left: 0 !important;
+  } */
+}
 
-  .btnMenu:hover {
-    background: #425f8b;
-  }
+/* MAIN ajustado para que no empuje todo el diseño */
+main#contenedorPaginas {
+  flex: 1;
+  padding-left: 70px;
+  transition: padding-left 0.3s ease;
+}
 
-  /* overlay oscuro al abrir */
-  .overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.4);
-    z-index: 900;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease;
-  }
+body:has(.menuLateral:hover) main#contenedorPaginas {
+  padding-left: 230px;
+}
 
-  .overlay.mostrar {
-    opacity: 1;
-    visibility: visible;
-  }
-
-  /* que no se mueva el contenido */
-  body.menu-abierto {
-    overflow: hidden;
-  }
+main#contenedorPaginas {
+  flex: 1;
+  padding-left: 70px; /* menú cerrado */
+  transition: padding-left 0.3s ease;
 }
