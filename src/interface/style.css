@@ -14,19 +14,11 @@ body {
   color: white;
   display: flex;
   flex-direction: column;
-<<<<<<< HEAD
-  position: fixed;          
-  top: 0;                   
-  left: 0;                  
-  height: 100vh;            
-  overflow-y: auto;         
-=======
   position: fixed;
   top: 0;
   left: 0;
   height: 100vh;
   overflow-y: auto;
->>>>>>> develop
   overflow-x: hidden;
   transition: width 0.3s ease;
   z-index: 1000;
@@ -46,13 +38,8 @@ body {
   width: 230px;
 }
 
-<<<<<<< HEAD
-/* ======== LOGO ======== */
-/* .contenedorLogo {
-=======
 /* Logo */
 .contenedorLogo {
->>>>>>> develop
   display: flex;
   align-items: center;
   padding: 1rem 0rem;
@@ -61,21 +48,6 @@ body {
 
 .logo {
   width: 60px;
-<<<<<<< HEAD
-  margin: 0 auto;
-} */
-
-.contenedorLogo {
-  display: flex;
-  align-items: center;
-  padding: 1rem 0rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.logo {
-  width: 60px;
-=======
->>>>>>> develop
   position: center;
 }
 
@@ -523,13 +495,6 @@ body {
     position: fixed !important;
 
     left: 0;
-<<<<<<< HEAD
-    height: 100vh;           
-    width: 65px;             
-    background: #5374a9;
-    transition: width 0.3s ease;
-    z-index: 1000;
-=======
     right: 0;
     top: auto !important;
 
@@ -540,7 +505,6 @@ body {
     justify-content: space-evenly;
     align-items: stretch;
     z-index: 2999;
->>>>>>> develop
     overflow: hidden;
     transition: none !important;
     flex-wrap: nowrap;
@@ -554,16 +518,11 @@ body {
     border-right: none;
   }
 
-<<<<<<< HEAD
-  /* logo centrado */
-  
-=======
   #cardTablaAnalisis .table-responsive {
     margin: -0.75rem;
     /* Ajusta para el padding reducido en móviles */
     width: calc(100% + 1.5rem);
   }
->>>>>>> develop
 
   #tablaInstrumentos {
     font-size: 0.875rem;
