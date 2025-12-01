@@ -222,6 +222,7 @@ Durante la evaluación completa con la herramienta WAVE:
   - **Texto pequeño en el menú inferior de móviles**, debido a limitaciones de espacio en pantallas reducidas, lo cual genera alertas pero **no errores**.
 
 Estas observaciones no afectan la funcionalidad ni rompen ninguna regla WCAG; simplemente indican áreas de mejora opcionales para futuras versiones.
+
 <img src="image-24.png" alt="Imagen de resultado de WAVE" width="250"/>
 
 ## Calidad de Código
