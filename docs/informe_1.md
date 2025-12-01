@@ -354,7 +354,7 @@ Este prototipo fue presentado a futuros usuarios para obtener una primera instan
 ### Aspectos Positivos
 
 El concepto y el diseño de la aplicación fue algo que **gustó**.  
-Los usuarios destacaron la **claridad en la estructura**, el **diseño moderno** y la **facilidad de navegación** entre las secciones principales (*Inicio, Portafolio, Análisis*, etc.), comentando que era *“intuitivo y bastante lógico”* y que sí probarían utilizar **TradeUy**.
+Los usuarios destacaron la **claridad en la estructura**, el **diseño moderno** y la **facilidad de navegación** entre las secciones principales (_Inicio, Portafolio, Análisis_, etc.), comentando que era _“intuitivo y bastante lógico”_ y que sí probarían utilizar **TradeUy**.
 
 Además, los usuarios valoraron la **estética limpia** y la **correcta organización visual de los elementos**, señalando que la jerarquía de la información facilitaba la comprensión inmediata del contenido.
 
@@ -365,38 +365,41 @@ Además, los usuarios valoraron la **estética limpia** y la **correcta organiza
 A partir del feedback obtenido, también surgieron observaciones concretas sobre elementos funcionales y de contenido que podrían mejorar aún más la aplicación.  
 Los apartados mencionados a implementar son:
 
-- **Pantalla de Inicio:** se agregará un espacio visible para mostrar las *comisiones aplicables* y la *hora de la última actualización de los datos*.  
-- **Sección de Portafolio:** se diseñará una *vista de historial de ganancias*, complementada con *gráficos de rendimiento a lo largo del tiempo*.  
-- **Sistema de Notificaciones:** se planificará un sistema que permita *personalizar alertas* según los intereses del usuario y los activos que desee monitorear.
+- **Pantalla de Inicio:** se agregará un espacio visible para mostrar las _comisiones aplicables_ y la _hora de la última actualización de los datos_.
+- **Sección de Portafolio:** se diseñará una _vista de historial de ganancias_, complementada con _gráficos de rendimiento a lo largo del tiempo_.
+- **Sistema de Notificaciones:** se planificará un sistema que permita _personalizar alertas_ según los intereses del usuario y los activos que desee monitorear.
 
 ---
 
 ### Usuarios del Testeo
 
-Los **usuarios que participaron en el User Testing** fueron las **mismas personas entrevistadas anteriormente**, complementadas con **dos nuevos participantes** que contaban con **conocimientos limitados sobre trading**.  
+Los **usuarios que participaron en el User Testing** fueron las **mismas personas entrevistadas anteriormente**, complementadas con **dos nuevos participantes** que contaban con **conocimientos limitados sobre trading**.
 
 Esta combinación permitió obtener una **visión más equilibrada**, considerando tanto la perspectiva de usuarios con cierto nivel de entendimiento del mercado financiero como la de personas que se enfrentan por primera vez a este tipo de plataformas.
 
 ## Descripción del Trabajo Individual de cada Integrannte
 
 ### Romina Carsin
-| Fecha | Actividad | Horas invertidas |
-|:------:|:----------:|:----------------:|
-| 06/10 | Estructura del repositorio | 2h |
-| 10/10, 9/10, 06/10 | Investigación de Información | 6h |
-| 04/10, 03/10 | Entrevistas | 9h |
-| 06/10, 05/10 | Ingeniería Reversa | 8h |
-| 07/10 | Requerimientos | 5h |
-| 13/10, 09/10 | User Persona | 3h |
-| 14/10 | User Stories & Use Cases | 1h |
-| 14/10, 15/10, 16/10 | Modelo del Dominio | 4h |
-| 14/10, 13/10, 15/10, 16/10 | Verificación y Validación | 9h |
+
+|           Fecha            |          Actividad           | Horas invertidas |
+| :------------------------: | :--------------------------: | :--------------: |
+|           06/10            |  Estructura del repositorio  |        2h        |
+|     10/10, 9/10, 06/10     | Investigación de Información |        6h        |
+|        04/10, 03/10        |         Entrevistas          |        9h        |
+|        06/10, 05/10        |      Ingeniería Reversa      |        8h        |
+|           07/10            |        Requerimientos        |        5h        |
+|        13/10, 09/10        |         User Persona         |        3h        |
+|           14/10            |   User Stories & Use Cases   |        1h        |
+|    14/10, 15/10, 16/10     |      Modelo del Dominio      |        4h        |
+| 14/10, 13/10, 15/10, 16/10 |  Verificación y Validación   |        9h        |
 
 =======
+
 ## Descripción del Trabajo Individual de cada Integrannte
 
 ### Romina Carsin
->>>>>>> develop
+
+> > > > > > > develop
 
 |        Fecha        |          Actividad           | Horas invertidas |
 | :-----------------: | :--------------------------: | :--------------: |
@@ -425,18 +428,19 @@ Esta combinación permitió obtener una **visión más equilibrada**, consideran
 | 14/10, 15/10, 16/10 | Modelo del Dominio | 9h |
 | 14/10, 13/10, 16/10 | Verificación y Validación | 3h |
 =======
-|       Fecha        |          Actividad           | Horas invertidas |
+| Fecha | Actividad | Horas invertidas |
 | :----------------: | :--------------------------: | :--------------: |
-|       06/10        |  Estructura del repositorio  |        7h        |
-| 10/10, 9/10, 06/10 | Investigación de Información |        3h        |
-|    04/10, 03/10    |         Entrevistas          |        5h        |
-|    06/10, 05/10    |      Ingeniería Reversa      |        6h        |
-|       07/10        |        Requerimientos        |        2h        |
-|    13/10, 09/10    |         User Persona         |        5h        |
-|    14/10, 15/10    |   User Stories & Use Cases   |        4h        |
-|    14/10, 15/10    |      Modelo del Dominio      |        8h        |
-|    14/10, 13/10    |  Verificación y Validación   |        2h        |
->>>>>>> develop
+| 06/10 | Estructura del repositorio | 7h |
+| 10/10, 9/10, 06/10 | Investigación de Información | 3h |
+| 04/10, 03/10 | Entrevistas | 5h |
+| 06/10, 05/10 | Ingeniería Reversa | 6h |
+| 07/10 | Requerimientos | 2h |
+| 13/10, 09/10 | User Persona | 5h |
+| 14/10, 15/10 | User Stories & Use Cases | 4h |
+| 14/10, 15/10 | Modelo del Dominio | 8h |
+| 14/10, 13/10 | Verificación y Validación | 2h |
+
+> > > > > > > develop
 
 ---
 
@@ -448,12 +452,13 @@ Esta combinación permitió obtener una **visión más equilibrada**, consideran
 | Romina Carsin | 47h | 2 | 2 |
 | Guzmán Costa | 44h | 1 | 1 |
 
-=======
-|    Nombre     | Horas trabajadas | Entrevistas Realizadas | Aplicaciones Analizadas |
+
+| Nombre | Horas trabajadas | Entrevistas Realizadas | Aplicaciones Analizadas |
 | :-----------: | :--------------: | :--------------------: | :---------------------: |
-| Romina Carsin |       44h        |           2            |            2            |
-| Guzmán Costa  |       42h        |           1            |            1            |
->>>>>>> develop
+| Romina Carsin | 44h | 2 | 2 |
+| Guzmán Costa | 42h | 1 | 1 |
+
+> > > > > > > develop
 
 ---
 
@@ -476,33 +481,27 @@ El uso de ramas específicas, commits convencionales y documentación compartida
 La experiencia también nos ayudó a desarrollar **habilidades de investigación aplicada, redacción técnica y trabajo en equipo** dentro de un contexto académico que simula un entorno profesional.
 
 <<<<<<< HEAD
-En conclusión, el proyecto representa una oportunidad valiosa para **aprender desde cero sobre el mercado financiero digital**, aplicar metodologías ágiles, mejorar la organización del trabajo y fortalecer la comunicación entre los integrantes.  
+En conclusión, el proyecto representa una oportunidad valiosa para **aprender desde cero sobre el mercado financiero digital**, aplicar metodologías ágiles, mejorar la organización del trabajo y fortalecer la comunicación entre los integrantes.
 
-##  Uso de Inteligencia Artificial en el Proyecto 
+## Uso de Inteligencia Artificial en el Proyecto
 
-A lo largo del desarrollo del proyecto se utilizó **inteligencia artificial (ChatGPT) de forma moderada y responsable**, principalmente como **herramienta de apoyo** para mejorar la presentación y organización del trabajo.  
+A lo largo del desarrollo del proyecto se utilizó **inteligencia artificial (ChatGPT) de forma moderada y responsable**, principalmente como **herramienta de apoyo** para mejorar la presentación y organización del trabajo.
 
-El uso de estas herramientas se limitó a tareas puntuales, tales como:  
-- **Corregir formato y mantener coherencia** en los documentos Markdown.  
-- **Asistir en la redacción**, mejorando la claridad y fluidez de algunos apartados.  
-- **Generar tablas o estructuras base**, que luego fueron completadas y revisadas por los integrantes del equipo.  
-- **Sugerir ajustes en el estilo y presentación visual** del informe para hacerlo más claro y legible.  
+El uso de estas herramientas se limitó a tareas puntuales, tales como:
+
+- **Corregir formato y mantener coherencia** en los documentos Markdown.
+- **Asistir en la redacción**, mejorando la claridad y fluidez de algunos apartados.
+- **Generar tablas o estructuras base**, que luego fueron completadas y revisadas por los integrantes del equipo.
+- **Sugerir ajustes en el estilo y presentación visual** del informe para hacerlo más claro y legible.
 
 En ningún caso la IA reemplazó el trabajo analítico, el razonamiento técnico ni la toma de decisiones del grupo.  
-Todas las definiciones, el análisis conceptual, la elaboración del modelo de dominio, las historias de usuario y los diagramas fueron realizados por los integrantes del equipo.  
+Todas las definiciones, el análisis conceptual, la elaboración del modelo de dominio, las historias de usuario y los diagramas fueron realizados por los integrantes del equipo.
 
-El uso de inteligencia artificial se concibió como una **herramienta complementaria**, similar al uso de editores de texto o correctores automáticos, buscando optimizar el tiempo de producción y mantener un estilo uniforme sin afectar la **autenticidad ni la autoría del trabajo**.  
+El uso de inteligencia artificial se concibió como una **herramienta complementaria**, similar al uso de editores de texto o correctores automáticos, buscando optimizar el tiempo de producción y mantener un estilo uniforme sin afectar la **autenticidad ni la autoría del trabajo**.
 
 **El equipo confirma que el uso de IA se realizó siguiendo criterios éticos y académicos acordes a la Universidad ORT Uruguay.**
 
-
-
-
-
-
-
-
-
 =======
 En conclusión, el proyecto representa una oportunidad valiosa para **aprender desde cero sobre el mercado financiero digital**, aplicar metodologías ágiles, mejorar la organización del trabajo y fortalecer la comunicación entre los integrantes.
->>>>>>> develop
+
+> > > > > > > develop

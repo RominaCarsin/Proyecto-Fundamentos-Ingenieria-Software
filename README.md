@@ -32,8 +32,6 @@ La documentación completa del proyecto se encuentra en la carpeta `docs`.
 - **Letra del proyecto:** Encuentra el enunciado del problema y los requisitos detallados en **Aulas**.
 - **Rúbrica de evaluación:** Los criterios de evaluación del proyecto están disponibles en la misma plataforma.
 
-
-
 # Guía de Navegación y Funcionamiento de TradeUy
 
 Toda la navegación se realiza mediante el **menú lateral izquierdo** (en computadora) o menu , visible en toda la página.
@@ -94,10 +92,10 @@ Solamnete muestra los activos en los se tiene dinero invertido.
 - Filtrar por categoría:
   - Todas, Bonos, Criptomonedas, Forex, Acciones
 - Ver:
-  - Nombre  
-  - Tipo  
-  - Rendimiento  
-  - Precio actual  
+  - Nombre
+  - Tipo
+  - Rendimiento
+  - Precio actual
 - Botón **“Ir”** para saltar directamente al Inicio con ese activo cargado
 - Botón **“Ver más”** para cargar más activos
 
@@ -135,9 +133,9 @@ Muestra el estado financiero del usuario en **USD** y **UYU**.
 
 Para cada divisa se muestra:
 
-- Saldo total  
-- Disponible  
-- En garantía  
+- Saldo total
+- Disponible
+- En garantía
 - Botones: **Depósito** y **Retiro**
 
 ### Modal de movimientos
@@ -180,13 +178,14 @@ Sección dedicada al contenido educativo para el usuario.
 - Vista inicial de 4 videos
 - Botón **Ver más / Ver menos**
 - Cada tarjeta tiene:
-  - Imagen del video  
-  - Título  
+  - Imagen del video
+  - Título
   - Botón **Ver**
 
 Los videos son solo ilustrativos (no se reproducen dentro de la app).
 
 ---
+
 ---
 
 # Actualizaciones Automáticas
@@ -206,16 +205,14 @@ El sistema evita interrumpir al usuario mientras escribe en un campo.
 
 El switch superior alterna entre:
 
-- Listas de activos diferentes  
-- Precios distintos  
-- Saldos independientes  
-- Historial propio de cada modo  
+- Listas de activos diferentes
+- Precios distintos
+- Saldos independientes
+- Historial propio de cada modo
 - Comportamiento de simulación del mercado distinto
 
 Puede cambiarse en cualquier momento, voliendo a la pagina de Inicio y cambiando el modo.
 
-
 NOTA: En wave no se ve bien la pagina pero si funciona correactamente los controles. Se recomienda ver las alertas en la parte del codigo de wave.
 
-Las alertas que se encuentran en Wave son por los videos de youtube 
----
+## Las alertas que se encuentran en Wave son por los videos de youtube
