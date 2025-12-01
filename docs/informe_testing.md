@@ -157,7 +157,7 @@ Se busca asegurar que las validaciones se ejecuten en el momento adecuado, que l
 - **BUG-011**: Tablas no responsivas
 - **BUG-008**: Cancelar operación no limpia el formulario
 - **BUG-026**: Validación tardía: permite completar todo el flujo sin verificar saldo o activos
-- **ENH-004**: Historial sin título
+- **DEF-004**: Historial sin título
 - **DEF-013**: Alertas inconsistentes
 - **DEF-017**: Etiquetas poco descriptivas
 - **DEF-019**: Lista desplegable sobresale del teléfono
@@ -416,7 +416,7 @@ La aplicación fue evaluada aplicando técnicas de caja negra, partición de equ
 | BUG-001 | Campos “Monto” y “Cantidad” permiten caracteres inválidos (“+”, “-”, “e”)                     | Bug    | Media     | https://github.com/IngSoft-FIS-2025-2/proyecto-m4c-apoj-rener-szafran/issues/18 |
 | BUG-002 | Botón de Retiro permanece activo con saldo 0                                                  | Bug    | Media     | https://github.com/IngSoft-FIS-2025-2/proyecto-m4c-apoj-rener-szafran/issues/19 |
 | BUG-003 | Compra permite comprar una acción con valor 0                                                 | Bug    | Crítico   | https://github.com/IngSoft-FIS-2025-2/proyecto-m4c-apoj-rener-szafran/issues/20 |
-| ENH-004 | Historial de operaciones no tiene título                                                      | Mejora | Mayor     | https://github.com/IngSoft-FIS-2025-2/proyecto-m4c-apoj-rener-szafran/issues/21 |
+| DEF-004 | Historial de operaciones no tiene título                                                      | Mejora | Mayor     | https://github.com/IngSoft-FIS-2025-2/proyecto-m4c-apoj-rener-szafran/issues/21 |
 | BUG-005 | Venta usa moneda incorrecta                                                                   | Bug    | Crítico   | https://github.com/IngSoft-FIS-2025-2/proyecto-m4c-apoj-rener-szafran/issues/22 |
 | BUG-006 | Validación incorrecta de fechas (futuras y anteriores a la compra)                            | Bug    | Crítico   | https://github.com/IngSoft-FIS-2025-2/proyecto-m4c-apoj-rener-szafran/issues/23 |
 | BUG-007 | Formularios no borran valores tras error                                                      | Bug    | Mayor     | https://github.com/IngSoft-FIS-2025-2/proyecto-m4c-apoj-rener-szafran/issues/25 |
