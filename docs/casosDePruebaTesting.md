@@ -1,0 +1,65 @@
+# Reporte de Casos de Prueba
+
+## Mi Dinero (Ingreso/Retiro)
+
+| ID<span style="color: transparent">#***</span>  | Descripción | Datos de Entrada | Pasos | Resultado esperado | Resultado obtenido |
+|---|---|---|---|---|---|
+| **CP-01** | Deposito válido en UYU | Monto = 100 | Ingresar Pesos, introducir en Monto 100, seleccionar aplicar | El saldo en pesos aumenta $100 | Correcto |
+| **CP-02** | Depósito en UYU con monto fraccional | Monto = 0.50 | Ingresar Monto 0.50 | El saldo en pesos aumenta $0.50 | Correcto |
+| **CP-03** | Depósito monto 0 | Monto = 0 | Ingresar Monto 0 | Error: monto inválido | Correcto |
+| **CP-04** | Depósito en UYU con monto negativo | Monto = -1 | Ingresar Monto -1 | Rechazar operación | Correcto |
+| **CP-05** | Depósito caracteres inválidos | “-”, “+”, “e” | Escribir caracteres | No se debe permitir escribirlos | Falla (BUG-001) |
+| **CP-06** | Deposito válido en USD | Monto = 100 | Monto 100 | El saldo en dólares aumenta $100 | Correcto |
+| **CP-07** | Depósito en USD con monto fraccional | Monto = 0.50 | Ingresar Monto 0.50 | El saldo en pesos aumenta $0.50 | Correcto |
+| **CP-08** | Depósito monto 0 y 0.00 | Monto = 0, Monto = 0.00 | Ingresar Monto 0 → luego Monto 0.00 | Error: monto inválido | Correcto |
+| **CP-09** | Depósito en UYU con monto negativo | Monto = -1 | Ingresar Monto -1 | Rechazar operación | Correcto |
+| **CP-10** | Depósito vacío | Monto = (NULL) | No ingresar ningún Monto | Error: monto inválido | Correcto |
+| **CP-11** | Retiro válido en UYU | Monto menor al saldo | Ingresar Monto | Saldo disminuye | Correcto |
+| **CP-12** | Retiro Mayor a saldo | Monto > Saldo | Seleccionar retirar | Error por saldo insuficiente | Falla (BUG-016) |
+| **CP-13** | Retiro en USD y UYU Monto 0 | Monto = 0 | Ingresar Monto = 0 | Error: el monto debe ser > 0 | Falla (BUG-013) |
+| **CP-14** | Retiro en USD y UYU Monto -1 | Monto = -1 | Ingresar Monto = -1 | Error: el monto debe ser > 0 | Falla (BUG-013) |
+| **CP-15** | Retiro en UYU y USD | Monto = 0.10 | Ingresar Monto | Saldo disminuye | Correcto |
+| **CP-16** | Retiro con Saldo = 0 en la moneda a retirar | Saldo = 0 | Retirar | Botón debería estar deshabilitado | Falla (BUG-002) |
+| **CP-17** | Ante un Depósito / Retiro exitoso o que falle | Cualquiera | Depósito / Retiro | Que el campo se limpie y me deje volver a ingresar un saldo a retirar | Falla (BUG-016) |
+| **CP-18** | Depósito / Retiro con formulario que no se limpia | Cualquiera | Depósito / Retiro | Limpiar Campos | Falla por CP-17 |
+| **CP-19** | Depósito muy grande en cualquier moneda | Monto = 1e50 o Monto = 9999999999999999999999999999999999999 | Depositar | Sistema debería rechazar el formato | Falla (BUG-001) (BUG-009) |
+| **CP-20** | Moneda USD/UYU | Cambiar monedas | Depositar/Retirar | Debe tomar moneda correcta | Correcto |
+
+
+
+
+
+## Operar (Compra y Venta)
+
+| ID<span style="color: transparent">#***</span>  | Descripción | Datos de Entrada | Pasos | Resultado esperado | Resultado obtenido |
+|---|---|---|---|---|---|
+| **CP-21** | Compra válida para USD y UYU | Cantidad = 1 | Realizar Compra y confirmar toda la operación | El saldo disminuye y en la tabla inferior se indica la compra con su respectiva información | Correcto |
+| **CP-22** | Compra con USD / UYU cantidad = 0 | Cantidad = 0 | Comprar | Error: La cantidad debe ser > 0 | Falla (BUG-013) |
+| **CP-23** | Compra con USD / UYU cantidad < 0 | Cantidad = -1 | Comprar | Error: La cantidad debe ser > 0 | Falla (BUG-013) |
+| **CP-24** | Compra con USD / UYU fraccionada válida | Cantidad = 0.5 | Comprar | Realizar compra si hay saldo y cantidad > 0 | Correcto |
+| **CP-25** | Compra fraccionada muy pequeña | Activo AAPL, Cant = 0.000001 | Comprar | Rechazar compra si el total a pagar es 0 | Falla (BUG-003) |
+| **CP-26** | Compra con caracteres inválidos | “+”, “-”, “e” | Escribir caracteres | No se debe permitir escribirlos | Falla (BUG-001) |
+| **CP-27** | Comprar activo sin tener saldo suficiente | saldo < total a pagar | Compra | Error: Saldo insuficiente (flujo detenido antes de confirmar) | Falla (BUG-026) |
+| **CP-28** | Venta válida | Cantidad exacta | Vender | Venta realizada con éxito | Correcto |
+| **CP-29** | Venta mayor a cantidad disponible | Cant > poseído | Vender | Error: Cantidad insuficiente para vender (flujo detenido antes de confirmar) | Falla (BUG-026) |
+| **CP-30** | Venta activo no comprado | Cant = 1 | Vender | Error: Cantidad insuficiente para vender (flujo detenido antes de confirmar) | Falla (BUG-026) |
+| **CP-31** | Venta usando moneda incorrecta | Cambiar USD → UYU | Compara un activo en una moneda y vender en otra | Error: Usar moneda de la compra | Falla (BUG-005) |
+| **CP-32** | Cálculo con números gigantes | Cantidad enorme (ej: 999...9) | Comprar/Vender | Rechazar | Falla (BUG-010) |
+| **CP-33** | Notación científica | Cantidad = número muy grande | Compra / Vender | Mostrar número normal | Falla (BUG-009) |
+| **CP-34** | Confirmar operación | Click en Confirmar | Avanzar pasos | Botón debe decir “Siguiente” | Falla (DEF-021) |
+| **CP-35** | Historial sin encabezado | – | Hacer operación | Mostrar título | Falla (ENH-004) |
+| **CP-36** | Tabla no completamente responsiva en móviles pequeños | – | Tener operaciones cargadas | Tabla responsiva | Falla (DEF-011) |
+
+
+
+## Mis Inversiones (Consulta Histórica)
+
+| ID | Descripción | Datos de Entrada | Pasos | Resultado esperado | Resultado obtenido |
+|---|---|---|---|---|---|
+| **CP-37** | Fecha válida | El día de hoy | Seleccionar fecha y actualizar | Mostrar las acciones que tengo hoy en día y sus datos actualizados | Correcto |
+| **CP-38** | Fecha vacía | “” | Actualizar | Mostrar alerta clara | Correcto |
+| **CP-39** | Fecha futura | Año 2050 | Actualizar | Mensaje de error y no calcular valores de acciones | Falla (BUG-006) |
+| **CP-40** | Fecha anterior a compra de un activo | Fecha < compra | Actualizar | Ocultar activo | Falla (BUG-006) |
+| **CP-41** | Formato inválido | Año “99999999” | Actualizar | Error | Falla (BUG-018) |
+| **CP-42** | Alerta inconsistente | Fecha inválida | Actualizar | Alerta estándar | Falla (BUG-018) |
+| **CP-43** | Cálculo con fecha inválida | Fecha errónea | Actualizar | No calcular nada | Falla (BUG-018) |
